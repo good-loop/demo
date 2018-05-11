@@ -28,15 +28,6 @@
     text-align: right;
 }
 
-.image:before {
-    background: black;
-    opacity: 0.35;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    content: '';
-}
-
 .image-header {
     font-size: 40px;
     color: white;
