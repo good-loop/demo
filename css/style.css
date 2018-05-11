@@ -9,6 +9,12 @@
     margin-right: 0;
 }
 
+.headliner-row {
+    padding-bottom: 5%;
+    border-bottom: 3px solid;
+    border-bottom-color: black;
+}
+
 .container.row{
     margin-left: -15px;
     margin-right: -15px;
@@ -54,4 +60,17 @@
     word-wrap: normal;
     text-align: center;
     color: white;
+}
+
+.article-header {
+    font-size: 35px;
+    text-align: justify;
+    font-weight: bold;
+    color: black;
+}
+
+.article-body {
+    font-size: 14px;
+    text-align: justify;
+    color: black;
 }
