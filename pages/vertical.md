@@ -14,7 +14,7 @@
 <div class="row">
     <div class="col-md-1 fit-width">
         <center>
-            <div class='goodloopad' data-format='vertical' data-mobile-format='vertical'></div>
+            <div class='goodloopad' data-format='vertical-banner' data-mobile-format='vertical-banner'></div>
                 <script src='//as.good-loop.com/unit.js' async></script>
         </center>
     </div>
