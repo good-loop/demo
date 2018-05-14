@@ -33,6 +33,6 @@
         </span>
     </div>
     <div class="col-md-2 fit-width">
-        <img src="img/train.jpg">
+        <img class="fit-width bump-down" src="img/train.jpg">
     </div>
 </div>    

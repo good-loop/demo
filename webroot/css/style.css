@@ -90,3 +90,7 @@
 .text-centered {
     text-align: center;
 }
+
+.bump-down {
+    margin-top:10%;
+}
