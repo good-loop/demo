@@ -13,8 +13,9 @@
 <!-- End of Cheap Vertical Space -->
 <div class="row">
     <div class="col-md-6 offset-md-3 fit-width">
-        <a href="https://as.good-loop.com/?pub=demo.good-loop.com" style="position:absolute; top:0; left:0; display:inline-block; min-width:50vw; max-width:50vw; min-height:50vh; max-height=50vh; z-index:5;">
-        <iframe src="https://as.good-loop.com/?pub=demo.good-loop.com" style="min-width:50vw; max-width:50vw; min-height:50vh; max-height=50vh;" />
-        </a>
+        <div style="min-width:50vw; max-width:50vw; min-height:50vh; max-height=50vh;">
+            <iframe src="https://as.good-loop.com/?pub=demo.good-loop.com" style="width:100%; height:100%; position:absolute;"></iframe>
+            <a href="https://as.good-loop.com/?pub=demo.good-loop.com" style="position:absolute; top:0; left:0; display:block; width:100%; height:100%; z-index:5;"> </a>
+        </div>
     </div>
 </div>
