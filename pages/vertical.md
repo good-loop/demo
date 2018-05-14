@@ -19,10 +19,6 @@
         </center>
     </div>
     <div class="col-md-8 fit-width">
-        <center>
-            <div class='goodloopad' data-format='vertical-banner' data-mobile-format='vertical-banner'></div>
-                <script src='//as.good-loop.com/unit.js' async></script>
-        </center>
         <span class="article-header">Lorem Ipsum</span>
         <span class="article-body">
                  dolor sit amet, consectetur adipiscing elit. Sed ultricies vestibulum urna, dapibus posuere quam blandit ac. Cras et tempor nisi. Phasellus vulputate, dolor sit amet pellentesque dapibus, ligula lacus consectetur eros, et hendrerit lorem risus eget massa. Nam auctor velit nec blandit pretium. Donec porttitor, lorem id pulvinar tristique, elit libero condimentum libero, sit amet lacinia elit mi nec leo. Quisque accumsan eleifend felis ut malesuada. Mauris pellentesque felis et ipsum feugiat vestibulum. Mauris ultrices eros eu justo egestas, non lobortis dui lacinia. Fusce maximus orci mauris. Proin nec tortor vel magna aliquam consequat. Vivamus eget aliquam tellus, vitae aliquet lorem. Quisque bibendum nibh ex, ut cursus sem egestas ac. Nam id bibendum libero. Curabitur consequat vehicula dolor eget tincidunt.
