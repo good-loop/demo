@@ -13,11 +13,16 @@
 <!-- End of Cheap Vertical Space -->
 <div class="row">
     <div class="col-md-6 offset-md-3 fit-width">
-        <div class='goodloopad' data-format='leaderboard' data-mobile-format='leaderboard'></div>
+        <center>
+            <div class='goodloopad' data-format='leaderboard' data-mobile-format='leaderboard'></div>
                 <script src='//as.good-loop.com/unit.js' async></script>
-        </div>
+        </center>
     </div>
 </div>
+<!-- Cheap Vertical Space -->
+<div class="white-bg" style="height:2em;">
+</div>
+<!-- End of Cheap Vertical Space -->
 <div class="row">
     <div class="col-md-8 offset-md-2">
         <img class="fit-width" src="img/cappadocia.jpg">
