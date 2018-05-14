@@ -18,7 +18,7 @@
                 <script src='//as.good-loop.com/unit.js' async></script>
         </center>
     </div>
-    <div class="col-md-8 fit-width">
+    <div class="col-md-7 fit-width">
         <span class="article-header">Lorem Ipsum</span>
         <span class="article-body">
                  dolor sit amet, consectetur adipiscing elit. Sed ultricies vestibulum urna, dapibus posuere quam blandit ac. Cras et tempor nisi. Phasellus vulputate, dolor sit amet pellentesque dapibus, ligula lacus consectetur eros, et hendrerit lorem risus eget massa. Nam auctor velit nec blandit pretium. Donec porttitor, lorem id pulvinar tristique, elit libero condimentum libero, sit amet lacinia elit mi nec leo. Quisque accumsan eleifend felis ut malesuada. Mauris pellentesque felis et ipsum feugiat vestibulum. Mauris ultrices eros eu justo egestas, non lobortis dui lacinia. Fusce maximus orci mauris. Proin nec tortor vel magna aliquam consequat. Vivamus eget aliquam tellus, vitae aliquet lorem. Quisque bibendum nibh ex, ut cursus sem egestas ac. Nam id bibendum libero. Curabitur consequat vehicula dolor eget tincidunt.
@@ -33,6 +33,13 @@
         </span>
     </div>
     <div class="col-md-2 fit-width">
-        <img class="fit-width bump-down" src="img/train.jpg">
-    </div>
-</div>    
+        <div class="col-md-12 fit-width">
+            <!-- Cheap Vertical Space -->
+            <div class="white-bg" style="height:2em;">
+            </div>
+            <!-- End of Cheap Vertical Space -->
+            <div class="col-md-12 fit-width">
+            <img class="fit-width" src="img/train.jpg">
+        </div>
+    </div>    
+</div>
