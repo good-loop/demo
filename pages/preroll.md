@@ -15,7 +15,9 @@
     <center>
         <div id="pre-roll-type" class="col-md-12 fit-width">
             <div class="video-container"></div>
-                <script src='//as.good-loop.com/unit.js?gl.variant=pre-roll' async></script>
+                <div class="goodloopad" data-format="player" data-mobile-format="player" style="" id="glad0">
+                    <script src='//as.good-loop.com/unit.js?gl.variant=pre-roll' async></script>
+                </div>
             </div>
         </div>
     </center>
