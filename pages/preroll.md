@@ -13,7 +13,7 @@
 <!-- End of Cheap Vertical Space -->
 <div class="row">
     <div class="col-md-6 offset-md-6 fit-width">
-        <div class='goodloopad' data-format='pre-roll' data-mobile-format='pre-roll'></div>
+        <div class="video-container"></div>
             <script src='//as.good-loop.com/unit.js?gl.variant=pre-roll' async></script>
         </div>
         <!-- Cheap Vertical Space -->
