@@ -13,7 +13,7 @@
 <!-- End of Cheap Vertical Space -->
 <div class="row">
     <center>
-        <div class="col-md-12 fit-width">
+        <div id="pre-roll-type" class="col-md-12 fit-width">
             <div class="video-container"></div>
                 <script src='//as.good-loop.com/unit.js?gl.variant=pre-roll' async></script>
             </div>
