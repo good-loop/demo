@@ -96,7 +96,7 @@
 }
 
 .pre-roll-type {
-    min-width: 600px;
+    min-width: 100%;
     max-width: 100vw;
     max-height: 100vh;
 }
