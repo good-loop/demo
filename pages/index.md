@@ -3,16 +3,16 @@
 </div>
 <!-- End of Cheap Vertical Space -->
 <div class="row">
-    <div class="col-md-8 offset-md-2 text-centered d-none d-sm-block d-sm-none d-md-block">
+    <div class="col-md-8 offset-md-2 text-centered d-none d-sm-block d-md-block">
         <span class="headliner-text-bold">The "MPU"</span> <span class="headliner-text">is a 300px by 250px adunit. If fits neatly in sidebars, and can be used to break up text and folds. It's an IAB standard size and is supported in a myriad of ad platforms. This versatile adsize will most likely feel at home on your site too.</span>
     </div>
 </div>
 <!-- Cheap Vertical Space -->
-<div class="white-bg d-none d-sm-block d-sm-none d-md-block" style="height:2em;">
+<div class="white-bg d-none d-sm-block d-md-block" style="height:2em;">
 </div>
 <!-- End of Cheap Vertical Space -->
 <div class="row">
-    <div class="col-md-5 offset-md-2 fit-width d-none d-sm-block d-sm-none d-md-block">
+    <div class="col-md-5 offset-md-2 fit-width d-none d-sm-block d-md-block">
         <img class="fit-width" src="img/seamstress-measuring-tape.jpeg">
         <div class="text-on-image">
             <span class="image-header">Tailored to Fit</span>
@@ -29,7 +29,7 @@
         <div class="white-bg" style="height:2em;">
         </div>
         <!-- End of Cheap Vertical Space -->
-        <div class="col-md-6 fit-width d-none d-sm-block d-sm-none d-md-block">
+        <div class="col-md-6 fit-width d-none d-sm-block d-md-block">
             <img class="fit-width" src="img/picnic.jpg">
             <div class="lesser-text-on-image">
                 <span class="lesser-image-header"><i>Doing</i> Good</span>
@@ -38,9 +38,12 @@
             </div>
         </div>
     </div>
+    <div class="col-md-8 offset-md-2 text-centered d-block d-sm-none d-md-none">
+        <span class="headliner-text-bold">The "MPU"</span> <span class="headliner-text">is a 300px by 250px adunit. If fits neatly in sidebars, and can be used to break up text and folds. It's an IAB standard size and is supported in a myriad of ad platforms. This versatile adsize will most likely feel at home on your site too.</span>
+    </div>
 </div>
 <div class="row">
-    <div class="col-md-12 fit-width">
+    <div class="col-md-12 fit-width d-none d-sm-block d-md-block">
         <div class="col-md-8 offset-md-2">
             <span class="article-header">Lorem Ipsum</span>
             <span class="article-body">
