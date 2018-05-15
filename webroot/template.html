@@ -6,6 +6,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="support-helper" content="{&quot;permalink&quot;:&quot;loop-london&quot;,&quot;id&quot;:11154215}">
         <title>See Good-Loop In Action</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css">
 
@@ -13,7 +14,7 @@
 
     <body>
         <div class="row">
-            <div class="container">
+            <div class="container d-none d-sm-block d-md-block">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto upper-nav">
@@ -51,7 +52,8 @@
         </div>
         <!-- End of Cheap Vertical Space -->
         <div class="row">
-            <div class="col-md-12 bg-dark">
+            <!-- Only Desktop/Laptop screens see this menu -->
+            <div class="col-md-12 bg-dark d-none d-sm-block d-md-block">
                 <div class="col-md-6 offset-md-3">
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -79,6 +81,25 @@
                     </nav>
                 </div>
             </div>
+            <!-- Only Mobile device's screens see this menu -->
+            <div class="col-md-12 bg-light d-block d-sm-none d-md-none">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="mobiledropdownmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="mobiledropdownmenu">
+                        <a class="dropdown-item" href="index.html">MPU</a>
+                        <a class="dropdown-item" href="leaderboard.html">Leaderboard</a>
+                        <a class="dropdown-item" href="billboard.html">Billboard</a>
+                        <a class="dropdown-item" href="vertical.html">Vertical</a>
+                        <a class="dropdown-item" href="preroll.html">Pre-Roll</a>
+                        <a class="dropdown-item" href="landingpage.html">LandingPage</a>
+                    </div>
+                </div>
+            </div>
+            
+
+
         </div>
         <div id='page-contents'>
 			<div class="simple-page page-part">
