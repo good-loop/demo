@@ -20,6 +20,10 @@
         </span>
     </div>
 </div>
+<!-- Cheap Vertical Space -->
+<div class="white-bg" style="height:2em;">
+</div>
+<!-- End of Cheap Vertical Space -->
 <div class="row">
     <div class="col-md-6 offset-md-3 fit-width">
         <center>
