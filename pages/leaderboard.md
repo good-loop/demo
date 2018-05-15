@@ -3,7 +3,7 @@
 </div>
 <!-- End of Cheap Vertical Space -->
 <div class="row">
-    <div class="col-md-8 offset-md-2 text-centered">
+    <div class="col-md-8 offset-md-2 text-centered d-none d-sm-block d-md-block">
         <span class="headliner-text-bold">The "Leaderboard"</span> <span class="headliner-text">is a 728px by 90px adunit. It fits neatly in between navbars and page contents, it is sometimes used as section breaks in text, and it also fits nicely at the bottom of a page. It's an IAB standard size and is supported in a myriad of ad platforms. This adsize is only viewable on desktop/laptop platforms, with the exception of a mobile device that is being used in landscape mode.</span>
     </div>
 </div>
@@ -11,6 +11,15 @@
 <div class="white-bg" style="height:2em;">
 </div>
 <!-- End of Cheap Vertical Space -->
+<div class="row">
+    <div class="col-md-12 d-block d-sm-none d-md-none">
+        <span class="emphasis">Mobile Device Detected</span>
+        <br />
+        <span class="mobile-warning">
+            Although the leaderboard-sized ad is functional on a mobile device, it is not meant to be displayed on one. This is because the leaderboard has a defined absolute width of 728px, which is much wider than many mobile devices can display in portrait mode.
+        </span>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-6 offset-md-3 fit-width">
         <center>
@@ -24,7 +33,12 @@
 </div>
 <!-- End of Cheap Vertical Space -->
 <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-8 offset-md-2 text-centered d-block d-sm-none d-md-none">
+        <span class="headliner-text-bold">The "Leaderboard"</span> <span class="headliner-text">is a 728px by 90px adunit. It fits neatly in between navbars and page contents, it is sometimes used as section breaks in text, and it also fits nicely at the bottom of a page. It's an IAB standard size and is supported in a myriad of ad platforms. This adsize is only viewable on desktop/laptop platforms, with the exception of a mobile device that is being used in landscape mode.</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 offset-md-2 d-none d-sm-block d-md-block">
         <img class="fit-width" src="img/cappadocia.jpg">
     </div>
 </div>
@@ -34,7 +48,7 @@
 <!-- End of Cheap Vertical Space -->
 <div class="row">
     <div class="col-md-12 fit-width">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-8 offset-md-2 d-none d-sm-block d-md-block">
             <span class="article-header">Lorem Ipsum</span>
             <span class="article-body">
                  dolor sit amet, consectetur adipiscing elit. Sed ultricies vestibulum urna, dapibus posuere quam blandit ac. Cras et tempor nisi. Phasellus vulputate, dolor sit amet pellentesque dapibus, ligula lacus consectetur eros, et hendrerit lorem risus eget massa. Nam auctor velit nec blandit pretium. Donec porttitor, lorem id pulvinar tristique, elit libero condimentum libero, sit amet lacinia elit mi nec leo. Quisque accumsan eleifend felis ut malesuada. Mauris pellentesque felis et ipsum feugiat vestibulum. Mauris ultrices eros eu justo egestas, non lobortis dui lacinia. Fusce maximus orci mauris. Proin nec tortor vel magna aliquam consequat. Vivamus eget aliquam tellus, vitae aliquet lorem. Quisque bibendum nibh ex, ut cursus sem egestas ac. Nam id bibendum libero. Curabitur consequat vehicula dolor eget tincidunt.

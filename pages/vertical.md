@@ -3,7 +3,7 @@
 </div>
 <!-- End of Cheap Vertical Space -->
 <div class="row">
-    <div class="col-md-8 offset-md-2 text-centered">
+    <div class="col-md-8 offset-md-2 text-centered d-none d-sm-block d-md-block">
         <span class="headliner-text-bold">The "Vertical"</span> <span class="headliner-text">type is a 120px by 240px adunit. It is a discreet adslot size that will most likely fit nicely within an existing sidebar.  It's an IAB standard size and is supported in a myriad of ad platforms.</span>
     </div>
 </div>
@@ -18,7 +18,10 @@
                 <script src='//as.good-loop.com/unit.js' async></script>
         </center>
     </div>
-    <div class="col-md-7 fit-width">
+    <div class="col-md-8 offset-md-2 text-centered d-block d-sm-none d-md-none">
+        <span class="headliner-text-bold">The "Vertical"</span> <span class="headliner-text">type is a 120px by 240px adunit. It is a discreet adslot size that will most likely fit nicely within an existing sidebar.  It's an IAB standard size and is supported in a myriad of ad platforms.</span>
+    </div>
+    <div class="col-md-7 fit-width d-none d-sm-block d-md-block">
         <span class="article-header">Lorem Ipsum</span>
         <span class="article-body">
                  dolor sit amet, consectetur adipiscing elit. Sed ultricies vestibulum urna, dapibus posuere quam blandit ac. Cras et tempor nisi. Phasellus vulputate, dolor sit amet pellentesque dapibus, ligula lacus consectetur eros, et hendrerit lorem risus eget massa. Nam auctor velit nec blandit pretium. Donec porttitor, lorem id pulvinar tristique, elit libero condimentum libero, sit amet lacinia elit mi nec leo. Quisque accumsan eleifend felis ut malesuada. Mauris pellentesque felis et ipsum feugiat vestibulum. Mauris ultrices eros eu justo egestas, non lobortis dui lacinia. Fusce maximus orci mauris. Proin nec tortor vel magna aliquam consequat. Vivamus eget aliquam tellus, vitae aliquet lorem. Quisque bibendum nibh ex, ut cursus sem egestas ac. Nam id bibendum libero. Curabitur consequat vehicula dolor eget tincidunt.
@@ -38,7 +41,7 @@
             <div class="white-bg" style="height:2em;">
             </div>
             <!-- End of Cheap Vertical Space -->
-            <div class="col-md-12 fit-width">
+            <div class="col-md-12 fit-width d-none d-sm-block d-md-block">
             <img class="fit-width" src="img/train.jpg">
         </div>
     </div>    

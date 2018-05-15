@@ -3,7 +3,7 @@
 </div>
 <!-- End of Cheap Vertical Space -->
 <div class="row">
-    <div class="col-md-8 offset-md-2 text-centered">
+    <div class="col-md-8 offset-md-2 text-centered d-none d-sm-block d-md-block">
         <span class="headliner-text-bold">The "Pre-Roll"</span> <span class="headliner-text">type is an adaptive adunit size, which is used specifically as, well, "pre-roll". This type of specific ad is meant to be used in Apps on mobile platforms.  It can also be used on sites which require or request ad-watching before content is viewable.</span>
     </div>
 </div>
@@ -18,8 +18,17 @@
             </div>
         </div>
 </div>
+<!-- Cheap Vertical Space -->
+<div class="white-bg" style="height:2em;">
+</div>
+<!-- End of Cheap Vertical Space -->
 <div class="row">
-    <div class="col-md-12 fit-width">
+    <div class="col-md-8 offset-md-2 text-centered d-block d-sm-none d-md-none">
+        <span class="headliner-text-bold">The "Pre-Roll"</span> <span class="headliner-text">type is an adaptive adunit size, which is used specifically as, well, "pre-roll". This type of specific ad is meant to be used in Apps on mobile platforms.  It can also be used on sites which require or request ad-watching before content is viewable.</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 fit-width d-none d-sm-block d-md-block">
         <div class="col-md-8 offset-md-2">
             <span class="article-header">Lorem Ipsum</span>
             <span class="article-body">

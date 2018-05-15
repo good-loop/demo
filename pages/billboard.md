@@ -3,7 +3,7 @@
 </div>
 <!-- End of Cheap Vertical Space -->
 <div class="row">
-    <div class="col-md-8 offset-md-2 text-centered">
+    <div class="col-md-8 offset-md-2 text-centered d-none d-sm-block d-md-block">
         <span class="headliner-text-bold">The "Billboard"</span> <span class="headliner-text">is a 970px by 250px adunit. It is the largest adslot size that Good-Loop has to date. Like the <a href="leaderboard.html">Leaderboard</a>, most placements of the Billboard happen at the top of pages, in the middle (to break up sections), and at the bottom. It's an IAB standard size and is supported in a myriad of ad platforms. This adsize is only viewable on desktop/laptop platforms, with the exception of a mobile device that is being used in landscape mode that have a screen resolution of 1080(i/p) or higher.</span>
     </div>
 </div>
@@ -11,6 +11,15 @@
 <div class="white-bg" style="height:2em;">
 </div>
 <!-- End of Cheap Vertical Space -->
+<div class="row">
+    <div class="col-md-12 d-block d-sm-none d-md-none">
+        <span class="emphasis">Mobile Device Detected</span>
+        <br />
+        <span class="mobile-warning">
+            Although the billboard-sized ad is functional on a mobile device, it is not meant to be displayed on one. This is because the billboard has a defined absolute width of 970px, which is much wider than many mobile devices can display in portrait mode.
+        </span>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-6 offset-md-3 fit-width">
         <center>
@@ -24,7 +33,11 @@
 </div>
 <!-- End of Cheap Vertical Space -->
 <div class="row">
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-8 offset-md-2 text-centered d-block d-sm-none d-md-none">
+        <span class="headliner-text-bold">The "Billboard"</span> <span class="headliner-text">is a 970px by 250px adunit. It is the largest adslot size that Good-Loop has to date. Like the <a href="leaderboard.html">Leaderboard</a>, most placements of the Billboard happen at the top of pages, in the middle (to break up sections), and at the bottom. It's an IAB standard size and is supported in a myriad of ad platforms. This adsize is only viewable on desktop/laptop platforms, with the exception of a mobile device that is being used in landscape mode that have a screen resolution of 1080(i/p) or higher.</span>
+    </div>
+<div class="row">
+    <div class="col-md-8 offset-md-2 d-none d-sm-block d-md-block">
         <img class="fit-width" src="img/salsa-dance.jpg">
     </div>
 </div>
@@ -33,7 +46,7 @@
 </div>
 <!-- End of Cheap Vertical Space -->
 <div class="row">
-    <div class="col-md-12 fit-width">
+    <div class="col-md-12 fit-width d-none d-sm-block d-md-block">
         <div class="col-md-8 offset-md-2">
             <span class="article-header">Lorem Ipsum</span>
             <span class="article-body">
