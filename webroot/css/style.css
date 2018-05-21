@@ -13,18 +13,64 @@
 }
 
 h1, h2, h3, h4 {
-    font-size: initial;
     letter-spacing: normal;
     font-weight: normal;
     border: none;
     padding: initial;
     letter-spacing: initial;
     margin-bottom: initial;
-    text-align: initial;
     line-height: initial;
     background: initial;
     font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
     text-transform: uppercase;
+}
+
+.gl-red {
+    background-color: #a4242c;
+}
+
+.gl-offwhite {
+    background-color: #f8ecd2;
+}
+
+.gl-nav-borders {
+    border-top: 5px solid #a4242c;
+    border-bottom: 5px solid #a4242c;
+}
+
+.gl-navlink ,.gl-button-link {
+    color: #FFFFFF;
+    border-radius: 6px;
+    background-color: #a4242c;
+    font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
+    padding-right: 1rem !important;
+    margin-right: 1.5rem !important;
+    padding-left: 1rem !important;
+    margin-left: 1.5rem !important;
+    font-size: 30px;
+}
+
+.gl-button-link {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+.gl-navlink:hover, .gl-button-link:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.gl-font-1 {
+    font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
+}
+
+.gl-big-body-text {
+    font-size: 40px;
+}
+
+.gl-small-body-text {
+    font-size: 25px;
 }
 
 .fit-width {
