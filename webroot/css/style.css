@@ -1,3 +1,32 @@
+@font-face {
+    font-family: "Bebas Neue";
+    src: url('../fonts/bebasneue-subset.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Monstserrat Regular";
+    src: url('../fonts/montserrat-regular-subset.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1, h2, h3, h4 {
+    font-size: initial;
+    letter-spacing: normal;
+    font-weight: normal;
+    border: none;
+    padding: initial;
+    letter-spacing: initial;
+    margin-bottom: initial;
+    text-align: initial;
+    line-height: initial;
+    background: initial;
+    font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
+    text-transform: uppercase;
+}
+
 .fit-width {
     width: 100%;
     height: auto;
