@@ -3,7 +3,7 @@
 </div>
 <!-- End of Cheap Vertical Space -->
 <div class="row">
-    <div class="col-md-6 offset-md-3 fit-width">
+    <div class="col-md-2 offset-md-5 fit-width">
         <div class='goodloopad' data-format='medium-rectangle' data-mobile-format='medium-rectangle'></div>
                 <script src='//as.good-loop.com/unit.js' async></script>
     </div>
