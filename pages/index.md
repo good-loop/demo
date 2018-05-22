@@ -3,35 +3,29 @@
 </div>
 <!-- End of Cheap Vertical Space -->
 <div class="row">
-    <div class="col-md-5 offset-md-2 fit-width d-none d-sm-block d-md-block">
-        <span class="gl-font-1 gl-big-body-text">
-            This is an example article.
-            <br>
-            Oh look, there's a delightful looking advert over there.
-            <br>
-            <br>
-            Better click it and see what happens...
-            <br>
-            <br>
-            Like what you see?
-            <br>
-            <a href="https://www.good-loop.com/contact-us" class="gl-button-link" target="_blank" >Book A Call</a>
-        </span>
-    </div>
-    <div class="col-md-4">
-        <div class="col-md-6 fit-width">
-            <div class='goodloopad' data-format='medium-rectangle' data-mobile-format='medium-rectangle'></div>
+    <div class="col-md-6 offset-md-3 fit-width">
+        <div class='goodloopad' data-format='medium-rectangle' data-mobile-format='medium-rectangle'></div>
                 <script src='//as.good-loop.com/unit.js' async></script>
-            </div>
-        <!-- Cheap Vertical Space -->
-        <div class="white-bg" style="height:2em;">
-        </div>
-        <!-- End of Cheap Vertical Space -->
-        <div class="col-md-6 fit-width d-none d-sm-block d-md-block">
-            <span class="gl-font-1 gl-small-body-text">
-                On page ads are available in a range of IAB approved sizes and standards
-            </span>
-        </div>
+    </div>
+</div>
+<!-- Cheap Vertical Space -->
+<div class="white-bg" style="height:2em;">
+</div>
+<!-- End of Cheap Vertical Space -->
+<div class="row">
+    <div class="col-md-6 offset-md-3 fit-width d-none d-sm-block d-md-block">
+        <span class="gl-font-1 gl-big-body-text">
+            <center>
+                This is an example article.
+                <br>
+                Oh look, there's a delightful looking advert up there.
+                <br>
+                <br>
+                Better click it and see what happens...
+                <br>
+                <a href="https://www.good-loop.com/contact-us" class="gl-button-link" target="_blank" >Book A Call</a>
+            </center>
+        </span>
     </div>
     <!-- Mobile Devices See This -->
     <div class="col-md-8 offset-md-2 text-centered d-block d-sm-none d-md-none">
