@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-6 offset-md-6 d-block d-sm-none d-md-none">
         <center>
-            <a class="btn btn-secondary" href="https://as.good-loop.com" role="button" target="_blank">See The Landing Page ></a>
+            <a class="btn btn-secondary gl-button-link" href="https://as.good-loop.com" role="button" target="_blank">See The Landing Page ></a>
         </center>
     </div>
 </div>
