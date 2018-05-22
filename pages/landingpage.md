@@ -4,7 +4,7 @@
 <!-- End of Cheap Vertical Space -->
 <div class="row">
     <div class="col-md-8 offset-md-2 text-centered d-none d-sm-block d-md-block">
-        <span class="headliner-text-bold">The "LandingPage"</span> <span class="headliner-text"> is a space on the good-loop domain where a sponsored advert is shown in a dedicated space.  This space is used for a number of reasons. The most prevelent reason usually has to do with a sponsor wanting branding colours and logos in the presentation of their advert. The LandingPage is also a safety-net of sorts, for when a website will not allow a Good-Loop advert to expand a lightbox and play an advert within it.</span>
+        <span class="headliner-text gl-font-1 gl-small-body-text">The "LandingPage" is a space on the good-loop domain where a sponsored advert is shown in a dedicated space.  This space is used for a number of reasons. The most prevelent reason usually has to do with a sponsor wanting branding colours and logos in the presentation of their advert. The LandingPage is also a safety-net of sorts, for when a website will not allow a Good-Loop advert to expand a lightbox and play an advert within it.</span>
     </div>
 </div>
 <div class="row">

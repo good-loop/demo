@@ -15,7 +15,7 @@
             <br>
             Like what you see?
             <br>
-            <a href class="gl-button-link" src="#">Book A Call</a>
+            <a href="https://www.good-loop.com/contact-us" class="gl-button-link" target="_blank" >Book A Call</a>
         </span>
     </div>
     <div class="col-md-4">
@@ -33,6 +33,7 @@
             </span>
         </div>
     </div>
+    <!-- Mobile Devices See This -->
     <div class="col-md-8 offset-md-2 text-centered d-block d-sm-none d-md-none">
         <span class="headliner-text-bold">The "MPU"</span> <span class="headliner-text">is a 300px by 250px adunit. If fits neatly in sidebars, and can be used to break up text and folds. It's an IAB standard size and is supported in a myriad of ad platforms. This versatile adsize will most likely feel at home on your site too.</span>
     </div>
