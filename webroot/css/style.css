@@ -12,6 +12,27 @@
     font-style: normal;
 }
 
+.gl-red-header-bg {
+    background-color: #a5252d;
+    background-image: url("../img/background-diamond.png");
+    background-repeat: repeat-x;
+    background-size: contain;
+}
+
+.header-image {
+    width: 5vw;
+    height: auto;
+}
+
+.gl-page-header-text {
+    font-size: 4rem;
+    color: #FFFFFF;
+}
+
+.bg-light {
+    background-color: #FFFFFF !important;
+}
+
 h1, h2, h3, h4 {
     letter-spacing: normal;
     font-weight: normal;
@@ -25,8 +46,15 @@ h1, h2, h3, h4 {
     text-transform: uppercase;
 }
 
+.gl-hamburger, .show>.btn-secondary.dropdown-toggle, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle, .btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:hover, .show>.btn-secondary.dropdown-toggle:focus {
+    fill: #a5252d;
+    background-color: #a5252d;
+    border-color: #a5252d;
+    box-shadow: none;
+}
+
 .gl-red {
-    background-color: #a4242c;
+    background-color: #a5252d;
 }
 
 .gl-offwhite {
@@ -34,14 +62,13 @@ h1, h2, h3, h4 {
 }
 
 .gl-nav-borders {
-    border-top: 5px solid #a4242c;
-    border-bottom: 5px solid #a4242c;
+    border-bottom: 10px solid #a5252d;
 }
 
 .gl-navlink ,.gl-button-link {
     color: #FFFFFF;
     border-radius: 6px;
-    background-color: #a4242c;
+    background-color: #a5252d;
     font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
     padding-right: 1rem !important;
     margin-right: 1.5rem !important;
@@ -71,6 +98,10 @@ h1, h2, h3, h4 {
 
 .gl-small-body-text {
     font-size: 25px;
+}
+
+.right-justify {
+    text-align: right;
 }
 
 .fit-width {

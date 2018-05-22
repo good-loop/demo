@@ -14,59 +14,56 @@
 
     <body>
         <div class="row">
-            <div class="container d-none d-sm-block d-md-block">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto upper-nav">
-                            <li class="nav-item gl-font-1">
-                                <a class="nav-link" href="https://www.good-loop.com">Home</a>
-                            </li>
-                            <li class="nav-item gl-font-1">
-                                <a class="nav-link" href="https://www.good-loop.com/our-mission">About</a>
-                            </li>
-                            <li class="nav-item gl-font-1">
-                                <a class="nav-link" href="https://www.good-loop.com/blog">Blog</a>
-                            </li>
-                            <li class="nav-item gl-font-1">
-                                <a class="nav-link" href="https://www.good-loop.com/how-it-works">How It Works</a>
-                            </li>
-                        </ul>
+            <div class="col-md-12 fit-width gl-red-header-bg d-none d-sm-block d-md-block">
+                <div class="row">
+                    <div class="col-md-12 fit-width">
+                        <center>
+                            <img src="img/gl-logo-white.png" class="header-image">
+                        </center>
                     </div>
-                </nav>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 fit-width">
+                        <center>
+                            <span class="gl-font-1 gl-page-header-text">
+                                Discover Good-Loop
+                            </span>
+                        </center>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- Cheap Vertical Space -->
-        <div class="white-bg" style="height:2em;">
+        <!-- Cheap Vertical Space for mobile devices only -->
+        <div class="white-bg d-block d-sm-none d-md-none" style="height:2em;">
         </div>
-        <!-- End of Cheap Vertical Space -->
+        <!-- End of Cheap Vertical Space for mobile devices only -->
         <!-- Only Mobile device's screens see this menu -->
         <div class="row">
             <div class="col-md-12 bg-light d-block d-sm-none d-md-none">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="mobiledropdownmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="dropleft float-right">
+                    <button class="btn btn-secondary dropdown-toggle gl-hamburger" type="button" id="mobiledropdownmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bars fa-2x"></i>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="mobiledropdownmenu">
                         <a class="dropdown-item gl-font-1" href="index.html">On Page</a>
                         <a class="dropdown-item gl-font-1" href="landingpage.html">LandingPage</a>
-                        <a class="dropdown-item gl-font-1" href="https://www.good-loop.com/contact-us" target="_blank">Book a Call</a>
+                        <a class="dropdown-item gl-font-1" href="book-a-call.html">Book a Call</a>
                         <a class="dropdown-item gl-font-1" href="https://www.good-loop.com/" target="_blank">Return to Homepage</a>
                     </div>
                 </div>
             </div>
+            <!-- End of Mobile Menu Div -->
         </div>
         <div class="row">
-            <div class="container">
+            <!-- Mobile Devices see this as the top of the page, instead of the diamond pattern -->
+            <div class="container d-block d-sm-none d-md-none">
                 <center>
                     <img class="logo-header" src="img/gl-logo-circle-scaled.png">
                     <H1 class="title-font">Discover Good-Loop</H1>
                 </center>                    
             </div>
+            <!-- End of the top element that mobile devices see -->
         </div>
-        <!-- Cheap Vertical Space -->
-        <div class="white-bg" style="height:2em;">
-        </div>
-        <!-- End of Cheap Vertical Space -->
         <div class="row">
             <!-- Only Desktop/Laptop screens see this menu -->
             <div class="col-md-12 gl-offwhite d-none d-sm-block d-md-block gl-nav-borders">
@@ -81,7 +78,7 @@
                                     <a class="nav-link gl-navlink" href="landingpage.html">LandingPage</a>
                                 </li>
                                 <li class="nav-item text-center">
-                                    <a class="nav-link gl-navlink" href="https://www.good-loop.com/contact-us" target="_blank">Book a Call</a>
+                                    <a class="nav-link gl-navlink" href="book-a-call.html">Book a Call</a>
                                 </li>
                             </ul>
                         </div>
