@@ -25,7 +25,7 @@
                 <br>
                 Better click it and see what happens...
                 <br>
-                <a href="https://www.good-loop.com/contact-us" class="gl-button-link" target="_blank" >Book A Call</a>
+                <a href="book-a-call.html" class="gl-button-link" target="_blank" >Book A Call</a>
             </center>
         </span>
     </div>
