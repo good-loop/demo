@@ -48,7 +48,7 @@
                             So, What Just Happened?
                         </h4>
                         <span class="gl-font-3 justified font-18px">
-                            You actively chose to watch and advert!
+                            You actively chose to watch an advert!
                             <br>
                             <br>
                             And in exchange, we gave 50% of the fee to the charity you picked.
