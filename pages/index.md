@@ -112,11 +112,9 @@
         <!-- End of Cheap Vertical Space -->
         <div class="row">
             <div class="col-md-12 fit-width">
-                <div class="col-md-8 offset-md-2">
-                    <center>
-                        <a class="gl-button-link nav-link gl-font-1 constrained-width-button" href="book-a-call.html" target="_blank">Book A Call</a>
-                    </center>
-                </div>
+                <center>
+                    <a class="gl-button-link nav-link gl-font-1 constrained-width-button" href="book-a-call.html" target="_blank">Book A Call</a>
+                </center>
             </div>
         </div>
-</div>
+    </div>
