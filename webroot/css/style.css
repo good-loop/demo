@@ -253,3 +253,7 @@ h1, h2, h3, h4 {
 .inline-flex {
     display: inline-flex !important;
 }
+
+.constrained-width-button {
+    max-width: 40%;
+}

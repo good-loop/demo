@@ -5,11 +5,11 @@
 <div class="row">
             <div class="col-md-3 offset-md-3">
                 <!-- Desktops/Laptops see this text -->
-                <span class="gl-font-3 justified font-18px d-none d-sm-block d-md-block">
-                    Pretend you're reading your favourite website, blog, or forum. We won't judge. Promise
+                <span class="gl-font-3 justified font-20px d-none d-sm-block d-md-block">
+                    Pretend you're reading your favourite website, blog, or forum. We won't judge. Promise.
                     <br>
                     <br>
-                    Look, there's an advert over there. Normally you avoid those. <span class="red-font">But wait, what's this?</span>
+                    Look, there's an advert over there. Normally you avoid those. <span class="red-font emphasis">But wait, what's this?</span>
                     <br>
                     <br>
                     "Donate by watching an advert"
@@ -18,15 +18,15 @@
                     Better click it and see what happens...
                     <br>
                     <br>
-                    We'll wait.
+                    <span class="emphasis">Click the advert to learn more!</span>
                 </span>
                 <!-- End of Desktop/Laptop Text -->
                 <!-- Mobile Devices See This text -->
-                <span class="gl-font-3 justified font-18px d-none d-block d-sm-none d-md-none">
-                    Pretend you're reading your favourite website, blog, or forum. We won't judge. Promise
+                <span class="gl-font-3 justified font-20px d-none d-block d-sm-none d-md-none">
+                    Pretend you're reading your favourite website, blog, or forum. We won't judge. Promise.
                     <br>
                     <br>
-                    Look, there's an advert down there. Normally you avoid those. <span class="red-font">But wait, what's this?</span>
+                    Look, there's an advert down there. Normally you avoid those. <span class="red-font emphasis">But wait, what's this?</span>
                     <br>
                     <br>
                     "Donate by watching an advert"
@@ -35,7 +35,7 @@
                     Better click it and see what happens...
                     <br>
                     <br>
-                    We'll wait.
+                    <span class="emphasis">Click the advert to learn more!</span>
                 </span>
                 <!-- End of Mobile Devices text -->
                 <div class="row">
@@ -47,14 +47,14 @@
                         <h4 class="gl-font-1 red-font">
                             So, What Just Happened?
                         </h4>
-                        <span class="gl-font-3 justified font-18px">
+                        <span class="gl-font-3 justified font-20px">
                             You actively chose to watch an advert!
                             <br>
                             <br>
                             And in exchange, we gave 50% of the fee to the charity you picked.
                             <br>
                             <br>
-                            The Good-Loop ad unit enables viewers to donate to charity through their video view. Engaging viewers through Good-Loop helps boost   brand perception, watch time, engagement and more. All while doing social good.   
+                            The Good-Loop ad unit enables viewers to donate to charity through their video view. Attracting viewers through Good-Loop helps boost   brand perception, watch time, engagement and more. All while doing social good.   
                             <br>
                             <br>
                             Nice.
@@ -68,6 +68,10 @@
                 <div class='goodloopad' id="goodloopad" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
                 <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
             <center>
+            <!-- Cheap Vertical Space -->
+            <div class="white-bg" style="height:1em;">
+            </div>
+            <!-- End of Cheap Vertical Space -->
             <div class="row">
                 <div class="col-md-12 fit-width">
                     <center>
@@ -93,7 +97,7 @@
         <div class="row">
             <div class="col-md-12 fit-width">
                 <center>
-                    <a class="gl-button-link nav-link gl-font-1" href="book-a-call.html" target="_blank">Book A Call</a>
+                    <a class="gl-button-link nav-link gl-font-1 constrained-width-button" href="book-a-call.html" target="_blank">Book A Call</a>
                 </center>
             </div>
         </div>
