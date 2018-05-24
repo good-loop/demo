@@ -12,6 +12,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "Brandon Grotesque";
+    src: url('../fonts/brandon_grotesque.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .gl-red-header-bg {
     background-color: #a5252d;
     background-image: url("../img/background-diamond.png");
@@ -90,6 +97,22 @@ h1, h2, h3, h4 {
 
 .gl-font-1 {
     font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
+}
+
+.gl-font-2 {
+    font-family: "Monstserrat Regular", helvetica, sans-serif !important;
+}
+
+.gl-font-3 {
+    font-family: "Brandon Grotesque", helvetica, sans-serif !important;
+}
+
+.justified {
+    text-align: justify;
+}
+
+.red-font {
+    color: #a5252d;
 }
 
 .gl-big-body-text {
@@ -213,4 +236,20 @@ h1, h2, h3, h4 {
 
 .z-index-1 {
     z-index: 1;
+}
+
+.appear-after-click {
+    display: none;
+}
+
+.font-20px {
+    font-size: 20px;
+}
+
+.font-18px {
+    font-size: 18px;
+}
+
+.inline-flex {
+    display: inline-flex !important;
 }
