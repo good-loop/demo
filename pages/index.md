@@ -66,7 +66,7 @@
         <div class="col-md-3">
             <center>
                 <div class='goodloopad' id="goodloopad" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
-                <script src='//as.good-loop.com/unit.js' async></script>
+                <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
             <center>
             <div class="row">
                 <div class="col-md-12 fit-width">
