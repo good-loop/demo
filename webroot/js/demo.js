@@ -2,7 +2,7 @@ $('#goodloopad').click(function() {
     $('#appear-after-click').css({
         'display': 'block'
     });
-    $('#goodloopad').css({
+    $('#goodloopad-mobile').css({
         'display': 'none'
     });
 });

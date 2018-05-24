@@ -180,11 +180,27 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <center>
-                <div class='goodloopad' id="goodloopad" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
-                <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
-            <center>
+        <!-- Desktop version of the ad.  It is persistent after closing the lightbox -->
+        <div class="col-md-3 d-none d-sm-block d-md-block">
+            <div class="row">
+                <div class="col-md-12">
+                    <center>
+                        <div class='goodloopad' id="goodloopad" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
+                        <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
+                    <center>
+                </div>
+            </div>
+            <!-- End of the Desktop Version of the Ad. -->
+            <!-- Mobile Version of the Ad.  It disappears after being clicked -->
+            <div class="row">
+                <div class="col-md-12 d-none d-none d-block d-sm-none d-md-none">
+                    <center>
+                        <div class='goodloopad' id="goodloopad-mobile" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
+                        <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
+                    <center>
+                </div>
+            </div>
+            <!-- End of the mobile version of the ad. -->
             <!-- Cheap Vertical Space -->
             <div class="white-bg" style="height:1em;">
             </div>
@@ -213,9 +229,11 @@
         <!-- End of Cheap Vertical Space -->
         <div class="row">
             <div class="col-md-12 fit-width">
-                <center>
-                    <a class="gl-button-link nav-link gl-font-1 constrained-width-button" href="book-a-call.html" target="_blank">Book A Call</a>
-                </center>
+                <div class="col-md-8 offset-md-2">
+                    <center>
+                        <a class="gl-button-link nav-link gl-font-1" href="book-a-call.html" target="_blank">Book A Call</a>
+                    </center>
+                </div>
             </div>
         </div>
 </div>
