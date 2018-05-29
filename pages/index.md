@@ -117,4 +117,8 @@
                 </center>
             </div>
         </div>
+        <!-- Cheap Vertical Space For Mobile Devices -->
+        <div class="white-bg d-none d-block d-sm-none d-md-none" style="height:8em;">
+        </div>
+        <!-- End of Cheap Vertical Space For Mobile Devices-->
     </div>
