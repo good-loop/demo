@@ -84,14 +84,32 @@ h1, h2, h3, h4 {
     font-size: 30px;
 }
 
-.gl-button-link {
+.gl-button-link, .gl-button-link-inverse {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
 
+.gl-button-link-inverse {
+    color: #a5252d;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
+    padding-right: 1rem !important;
+    margin-right: 1.5rem !important;
+    padding-left: 1rem !important;
+    margin-left: 1.5rem !important;
+    font-size: 30px;
+    border-radius: 6px;
+    border: 2px solid #a5252d
+}
 
 .gl-navlink:hover, .gl-button-link:hover {
     color: #FFFFFF;
+    text-decoration: none;
+}
+
+.gl-button-link-inverse:hover {
+    color: #a5252d;
     text-decoration: none;
 }
 
