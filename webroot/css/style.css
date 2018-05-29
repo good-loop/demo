@@ -90,20 +90,20 @@ h1, h2, h3, h4 {
 }
 
 .gl-button-link-inverse {
-    color: #a5252d;
+    color: #FFFFFF;
     border-radius: 6px;
-    background-color: #FFFFFF;
+    /* background-color: #FFFFFF; */
     font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
-    padding-right: 1rem !important;
+    padding-right: 0.5rem !important;
     margin-right: 1.5rem !important;
-    padding-top: 1rem !important;
+    padding-top: 0.5rem !important;
     margin-top: 1.5rem !important;
-    padding-left: 1rem !important;
+    padding-left: 0.5rem !important;
     margin-left: 1.5rem !important;
-    padding-bottom: 1rem !important;
+    padding-bottom: 0.5rem !important;
     margin-bottom: 1.5rem !important;
     font-size: 30px;
-    border: 2px solid #a5252d
+    border: 2px solid #FFFFFF
 }
 
 .gl-navlink:hover, .gl-button-link:hover {
@@ -112,7 +112,7 @@ h1, h2, h3, h4 {
 }
 
 .gl-button-link-inverse:hover {
-    color: #a5252d;
+    color: #FFFFFF;
     text-decoration: none;
 }
 
@@ -277,4 +277,8 @@ h1, h2, h3, h4 {
 
 .constrained-width-button {
     width: 11rem;
+}
+
+.transparent-bg {
+    background-color: none;
 }
