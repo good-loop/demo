@@ -6,3 +6,9 @@ $('#goodloopad-mobile').click(function() {
         'display': 'none'
     });
 });
+
+$('#goodloopad').click(function() {
+    $('#appear-after-click').css({
+        'display': 'block'
+    });
+});
