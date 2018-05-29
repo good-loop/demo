@@ -96,10 +96,13 @@ h1, h2, h3, h4 {
     font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
     padding-right: 1rem !important;
     margin-right: 1.5rem !important;
+    padding-top: 1rem !important;
+    margin-top: 1.5rem !important;
     padding-left: 1rem !important;
     margin-left: 1.5rem !important;
+    padding-bottom: 1rem !important;
+    margin-bottom: 1.5rem !important;
     font-size: 30px;
-    border-radius: 6px;
     border: 2px solid #a5252d
 }
 
