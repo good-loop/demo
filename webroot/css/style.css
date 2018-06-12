@@ -33,8 +33,37 @@
 
 .gl-page-header-text {
     font-size: 4rem;
-    color: #FFFFFF;
+    color: #a5252d;
 }
+
+.gl-page-header-text::before {
+    background-color: #cdc0c1;
+    background: #333;
+    right: 100%;
+    content: " ";
+    display: inline-block;
+    height: 2px;
+    margin: 0 10px;
+    position: absolute;
+    top: 50%;
+    width: 100px;
+    zoom: 1;
+}
+
+.gl-page-header-text::after {
+    background-color: #cdc0c1;
+    background: #333;
+    left: 100%;
+    content: " ";
+    display: inline-block;
+    height: 2px;
+    margin: 0 10px;
+    position: absolute;
+    top: 50%;
+    width: 100px;
+    zoom: 1;
+}
+
 
 .bg-light {
     background-color: #FFFFFF !important;
@@ -84,7 +113,7 @@ h1, h2, h3, h4 {
     font-size: 30px;
 }
 
-.gl-button-link, .gl-button-link-inverse {
+.gl-button-link, .gl-button-link-inverse, .gl-button-link-black {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
@@ -106,6 +135,25 @@ h1, h2, h3, h4 {
     border: 2px solid #FFFFFF
 }
 
+.gl-button-link-black {
+    color: #000000;
+    border-radius: 6px;
+    /* background-color: #FFFFFF; */
+    font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
+    padding-right: 0.5rem !important;
+    margin-right: 1.5rem !important;
+    padding-top: 0.5rem !important;
+    margin-top: 1.5rem !important;
+    padding-left: 0.5rem !important;
+    margin-left: 1.5rem !important;
+    padding-bottom: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
+    font-size: 30px;
+    border: 2px solid #000000;
+}
+
+
+
 .gl-navlink:hover, .gl-button-link:hover {
     color: #FFFFFF;
     text-decoration: none;
@@ -113,6 +161,11 @@ h1, h2, h3, h4 {
 
 .gl-button-link-inverse:hover {
     color: #FFFFFF;
+    text-decoration: none;
+}
+
+.gl-button-link-black:hover {
+    color: #000000;
     text-decoration: none;
 }
 
