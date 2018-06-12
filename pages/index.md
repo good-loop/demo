@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <!-- End of the Desktop Version of the Ad. -->
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="row">
                         <!-- Desktops/Laptops see this text -->
                         <span class="gl-font-3 justified font-20px d-none d-sm-block d-md-block">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="row">
                         <span class="gl-font-3 justified font-20px d-none d-sm-block d-md-block">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis ipsum sit amet lorem elementum, vitae vulputate ligula interdum. Sed sed est sem. Mauris eget arcu venenatis, tempor lorem eget, iaculis neque. Mauris ut vestibulum nisi, ullamcorper auctor nisi. Vestibulum felis turpis, elementum eu bibendum et, faucibus id ex. Phasellus quis turpis vel velit commodo elementum eu eu mauris. Pellentesque vitae auctor arcu, nec aliquam sem. Pellentesque ullamcorper lacus mauris, a ultrices ex dignissim sit amet. Donec interdum in nibh eget condimentum.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis ipsum sit amet lorem elementum, vitae vulputate ligula interdum. Sed sed est sem. Mauris eget arcu venenatis, tempor lorem eget, iaculis neque. Mauris ut vestibulum nisi, ullamcorper auctor nisi.
                         </span>
                     </div>
                     <!-- End of Desktop/Laptop Text -->
@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class="col-md-12 fit-width">
                         <div class="col-md-6 offset-md-3">
-                            <div class="col-md-8 offset-md-2">
+                            <div class="col-md-10 offset-md-1">
                                 <center>
                                     <span class="gl-font-1 gl-page-header-text">
                                         Interested? Get in Touch
