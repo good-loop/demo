@@ -19,6 +19,61 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 300;
+    src: local('Open Sans Light Italic'), local('OpenSans-LightItalic'), url(https://fonts.gstatic.com/s/opensans/v15/memnYaGs126MiZpBA-UFUKWyV9hlIqY.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Open Sans Italic'), local('OpenSans-Italic'), url(https://fonts.gstatic.com/s/opensans/v15/mem6YaGs126MiZpBA-UFUK0Xdcg.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 600;
+    src: local('Open Sans SemiBold Italic'), local('OpenSans-SemiBoldItalic'), url(https://fonts.gstatic.com/s/opensans/v15/memnYaGs126MiZpBA-UFUKXGUdhlIqY.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: 700;
+    src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), url(https://fonts.gstatic.com/s/opensans/v15/memnYaGs126MiZpBA-UFUKWiUNhlIqY.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXOhs.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFW50e.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOXOhs.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXOhs.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Varela Round';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Varela Round Regular'), local('VarelaRound-Regular'), url(https://fonts.gstatic.com/s/varelaround/v9/w8gdH283Tvk__Lua32TysjIfqcuK.ttf) format('truetype');
+  }
+
 .gl-red-header-bg {
     background-color: #a5252d;
     background-image: url("../img/background-diamond.png");
@@ -32,7 +87,7 @@
 }
 
 .gl-page-header-text {
-    font-size: 4rem;
+    font-size: 3rem;
     color: #a5252d;
 }
 
@@ -103,19 +158,22 @@ h1, h2, h3, h4 {
 
 .gl-navlink ,.gl-button-link {
     color: #FFFFFF;
-    border-radius: 6px;
+    border-radius: 3px;
     background-color: #a5252d;
-    font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
-    padding-right: 1rem !important;
-    margin-right: 1.5rem !important;
-    padding-left: 1rem !important;
-    margin-left: 1.5rem !important;
-    font-size: 30px;
+    font-family: "open sans", bebas, helvetica, sans-serif !important;
+    padding-right: 0.5rem !important;
+    margin-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
+    margin-left: 0.5rem !important;
+    font-size: 15px;
+    text-transform: uppercase;
+    border: none !important;
+    font-weight: 600;
 }
 
 .gl-button-link, .gl-button-link-inverse, .gl-button-link-black {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .gl-button-link-inverse {
@@ -137,9 +195,9 @@ h1, h2, h3, h4 {
 
 .gl-button-link-black {
     color: #000000;
-    border-radius: 6px;
+    font-weight: 100;
+    border-radius: 0px;
     /* background-color: #FFFFFF; */
-    font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
     padding-right: 0.5rem !important;
     margin-right: 1.5rem !important;
     padding-top: 0.5rem !important;
@@ -148,8 +206,10 @@ h1, h2, h3, h4 {
     margin-left: 1.5rem !important;
     padding-bottom: 0.5rem !important;
     margin-bottom: 1.5rem !important;
-    font-size: 30px;
-    border: 2px solid #000000;
+    font-size: 25px;
+    border: 1px solid #000000;
+    font-family: "open sans", helvetica, sans-serif;
+    text-transform: uppercase;
 }
 
 
@@ -334,4 +394,8 @@ h1, h2, h3, h4 {
 
 .transparent-bg {
     background-color: none;
+}
+
+.light-gray-bg {
+    background: #FBFAFA;
 }

@@ -66,10 +66,14 @@
                     </div>
                     <!-- End of the mobile version of the ad. -->
                 </div>
+                <!-- Cheap Vertical Space -->
+                    <div class="white-bg" style="height:3em;">
+                    </div>
+                    <!-- End of Cheap Vertical Space -->
                 <div class="row">
-                    <div class="col-md-12 fit-width">
+                    <div class="col-md-12 fit-width light-gray-bg">
                         <div class="col-md-6 offset-md-3">
-                            <div class="col-md-10 offset-md-1">
+                            <div class="col-md-8 offset-md-2">
                                 <center>
                                     <span class="gl-font-1 gl-page-header-text">
                                         Interested? Get in Touch
@@ -79,21 +83,16 @@
                         </div>
                     </div>
                 </div>
-                    <!-- Cheap Vertical Space -->
-                    <div class="white-bg" style="height:1em;">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <center>
+                            <form method="POST" action="https://formspree.io/contactleads@good-loop.com">
+                                <input type="name" name="namefield" placeholder="Name">
+                                <input type="email" name="email" placeholder="Email">
+                                <button class="gl-button-link" type="submit">Request More Information</button>
+                            </form>
+                        </center>
                     </div>
-                    <!-- End of Cheap Vertical Space -->
-                    <div class="row">
-                        <div class="col-md-12 fit-width">
-                            <center>
-                                <a class="gl-button-link nav-link gl-font-1 constrained-width-button" href="book-a-call.html" target="_blank">Book A Call</a>
-                            </center>
-                        </div>
-                    </div>
-                    <!-- Cheap Vertical Space For Mobile Devices -->
-                    <div class="white-bg d-none d-block d-sm-none d-md-none" style="height:8em;">
-                    </div>
-                    <!-- End of Cheap Vertical Space For Mobile Devices-->
                 </div>
             </div>
         </div>
