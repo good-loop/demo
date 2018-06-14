@@ -7,8 +7,9 @@ $('#goodloopad-mobile').click(function() {
     });
 });
 
-$('#goodloopad').click(function() {
-    $('#appear-after-click').css({
+
+$('.goodloopad').click(function() {
+    $('.appear-after-click').css({
         'display': 'block'
     });
 });
