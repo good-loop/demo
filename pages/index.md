@@ -4,33 +4,30 @@
 <!-- End of Cheap Vertical Space -->
 <div class="row">
     <div class="col-md-12">
-        <div class="col-md-10 offset-md-1">
+        <div class="col-md-8 offset-md-2">
             <div class="row">
-                <!-- Desktop version of the ad.  It is persistent after closing the lightbox -->
-                <div class="col-md-3 offset-md-2">
-                    <div class="row">
-                        <div class="col-md-12 d-none d-sm-block d-md-block">
-                            <center>
-                                <div class='goodloopad' id="goodloopad" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
-                                <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
-                            <center>
-                        </div>
-                    </div>
+                <div class="col-md-6">
+                    <center>
+                        <div class='goodloopad' id="goodloopad" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
+                        <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
+                    </center>
                 </div>
-                <!-- End of the Desktop Version of the Ad. -->
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="row">
-                        <!-- Desktops/Laptops see this text -->
-                        <span class="gl-font-3 justified font-20px d-none d-sm-block d-md-block">
+                        <!-- Cheap Vertical Space -->
+                        <div class="white-bg d-block d-sm-none d-md-none" style="height:2em;">
+                        </div>
+                        <!-- End of Cheap Vertical Space -->
+                        <span class="gl-font-4 justified font-20px">
                             The Good-Loop ethical ad player sits within standard banner space all over the web. There is an example 'ads for good' banner on this page. Click on this banner to watch the ad & donate...
                         </span>
-                        <!-- End of Desktop/Laptop Text -->
                     </div>
                     <!-- Cheap Vertical Space -->
-                    <div class="white-bg" style="height:2em;">
+                    <div class="white-bg d-none d-sm-block d-md-block" style="height:2em;">
                     </div>
+                    <!-- End of Cheap Vertical Space -->
                     <div class="row">
-                        <span class="gl-font-3 justified font-20px d-none d-sm-block d-md-block">
+                        <span class="gl-font-4 justified font-20px italic d-none d-sm-block d-md-block">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis ipsum sit amet lorem elementum, vitae vulputate ligula interdum. Sed sed est sem. Mauris eget arcu venenatis, tempor lorem eget, iaculis neque. Mauris ut vestibulum nisi, ullamcorper auctor nisi.
                         </span>
                     </div>
@@ -40,11 +37,11 @@
     </div>
 </div>
 <!-- Cheap Vertical Space -->
-<div class="white-bg" style="height:2em;">
+<div class="white-bg d-none d-sm-block d-md-block" style="height:2em;">
 </div>
 <!-- End of Cheap Vertical Space -->
-<div class="row">
-    <div class="appear-after-click col-md-6 offset-md-3">
+<div class="row appear-after-click">
+    <div class="col-md-6 offset-md-3">
         <span  class="gl-font-3 justified font-20px d-none d-sm-block d-md-block">
             SO, WHAT JUST HAPPENED?
             <br>
@@ -58,9 +55,9 @@
 <div class="white-bg" style="height:3em;">
 </div>
 <!-- End of Cheap Vertical Space -->
-<div class="row">
+<!-- Only Desktops/Laptops See this Row -->
+<div class="row d-none d-sm-block d-md-block">
     <div class="col-md-12 fit-width light-gray-bg">
-        <div class="col-md-6 offset-md-3">
             <div class="col-md-8 offset-md-2">
                 <center>
                     <span class="gl-font-1 gl-page-header-text">
@@ -68,19 +65,48 @@
                     </span>
                 </center>
             </div>
-        </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12 light-gray-bg">
-        <div class="col-md-6 offset-md-3">
+<!-- End of the Desktops/Laptops Exclusive Row -->
+<!-- Only Mobile Devices See This Row -->
+<div class="row d-block d-sm-none d-md-none light-gray-bg">
+    <div class="col-md-12 fit-width">
+        <div class="col-md-8 offset-md-2">
             <center>
-                <form method="POST" action="https://formspree.io/contactleads@good-loop.com">
-                    <input type="name" name="namefield" placeholder="Name">
-                    <input type="email" name="email" placeholder="Email">
-                    <button class="gl-button-link" type="submit">Request More Information</button>
-                </form>
+                <span class="gl-font-1 gl-page-header-text-mobile-lesser">
+                    Interested? Get in Touch
+                </span>
             </center>
         </div>
     </div>
 </div>
+<!-- End of Exclusive Mobile Devices Row -->
+<div class="row light-gray-bg">
+    <div class="col-md-12">
+        <!-- Desktop/Laptop Exclusive Form -->
+        <div class="col-md-8 offset-md-2 d-none d-sm-block d-md-block">
+            <div class="col-md-12">
+                <center>
+                    <form method="POST" action="https://formspree.io/contactleads@good-loop.com">
+                            <input type="name" class="gl-input-field" name="namefield" placeholder="Name">
+                            <input type="email" class="gl-input-field" name="email" placeholder="Email">
+                            <button class="gl-button-link-desktop" type="submit">Request More Information</button>
+                    </form>
+                </center>
+            </div>
+        </div>
+        <!-- End of Desktop/Laptop Exclusive Form -->
+        <!-- Mobile Devices Exclusive Form -->
+        <div class="col-md-6 offset-md-3 d-block d-sm-none d-md-none">
+            <center>
+                <form method="POST" action="https://formspree.io/contactleads@good-loop.com">
+                    <input type="name" class="gl-input-field-mobile" name="namefield" placeholder="Name">
+                    <input type="email" class="gl-input-field-mobile" name="email" placeholder="Email">
+                    <button class="gl-button-link-mobile" type="submit">Request More Information</button>
+                </form>
+            </center>
+        </div>
+        <!-- End of Mobile Devices Exclusive Form -->
+    </div>
+</div>
+
