@@ -3,40 +3,61 @@
 </div>
 <!-- End of Cheap Vertical Space -->
 <div class="container-fluid">
-<div class="row">
-    <div class="col-md-12">
-        <div class="col-md-8 offset-md-2">
-            <div class="row">
-                <div class="col-md-6">
-                    <center>
-                        <div class='goodloopad' id="goodloopad" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
-                        <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
-                    </center>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
+    <!-- Desktop/Laptop Version of the Ad, and text -->
+    <div class="row d-none d-sm-block d-md-block">
+        <div class="col-md-12">
+            <div class="col-md-8 offset-md-2">
+                <div class="row">
+                    <div class="col-md-6">
+                        <center>
+                            <div class='goodloopad' id="goodloopad" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
+                            <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
+                        </center>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <!-- Cheap Vertical Space -->
+                            <div class="white-bg d-block d-sm-none d-md-none" style="height:2em;">
+                            </div>
+                            <!-- End of Cheap Vertical Space -->
+                            <span class="gl-font-4 justified font-18px">
+                                The Good-Loop ethical ad player sits within standard banner space all over the web. There is an example 'ads for good' banner on this page. Click on this banner to watch the ad & donate...
+                            </span>
+                        </div>
                         <!-- Cheap Vertical Space -->
-                        <div class="white-bg d-block d-sm-none d-md-none" style="height:2em;">
+                        <div class="white-bg d-none d-sm-block d-md-block" style="height:2em;">
                         </div>
                         <!-- End of Cheap Vertical Space -->
-                        <span class="gl-font-4 justified font-18px">
-                            The Good-Loop ethical ad player sits within standard banner space all over the web. There is an example 'ads for good' banner on this page. Click on this banner to watch the ad & donate...
-                        </span>
-                    </div>
-                    <!-- Cheap Vertical Space -->
-                    <div class="white-bg d-none d-sm-block d-md-block" style="height:2em;">
-                    </div>
-                    <!-- End of Cheap Vertical Space -->
-                    <div class="row">
-                        <span class="gl-font-4 justified font-18px italic d-none d-sm-block d-md-block">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis ipsum sit amet lorem elementum, vitae vulputate ligula interdum.
-                        </span>
+                        <div class="row">
+                            <span class="gl-font-4 justified font-18px italic d-none d-sm-block d-md-block">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lobortis ipsum sit amet lorem elementum, vitae vulputate ligula interdum.
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- END OF Desktop/Laptop Version of the Ad, and text -->
+    <!-- Mobile version of the Ad and text -->
+    <div class="row d-block d-sm-none d-md-none">
+        <div class="col-md-12">
+            <div class="row">
+                    <center>
+                        <div class='goodloopad' id="goodloopad" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
+                        <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
+                    </center>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <span class="gl-font-4 justified font-18px">
+                    The Good-Loop ethical ad player sits within standard banner space all over the web. There is an example 'ads for good' banner on this page. Click on this banner to watch the ad & donate...
+                </span>
+            </div>
+        </div>
+    </div>
+    <!-- END OF Mobile version of the Ad and Text -->
 </div>
 <!-- Cheap Vertical Space -->
 <div class="white-bg d-none d-sm-block d-md-block" style="height:2em;">
