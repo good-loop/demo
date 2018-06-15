@@ -96,7 +96,7 @@
         <div class="col-md-8 offset-md-2 d-none d-sm-block d-md-block">
             <div class="col-md-12">
                 <!-- Cheap Vertical Space -->
-                <div class="light-gray-bg" style="height:3em;">
+                <div class="light-gray-bg" style="height:1.5em;">
                 </div>
                 <!-- End of Cheap Vertical Space -->
                 <center>
