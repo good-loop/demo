@@ -2,13 +2,14 @@
 <div class="white-bg" style="height:2em;">
 </div>
 <!-- End of Cheap Vertical Space -->
+<div class="container-fluid">
 <div class="row">
     <div class="col-md-12">
         <div class="col-md-8 offset-md-2">
             <div class="row">
                 <div class="col-md-6">
                     <center>
-                        <div class='goodloopad' id="goodloopad" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
+                        <div class='goodloopad' id="goodloopad" data-format="medium-rectangle" data-mobile-format="medium-rectangle"><img src="img/mpu.png"></img></div>
                         <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
                     </center>
                 </div>
@@ -36,10 +37,12 @@
         </div>
     </div>
 </div>
+</div>
 <!-- Cheap Vertical Space -->
 <div class="white-bg d-none d-sm-block d-md-block" style="height:2em;">
 </div>
 <!-- End of Cheap Vertical Space -->
+<div class="container-fluid">
 <div class="row appear-after-click">
     <div class="col-md-6 offset-md-3">
         <span  class="gl-font-3 justified font-20px d-none d-sm-block d-md-block">
@@ -51,11 +54,13 @@
         </span>
     </div>
 </div>
+</div>
 <!-- Cheap Vertical Space -->
 <div class="white-bg" style="height:3em;">
 </div>
 <!-- End of Cheap Vertical Space -->
 <!-- Only Desktops/Laptops See this Row -->
+<div class="container-fluid">
 <div class="row d-none d-sm-block d-md-block">
     <div class="col-md-12 fit-width light-gray-bg">
             <div class="col-md-8 offset-md-2">
@@ -67,8 +72,10 @@
             </div>
     </div>
 </div>
+</div>
 <!-- End of the Desktops/Laptops Exclusive Row -->
 <!-- Only Mobile Devices See This Row -->
+<div class="container-fluid">
 <div class="row d-block d-sm-none d-md-none light-gray-bg">
     <div class="col-md-12 fit-width">
         <div class="col-md-8 offset-md-2">
@@ -80,12 +87,18 @@
         </div>
     </div>
 </div>
+</div>
 <!-- End of Exclusive Mobile Devices Row -->
+<div class="container-fluid">
 <div class="row light-gray-bg">
     <div class="col-md-12">
         <!-- Desktop/Laptop Exclusive Form -->
         <div class="col-md-8 offset-md-2 d-none d-sm-block d-md-block">
             <div class="col-md-12">
+                <!-- Cheap Vertical Space -->
+                <div class="light-gray-bg" style="height:3em;">
+                </div>
+                <!-- End of Cheap Vertical Space -->
                 <center>
                     <form method="POST" action="https://formspree.io/contactleads@good-loop.com">
                             <input type="name" class="gl-input-field" name="namefield" placeholder="Name">
@@ -109,4 +122,4 @@
         <!-- End of Mobile Devices Exclusive Form -->
     </div>
 </div>
-
+</div>
