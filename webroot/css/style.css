@@ -439,6 +439,10 @@ h1, h2, h3, h4 {
     font-size: 18px;
 }
 
+.font-18px {
+    font-size: 18px;
+}
+
 .inline-flex {
     display: inline-flex !important;
 }
