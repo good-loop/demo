@@ -45,7 +45,7 @@
 <div class="container-fluid">
 <div class="row appear-after-click">
     <div class="col-md-6 offset-md-3">
-        <span  class="gl-font-3 justified font-18px d-none d-sm-block d-md-block">
+        <span  class="gl-font-4 justified font-18px d-none d-sm-block d-md-block">
             SO, WHAT JUST HAPPENED?
             <br>
             You opted in to watch an advert, and in exchange, we gave 50% of the ad money to your chosen charity. So you've received a more respectful, more positive advertising experience. And the advertiser has paid for a premium ad view that boosts brand perception, watch time, engagement and more.
