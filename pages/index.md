@@ -125,7 +125,7 @@
                         <input type="text" name="_gotcha" style="display: none"> 
                         <input type="name" class="gl-input-field" name="namefield" placeholder="Name">
                         <input type="email" class="gl-input-field" name="email" placeholder="Email">
-                        <button class="gl-button-link-desktop" type="submit">Request More Information</button>
+                        <button class="gl-button-link-desktop" id="sendMessage">Request More Information</button>
                     </form>
                 </center>
             </div>
@@ -134,7 +134,7 @@
         <!-- Mobile Devices Exclusive Form -->
         <div class="col-md-6 offset-md-3 d-block d-sm-none d-md-none">
             <center>
-                <form action="https://formspree.io/xowwlvjx" method="POST">
+                <form id="contactform" action="https://formspree.io/xowwlvjx" method="POST">
                     <input type="text" name="_gotcha" style="display: none">
                     <input type="name" class="gl-input-field-mobile" name="namefield" placeholder="Name">
                     <input type="email" class="gl-input-field-mobile" name="email" placeholder="Email">
