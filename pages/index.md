@@ -138,7 +138,7 @@
                     <input type="text" name="_gotcha" style="display: none">
                     <input type="name" class="gl-input-field-mobile" name="namefield" placeholder="Name">
                     <input type="email" class="gl-input-field-mobile" name="email" placeholder="Email">
-                    <button class="gl-button-link-mobile" type="submit">Request More Information</button>
+                    <button class="gl-button-link-mobile" id="sendMessage">Request More Information</button>
                 </form>
             </center>
         </div>
