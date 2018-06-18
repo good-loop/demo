@@ -13,3 +13,14 @@ $('.goodloopad').click(function() {
         'display': 'block'
     });
 });
+
+$("#sendMessage").on("click", function() {
+    message = $("#contactform").serialize();
+    $.ajax({
+        url: "//formspree.io/xowwlvjx", 
+        method: "POST",
+        data: {message: message},
+        dataType: "json"
+    });
+    if(result === "no_errors") location.href = "https://www.good-loop.com/success"
+});
