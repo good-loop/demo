@@ -125,6 +125,7 @@
                         <input type="text" name="_gotcha" style="display: none"> 
                         <input type="name" class="gl-input-field" name="namefield" placeholder="Name">
                         <input type="email" class="gl-input-field" name="email" placeholder="Email">
+                        <input type="hidden" name="_next" value="https://www.good-loop.com/success" />
                         <button class="gl-button-link-desktop" id="sendMessage">Request More Information</button>
                     </form>
                 </center>
@@ -138,6 +139,7 @@
                     <input type="text" name="_gotcha" style="display: none">
                     <input type="name" class="gl-input-field-mobile" name="namefield" placeholder="Name">
                     <input type="email" class="gl-input-field-mobile" name="email" placeholder="Email">
+                    <input type="hidden" name="_next" value="https://www.good-loop.com/success" />
                     <button class="gl-button-link-mobile" id="sendMessage">Request More Information</button>
                 </form>
             </center>
