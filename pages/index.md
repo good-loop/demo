@@ -11,7 +11,7 @@
                     <div class="col-md-6">
                         <center>
                             <div class='goodloopad' id="goodloopad" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
-                            <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
+                            <script src='//as.good-loop.com/unit.js' async></script>
                         </center>
                     </div>
                     <div class="col-md-6">
@@ -45,7 +45,7 @@
             <div class="row">
                     <center>
                         <div class='goodloopad' id="goodloopad-mobile" data-format="medium-rectangle" data-mobile-format="medium-rectangle"></div>
-                        <script src='//as.good-loop.com/unit.js?gl.variant=brand-funded' async></script>
+                        <script src='//as.good-loop.com/unit.js' async></script>
                     </center>
             </div>
         </div>
