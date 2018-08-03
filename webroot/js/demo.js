@@ -24,3 +24,9 @@ $("#sendMessage").on("click", function() {
     });
     if(result === "no_errors") location.href = "https://www.good-loop.com/success"
 });
+
+// Adblocker on?
+$('body').on('gl:adblock', function() {
+	// TODO a message to the user.
+	console.warn("Adblocker detected - expect some things to break.");
+});
