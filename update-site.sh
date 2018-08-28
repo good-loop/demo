@@ -26,6 +26,6 @@ $SSHCOMMAND "chmod 766 $TARGETDIR/webroot/img/*.jpeg"
 
 printf "\t> Converting Markdown to HTML...\n"
 $SSHCOMMAND 'wget -cO - "https://www.winterwell.com/software/downloads/jerbil-all.jar" >> /home/winterwell/jerbil/jerbil-all.jar'
-$SSHCOMMAND "cd /home/winterwell/jerbil/ && java -cp jerbil.jar:lib/* Jerbil $TARGETDIR"
+$SSHCOMMAND "cd /home/winterwell/jerbil/ && java -cp jerbil-all.jar Jerbil $TARGETDIR"
 
 printf "$PROJECT Website has now been updated\n"
