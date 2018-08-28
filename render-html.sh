@@ -2,4 +2,4 @@
 
 #Publish SoGive
 
-cd ~/winterwell/jerbil/ && java -cp jerbil.jar:lib/* Jerbil ~/winterwell/good-loop/demo
+cd ~/winterwell/jerbil/ && java -cp jerbil-all.jar Jerbil ~/winterwell/demo
