@@ -1,0 +1,227 @@
+#demo-wrapper{
+  margin: 2vh auto;
+}
+
+#demo-text {
+  font-family: "open sans", helvetica, sans-serif;
+  margin: 0 auto;
+  font-size: 2.1vmin;
+  text-align: center;
+}
+
+#demo {
+  height: 47vh;
+  width: 50vw;
+  margin: 0 auto;
+}
+
+#carousel {
+  position: absolute;
+}
+
+.outer {
+  background-image: url("http://pngimg.com/uploads/iphone/iphone_PNG5735.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.inner {
+  position: relative;
+  left: 0px;
+  top: 0px;
+}
+
+iframe {
+  background-image: url("https://i.stack.imgur.com/h6viz.gif");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.arrow {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #a5252d;
+  text-align: center;
+  font-size: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+  line-height: 30px;
+  margin-top: 18vh;
+  z-index: 1000;
+}
+
+.arrow-right {
+  left: 48vw;
+}
+
+.item {
+  text-align: center;
+  color: white;
+  font-size: 40px;
+  position: absolute;
+  transition: height 0.8s, width 0.8s, left 0.3s, margin-top 0.8s, line-height 0.8s, background-color 0.8s;
+}
+
+.level1 .image, .level-1 .image {
+  width: 8.5vw;
+  height: 30vh;
+  top: 6.5vh;
+}
+
+.level0 .image {
+  width: 10vw;
+  height: 34.5vh;
+  top: 8.5vh;
+}
+
+.level-1 {
+  height: 44vh;
+  width: 13vw;
+  line-height: 44vh;
+  left: 33vw;
+  margin-top: 10px;
+}
+
+.level0 {
+  height: 52vh;
+  width: 15vw;
+  line-height: 52vh;
+  left: 17vw;
+}
+
+.level1 {
+  height: 44vh;
+  width: 13vw;
+  line-height: 44vh;
+  margin-top: 10px;
+  left: 4vw;
+}
+
+.left-enter {
+  opacity: 0;
+  left: -9vw;
+  height: 41vh;
+  width: 11vw;
+  line-height: 14vh;
+  margin-top: 40px;
+}
+
+.left-enter.left-enter-active {
+  opacity: 1;
+  left: 4vw;
+  height: 44vh;
+  width: 13vw;
+  line-height: 44vh;
+  margin-top: 10px;
+  transition: left 0.3s, opacity 0.8s, height 0.8s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+}
+
+.left-leave {
+  opacity: 1;
+  left: 33vw;
+  height: 44vh;
+  width: 13vw;
+  line-height: 44vh;
+  margin-top: 25px;
+}
+
+.left-leave.left-leave-active {
+  left: 48vw;
+  opacity: 0;
+  height: 41vh;
+  line-height: 120px;
+  margin-top: 40px;
+  width: 11vw;
+  transition: left 0.3s, opacity 0.8s, height 0.8s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+}
+
+.right-enter {
+  opacity: 0;
+  left: 46vw;
+  height: 41vh;
+  width: 11vw;
+  line-height: 41vh;
+  margin-top: 40px;
+}
+
+.right-enter.right-enter-active {
+  left: 33vw;
+  opacity: 1;
+  height: 44vh;
+  margin-top: 10px;
+  line-height: 44vh;
+  width: 13vw;
+  transition: left 0.3s, opacity 0.8s, height 0.8s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+}
+
+.right-leave {
+  left: 4vw;
+  height: 44vh;
+  opacity: 1;
+  margin-top: 25px;
+  line-height: 44vh;
+  width: 13vw;
+}
+
+.right-leave.right-leave-active {
+  left: -9vw;
+  opacity: 0;
+  height: 41vh;
+  width: 11vw;
+  line-height: 41vh;
+  margin-top: 40px;
+  transition: left 0.3s, opacity 0.8s, height 0.8s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+}
+
+.noselect {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+
+/* fixes for the mobile version*/
+#demo-mobile-wrapper {
+  margin: 0 auto 6vh auto;
+}
+
+#demo-mobile-text {
+  font-family: "open sans", helvetica, sans-serif;
+  margin: 0 auto;
+  font-size: 4vmin;
+  text-align: center;
+}
+
+#demo-mobile {
+  height: 44vh;
+  margin: 0 auto;
+}
+
+#demo-mobile .level0 {
+  width: 47vw;
+}
+
+#demo-mobile .level0 .image {
+  width: 31vw;
+  height: 37.5vh;
+  top: 6vh;
+}
+
+#demo-mobile .arrow-right {
+  left: 70vw;
+}
+
+#demo-mobile .left-enter.left-enter-active {
+  transition: left 0.3s, opacity 0.8s, height 0.1s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+}
+
+#demo-mobile .right-enter.right-enter-active {
+  transition: left 0.3s, opacity 0.8s, height 0.1s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+}
