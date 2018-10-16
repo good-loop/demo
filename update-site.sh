@@ -1,7 +1,21 @@
 #!/bin/bash
 
+case $1 in
+	production|PRODUCTION)
+		printf "\nPublishing Demo site to the PRODUCTION server\n"
+		TARGET='heppner.soda.sh'
+	;;
+	test|TEST)
+		printf "\nPublishing Demo site to the TEST server\n"
+		TARGET='hugh.soda.sh'
+	;;
+	*)
+		printf "\nThis script must be run with 'test' or 'production' as the argument\n"
+		exit 0
+	;;
+esac
+
 PROJECT='Good-Loop Demo Site'
-TARGET='heppner.soda.sh'
 SSHCOMMAND="ssh winterwell@$TARGET"
 TARGETDIR='/home/winterwell/demo.good-loop.com'
 GITSHORTHAND="git --git-dir=$TARGETDIR/.git/ --work-tree=$TARGETDIR"
