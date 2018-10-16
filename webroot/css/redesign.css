@@ -10,8 +10,8 @@
 }
 
 #demo {
-  height: 47vh;
-  width: 50vw;
+  height: 47vmin;
+  width: 80vmin;
   margin: 0 auto;
 }
 
@@ -50,12 +50,12 @@ iframe {
   font-size: 20px;
   color: white;
   line-height: 30px;
-  margin-top: 18vh;
+  margin-top: 18vmin;
   z-index: 1000;
 }
 
 .arrow-right {
-  left: 48vw;
+  left: 76vmin;
 }
 
 .item {
@@ -63,118 +63,118 @@ iframe {
   color: white;
   font-size: 40px;
   position: absolute;
-  transition: height 0.8s, width 0.8s, left 0.3s, margin-top 0.8s, line-height 0.8s, background-color 0.8s;
+  transition: height 0.3s, width 0.3s, left 0.3s, margin-top 0.3s, line-height 0.3s, background-color 0.3s;
 }
 
 .level1 .image, .level-1 .image {
-  width: 8.5vw;
-  height: 30vh;
-  top: 6.5vh;
+  width: 16.5vmin;
+  height: 29vmin;
+  top: 7vmin;
 }
 
 .level0 .image {
-  width: 10vw;
-  height: 34.5vh;
-  top: 8.5vh;
+  width: 19vmin;
+  height: 33.5vmin;
+  top: 9vmin;
 }
 
 .level-1 {
-  height: 44vh;
-  width: 13vw;
-  line-height: 44vh;
-  left: 33vw;
+  height: 44vmin;
+  width: 25vmin;
+  line-height: 44vmin;
+  left: 51vmin;
   margin-top: 10px;
 }
 
 .level0 {
-  height: 52vh;
-  width: 15vw;
-  line-height: 52vh;
-  left: 17vw;
+  height: 52vmin;
+  width: 24vmin;
+  line-height: 52vmin;
+  left: 28vmin;
 }
 
 .level1 {
-  height: 44vh;
-  width: 13vw;
-  line-height: 44vh;
+  height: 44vmin;
+  width: 25vmin;
+  line-height: 44vmin;
   margin-top: 10px;
-  left: 4vw;
+  left: 4vmin;
 }
 
 .left-enter {
   opacity: 0;
-  left: -9vw;
-  height: 41vh;
-  width: 11vw;
-  line-height: 14vh;
+  left: -21vmin;
+  height: 41vmin;
+  width: 23vmin;
+  line-height: 14vmin;
   margin-top: 40px;
 }
 
 .left-enter.left-enter-active {
   opacity: 1;
-  left: 4vw;
-  height: 44vh;
-  width: 13vw;
-  line-height: 44vh;
+  left: 4vmin;
+  height: 44vmin;
+  width: 25vmin;
+  line-height: 44vmin;
   margin-top: 10px;
-  transition: left 0.3s, opacity 0.8s, height 0.8s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+  transition: left 0.3s, opacity 0.3s, height 0.3s, width 0.3s, margin-top 0.3s, line-height 0.3s;
 }
 
 .left-leave {
   opacity: 1;
-  left: 33vw;
-  height: 44vh;
-  width: 13vw;
-  line-height: 44vh;
+  left: 51vmin;
+  height: 44vmin;
+  width: 25vmin;
+  line-height: 44vmin;
   margin-top: 25px;
 }
 
 .left-leave.left-leave-active {
-  left: 48vw;
+  left: 78vmin;
   opacity: 0;
-  height: 41vh;
+  height: 41vmin;
   line-height: 120px;
   margin-top: 40px;
-  width: 11vw;
-  transition: left 0.3s, opacity 0.8s, height 0.8s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+  width: 23vmin;
+  transition: left 0.3s, opacity 0.3s, height 0.3s, width 0.3s, margin-top 0.3s, line-height 0.3s;
 }
 
 .right-enter {
   opacity: 0;
-  left: 46vw;
-  height: 41vh;
-  width: 11vw;
-  line-height: 41vh;
+  left: 76vmin;
+  height: 41vmin;
+  width: 23vmin;
+  line-height: 41vmin;
   margin-top: 40px;
 }
 
 .right-enter.right-enter-active {
-  left: 33vw;
+  left: 51vmin;
   opacity: 1;
-  height: 44vh;
+  height: 44vmin;
   margin-top: 10px;
-  line-height: 44vh;
-  width: 13vw;
-  transition: left 0.3s, opacity 0.8s, height 0.8s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+  line-height: 44vmin;
+  width: 25vmin;
+  transition: left 0.3s, opacity 0.3s, height 0.3s, width 0.3s, margin-top 0.3s, line-height 0.3s;
 }
 
 .right-leave {
-  left: 4vw;
-  height: 44vh;
+  left: 4vmin;
+  height: 44vmin;
   opacity: 1;
   margin-top: 25px;
-  line-height: 44vh;
-  width: 13vw;
+  line-height: 44vmin;
+  width: 25vmin;
 }
 
 .right-leave.right-leave-active {
-  left: -9vw;
+  left: -21vmin;
   opacity: 0;
-  height: 41vh;
-  width: 11vw;
-  line-height: 41vh;
+  height: 41vmin;
+  width: 23vmin;
+  line-height: 41vmin;
   margin-top: 40px;
-  transition: left 0.3s, opacity 0.8s, height 0.8s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+  transition: left 0.3s, opacity 0.3s, height 0.3s, width 0.3s, margin-top 0.3s, line-height 0.3s;
 }
 
 .noselect {
@@ -184,8 +184,6 @@ iframe {
   -ms-user-select: none;
   user-select: none;
 }
-
-
 
 /* fixes for the mobile version*/
 #demo-mobile-wrapper {
@@ -200,28 +198,22 @@ iframe {
 }
 
 #demo-mobile {
-  height: 44vh;
+  height: 80vmin;
   margin: 0 auto;
 }
 
 #demo-mobile .level0 {
-  width: 47vw;
+  height: 89vmin;
+  width: 50vmin;
+  left: 16.5vmin;
 }
 
 #demo-mobile .level0 .image {
-  width: 31vw;
-  height: 37.5vh;
-  top: 6vh;
+  width: 33.5vmin;
+  height: 57.5vmin;
+  top: 15vmin;
 }
 
 #demo-mobile .arrow-right {
-  left: 70vw;
-}
-
-#demo-mobile .left-enter.left-enter-active {
-  transition: left 0.3s, opacity 0.8s, height 0.1s, width 0.8s, margin-top 0.8s, line-height 0.8s;
-}
-
-#demo-mobile .right-enter.right-enter-active {
-  transition: left 0.3s, opacity 0.8s, height 0.1s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+  left: 70vmin;
 }
