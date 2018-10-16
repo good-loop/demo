@@ -1,5 +1,5 @@
 #demo-wrapper{
-  margin: 2vh auto;
+  margin: 0 auto 4vh auto;
 }
 
 #demo-text {
@@ -10,8 +10,8 @@
 }
 
 #demo {
-  height: 47vmin;
-  width: 80vmin;
+  height: 66vmin;
+  width: 50vw;
   margin: 0 auto;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .outer {
-  background-image: url("http://pngimg.com/uploads/iphone/iphone_PNG5735.png");
+  background-image: url("https://preview.ibb.co/eAf95f/a86e5e98dda0fb8c4e5c849b0aac1cdf.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -50,90 +50,99 @@ iframe {
   font-size: 20px;
   color: white;
   line-height: 30px;
-  margin-top: 18vmin;
+  margin-top: 27vmin;
   z-index: 1000;
 }
 
 .arrow-right {
-  left: 76vmin;
+  left: 103vmin;
 }
 
 .item {
   text-align: center;
-  color: white;
-  font-size: 40px;
+  color: black;
+  font-size: 30px;
   position: absolute;
   transition: height 0.3s, width 0.3s, left 0.3s, margin-top 0.3s, line-height 0.3s, background-color 0.3s;
 }
 
 .level1 .image, .level-1 .image {
-  width: 16.5vmin;
-  height: 29vmin;
-  top: 7vmin;
+  width: 23vmin;
+  height: 40vmin;
+  top: 6vmin;
 }
 
 .level0 .image {
-  width: 19vmin;
-  height: 33.5vmin;
-  top: 9vmin;
+  width: 26vmin;
+  height: 47vmin;
+  top: 7vmin;
+}
+
+.level0 .outer {
+  height: 60.5vmin;
+}
+
+.level-1 .outer, .level1 .outer {
+  height: 52vmin;
 }
 
 .level-1 {
-  height: 44vmin;
+  height: 52vmin;
   width: 25vmin;
-  line-height: 44vmin;
-  left: 51vmin;
-  margin-top: 10px;
+  line-height: 4vmin;
+  left: 71vmin;
+  margin-top: 2vmin;
 }
 
 .level0 {
-  height: 52vmin;
-  width: 24vmin;
-  line-height: 52vmin;
-  left: 28vmin;
+  height: 60.5vmin;
+  width: 29vmin;
+  line-height: 4vmin;
+  left: 37vmin;
+  margin-top: 2vmin;
 }
 
 .level1 {
-  height: 44vmin;
+  height: 52vmin;
   width: 25vmin;
-  line-height: 44vmin;
-  margin-top: 10px;
-  left: 4vmin;
+  line-height: 4vmin;
+  margin-top: 2vmin;
+  left: 7vmin;
 }
 
 .left-enter {
   opacity: 0;
-  left: -21vmin;
-  height: 41vmin;
+  left: -18vmin;
+  height: 49vmin;
   width: 23vmin;
-  line-height: 14vmin;
+  line-height: -26vmin;
   margin-top: 40px;
 }
 
 .left-enter.left-enter-active {
   opacity: 1;
-  left: 4vmin;
-  height: 44vmin;
+  left: 7vmin;
+  height: 52vmin;
   width: 25vmin;
-  line-height: 44vmin;
+  line-height: 4vmin;
   margin-top: 10px;
   transition: left 0.3s, opacity 0.3s, height 0.3s, width 0.3s, margin-top 0.3s, line-height 0.3s;
 }
 
 .left-leave {
   opacity: 1;
-  left: 51vmin;
-  height: 44vmin;
+  left: 71vmin;
+  height: 52vmin;
   width: 25vmin;
-  line-height: 44vmin;
+  line-height: 4vmin;
   margin-top: 25px;
 }
 
 .left-leave.left-leave-active {
-  left: 78vmin;
+  left: 98vmin;
   opacity: 0;
-  height: 41vmin;
-  line-height: 120px;
+  height: 49vmin;
+  line-height: 4vmin;
   margin-top: 40px;
   width: 23vmin;
   transition: left 0.3s, opacity 0.3s, height 0.3s, width 0.3s, margin-top 0.3s, line-height 0.3s;
@@ -141,38 +150,38 @@ iframe {
 
 .right-enter {
   opacity: 0;
-  left: 76vmin;
-  height: 41vmin;
+  left: 96vmin;
+  height: 49vmin;
   width: 23vmin;
-  line-height: 41vmin;
+  line-height: 1vmin;
   margin-top: 40px;
 }
 
 .right-enter.right-enter-active {
-  left: 51vmin;
+  left: 71vmin;
   opacity: 1;
-  height: 44vmin;
+  height: 52vmin;
   margin-top: 10px;
-  line-height: 44vmin;
+  line-height: 4vmin;
   width: 25vmin;
   transition: left 0.3s, opacity 0.3s, height 0.3s, width 0.3s, margin-top 0.3s, line-height 0.3s;
 }
 
 .right-leave {
-  left: 4vmin;
-  height: 44vmin;
+  left: 7vmin;
+  height: 52vmin;
   opacity: 1;
   margin-top: 25px;
-  line-height: 44vmin;
+  line-height: 4vmin;
   width: 25vmin;
 }
 
 .right-leave.right-leave-active {
-  left: -21vmin;
+  left: -18vmin;
   opacity: 0;
-  height: 41vmin;
+  height: 49vmin;
   width: 23vmin;
-  line-height: 41vmin;
+  line-height: 1vmin;
   margin-top: 40px;
   transition: left 0.3s, opacity 0.3s, height 0.3s, width 0.3s, margin-top 0.3s, line-height 0.3s;
 }
@@ -184,6 +193,7 @@ iframe {
   -ms-user-select: none;
   user-select: none;
 }
+
 
 /* fixes for the mobile version*/
 #demo-mobile-wrapper {

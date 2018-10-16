@@ -35,7 +35,7 @@ var Carousel = function (_React$Component) {
             var items = [];
             var level;
             var margin = Math.round(this.state.show/2);
-            console.log(margin);
+            console.log(index);
             for (var i = this.state.active - (margin-1); i < this.state.active + (margin); i++) {
                 var index = i;
                 if (i < 0) {
@@ -44,7 +44,7 @@ var Carousel = function (_React$Component) {
                     index = i % this.state.items.length;
                 }
                 level = this.state.active - i;
-                items.push(React.createElement(Item, { key: index, id: this.state.items[index], level: level }));
+                items.push(React.createElement(Item, { key: index, id: index, name: this.state.items[index], level: level }));
             }
             return items;
         }
@@ -113,11 +113,16 @@ var Item = function (_React$Component2) {
     _createClass(Item, [{
         key: 'render',
         value: function render() {
-            var className = 'outer item level' + this.props.level;
+            var className = 'item level' + this.props.level;
             return React.createElement(
                 'div',
                 { className: className },
-                React.createElement('iframe', { className: "inner image img" + this.props.id, src: 'https://codepen.io/chrisgannon/full/NGGKWo/', frameborder: '0', allowfullscreen: true })
+                this.props.name,
+                React.createElement(
+                    'div',
+                    { className: 'outer outer' + this.props.level },
+                    React.createElement('iframe', { className: "inner image img" + this.props.id, src: 'https://codepen.io/chrisgannon/full/NGGKWo/', frameBorder: '0', allowfullscreen: true })
+                )
             );
         }
     }]);
@@ -125,6 +130,9 @@ var Item = function (_React$Component2) {
     return Item;
 }(React.Component);
 
-var items = [1, 2, 3, 4];
-ReactDOM.render(React.createElement(Carousel, { items: items, active: 0, show: 3 }), document.getElementById('demo'));
-ReactDOM.render(React.createElement(Carousel, { items: items, active: 0, show: 1 }), document.getElementById('demo-mobile'));
+
+var items = ['Pre-roll', 'In-read', 'Double-MPU', 'Banner'];
+var links = ['https://codepen.io/chrisgannon/full/NGGKWo/', 'https://codepen.io/chrisgannon/full/NGGKWo/', 'https://codepen.io/chrisgannon/full/NGGKWo/', 'https://codepen.io/chrisgannon/full/NGGKWo/'];
+
+ReactDOM.render(React.createElement(Carousel, { items: items, active: 0, show: 3, links: links}), document.getElementById('demo'));
+ReactDOM.render(React.createElement(Carousel, { items: items, active: 0, show: 1, links: links}), document.getElementById('demo-mobile'));
