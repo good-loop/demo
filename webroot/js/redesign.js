@@ -22,6 +22,7 @@ var Carousel = function (_React$Component) {
             items: _this.props.items,
             active: _this.props.active,
             show: _this.props.show,
+            links: _this.props.links,
             direction: ''
         };
         _this.rightClick = _this.moveRight.bind(_this);
@@ -35,7 +36,7 @@ var Carousel = function (_React$Component) {
             var items = [];
             var level;
             var margin = Math.round(this.state.show/2);
-            console.log(index);
+            var links = this.state.links;
             for (var i = this.state.active - (margin-1); i < this.state.active + (margin); i++) {
                 var index = i;
                 if (i < 0) {
@@ -44,7 +45,8 @@ var Carousel = function (_React$Component) {
                     index = i % this.state.items.length;
                 }
                 level = this.state.active - i;
-                items.push(React.createElement(Item, { key: index, id: index, name: this.state.items[index], level: level }));
+                console.log(index);
+                items.push(React.createElement(Item, { key: index, id: index, name: this.state.items[index], links: links, level: level }));
             }
             return items;
         }
@@ -114,14 +116,18 @@ var Item = function (_React$Component2) {
         key: 'render',
         value: function render() {
             var className = 'item level' + this.props.level;
+            var index = this.props.id;
+            var links = this.props.links;
+//            console.log(links[index])
+            //var links = this.props.links;
             return React.createElement(
                 'div',
                 { className: className },
-                this.props.name,
+                React.createElement('p', { className: 'adtype' }, this.props.name),
                 React.createElement(
                     'div',
                     { className: 'outer outer' + this.props.level },
-                    React.createElement('iframe', { className: "inner image img" + this.props.id, src: 'https://codepen.io/chrisgannon/full/NGGKWo/', frameBorder: '0', allowfullscreen: true })
+                    React.createElement('iframe', { className: "inner image img" + this.props.id, src: links[index], frameBorder: '0', allowfullscreen: true })
                 )
             );
         }
@@ -132,7 +138,7 @@ var Item = function (_React$Component2) {
 
 
 var items = ['Pre-roll', 'In-read', 'Double-MPU', 'Banner'];
-var links = ['https://codepen.io/chrisgannon/full/NGGKWo/', 'https://codepen.io/chrisgannon/full/NGGKWo/', 'https://codepen.io/chrisgannon/full/NGGKWo/', 'https://codepen.io/chrisgannon/full/NGGKWo/'];
+var links = ['https://codepen.io/simoberny/full/aqjEbz/', 'https://codepen.io/comehope/full/jeaOrw/', 'https://cat-bounce.com/', 'https://codepen.io/chrisgannon/full/NGGKWo/'];
 
 ReactDOM.render(React.createElement(Carousel, { items: items, active: 0, show: 3, links: links}), document.getElementById('demo'));
 ReactDOM.render(React.createElement(Carousel, { items: items, active: 0, show: 1, links: links}), document.getElementById('demo-mobile'));
