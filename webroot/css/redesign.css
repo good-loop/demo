@@ -1,5 +1,5 @@
 #demo-wrapper{
-  margin: 2vh auto;
+  margin: 1vh auto;
 }
 
 #demo-text {
@@ -10,9 +10,9 @@
 }
 
 #demo {
-  height: 47vh;
-  width: 50vw;
-  margin: 0 auto;
+  height: 66vmin;
+  width: 63vw;
+  margin: 1vh auto;
 }
 
 #carousel {
@@ -20,11 +20,11 @@
 }
 
 .outer {
-  background-image: url("http://pngimg.com/uploads/iphone/iphone_PNG5735.png");
+  background-image: url("https://image.ibb.co/bucnbL/black-iphone.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
+}   
 
 .inner {
   position: relative;
@@ -32,7 +32,12 @@
   top: 0px;
 }
 
+.adtype {
+  font-size: 2.5vmin;;
+}
+
 iframe {
+  background-color: #FBFAFA;
   background-image: url("https://i.stack.imgur.com/h6viz.gif");
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -50,131 +55,134 @@ iframe {
   font-size: 20px;
   color: white;
   line-height: 30px;
-  margin-top: 18vh;
+  margin-top: 27vmin;
   z-index: 1000;
 }
 
 .arrow-right {
-  left: 48vw;
+  left: 120vmin;
 }
 
 .item {
   text-align: center;
-  color: white;
-  font-size: 40px;
+  color: black;
+  font-size: 30px;
   position: absolute;
-  transition: height 0.8s, width 0.8s, left 0.3s, margin-top 0.8s, line-height 0.8s, background-color 0.8s;
+  transition: height 0.5s, width 0.5s, left 0.5s, margin-top 0.5s, line-height 0.5s, background-color 0.5s;
+}
+
+.image {
+  transition: height 0.5s, width 0.5s, left 0.5s, margin-top 0.5s, line-height 0.5s, background-color 0.5s;
 }
 
 .level1 .image, .level-1 .image {
-  width: 8.5vw;
-  height: 30vh;
-  top: 6.5vh;
+  width: 23vmin;
+  height: 40vmin;
+  top: 6vmin;
 }
 
 .level0 .image {
-  width: 10vw;
-  height: 34.5vh;
-  top: 8.5vh;
+  width: 26vmin;
+  height: 47vmin;
+  top: 7vmin;
+  transition: height 0.5s, width 0.5s, left 0.5s, margin-top 0.5s, line-height 0.5s, background-color 0.5s;
+}
+
+.level0 .outer, .level-1 .outer, .level1 .outer {
+  height: inherit;
+}
+
+.outer1, .outer-1 {
+  margin-top: 4.5vh;
 }
 
 .level-1 {
-  height: 44vh;
-  width: 13vw;
-  line-height: 44vh;
-  left: 33vw;
-  margin-top: 10px;
+  height: 52vmin;
+  width: 25vmin;
+  line-height: 4vmin;
+  left: 87vmin;
 }
 
 .level0 {
-  height: 52vh;
-  width: 15vw;
-  line-height: 52vh;
-  left: 17vw;
+  height: 60.5vmin;
+  width: 29vmin;
+  line-height: 4vmin;
+  left: 48vmin;
 }
 
 .level1 {
-  height: 44vh;
-  width: 13vw;
-  line-height: 44vh;
-  margin-top: 10px;
-  left: 4vw;
+  height: 52vmin;
+  width: 25vmin;
+  line-height: 4vmin;
+  left: 12vmin;
 }
 
 .left-enter {
   opacity: 0;
-  left: -9vw;
-  height: 41vh;
-  width: 11vw;
-  line-height: 14vh;
-  margin-top: 40px;
+  left: -18vmin;
+  height: 49vmin;
+  width: 23vmin;
+  line-height: -6vmin;
 }
 
 .left-enter.left-enter-active {
   opacity: 1;
-  left: 4vw;
-  height: 44vh;
-  width: 13vw;
-  line-height: 44vh;
-  margin-top: 10px;
-  transition: left 0.3s, opacity 0.8s, height 0.8s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+  left: 12vmin;
+  height: 52vmin;
+  width: 25vmin;
+  line-height: 4vmin;
+  transition: left 0.5s, opacity 0.5s, height 0.5s, width 0.5s, line-height 0.5s;
 }
 
 .left-leave {
   opacity: 1;
-  left: 33vw;
-  height: 44vh;
-  width: 13vw;
-  line-height: 44vh;
-  margin-top: 25px;
+  left: 71vmin;
+  height: 52vmin;
+  width: 25vmin;
+  line-height: 4vmin;
 }
 
 .left-leave.left-leave-active {
-  left: 48vw;
+  left: 98vmin;
   opacity: 0;
-  height: 41vh;
-  line-height: 120px;
-  margin-top: 40px;
-  width: 11vw;
-  transition: left 0.3s, opacity 0.8s, height 0.8s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+  height: 49vmin;
+  line-height: 4vmin;
+  width: 23vmin;
+  transition: left 0.5s, opacity 0.5s, height 0.5s, width 0.5s,  line-height 0.5s;
 }
 
 .right-enter {
   opacity: 0;
-  left: 46vw;
-  height: 41vh;
-  width: 11vw;
-  line-height: 41vh;
-  margin-top: 40px;
+  left: 96vmin;
+  height: 49vmin;
+  width: 23vmin;
+  line-height: 1vmin;
 }
 
 .right-enter.right-enter-active {
-  left: 33vw;
+  left: 87vmin;
   opacity: 1;
-  height: 44vh;
-  margin-top: 10px;
-  line-height: 44vh;
-  width: 13vw;
-  transition: left 0.3s, opacity 0.8s, height 0.8s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+  height: 52vmin;
+  line-height: 4vmin;
+  width: 25vmin;
+  transition: left 0.5s, opacity 0.5s, height 0.5s, width 0.5s, line-height 0.5s;
 }
 
 .right-leave {
-  left: 4vw;
-  height: 44vh;
+  left: 7vmin;
+  height: 52vmin;
   opacity: 1;
-  margin-top: 25px;
-  line-height: 44vh;
-  width: 13vw;
+  line-height: 4vmin;
+  width: 25vmin;
 }
 
 .right-leave.right-leave-active {
-  left: -9vw;
+  left: -18vmin;
   opacity: 0;
-  height: 41vh;
-  width: 11vw;
-  line-height: 41vh;
-  margin-top: 40px;
-  transition: left 0.3s, opacity 0.8s, height 0.8s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+  height: 49vmin;
+  width: 23vmin;
+  line-height: 1vmin;
+  transition: left 0.5s, opacity 0.5s, height 0.5s, width 0.5s, line-height 0.5s;
 }
 
 .noselect {
@@ -186,42 +194,44 @@ iframe {
 }
 
 
-
 /* fixes for the mobile version*/
 #demo-mobile-wrapper {
-  margin: 0 auto 6vh auto;
+  margin: 1vh auto 6vh auto;
 }
 
 #demo-mobile-text {
   font-family: "open sans", helvetica, sans-serif;
   margin: 0 auto;
-  font-size: 4vmin;
+  font-size: 4.5vmin;
   text-align: center;
 }
 
 #demo-mobile {
-  height: 44vh;
-  margin: 0 auto;
+  height: 92vmin;
+  margin: 3vh auto;
+}
+
+#demo-mobile .adtype {
+  font-size: 5vmin;
+  margin-bottom: 2.5vh;
 }
 
 #demo-mobile .level0 {
-  width: 47vw;
+  height: 84vmin;
+  width: 40vmin;
+  left: 21.5vmin;
 }
 
 #demo-mobile .level0 .image {
-  width: 31vw;
-  height: 37.5vh;
-  top: 6vh;
+  width: 33.5vmin;
+  height: 57.5vmin;
+  top: 15vmin;
+}
+
+#demo-mobile .arrow {
+  margin-top: 39vmin;
 }
 
 #demo-mobile .arrow-right {
-  left: 70vw;
-}
-
-#demo-mobile .left-enter.left-enter-active {
-  transition: left 0.3s, opacity 0.8s, height 0.1s, width 0.8s, margin-top 0.8s, line-height 0.8s;
-}
-
-#demo-mobile .right-enter.right-enter-active {
-  transition: left 0.3s, opacity 0.8s, height 0.1s, width 0.8s, margin-top 0.8s, line-height 0.8s;
+  left: 71.5vmin;
 }
