@@ -24,7 +24,7 @@ COMPILE_UNITS='no'
 UNITS_LOCATION=""
 RESTART_SERVICE_AFTER_SYNC='no'
 SERVICE_NAME=('')
-PLEASE_SYNC=("config" "webroot" "pages" "package.json" "webpack.config.js" "ssl.testdemo.good-loop.com.conf" "ssl.demo.good-loop.com")
+PLEASE_SYNC=("config" "webroot" "pages" "package.json" "ssl.testdemo.good-loop.com.conf" "ssl.demo.good-loop.com")
 AUTOMATED_TESTING='no'
 PRESERVE=()
 JERBIL_RENDER='yes'
@@ -32,8 +32,8 @@ JERBIL_RENDER='yes'
 ######################
 ### Section 01: ESOTERIC TO TEAMCITY:: Creating a manifest html page
 ######################
-if [[ -f web/manifest.html ]]; then
-    rm -rf web/manifest.html
+if [[ -f webroot/manifest.html ]]; then
+    rm -rf webroot/manifest.html
 fi
 GITINFOLN1=$(git log -1 | awk NR==1)
 GITINFOLN2=$(git log -1 | awk NR==2)
