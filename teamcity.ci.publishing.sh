@@ -17,7 +17,7 @@ IMAGEDIRECTORY="$PROJECT_LOCATION/webroot/img"
 CONVERT_LESS='no'
 MINIFY_CSS='yes'
 CSS_OUTPUT_LOCATION="$PROJECT_LOCATION/webroot/css"
-WEBPACK='yes'
+WEBPACK='no'
 TEST_JAVASCRIPT='no'
 JAVASCRIPT_FILES_TO_TEST=""
 COMPILE_UNITS='no'
@@ -27,6 +27,7 @@ SERVICE_NAME=('')
 PLEASE_SYNC=("config" "webroot" "pages" "package.json" "webpack.config.js" "ssl.testdemo.good-loop.com.conf" "ssl.demo.good-loop.com")
 AUTOMATED_TESTING='no'
 PRESERVE=()
+JERBIL_RENDER='yes'
 
 ######################
 ### Section 01: ESOTERIC TO TEAMCITY:: Creating a manifest html page
@@ -332,7 +333,7 @@ function restore_preserved {
 }
 
 ##########################################
-### Seciton 08: Defining the Function for minifying CSS
+### Section 08: Defining the Function for minifying CSS
 ##########################################
 function minify_css {
 	for css in $(find $CSS_OUTPUT_LOCATION -type f -iname "*.css"); do
@@ -342,7 +343,17 @@ function minify_css {
 }
 
 
-
+###########################################
+### Section 09: Defining how to render markdown with Jerbil
+###########################################
+function jerbil {
+    if [[ $JERBIL_RENDER = 'yes' ]]; then
+        printf "\nGetting latest Jerbil changes from Github ...\n"
+        $PSSH 'cd /home/winterwell/jerbil && git gc --prune=now && git pull origin master && git reset --hard FETCH_HEAD'
+        printf "\nUsing jerbil to render Markdown into HTML ...\n"
+        $PSSH 'cd /home/winterwell/jerbil && java -cp jerbil-all.jar Jerbil /home/winterwell/demo.good-loop.com'
+    fi
+}
 
 
 ##########################################
@@ -359,4 +370,5 @@ sync_whole_project
 restore_preserved
 printf "\nSyncing Configs\n"
 webpack
+jerbil
 printf "\nPublishing Process has completed\n"
