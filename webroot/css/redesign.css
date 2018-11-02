@@ -2,236 +2,117 @@
   margin: 1vh auto;
 }
 
-#demo-text {
-  font-family: "open sans", helvetica, sans-serif;
-  margin: 0 auto;
-  font-size: 2.1vmin;
-  text-align: center;
-}
-
-#demo {
-  height: 66vmin;
-  width: 63vw;
-  margin: 1vh auto;
-}
-
-#carousel {
-  position: absolute;
-}
-
-.outer {
+#outer {
   background-image: url("https://image.ibb.co/bucnbL/black-iphone.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}   
-
-.inner {
-  position: relative;
-  left: 0px;
-  top: 0px;
 }
 
-.adtype {
-  font-size: 2.5vmin;;
+#demo-details {
+  margin: 13vmin 4vmin;
 }
 
-iframe {
-  background-color: #FBFAFA;
-  background-image: url("https://i.stack.imgur.com/h6viz.gif");
-  background-repeat: no-repeat;
-  background-position: 50% 50%;
+#demo-text {
+  font-family: "Monstserrat Regular", helvetica, sans-serif !important;
+  margin: 6vmin 0;
+  font-weight: bold;
+  font-size: 2.1vmin;
+  text-align: center;
 }
 
-.arrow {
-  position: absolute;
-  width: 30px;
-  height: 30px;
+#demo-adtype {
+  float: left !important;
+  font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
+  font-size: xx-large;
+  line-height: initial;
+}
+
+#dropdownMenuButton {
+  float: right !important;
+  fill: #a5252d;
   background-color: #a5252d;
-  text-align: center;
-  font-size: 25px;
-  border-radius: 50%;
+  border-color: #a5252d;
+  box-shadow: none;
+}
+
+.dropdown-item {
   cursor: pointer;
-  font-size: 20px;
+}
+
+.dropdown-item.active, .dropdown-item:active {
   color: white;
-  line-height: 30px;
-  margin-top: 27vmin;
-  z-index: 1000;
+  background-color: #a5252d;
 }
 
-.arrow-right {
-  left: 120vmin;
+#demo-description {
+  float: inline-start;
+  text-align: justify;
+  margin: 2vmin 0;
 }
 
-.item {
+#demo-iframe #outer {
+  height: 79vmin;
+  width: 38vmin;
   text-align: center;
-  color: black;
-  font-size: 30px;
-  position: absolute;
-  transition: height 0.5s, width 0.5s, left 0.5s, margin-top 0.5s, line-height 0.5s, background-color 0.5s;
+  margin: 2vmin auto;
 }
 
-.image {
-  transition: height 0.5s, width 0.5s, left 0.5s, margin-top 0.5s, line-height 0.5s, background-color 0.5s;
-}
-
-.level1 .image, .level-1 .image {
-  width: 23vmin;
-  height: 40vmin;
-  top: 6vmin;
-}
-
-.level0 .image {
-  width: 26vmin;
-  height: 47vmin;
+#demo-iframe #outer .image {
+  position: relative;
+  width: 33vmin;
+  height: 62vmin;
   top: 7vmin;
-  transition: height 0.5s, width 0.5s, left 0.5s, margin-top 0.5s, line-height 0.5s, background-color 0.5s;
-}
-
-.level0 .outer, .level-1 .outer, .level1 .outer {
-  height: inherit;
-}
-
-.outer1, .outer-1 {
-  margin-top: 4.5vh;
-}
-
-.level-1 {
-  height: 52vmin;
-  width: 25vmin;
-  line-height: 4vmin;
-  left: 87vmin;
-}
-
-.level0 {
-  height: 60.5vmin;
-  width: 29vmin;
-  line-height: 4vmin;
-  left: 48vmin;
-}
-
-.level1 {
-  height: 52vmin;
-  width: 25vmin;
-  line-height: 4vmin;
-  left: 12vmin;
-}
-
-.left-enter {
-  opacity: 0;
-  left: -18vmin;
-  height: 49vmin;
-  width: 23vmin;
-  line-height: -6vmin;
-}
-
-.left-enter.left-enter-active {
-  opacity: 1;
-  left: 12vmin;
-  height: 52vmin;
-  width: 25vmin;
-  line-height: 4vmin;
-  transition: left 0.5s, opacity 0.5s, height 0.5s, width 0.5s, line-height 0.5s;
-}
-
-.left-leave {
-  opacity: 1;
-  left: 71vmin;
-  height: 52vmin;
-  width: 25vmin;
-  line-height: 4vmin;
-}
-
-.left-leave.left-leave-active {
-  left: 98vmin;
-  opacity: 0;
-  height: 49vmin;
-  line-height: 4vmin;
-  width: 23vmin;
-  transition: left 0.5s, opacity 0.5s, height 0.5s, width 0.5s,  line-height 0.5s;
-}
-
-.right-enter {
-  opacity: 0;
-  left: 96vmin;
-  height: 49vmin;
-  width: 23vmin;
-  line-height: 1vmin;
-}
-
-.right-enter.right-enter-active {
-  left: 87vmin;
-  opacity: 1;
-  height: 52vmin;
-  line-height: 4vmin;
-  width: 25vmin;
-  transition: left 0.5s, opacity 0.5s, height 0.5s, width 0.5s, line-height 0.5s;
-}
-
-.right-leave {
-  left: 7vmin;
-  height: 52vmin;
-  opacity: 1;
-  line-height: 4vmin;
-  width: 25vmin;
-}
-
-.right-leave.right-leave-active {
-  left: -18vmin;
-  opacity: 0;
-  height: 49vmin;
-  width: 23vmin;
-  line-height: 1vmin;
-  transition: left 0.5s, opacity 0.5s, height 0.5s, width 0.5s, line-height 0.5s;
-}
-
-.noselect {
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 
-/* fixes for the mobile version*/
-#demo-mobile-wrapper {
-  margin: 1vh auto 6vh auto;
+
+
+#demo-mobile-wrapper{
+  min-height: 254vh;
 }
 
-#demo-mobile-text {
-  font-family: "open sans", helvetica, sans-serif;
-  margin: 0 auto;
-  font-size: 4.5vmin;
-  text-align: center;
+#mobile-outer {
+  background-image: url("https://image.ibb.co/bucnbL/black-iphone.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-#demo-mobile {
-  height: 92vmin;
-  margin: 3vh auto;
+#demo-mobile-wrapper #demo-text {
+  font-size: 5.5vmin;
+  margin: 11vmin 0;
 }
 
-#demo-mobile .adtype {
-  font-size: 5vmin;
-  margin-bottom: 2.5vh;
+#demo-mobile-adtype {
+  float: left !important;
+  font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
+  font-size: xx-large;
+  line-height: initial;
 }
 
-#demo-mobile .level0 {
-  height: 84vmin;
-  width: 40vmin;
-  left: 21.5vmin;
+#demo-mobile-wrapper #demo-details {
+  margin: 0 4vmin;
 }
 
-#demo-mobile .level0 .image {
-  width: 33.5vmin;
-  height: 57.5vmin;
-  top: 15vmin;
+#demo-mobile-description {
+  float: inline-start;
+  text-align: justify;
+  margin: 2vmin 0;
 }
 
-#demo-mobile .arrow {
-  margin-top: 39vmin;
+#demo-iframe #mobile-outer {
+  height: 146vmin;
+  width: 70vmin;
+  margin: 2vmin 6.5vmin;
+  position: absolute;
+  top: 147vh;
 }
 
-#demo-mobile .arrow-right {
-  left: 71.5vmin;
+#demo-iframe #mobile-outer .image {
+  position: relative;
+  width: 63vmin;
+  height: 122vmin;
+  top: 7vmin;
+  left: 3vmin;
 }
