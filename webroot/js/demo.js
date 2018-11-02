@@ -27,8 +27,7 @@ $("#sendMessage").on("click", function() {
 
 // Adblocker on?
 $('body').on('gl:adblock', function() {
-    $adblock = $('.adblock-warning');
-    $adblock.css({
+    $('.adblock-warning').css({
         'display': 'block'
     });
 	// TODO a message to the user.

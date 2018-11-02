@@ -1,8 +1,8 @@
-<!-- Cheap Vertical Space -->
-<div class="white-bg" style="height:2em;"></div>
-<div class="adblock-warning appear-after-click" > 
+<div class="adblock-warning light-gray-bg" style="min-height: 75px; text-align: center;" > 
     This page may not display correctly as you are using adblock. If you are unable to see an advert on this page, try adding demo.good-loop.com to your adblocker's whitelist. 
 </div>
+<!-- Cheap Vertical Space -->
+<div class="white-bg" style="height:2em;"></div>
 <!-- End of Cheap Vertical Space -->
 <div class="container-fluid">
     <!-- Desktop/Laptop Version of the Ad, and text -->
