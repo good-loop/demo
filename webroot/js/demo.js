@@ -27,8 +27,9 @@ $("#sendMessage").on("click", function() {
 
 // Adblocker on?
 $('body').on('gl:adblock', function() {
-    $('.adblock-warning').css({
-        'display': 'block !important'
+    $adblock = $('.adblock-warning');
+    $adblock.css({
+        'display': 'block'
     });
 	// TODO a message to the user.
 	console.warn("Adblocker detected - expect some things to break.");
