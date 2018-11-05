@@ -22,18 +22,23 @@
 }
 
 #demo-adtype {
-  float: left !important;
   font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
-  font-size: xx-large;
-  line-height: initial;
+  font-size: 37px;
+  margin: 13px 9px;
 }
 
-#dropdownMenuButton {
-  float: right !important;
-  fill: #a5252d;
-  background-color: #a5252d;
-  border-color: #a5252d;
-  box-shadow: none;
+#dropdown-menu-button {
+  background-color: transparent;
+  color: black;
+  border-radius: 0;
+  border-color: #c5c5c5;
+  border-width: 2px;
+  font-weight: bold;
+  font-size: 23px;
+  line-height: 31px;
+  width: 123px;
+  text-align: left;
+  padding: 7px;
 }
 
 .dropdown-item {
@@ -45,17 +50,16 @@
   background-color: #a5252d;
 }
 
-#demo-description {
+.demo-description {
   float: inline-start;
   text-align: justify;
-  margin: 2vmin 0;
 }
 
 #demo-iframe #outer {
   height: 79vmin;
   width: 38vmin;
   text-align: center;
-  margin: 2vmin auto;
+  margin: 2vmin 0 2vmin 10vmin;
 }
 
 #demo-iframe #outer .image {
@@ -69,7 +73,12 @@
 
 
 #demo-mobile-wrapper{
-  min-height: 254vh;
+  min-height: 138vh;
+  width: 100vw;
+}
+
+#demo-mobile-details {
+  margin: 0 auto;
 }
 
 #mobile-outer {
@@ -85,34 +94,86 @@
 }
 
 #demo-mobile-adtype {
-  float: left !important;
   font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
-  font-size: xx-large;
-  line-height: initial;
+  font-size: 27px;
+  margin: 13px 9px;
 }
 
 #demo-mobile-wrapper #demo-details {
   margin: 0 4vmin;
 }
 
-#demo-mobile-description {
+.demo-mobile-description {
   float: inline-start;
   text-align: justify;
   margin: 2vmin 0;
 }
 
 #demo-iframe #mobile-outer {
-  height: 146vmin;
-  width: 70vmin;
-  margin: 2vmin 6.5vmin;
+  height: 167vmin;
+  width: 80vmin;
+  margin: 2vmin 1.5vmin;
   position: absolute;
-  top: 147vh;
+  top: 16vh;
 }
 
 #demo-iframe #mobile-outer .image {
   position: relative;
-  width: 63vmin;
-  height: 122vmin;
-  top: 7vmin;
+  width: 74vmin;
+  height: 135vmin;
+  top: 14vmin;
   left: 3vmin;
+}
+
+.dropdown-mobile {
+  float: left;
+  padding-left: 6vw;
+}
+
+#dropdown-mobile-menu-button {
+  background-color: transparent;
+  color: black;
+  border-radius: 0;
+  border-color: #c5c5c5;
+  border-width: 2px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 26px;
+  width: 101px;
+  text-align: left;
+  padding: 6px;
+  margin-right: 4vw;
+}
+
+
+
+
+
+.gl-input-field {
+  margin-bottom: 0.5rem;
+  width: 85%;
+  max-width: 100%;
+  padding-left: 6px;
+  font-size: 1rem;
+}
+
+#send-message {
+  padding: 0.9em 0;
+  width: 20%;
+}
+
+#send-message-mobile, #send-message {
+  cursor: pointer;
+}
+
+.form-intro {
+  font-family: "open sans", helvetica, sans-serif;
+  font-size: 26px;
+  margin: 0 0 34px 8px;
+}
+
+.gl-button-link-black{
+  line-height: 17px;
+  padding: 1rem !important;
+  font-size: 24px;
 }

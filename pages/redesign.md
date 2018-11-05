@@ -16,17 +16,11 @@
                             </div>
                             <div class="col">
                                 <div id="demo-details">
-                                    <div id="demo-text">
-                                        OUR ETHICAL ADS SIT IN A RANGE OF STANDARD FORMATS, SUCH AS...
-                                    </div> 
-                                    <div id="demo-adtype">
-                                        Pre-roll
-                                    </div>
                                     <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Formats
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Format
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <div class="dropdown-menu" aria-labelledby="dropdown-menu-button">
                                             <!-- <a class="dropdown-item" href="#">Pre-roll</a>
                                             <a class="dropdown-item" href="#">In-read</a>
                                             <a class="dropdown-item" href="#">Double-MPU</a>
@@ -37,8 +31,19 @@
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3)">Banner</button>
                                         </div>
                                     </div>
-                                    <div id="demo-description">
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum1.
+                                    <div id="demo-adtype">
+                                        Pre-roll
+                                    </div>
+                                    <div class="demo-description">
+                                        <div class="form-intro">Contact us to find out more:</div>
+                                        <form id="contactform" action="https://formspree.io/xowwlvjx" method="POST">
+                                            <input type="text" name="_gotcha" style="display: none"> 
+                                            <input type="name" class="gl-input-field" name="namefield" placeholder="Name">
+                                            <input type="email" class="gl-input-field" name="email" placeholder="Email">
+                                            <textarea type="message" class="gl-input-field" name="message" placeholder="Message"></textarea>
+                                            <input type="hidden" name="_next" value="https://www.good-loop.com/success" />
+                                            <button class="gl-button-link-desktop" id="send-message">SEND</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -53,19 +58,16 @@
     <div class="row d-block d-sm-none d-md-none">
         <div class="col-md-12">
             <div class="row">
-                <div id="demo-mobile-wrapper">
-                    <div id="demo-text">
-                        OUR ETHICAL ADS SIT IN A RANGE OF STANDARD FORMATS, SUCH AS...
-                    </div>                            
-                    <div id="demo-details">
-                        <div id="demo-mobile-adtype">
-                            Pre-roll
-                        </div>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Formats
+                <div id="demo-mobile-wrapper">         
+                    <!-- Cheap Vertical Space -->
+                    <div style="height:0.5em;"></div>
+                    <!-- End of Cheap Vertical Space -->                 
+                    <div id="demo-mobile-details">
+                        <div class="dropdown-mobile">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-mobile-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Format
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-menu" aria-labelledby="dropdown-mobile-menu-button">
                                 <!-- <a class="dropdown-item" href="#">Pre-roll</a>
                                 <a class="dropdown-item" href="#">In-read</a>
                                 <a class="dropdown-item" href="#">Double-MPU</a>
@@ -76,8 +78,10 @@
                                 <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3,mobile=true)">Banner</button>
                             </div>
                         </div>
-                        <div id="demo-mobile-description">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        <div id="demo-mobile-adtype">
+                            Pre-roll
+                        </div>
+                        <div class="demo-mobile-description">
                         </div>
                     </div>
                     <div id="demo-iframe">
@@ -91,7 +95,7 @@
     </div>
     <!-- END OF Mobile version of the Ad and Text -->
 </div>
-<div class="container-fluid">
+<!-- <div class="container-fluid">
 <div class="row appear-after-click">
     <div class="col-md-6 offset-md-3">
         <span  class="gl-font-4 justified font-18px d-none d-sm-block d-md-block">
@@ -103,22 +107,7 @@
         </span>
     </div>
 </div>
-</div>
-<!-- Only Desktops/Laptops See this Row -->
-<div class="container-fluid">
-<div class="row d-none d-sm-block d-md-block">
-    <div class="col-md-12 fit-width">
-            <div class="col-md-8 offset-md-2">
-                <center>
-                    <span class="gl-font-1 gl-page-header-text">
-                        Interested? Get in Touch
-                    </span>
-                </center>
-            </div>
-    </div>
-</div>
-</div>
-<!-- End of the Desktops/Laptops Exclusive Row -->
+</div> -->
 <!-- Only Mobile Devices See This Row -->
 <div class="container-fluid">
 <div class="row d-block d-sm-none d-md-none">
@@ -141,25 +130,6 @@
 <div class="container-fluid">
 <div class="row">
     <div class="col-md-12">
-        <!-- Desktop/Laptop Exclusive Form -->
-        <div class="col-md-8 offset-md-2 d-none d-sm-block d-md-block">
-            <div class="col-md-12">
-                <!-- Cheap Vertical Space -->
-                <div style="height:1.5em;">
-                </div>
-                <!-- End of Cheap Vertical Space -->
-                <center>
-                    <form id="contactform" action="https://formspree.io/xowwlvjx" method="POST">
-                        <input type="text" name="_gotcha" style="display: none"> 
-                        <input type="name" class="gl-input-field" name="namefield" placeholder="Name">
-                        <input type="email" class="gl-input-field" name="email" placeholder="Email">
-                        <input type="hidden" name="_next" value="https://www.good-loop.com/success" />
-                        <button class="gl-button-link-desktop" id="sendMessage">Request More Information</button>
-                    </form>
-                </center>
-            </div>
-        </div>
-        <!-- End of Desktop/Laptop Exclusive Form -->
         <!-- Mobile Devices Exclusive Form -->
         <div class="col-md-6 offset-md-3 d-block d-sm-none d-md-none">
             <center>
@@ -168,11 +138,11 @@
                     <input type="name" class="gl-input-field-mobile" name="namefield" placeholder="Name">
                     <input type="email" class="gl-input-field-mobile" name="email" placeholder="Email">
                     <input type="hidden" name="_next" value="https://www.good-loop.com/success" />
-                    <button class="gl-button-link-mobile" id="sendMessage">Request More Information</button>
+                    <button class="gl-button-link-mobile" id="send-message-mobile">Request More Information</button>
                 </form>
             </center>
             <!-- Cheap Vertical Space -->
-            <div style="height:3em;">
+            <div style="height:6.5em;">
             </div>
             <!-- End of Cheap Vertical Space -->
         </div>

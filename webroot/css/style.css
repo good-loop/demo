@@ -82,11 +82,10 @@
 }
 
 .header-image {
-    width: 5vw;
+    width: 95px;
     height: auto;
+    margin: 0 12vw;
 }
-
-
 
 .gl-page-header-text-mobile {
     font-size: 2.5rem;
