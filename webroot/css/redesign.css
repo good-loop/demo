@@ -33,12 +33,12 @@
   border-radius: 0;
   border-color: #c5c5c5;
   border-width: 2px;
-  font-weight: bold;
-  font-size: 23px;
   line-height: 31px;
-  width: 123px;
   text-align: left;
   padding: 7px;
+  letter-spacing: 1px;
+  width: 122px;
+  font-size: 22px;
 }
 
 .dropdown-item {
@@ -135,13 +135,13 @@
   border-radius: 0;
   border-color: #c5c5c5;
   border-width: 2px;
-  font-weight: bold;
   font-size: 18px;
   line-height: 26px;
   width: 101px;
   text-align: left;
   padding: 6px;
   margin-right: 4vw;
+  letter-spacing: 1px;
 }
 
 
@@ -167,7 +167,7 @@
 
 .form-intro {
   font-family: "open sans", helvetica, sans-serif;
-  font-size: 26px;
+  font-size: 22px;
   margin: 0 0 34px 8px;
 }
 
