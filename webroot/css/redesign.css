@@ -66,6 +66,7 @@
 #demo-iframe #outer .image {
   position: relative;
   width: 33vmin;
+  min-width: 92%;
   height: 62vmin;
   top: 7vmin;
 }
@@ -120,6 +121,7 @@
 #demo-iframe #mobile-outer .image {
   position: relative;
   width: 74vmin;
+  min-width: 92%;
   height: 135vmin;
   top: 14vmin;
   left: 3vmin;
