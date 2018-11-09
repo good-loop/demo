@@ -1,5 +1,6 @@
 #demo-wrapper{
-  margin: 1vh auto;
+  margin: 0 auto;
+  width: 100vw;
 }
 
 #outer {
@@ -59,7 +60,7 @@
   height: 79vmin;
   width: 38vmin;
   text-align: center;
-  margin: 2vmin 0 2vmin 10vmin;
+  margin: 1vmin 0 0 10vmin;
 }
 
 #demo-iframe #outer .image {
