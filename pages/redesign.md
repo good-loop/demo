@@ -86,7 +86,7 @@
                     </div>
                     <div id="demo-iframe">
                         <div id="mobile-outer">
-                            <iframe class="image" src="https://codepen.io/simoberny/full/aqjEbz/" frameborder="0"></iframe>
+                            <iframe class="image" src="https://codepen.io/simoberny/full/aqjEbz/" scrolling="no" frameborder="0"></iframe>
                         </div>
                     </div> 
                 </div>
