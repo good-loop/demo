@@ -10,7 +10,7 @@
                             <div class="col">
                                 <div id="demo-iframe">
                                     <div id="outer">
-                                        <iframe class="image" src="https://codepen.io/simoberny/full/aqjEbz/" frameborder="0"></iframe>
+                                        <iframe class="image" src="http://testdemo.good-loop.com/adtypes.html/?gl.format=pre-roll" frameborder="0"></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -27,8 +27,9 @@
                                             <a class="dropdown-item" href="#">Banner</a> -->
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=0)">Pre-roll</button>
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=1)">In-read</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2)">Double-MPU</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3)">Banner</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2)">MPU</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3)">Double-MPU</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=4)">Banner</button>
                                         </div>
                                     </div>
                                     <div id="demo-adtype">
@@ -74,8 +75,9 @@
                                 <a class="dropdown-item" href="#">Banner</a> -->
                                 <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=0,mobile=true)">Pre-roll</button>
                                 <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=1,mobile=true)">In-read</button>
-                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2,mobile=true)">Double-MPU</button>
-                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3,mobile=true)">Banner</button>
+                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2,mobile=true)">MPU</button>
+                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3,mobile=true)">Double-MPU</button>
+                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=4,mobile=true)">Banner</button>
                             </div>
                         </div>
                         <div id="demo-mobile-adtype">
@@ -86,7 +88,7 @@
                     </div>
                     <div id="demo-iframe">
                         <div id="mobile-outer">
-                            <iframe class="image" src="https://codepen.io/simoberny/full/aqjEbz/" scrolling="no" frameborder="0"></iframe>
+                            <iframe class="image" src="http://testdemo.good-loop.com/adtypes.html/?gl.format=pre-roll" scrolling="no" frameborder="0"></iframe>
                         </div>
                     </div> 
                 </div>

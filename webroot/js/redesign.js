@@ -1,13 +1,11 @@
-var items = ['Pre-roll', 'In-read', 'Double-MPU', 'Banner'];
-var links = ['https://codepen.io/simoberny/full/aqjEbz/', 'https://codepen.io/comehope/full/jeaOrw/', 'https://cat-bounce.com/', 'https://codepen.io/chrisgannon/full/NGGKWo/'];
-var descriptions = ["Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum1.",
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum2.",
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum3.",
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum4."
-                    ];
+var items = ['Pre-roll', 'In-read', 'MPU', 'Double-MPU', 'Banner'];
+var links = ['http://testdemo.good-loop.com/adtypes.html/?gl.format=pre-roll', 
+            'http://testdemo.good-loop.com/adtypes.html/?gl.format=in-read', 
+            'http://testdemo.good-loop.com/adtypes.html/?gl.format=mpu', 
+            'http://testdemo.good-loop.com/adtypes.html/?gl.format=mpu2', 
+            'http://testdemo.good-loop.com/adtypes.html/?gl.format=banner'];
 
 function clickedItem(selectedIndex, mobile=false) {
     ReactDOM.render(React.createElement('span', {className: ''}, items[selectedIndex]), document.getElementById(mobile ? 'demo-mobile-adtype' : 'demo-adtype'));
     ReactDOM.render(React.createElement('iframe', {className: 'image', src: links[selectedIndex], frameBorder: '0'}, items[0]), document.getElementById(mobile ? 'mobile-outer' : 'outer'));
-    ReactDOM.render(React.createElement('p', {className: ''}, descriptions[selectedIndex]), document.getElementById(mobile ? 'demo-mobile-description' : 'demo-description'));
 }
