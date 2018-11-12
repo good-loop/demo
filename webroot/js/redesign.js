@@ -9,10 +9,9 @@ var links = ['https://testdemo.good-loop.com/adtypes.html?gl.format=pre-roll',
 function clickedItem(selectedIndex, mobile=false) {
     ReactDOM.render(React.createElement('span', {className: ''}, items[selectedIndex]), document.getElementById(mobile ? 'demo-mobile-adtype' : 'demo-adtype'));
     ReactDOM.render(React.createElement('iframe', {className: 'image', src: links[selectedIndex], frameBorder: '0'}, items[0]), document.getElementById(mobile ? 'mobile-outer' : 'outer'));
-}
+};
 
-function GetURLParameter(sParam)
-{
+function GetURLParameter(sParam) {
     var sPageURL = window.location.search.substring(1);
     var sURLVariables = sPageURL.split('&');
     for (var i = 0; i < sURLVariables.length; i++) 
@@ -23,13 +22,13 @@ function GetURLParameter(sParam)
             return sParameterName[1];
         }
     }
-}​
+}​;
 
 var format = GetURLParameter('gl.format');
 var aslink = document.getElementsByClassName('aslink')[0]; 
 var goodloopad = document.getElementsByClassName('goodloopad')[0]; 
 
-elements[0].src = '//as.good-loop.com/unit.js?gl.variant=pre-roll';
+aslink.src = '//as.good-loop.com/unit.js?gl.variant=pre-roll';
 switch(format) {
     case 'pre-roll':
         aslink.src = '//as.good-loop.com/unit.js?gl.variant=pre-roll';
