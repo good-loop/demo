@@ -13,9 +13,8 @@
 <!-- End of Cheap Vertical Space -->
 <div class="row">
         <div class="col-md-6 offset-md-3 fit-width z-index-1">
-            <div class="goodloopad" data-format="player" data-mobile-format="player" style="" id="glad0">
-                <script class="aslink" src='//as.good-loop.com/unit.js?gl.variant=pre-roll' async></script>
-            </div>
+            <div class='goodloopad' data-format='player' data-mobile-format='player'></div>
+            <script class='aslink' src='//as.good-loop.com/unit.js' async></script>
         </div>
 </div>
 <!-- Cheap Vertical Space -->

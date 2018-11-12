@@ -25,24 +25,32 @@ function GetURLParameter(sParam)
 }​
 
 var format = GetURLParameter('gl.format');
-var elements = document.getElementsByClassName('adlink'); 
+var aslink = document.getElementsByClassName('aslink')[0]; 
+var goodloopad = document.getElementsByClassName('goodloopad')[0]; 
+
 elements[0].src = '//as.good-loop.com/unit.js?gl.variant=pre-roll';
 switch(format) {
     case 'pre-roll':
-        elements[0].src = '//as.good-loop.com/unit.js?gl.variant=pre-roll';
+        aslink.src = '//as.good-loop.com/unit.js?gl.variant=pre-roll';
+        goodloopad.setAttribute("data-format", "player"); 
         break;
     case 'in-read':
-        elements[0].src = '//as.good-loop.com/unit.js?gl.variant=in-read';
+        aslink.src = '//as.good-loop.com/unit.js?gl.variant=in-read';
+        goodloopad.setAttribute("data-format", "in-read"); 
         break;
     case 'mpu':
-        elements[0].src = '//as.good-loop.com/unit.js?gl.variant=mpu';
+        aslink.src = '//as.good-loop.com/unit.js?gl.variant=mpu';
+        goodloopad.setAttribute("data-format", "mpu"); 
         break;
     case 'mpu2':
-        elements[0].src = '//as.good-loop.com/unit.js?gl.variant=mpu2';
-        break;
+        aslink.src = '//as.good-loop.com/unit.js?gl.variant=mpu2';
+        goodloopad.setAttribute("data-format", "mpu2"); 
+       break;
     case 'banner':
-        elements[0].src = '//as.good-loop.com/unit.js?gl.variant=banner';
-        break;
+        aslink.src = '//as.good-loop.com/unit.js?gl.variant=banner';
+        goodloopad.setAttribute("data-format", "banner"); 
+       break;
     default:
-        elements[0].src = '//as.good-loop.com/unit.js?gl.variant=pre-roll';
+        aslink.src = '//as.good-loop.com/unit.js?gl.variant=pre-roll';
+        goodloopad.setAttribute("data-format", "player"); 
 } 
