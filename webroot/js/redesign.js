@@ -10,7 +10,7 @@ var links = ['https://testdemo.good-loop.com/preroll.html',
             'https://testdemo.good-loop.com/in-read.html', 
             'https://testdemo.good-loop.com/mpu.html', 
             'https://testdemo.good-loop.com/mpu2.html', 
-            'https://testdemo.good-loop.com/leaderboard.html'];
+            'https://testdemo.good-loop.com/vertical.html'];
 
 
 function clickedItem(selectedIndex, mobile=false) {
