@@ -18,6 +18,13 @@
             </div>
         </div>
 </div>
+<div class="row">
+        <div class="col-md-6 offset-md-3 fit-width z-index-1">
+            <div class="goodloopad" data-format="in-read" data-mobile-format="in-read" style="">
+                <script class="aslink" src='//as.good-loop.com/unit.js?gl.variant=in-read' async></script>
+            </div>
+        </div>
+</div>
 <!-- Cheap Vertical Space -->
 <div class="white-bg" style="height:2em;">
 </div>
