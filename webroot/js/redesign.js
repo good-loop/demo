@@ -1,4 +1,4 @@
-var items = ['Pre-roll', 'In-read', 'MPU', 'Double-MPU', 'Banner', 'Test'];
+var items = ['Pre-roll', 'In-read', 'MPU', 'Double-MPU', 'Banner'];
 // var links = ['https://testdemo.good-loop.com/adtypes.html?gl.format=pre-roll', 
 //             'https://testdemo.good-loop.com/adtypes.html?gl.format=in-read', 
 //             'https://testdemo.good-loop.com/adtypes.html?gl.format=mpu', 
@@ -10,8 +10,7 @@ var links = ['https://testdemo.good-loop.com/pre-roll.html',
             'https://testdemo.good-loop.com/in-read.html', 
             'https://testdemo.good-loop.com/mpu.html', 
             'https://testdemo.good-loop.com/mpu2.html', 
-            'https://testdemo.good-loop.com/vertical.html', 
-            'https://www.google.com'];
+            'https://testdemo.good-loop.com/leaderboard.html'];
 
 
 function clickedItem(selectedIndex, mobile=false) {
