@@ -30,7 +30,7 @@
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2)">MPU</button>
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3)">Double-MPU</button>
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=4)">Banner</button>
-                                        </div>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=5)">Test</button>
                                     </div>
                                     <div id="demo-adtype">
                                         Pre-roll

@@ -1,9 +1,10 @@
-var items = ['Pre-roll', 'In-read', 'MPU', 'Double-MPU', 'Banner'];
+var items = ['Pre-roll', 'In-read', 'MPU', 'Double-MPU', 'Banner', 'Test'];
 var links = ['https://testdemo.good-loop.com/adtypes.html?gl.format=pre-roll', 
             'https://testdemo.good-loop.com/adtypes.html?gl.format=in-read', 
             'https://testdemo.good-loop.com/adtypes.html?gl.format=mpu', 
             'https://testdemo.good-loop.com/adtypes.html?gl.format=mpu2', 
-            'https://testdemo.good-loop.com/adtypes.html?gl.format=banner'];
+            'https://testdemo.good-loop.com/adtypes.html?gl.format=banner', 
+            'https://www.google.com'];
 
 function clickedItem(selectedIndex, mobile=false) {
     ReactDOM.render(React.createElement('span', {className: ''}, items[selectedIndex]), document.getElementById(mobile ? 'demo-mobile-adtype' : 'demo-adtype'));
@@ -51,6 +52,6 @@ switch(format) {
         goodloopad.setAttribute("data-format", "banner"); 
        break;
     default:
-        aslink.src = '//as.good-loop.com/unit.js?gl.variant=pre-roll';
-        goodloopad.setAttribute("data-format", "player"); 
+        aslink.src = '//as.good-loop.com/unit.js?gl.variant='+format;
+        goodloopad.setAttribute("data-format", format); 
 } 
