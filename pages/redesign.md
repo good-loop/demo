@@ -10,7 +10,7 @@
                             <div class="col">
                                 <div id="demo-iframe">
                                     <div id="outer">
-                                        <iframe class="image" src="http://testdemo.good-loop.com/adtypes.html?gl.format=pre-roll" frameborder="0"></iframe>
+                                        <iframe class="image" src="https://testdemo.good-loop.com/adtypes.html?gl.format=pre-roll" frameborder="0"></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +88,7 @@
                     </div>
                     <div id="demo-iframe">
                         <div id="mobile-outer">
-                            <iframe class="image" src="http://testdemo.good-loop.com/adtypes.html?gl.format=pre-roll" scrolling="no" frameborder="0"></iframe>
+                            <iframe class="image" src="https://testdemo.good-loop.com/adtypes.html?gl.format=pre-roll" scrolling="no" frameborder="0"></iframe>
                         </div>
                     </div> 
                 </div>
