@@ -6,7 +6,7 @@ var items = ['Pre-roll', 'In-read', 'MPU', 'Double-MPU', 'Banner'];
 //             'https://testdemo.good-loop.com/adtypes.html?gl.format=banner', 
 //             'https://www.google.com'];
 
-var links = ['https://testdemo.good-loop.com/pre-roll.html', 
+var links = ['https://testdemo.good-loop.com/preroll.html', 
             'https://testdemo.good-loop.com/in-read.html', 
             'https://testdemo.good-loop.com/mpu.html', 
             'https://testdemo.good-loop.com/mpu2.html', 
