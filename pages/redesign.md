@@ -30,7 +30,7 @@
                                         Pre-roll
                                     </div>
                                     <div class="demo-description">
-                                        <div class="form-intro">Contact us to find out more:</div>
+                                        <div class="form-intro">These are our most popular formats. Contact us to find out more:</div>
                                         <form id="contactform" action="https://formspree.io/xowwlvjx" method="POST">
                                             <input type="text" name="_gotcha" style="display: none"> 
                                             <input type="name" class="gl-input-field" name="namefield" placeholder="Name">

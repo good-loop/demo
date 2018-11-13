@@ -56,6 +56,10 @@
   text-align: justify;
 }
 
+.demo-description .form-intro {
+  width: 85%;
+}
+
 #demo-iframe #outer {
   height: 79vmin;
   width: 38vmin;
