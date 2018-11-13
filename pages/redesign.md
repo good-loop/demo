@@ -10,7 +10,7 @@
                             <div class="col">
                                 <div id="demo-iframe">
                                     <div id="outer">
-                                        <iframe class="image" src="https://testdemo.good-loop.com/preroll.html" frameborder="0"></iframe>
+                                        <iframe class="image" src="https://testdemo.good-loop.com/pre-roll.html" frameborder="0"></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -21,16 +21,11 @@
                                             Format
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdown-menu-button">
-                                            <!-- <a class="dropdown-item" href="#">Pre-roll</a>
-                                            <a class="dropdown-item" href="#">In-read</a>
-                                            <a class="dropdown-item" href="#">Double-MPU</a>
-                                            <a class="dropdown-item" href="#">Banner</a> -->
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=0)">Pre-roll</button>
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=1)">In-read</button>
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2)">MPU</button>
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3)">Double-MPU</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=4)">Banner</button>
-                                    </div>
+                                        </div>
                                     <div id="demo-adtype">
                                         Pre-roll
                                     </div>
@@ -68,15 +63,10 @@
                                 Format
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdown-mobile-menu-button">
-                                <!-- <a class="dropdown-item" href="#">Pre-roll</a>
-                                <a class="dropdown-item" href="#">In-read</a>
-                                <a class="dropdown-item" href="#">Double-MPU</a>
-                                <a class="dropdown-item" href="#">Banner</a> -->
                                 <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=0,mobile=true)">Pre-roll</button>
                                 <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=1,mobile=true)">In-read</button>
                                 <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2,mobile=true)">MPU</button>
                                 <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3,mobile=true)">Double-MPU</button>
-                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=4,mobile=true)">Banner</button>
                             </div>
                         </div>
                         <div id="demo-mobile-adtype">
@@ -87,7 +77,7 @@
                     </div>
                     <div id="demo-iframe">
                         <div id="mobile-outer">
-                            <iframe class="image" src="https://testdemo.good-loop.com/preroll.html" scrolling="no" frameborder="0"></iframe>
+                            <iframe class="image" src="https://testdemo.good-loop.com/pre-roll.html" scrolling="no" frameborder="0"></iframe>
                         </div>
                     </div> 
                 </div>
@@ -96,19 +86,6 @@
     </div>
     <!-- END OF Mobile version of the Ad and Text -->
 </div>
-<!-- <div class="container-fluid">
-<div class="row appear-after-click">
-    <div class="col-md-6 offset-md-3">
-        <span  class="gl-font-4 justified font-18px d-none d-sm-block d-md-block">
-            SO, WHAT JUST HAPPENED?
-            <br>
-            You opted in to watch an advert, and in exchange, we gave 50% of the ad money to your chosen charity. So you've received a more respectful, more positive advertising experience. And the advertiser has paid for a premium ad view that boosts brand perception, watch time, engagement and more.
-            <br>
-            Nice.
-        </span>
-    </div>
-</div>
-</div> -->
 <!-- Only Mobile Devices See This Row -->
 <div class="container-fluid">
 <div class="row d-block d-sm-none d-md-none">
