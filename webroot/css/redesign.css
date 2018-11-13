@@ -25,7 +25,7 @@
 #demo-adtype {
   font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
   font-size: 37px;
-  margin: 13px 9px;
+  margin: 13px 0;
 }
 
 #dropdown-menu-button {
@@ -54,10 +54,6 @@
 .demo-description {
   float: inline-start;
   text-align: justify;
-}
-
-.demo-description .form-intro {
-  width: 85%;
 }
 
 #demo-iframe #outer {
@@ -173,7 +169,8 @@
 .form-intro {
   font-family: "open sans", helvetica, sans-serif;
   font-size: 22px;
-  margin: 0 0 34px 8px;
+  margin-bottom: 34px;
+  width: 85%;
 }
 
 .gl-button-link-black{
