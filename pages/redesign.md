@@ -26,6 +26,7 @@
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2)">MPU</button>
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3)">Double-MPU</button>
                                         </div>
+                                    </div>
                                     <div id="demo-adtype">
                                         Pre-roll
                                     </div>
@@ -77,7 +78,7 @@
                     </div>
                     <div id="demo-iframe">
                         <div id="mobile-outer">
-                            <iframe class="image" src="https://testdemo.good-loop.com/pre-roll.html" scrolling="no" frameborder="0"></iframe>
+                            <iframe class="image" src="https://testdemo.good-loop.com/pre-roll.html" scrolling="no" frameborder="0"></iframe>                            
                         </div>
                     </div> 
                 </div>
