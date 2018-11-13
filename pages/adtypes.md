@@ -13,15 +13,8 @@
 <!-- End of Cheap Vertical Space -->
 <div class="row">
         <div class="col-md-6 offset-md-3 fit-width z-index-1">
-            <div class="goodloopad" data-format="mpu2" data-mobile-format="mpu2" style="" id="glad0">
-                <script class="aslink" src='//as.good-loop.com/unit.js?gl.variant=mpu2' async></script>
-            </div>
-        </div>
-</div>
-<div class="row">
-        <div class="col-md-6 offset-md-3 fit-width z-index-1">
-            <div class="goodloopad" data-format="in-read" data-mobile-format="in-read" style="">
-                <script class="aslink" src='//as.good-loop.com/unit.js?gl.variant=in-read' async></script>
+            <div class="goodloopad" style="" id="glad0">
+                <script class="aslink" src='//as.good-loop.com/unit.js' async></script>
             </div>
         </div>
 </div>
