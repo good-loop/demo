@@ -86,7 +86,7 @@
   background-image: url("https://image.ibb.co/bucnbL/black-iphone.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 346px 173vmin;
 }
 
 #demo-mobile-wrapper #demo-text {
@@ -111,18 +111,23 @@
 }
 
 #demo-iframe #mobile-outer {
-  height: 167vmin;
-  width: 80vmin;
-  margin: 2vmin 1.5vmin;
+  min-height: 180vmin;
+  margin: 2vmin 0;
   position: absolute;
 }
 
-#demo-iframe #mobile-outer .image {
+#wrapper-iframe {
   position: relative;
-  width: 74vmin;
+  width: 96vmin;
   height: 135vmin;
-  top: 14vmin;
-  left: 3vmin;
+  min-width: 302px;
+  top: 21vmin;
+  left: 3.5vmin;
+}
+
+#demo-iframe #mobile-outer .image {
+  height: 135vmin;
+  min-width: 318px;
 }
 
 .dropdown-mobile {
@@ -178,3 +183,8 @@
   padding: 1rem !important;
   font-size: 2.5vmin;
 }
+
+.container-fluid, .col-md-12 {
+  padding: 0;
+}
+
