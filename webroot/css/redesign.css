@@ -7,7 +7,7 @@
   background-image: url("https://image.ibb.co/bucnbL/black-iphone.png");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 364px 79vmin;
 }
 
 #demo-details {
@@ -57,9 +57,7 @@
 }
 
 #demo-iframe #outer {
-  height: 79vmin;
-  width: 38vmin;
-  min-width: 364px;
+  min-height: 79vmin;
   text-align: center;
   margin: 1vmin 0 0 10vmin;
 }
