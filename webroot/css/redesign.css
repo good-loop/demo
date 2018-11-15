@@ -59,6 +59,7 @@
 #demo-iframe #outer {
   height: 79vmin;
   width: 38vmin;
+  min-width: 364px;
   text-align: center;
   margin: 1vmin 0 0 10vmin;
 }
@@ -66,6 +67,7 @@
 #demo-iframe #outer .image {
   position: relative;
   width: 33vmin;
+  min-width: 320px;
   height: 63vmin;
   top: 6.5vmin;
 }
