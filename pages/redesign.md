@@ -78,7 +78,7 @@
                     </div>
                     <div id="demo-iframe">
                         <div id="mobile-outer">
-                            <div class="wrapper-iframe">
+                            <div id="wrapper-iframe">
                                 <iframe class="image" src="/pre-roll.html" scrolling="no" frameborder="0"></iframe>                            
                             </div>
                         </div>
