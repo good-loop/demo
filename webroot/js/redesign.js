@@ -1,15 +1,8 @@
 var items = ['Pre-roll', 'In-read', 'MPU', 'Double-MPU'];
-var links = ['https://testdemo.good-loop.com/pre-roll.html', 
-            'https://testdemo.good-loop.com/in-read.html', 
-            'https://testdemo.good-loop.com/mpu.html', 
-            'https://testdemo.good-loop.com/mpu2.html'];
-
-// var links = ['https://testdemo.good-loop.com/preroll.html', 
-//             'https://testdemo.good-loop.com/in-read.html', 
-//             'https://testdemo.good-loop.com/mpu.html', 
-//             'https://testdemo.good-loop.com/mpu2.html', 
-//             'https://testdemo.good-loop.com/vertical.html'];
-
+var links = ['/pre-roll.html', 
+            '/in-read.html', 
+            '/mpu.html', 
+            '/mpu2.html'];
 
 function clickedItem(selectedIndex, mobile=false) {
     ReactDOM.render(React.createElement('span', {className: ''}, items[selectedIndex]), document.getElementById(mobile ? 'demo-mobile-adtype' : 'demo-adtype'));
