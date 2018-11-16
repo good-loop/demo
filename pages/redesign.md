@@ -95,7 +95,7 @@
     <div class="col-md-12 fit-width">
         <div class="col-md-8 offset-md-2">
             <!-- Cheap Vertical Space -->
-            <div style="height:1.5em;">
+            <div style="height: 3em;">
             </div>
             <!-- End of Cheap Vertical Space -->
             <center>
