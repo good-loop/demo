@@ -572,7 +572,7 @@ h1, h2, h3, h4 {
   
   
   #demo-mobile-wrapper{
-    min-height: 200vmin;
+    min-height: 214vmin;
     width: 100vw;
   }
   
@@ -610,7 +610,7 @@ h1, h2, h3, h4 {
   }
   
   #demo-iframe #mobile-outer {
-    min-height: 186vmin;
+    min-height: 189vmin;
     margin: 2vmin 0;
     position: absolute;
   }
@@ -618,14 +618,13 @@ h1, h2, h3, h4 {
   #wrapper-iframe {
     position: relative;
     width: 96vmin;
-    height: 140vmin;
     min-width: 302px;
     top: 21vmin;
-    left: 3.5vmin;
+    text-align: center;
   }
   
   #demo-iframe #mobile-outer .image {
-    height: 140vmin;
+    height: 144vmin;
     min-width: 318px;
   }
   
