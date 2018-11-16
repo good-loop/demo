@@ -1,8 +1,8 @@
-var items = ['Pre-roll', 'In-read', 'MPU', 'Double-MPU'];
-var links = ['/pre-roll.html', 
+var items = ['Double-MPU', 'Pre-roll', 'In-read', 'MPU'];
+var links = ['/mpu2.html',
+            '/pre-roll.html', 
             '/in-read.html', 
-            '/mpu.html', 
-            '/mpu2.html'];
+            '/mpu.html'];
 
 function clickedItem(selectedIndex, mobile=false) {
     ReactDOM.render(React.createElement('span', {className: ''}, items[selectedIndex]), document.getElementById(mobile ? 'demo-mobile-adtype' : 'demo-adtype'));
