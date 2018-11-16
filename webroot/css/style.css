@@ -579,7 +579,7 @@ h1, h2, h3, h4 {
   #demo-mobile-details {
     margin: 8px auto;
     display: block;
-    width: 59vw;
+    width: 67vw;
   }
   
   #mobile-outer {
@@ -596,7 +596,7 @@ h1, h2, h3, h4 {
   
   #demo-mobile-adtype {
     font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
-    font-size: 25.4px;
+    font-size: 26px;
   }
   
   #demo-mobile-wrapper #demo-details {
