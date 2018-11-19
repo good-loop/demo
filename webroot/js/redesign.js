@@ -1,4 +1,4 @@
-var items = ['Double-MPU', 'Pre-roll', 'In-read', 'MPU'];
+var items = ['Double-MPU', 'Pre-roll', 'In-read', 'Click-to-expand'];
 var links = ['/mpu2.html',
             '/pre-roll.html', 
             '/in-read.html', 

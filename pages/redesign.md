@@ -43,7 +43,7 @@
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=0)">Double-MPU</button>
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=1)">Pre-roll</button>
                                             <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2)">In-read</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3)">MPU</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3)">Click-to-expand</button>
                                         </div>
                                     </div>
                                     <div id="demo-adtype">
@@ -86,7 +86,7 @@
                                 <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=0,mobile=true)">Double-MPU</button>
                                 <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=1,mobile=true)">Pre-roll</button>
                                 <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2,mobile=true)">In-read</button>
-                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3,mobile=true)">MPU</button>
+                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3,mobile=true)">Click-to-expand</button>
                             </div>
                         </div>
                         <div id="demo-mobile-adtype">
