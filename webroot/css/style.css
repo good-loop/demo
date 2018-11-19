@@ -88,6 +88,13 @@
     margin-top: 36px;
 }
 
+.header-image-mobile {
+    width: 95px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
 .gl-page-header-text-mobile {
     font-size: 2.5rem;
     color: #a5252d;
