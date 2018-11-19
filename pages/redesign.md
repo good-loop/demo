@@ -2,6 +2,7 @@
     <!-- Desktop/Laptop Version of the Ad, and text -->
     <div class="row d-none d-sm-block d-md-block">
         <div class="col-md-12">
+            <a href="https://www.good-loop.com" class="gl-button-link-black">Back to Main Site</a>
             <div class="row">
                 <!-- <div class="header-text">OUR ETHICAL ADS SIT IN A RAGE OF STANDARD FORMATS, SUCH AS...</div> -->
                 <div id="demo-wrapper">
@@ -14,7 +15,25 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col" style="min-width:47%;">
+                                <!-- Only Desktops/Laptops See This -->
+                                <div class="container-fluid">
+                                    <div class="row fit-width d-none d-sm-block d-md-block">
+                                        <div class="col-md-11">
+                                            <div class="row">
+                                                <!-- Cheap Vertical Space -->
+                                                <div class="transparent-bg" style="height:1em;"></div>
+                                                <!-- End of Cheap Vertical Space -->
+                                                <div class="col-md-12 fit-width">
+                                                    <center>
+                                                        <img src="img/gl-logo-red.png" alt="good-loop-logo-white" class="header-image">
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End of Desktops/Laptops Heading and Logo Section -->
                                 <div id="demo-details">
                                     <div class="dropdown">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
