@@ -578,7 +578,7 @@ h1, h2, h3, h4 {
   
   
   #demo-mobile-wrapper{
-    min-height: 214vmin;
+    min-height: 127vh;
     width: 100vw;
   }
   
@@ -592,7 +592,7 @@ h1, h2, h3, h4 {
     background-image: url("https://image.ibb.co/bucnbL/black-iphone.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 346px 189vmin;
+    background-size: 346px 116vh;
   }
   
   #demo-mobile-wrapper #demo-text {
@@ -616,7 +616,7 @@ h1, h2, h3, h4 {
   }
   
   #demo-iframe #mobile-outer {
-    min-height: 189vmin;
+    min-height: 116vh;
     margin: 2vmin 0;
     position: absolute;
   }
@@ -625,12 +625,12 @@ h1, h2, h3, h4 {
     position: relative;
     width: 96vmin;
     min-width: 302px;
-    top: 21vmin;
+    top: 11.5vh;
     text-align: center;
   }
   
   #demo-iframe #mobile-outer .image {
-    height: 144vmin;
+    height: 90vh;
     min-width: 318px;
   }
   
@@ -691,5 +691,4 @@ h1, h2, h3, h4 {
   .container-fluid, .col-md-12 {
     padding: 0;
   }
-  
   
