@@ -14,9 +14,11 @@
     <body>
         <div style="margin: 5px;" class="row">
             <h2 style="">How to Master 5 Basic Cooking Skills</h2>
-            <div class="col-md-6 offset-md-3 fit-width z-index-1">
-                <div class="goodloopad" id="preroll" data-format="player" data-mobile-format="player" style="margin-top: 16px;" id="glad0">
+            <div class="col-md-6 offset-md-3 fit-width z-index-1" style="margin-top: 16px;">
+                <div class="goodloopad" id="preroll" data-format="player" data-mobile-format="player" id="glad0">
                     <script src='//as.good-loop.com/unit.js?gl.variant=pre-roll' async></script>
+                </div>
+                <div id="yt-video">
                 </div>
             </div>
             <p style="color: gray; font-style: italic;">The video will play after ad.</p>
@@ -26,7 +28,13 @@
             var monitor = setInterval(function(){  
                 document.body.addEventListener('gl:click', 
                 function(event) {
-                    document.getElementById('ad').innerHTML = "<iframe width='100%' height='100%' src='https://www.youtube.com/embed/ZJy1ajvMU1k?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
+                    document.getElementById('preroll').innerHTML = '';
+                    document.getElementById('yt-video').innerHTML = "<iframe width='310px' height='174px' src='https://www.youtube.com/embed/ZJy1ajvMU1k?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
+                    clearInterval(monitor);
+                });
+                document.body.addEventListener('gl:close', 
+                function(event) {
+                    document.getElementById('yt-video').innerHTML = "<iframe width='310px' height='174px' src='https://www.youtube.com/embed/ZJy1ajvMU1k?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
                     clearInterval(monitor);
                 });
             }, 100);
