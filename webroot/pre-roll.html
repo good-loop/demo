@@ -15,12 +15,21 @@
         <div style="margin: 5px;" class="row">
             <h2 style="">How to Master 5 Basic Cooking Skills</h2>
             <div class="col-md-6 offset-md-3 fit-width z-index-1">
-                <div class="goodloopad pre-roll-type" data-format="player" data-mobile-format="player" style="margin-top: 16px;" id="glad0">
+                <div class="goodloopad" id="preroll" data-format="player" data-mobile-format="player" style="margin-top: 16px;" id="glad0">
                     <script src='//as.good-loop.com/unit.js?gl.variant=pre-roll' async></script>
                 </div>
             </div>
             <p style="color: gray; font-style: italic;">The video will play after ad.</p>
-            <p>Have you ever felt completely lost while doing something as simple as cooking some pasta? There are a few things that absolutely everyone should know how to do in the kitchen. No more overcooked pasta or crying over onions. We have prepared 5 cooking top tips for you in this video.</p>
+            <p>Have you ever felt completely lost while doing something as simple as cooking some pasta? There are a few things that absolutely everyone should know how to do in the kitchen. No more rock-hard rice or chunky onion slices. We have prepared 5 cooking top tips for you in this video.</p>
         </div>
+        <script>
+            var monitor = setInterval(function(){  
+                document.body.addEventListener('gl:click', 
+                function(event) {
+                    document.getElementById('ad').innerHTML = "<iframe width='100%' height='100%' src='https://www.youtube.com/embed/ZJy1ajvMU1k?autoplay=1' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
+                    clearInterval(monitor);
+                });
+            }, 100);
+        </script>
     </body>
 </html>
