@@ -80,6 +80,8 @@
 
 #demo-mobile-details {
   margin: 0 auto;
+  display: block;
+  width: 59vw;
 }
 
 #mobile-outer {
@@ -96,8 +98,7 @@
 
 #demo-mobile-adtype {
   font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
-  font-size: 27px;
-  margin: 13px 9px;
+  font-size: 25.4px;
 }
 
 #demo-mobile-wrapper #demo-details {
@@ -132,7 +133,6 @@
 
 .dropdown-mobile {
   float: left;
-  padding-left: 6vw;
 }
 
 #dropdown-mobile-menu-button {
