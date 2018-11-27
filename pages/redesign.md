@@ -3,6 +3,21 @@
     <div class="row d-none d-sm-block d-md-block">
         <div class="col-md-12">
             <a href="https://www.good-loop.com" class="gl-button-link-black">Back to Main Site</a>
+            <div id="pre-roll-type" class="col-md-6 offset-md-3 fit-width" style="margin-top: 16px;">
+                <div class="gl-unit-container" style="width: 640px; height: 360px;">
+                        <!-- style="width: 280px; height: 157.5px;" -->
+                    <script>
+                        var prefix = 'test';
+                        if (window.location.hostname.match(/^local/)) { prefix = 'local'; }
+                        else if (window.location.hostname.match(/^prod/)) { prefix = '';}
+                        var debug = 'gl.debug=true';
+                        if (window.location.search.indexOf('gl.debug') >= 0) { debug = ''; } // debug by default but don't override if set by user
+                        document.write('<script src="//' + prefix + 'as.good-loop.com/unit.js?gl.vert=ZhcSVvBs&gl.variant=pre-roll&' + debug + '" async><\/script>');
+                    </script>
+                    <div class="goodloopad" data-format="player" data-mobile-format="player" id="glad0" style></div>
+                    <!-- <div id="yt-video"></div> -->
+                </div>  
+            </div>
             <div class="row">
                 <!-- <div class="header-text">OUR ETHICAL ADS SIT IN A RAGE OF STANDARD FORMATS, SUCH AS...</div> -->
                 <div id="demo-wrapper">
@@ -11,7 +26,7 @@
                             <div class="col">
                                 <div id="demo-iframe">
                                     <div id="outer">
-                                        <iframe class="image" src="/pre-roll.html" frameborder="0"></iframe>
+                                        <iframe class="image" src="/mpu2.html" frameborder="0"></iframe>
                                     </div>
                                 </div>
                             </div>
