@@ -15,17 +15,18 @@
         <div style="margin: 5px;" class="row">
             <h2 style="">How to Master 5 Basic Cooking Skills</h2>
             <div class="col-md-6 offset-md-3 fit-width z-index-1" style="margin-top: 16px;">
-                <script>
-                    var prefix = 'test';
-                    if (window.location.hostname.match(/^local/)) { prefix = 'local'; }
-                    else if (window.location.hostname.match(/^prod/)) { prefix = '';}
-                    var debug = 'gl.debug=true';
-                    if (window.location.search.indexOf('gl.debug') >= 0) { debug = ''; } // debug by default but don't override if set by user
-                    document.write('<script src="//' + prefix + 'as.good-loop.com/unit.js?gl.variant=pre-roll&' + debug + '" async><\/script>');
-                </script>
-                <div class="goodloopad" id="preroll" data-format="player" data-mobile-format="player" id="glad0" style></div>
-                <div id="yt-video">
-                </div>
+                <div class="gl-unit-container" style="width: 640px; height: 360px;">
+                    <script>
+                        var prefix = 'test';
+                        if (window.location.hostname.match(/^local/)) { prefix = 'local'; }
+                        else if (window.location.hostname.match(/^prod/)) { prefix = '';}
+                        var debug = 'gl.debug=true';
+                        if (window.location.search.indexOf('gl.debug') >= 0) { debug = ''; } // debug by default but don't override if set by user
+                        document.write('<script src="//' + prefix + 'as.good-loop.com/unit.js?gl.variant=pre-roll&' + debug + '" async><\/script>');
+                    </script>
+                    <div class="goodloopad" id="preroll" data-format="player" data-mobile-format="player" id="glad0" style></div>
+                    <div id="yt-video"></div>
+                </div>  
             </div>
             <p style="color: gray; font-style: italic;">The video will play after ad.</p>
             <p>Have you ever felt completely lost while doing something as simple as cooking some pasta? There are a few things that absolutely everyone should know how to do in the kitchen. No more rock-hard rice or chunky onion slices. We have prepared 5 cooking top tips for you in this video.</p>
