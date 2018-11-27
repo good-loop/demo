@@ -40,10 +40,10 @@
                                             Format
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdown-menu-button">
-                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=0)">Double-MPU</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=1)">Pre-roll</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2)">In-read</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3)">Click-to-expand</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem('mpu2')">Double-MPU</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem('pre-roll')">Pre-roll</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem('in-read')">In-read</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem('mpu')">Click-to-expand</button>
                                         </div>
                                     </div>
                                     <div id="demo-adtype">
@@ -83,10 +83,10 @@
                                 Format
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdown-mobile-menu-button">
-                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=0,mobile=true)">Double-MPU</button>
-                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=1,mobile=true)">Pre-roll</button>
-                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2,mobile=true)">In-read</button>
-                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3,mobile=true)">Click-to-expand</button>
+                                <button class="dropdown-item" type="button" onclick="clickedItem('mpu2',mobile=true)">Double-MPU</button>
+                                <button class="dropdown-item" type="button" onclick="clickedItem('pre-roll',mobile=true)">Pre-roll</button>
+                                <button class="dropdown-item" type="button" onclick="clickedItem('in-read',mobile=true)">In-read</button>
+                                <button class="dropdown-item" type="button" onclick="clickedItem('mpu',mobile=true)">Click-to-expand</button>
                             </div>
                         </div>
                         <div id="demo-mobile-adtype">
