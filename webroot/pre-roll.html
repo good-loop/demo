@@ -46,22 +46,5 @@
                 });
             }, 100);
         </script>
-
-<div class="container">
-        <div class="row">
-            <div id="pre-roll-type" class="col-md-12">
-                <div class="gl-unit-container" style="width: 640px; height: 360px;">
-                    <script>
-                        var prefix = 'test';
-                        if (window.location.hostname.match(/^local/)) { prefix = 'local'; }
-                        else if (window.location.hostname.match(/^prod/)) { prefix = '';}
-                        var debug = 'gl.debug=true';
-                        if (window.location.search.indexOf('gl.debug') >= 0) { debug = ''; } // debug by default but don't override if set by user
-                        document.write('<script src="//' + prefix + 'as.good-loop.com/unit.js?gl.variant=pre-roll&' + debug + '" async><\/script>');
-                    </script>
-                    <div class="goodloopad" data-format="player"  data-mobile-format="player" id="glad0" style></div>
-                </div>
-            </div>
-        </div>
     </body>
 </html>
