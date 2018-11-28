@@ -8,14 +8,14 @@
                 <div id="demo-wrapper">
                     <div class="container">
                         <div class="row">
-                            <div class="col">
+                            <div class="col-6">
                                 <div id="demo-iframe">
                                     <div id="outer">
                                         <iframe class="image" src="/mpu2.html" frameborder="0"></iframe>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col" style="min-width:47%;">
+                            <div class="col-6" style="min-width:47%;">
                                 <!-- Only Desktops/Laptops See This -->
                                 <div class="container-fluid">
                                     <div class="row fit-width d-none d-sm-block d-md-block">
