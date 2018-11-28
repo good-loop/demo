@@ -3,21 +3,6 @@
     <div class="row d-none d-sm-block d-md-block">
         <div class="col-md-12">
             <a href="https://www.good-loop.com" class="gl-button-link-black">Back to Main Site</a>
-            <div id="pre-roll-type" class="col-md-6 offset-md-3 fit-width" style="margin-top: 16px;">
-                <div class="gl-unit-container" style="width: 640px; height: 360px;">
-                        <!-- style="width: 280px; height: 157.5px;" -->
-                    <script>
-                        var prefix = 'test';
-                        if (window.location.hostname.match(/^local/)) { prefix = 'local'; }
-                        else if (window.location.hostname.match(/^prod/)) { prefix = '';}
-                        var debug = 'gl.debug=true';
-                        if (window.location.search.indexOf('gl.debug') >= 0) { debug = ''; } // debug by default but don't override if set by user
-                        document.write('<script src="//' + prefix + 'as.good-loop.com/unit.js?gl.vert=ZhcSVvBs&gl.variant=pre-roll&' + debug + '" async><\/script>');
-                    </script>
-                    <div class="goodloopad" data-format="player" data-mobile-format="player" id="glad0" style></div>
-                    <!-- <div id="yt-video"></div> -->
-                </div>  
-            </div>
             <div class="row">
                 <!-- <div class="header-text">OUR ETHICAL ADS SIT IN A RAGE OF STANDARD FORMATS, SUCH AS...</div> -->
                 <div id="demo-wrapper">
@@ -55,10 +40,10 @@
                                             Format
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdown-menu-button">
-                                            <button class="dropdown-item" type="button" onclick="clickedItem('mpu2')">Double-MPU</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem('pre-roll')">Pre-roll</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem('in-read')">In-read</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem('mpu')">Click-to-expand</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=0)">Double-MPU</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=1)">Pre-roll</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2)">In-read</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3)">Click-to-expand</button>
                                         </div>
                                     </div>
                                     <div id="demo-adtype">
@@ -98,10 +83,10 @@
                                 Format
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdown-mobile-menu-button">
-                                <button class="dropdown-item" type="button" onclick="clickedItem('mpu2',mobile=true)">Double-MPU</button>
-                                <button class="dropdown-item" type="button" onclick="clickedItem('pre-roll',mobile=true)">Pre-roll</button>
-                                <button class="dropdown-item" type="button" onclick="clickedItem('in-read',mobile=true)">In-read</button>
-                                <button class="dropdown-item" type="button" onclick="clickedItem('mpu',mobile=true)">Click-to-expand</button>
+                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=0,mobile=true)">Double-MPU</button>
+                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=1,mobile=true)">Pre-roll</button>
+                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2,mobile=true)">In-read</button>
+                                <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3,mobile=true)">Click-to-expand</button>
                             </div>
                         </div>
                         <div id="demo-mobile-adtype">
