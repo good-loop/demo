@@ -40,10 +40,10 @@
                                             Format
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdown-menu-button">
-                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=0)">Double-MPU</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=1)">Pre-roll</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2)">In-read</button>
-                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3)">Click-to-expand</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=0,mobile=false)">Double-MPU</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=1,mobile=false)">Pre-roll</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=2,mobile=false)">In-read</button>
+                                            <button class="dropdown-item" type="button" onclick="clickedItem(selectedIndex=3,mobile=false)">Click-to-expand</button>
                                         </div>
                                     </div>
                                     <div id="demo-adtype">
