@@ -692,3 +692,32 @@ h1, h2, h3, h4 {
     padding: 0;
   }
   
+  #mpu-row {
+    position: static;
+    margin: 0 auto;
+    width: 95vw;
+  }
+
+  @media screen and (max-width: 325px){
+    #mobile-outer {
+        background-size: 313px 770px;
+    }
+
+    #wrapper-iframe {
+        min-width: 300px;
+    }
+
+	#demo-iframe #mobile-outer .image {
+        min-width: 300px;
+    }
+    
+    #demo-mobile-details {
+        width: 82vw;
+    }
+  }
+
+  @media screen and (max-width: 315px){
+    #mpu-row {
+        width: 100vw;
+    }
+  }
