@@ -15,23 +15,11 @@
         <div class="row">
             <div class="col-md-6 offset-md-3 fit-width z-index-1">
                 <center>
-                    <script>
-                        var prefix = 'test';
-                        if (window.location.hostname.match(/^local/)) { prefix = 'local'; }
-                        else if (window.location.hostname.match(/^prod/)) { prefix = '';}
-                        var debug = 'gl.debug=true';
-                        if (window.location.search.indexOf('gl.debug') >= 0) { debug = ''; } // debug by default but don't override if set by user
-                        document.write('<script src="//' + prefix + 'as.good-loop.com/unit.js?gl.variant=mpu2&' + debug + '" async><\/script>');
-                    </script>
-                    <!-- <script class="aslink" src='//as.good-loop.com/unit.js?gl.variant=mpu2' async></script> -->
-                    <div class="goodloopad" data-format="mpu2" data-mobile-format="mpu2" style="margin-top: 3px;" id="glad0"></div>
+                    <div class="goodloopad" data-format="mpu2" data-mobile-format="mpu2" style="margin-top: 3px;" id="glad0">
+                        <script class="aslink" src='//as.good-loop.com/unit.js?gl.variant=mpu2' async></script>
+                    </div>
                 </center>
             </div>
         </div>
-        <footer>
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-            <script src="js/redesign.js"></script>
-        </footer>
     </body>
 </html>
