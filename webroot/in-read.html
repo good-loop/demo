@@ -17,7 +17,12 @@
                 <p>There are a few things that absolutely everyone should know how to do in the kitchen. We have prepared 5 cooking top tips for you in this article.</p>
                 <div>
                     <div style="margin-bottom: 10px; width: 300px; height: 168.75px;" data-format="player" data-mobile-format="player" class="goodloopad" id="glad0">
-                        <script class="aslink" src='//as.good-loop.com/unit.js?gl.variant=in-read' async></script>
+                        <script>
+							var prefix = 'test';
+							if (window.location.hostname.match(/^local/)) { prefix = 'local'; }
+							else if (window.location.hostname.match(/^prod/)) { prefix = '';}
+							document.write('<script src="//' + prefix + 'as.good-loop.com/unit.js?gl.variant=in-read" async><\/script>');
+						</script>	
                     </div> 
                 </div>
                 <p>Tip 1: Is cutting onions making you teary-eyed? Peel it and pop it in fridge for 10min before cutting. This removes the odors, and leaves your eyes dry.</p>
