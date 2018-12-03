@@ -14,7 +14,7 @@
 <div class="row">
         <div class="col-md-6 offset-md-3 fit-width z-index-1">
             <div class="goodloopad" style="" id="glad0">
-                <script src='//as.good-loop.com/unit.js' async></script>
+                <script src='//as.good-loop.com/unit.js?gl.vert=JvtlN3pk' async></script>
             </div>
         </div>
 </div>
