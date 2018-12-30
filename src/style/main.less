@@ -1,14 +1,35 @@
 /* TODO drop much of this */
 @import "../js/base/style/main-base.less";
 // @import "oldcruft.less"; // can we just drop this?
+@import "../js/base/style/good-loop.less";
 
 body {
 	background: #FBFAFA;
 }
-
+h3 {
+	color: @gl-red;
+}
 /** The gl logo */
 .header-image {
 	width:95px;
+}
+
+#nav {
+	.btn-link {
+		color:black;
+		border: 1px solid black;
+		border-radius: 0;
+		margin: 1vmin;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+} /* ./ #nav */
+
+select#control-format {
+	font-family: "Bebas Neue", bebas, helvetica, sans-serif;
+	font-weight: 500;
+	font-size: 1.5rem;
 }
 
 #outer {
@@ -23,6 +44,7 @@ body {
 }
 
 #outer iframe {
+	overflow: hidden;
 	position: relative;
 	width: 320px;
 	height: 604px;

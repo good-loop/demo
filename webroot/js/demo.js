@@ -1,4 +1,5 @@
 
+// ??
 $('.goodloopad').click(function() {
     $('.appear-after-click').css({
         'display': 'block'
@@ -16,6 +17,7 @@ $("#sendMessage").on("click", function() {
     if(result === "no_errors") location.href = "https://www.good-loop.com/success"
 });
 
+// TODO
 // Adblocker on?
 $('body').on('gl:adblock', function() {
     $('.adblock-warning').css({
@@ -24,26 +26,23 @@ $('body').on('gl:adblock', function() {
 	console.warn("Adblocker detected - expect some things to break.");
 });
 
-var items = ['Double-MPU', 'Pre-roll', 'In-read', 'Click-to-expand'];
-var links = ['/mpu2.html',
-            '/pre-roll.html', 
-            '/in-read.html', 
-            '/mpu.html'];
-
-// default ad shown on demo page (passing on any demo page url params)
-// add iframe to id, making sure to pass URL params 
-var iframeDivs = document.getElementsByClassName('image');
-// make sure to add it to both mobile and desktop
-for(var i=0; i<iframeDivs.length; i++) {
-	iframeDivs[i].src = links[0] + window.location.search;
+// set to a specific default ad (but allow the url to overwrite that)
+var defaultAd = "gl.vert=JvtlN3pk";
+var passparams = window.location.search;
+if ( ! passparams) {	
+	passparams = "?"+defaultAd;
+} else if (passparams.indexOf('gl.vert') ===-1) {
+	passparams += "&"+defaultAd;
 }
 
-// click to go to different types of ads on demo page
-function clickedItem(selectedIndex) {
-    var adNameDiv = document.getElementById('demo-adtype');
-    adNameDiv.innerHTML = '<span>' + items[selectedIndex] + '</span>';
+// handle the user picking a format
+$('#control-format').change(function setFormat() {
+	let format = $('select[name=format]').val() || 'mpu2';
     var iframeDiv = document.getElementById('outer');
     // add iframe to id, making sure to pass URL params
-    iframeDiv.innerHTML = '<iframe class="image" frameborder=0 src="' + links[selectedIndex] + window.location.search + '"></iframe>';
-}
-
+	let src = '/adtype/'+format+".html" + passparams;
+	console.warn("src", src);
+    iframeDiv.innerHTML = '<iframe id="demo-iframe" frameborder=0 src="' + src + '"></iframe>';
+});
+// trigger a set-format to init the default view
+$('#control-format').change();
