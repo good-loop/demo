@@ -2,9 +2,13 @@
 @import "../js/base/style/main-base.less";
 // @import "oldcruft.less"; // can we just drop this?
 
-#demo-wrapper {
-	margin: 0 auto;
-	width: 100vw;
+body {
+	background: #FBFAFA;
+}
+
+/** The gl logo */
+.header-image {
+	width:95px;
 }
 
 #outer {
@@ -12,92 +16,15 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 362px 766px;
-}
-
-#demo-details {
-	margin: 10vmin 4vmin;
-}
-
-#demo-text {
-	// font-family: "Monstserrat Regular", helvetica, sans-serif !important;
-	margin: 6vmin 0;
-	font-weight: bold;
-	font-size: 2.1vmin;
-	text-align: center;
-}
-
-#demo-adtype {
-	// font-family: "Bebas Neue", bebas, helvetica, sans-serif !important;
-	font-size: 37px;
-	margin: 13px 0;
-}
-
-.demo-description {
-	float: inline-start;
-	text-align: justify;
-}
-
-#demo-iframe #outer {
 	height: 780px;
-	min-width: 362px; /* the iphone image */
+	min-width: 362px;
 	text-align: center;
 	margin: 1vmin 0 0 3vmin;
 }
 
-#demo-iframe #outer .image {
+#outer iframe {
 	position: relative;
 	width: 320px;
 	height: 604px;
 	top: 76px;
-}
-
-
-#wrapper-iframe {
-position: relative;
-width: 96vmin;
-min-width: 302px;
-top: 73px;
-text-align: center;
-}
-
-#demo-iframe #mobile-outer .image {
-height: 606px;
-min-width: 318px;
-}
-
-.gl-input-field {
-margin-bottom: 0.5rem;
-width: 85%;
-max-width: 100%;
-padding-left: 6px;
-font-size: 1rem;
-}
-
-#send-message {
-	padding: 0.9em 0;
-	width: 20%;
-	cursor: pointer;
-}
-
-.form-intro {
-	font-size: 22px;
-	margin-bottom: 34px;
-	width: 85%;
-}
-
-.gl-button-link-black{
-	line-height: 17px;
-	padding: 1rem !important;
-	font-size: 2.5vmin;
-	right: 0px;
-}
-
-.container-fluid, .col-md-12 {
-padding: 0;
-}
-
-#mpu-row {
-position: static;
-margin: 0 auto;
-width: 95vw;
 }
