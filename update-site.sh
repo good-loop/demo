@@ -28,6 +28,9 @@ $SSHCOMMAND "$GITSHORTHAND pull origin master"
 printf "\t> Resetting Files to version held on github\n"
 $SSHCOMMAND "$GITSHORTHAND reset --hard FETCH_HEAD"
 
+echo "TODO convert less as part of publish"
+echo "For now: WE RELY ON YOU HAVING UP TO DATE CSS (convert-less.sh) AND GIT COMMITTING IT"
+
 # printf "\t> Optimising Images...\n"
 # $SSHCOMMAND "optipng $TARGETDIR/webroot/img/*.png"
 # $SSHCOMMAND "jpegoptim $TARGETDIR/webroot/img/*.jpg"

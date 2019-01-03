@@ -27,18 +27,25 @@ $('body').on('gl:adblock', function() {
 });
 
 // set to a specific default ad (but allow the url to overwrite that)
-var defaultAd = "gl.vert=JvtlN3pk";
-var passparams = window.location.search;
+let defaultAd = "gl.vert=JvtlN3pk";
+let passparams = window.location.search;
 if ( ! passparams) {	
 	passparams = "?"+defaultAd;
 } else if (passparams.indexOf('gl.vert') ===-1) {
 	passparams += "&"+defaultAd;
 }
+// demo format from url?
+if (passparams.indexOf('demoformat=') !== -1) {	
+	let vformat = passparams.match(/demoformat=([^&]+)/)[1];
+	jQuery("#control-format option:selected").removeAttr("selected");	
+	jQuery("#control-format option[value='"+vformat +"']").attr('selected', 'selected');  
+	$('#control-format').val(vformat);
+}
 
 // handle the user picking a format
 $('#control-format').change(function setFormat() {
 	let format = $('select[name=format]').val() || 'mpu2';
-    var iframeDiv = document.getElementById('outer');
+    let iframeDiv = document.getElementById('outer');
     // add iframe to id, making sure to pass URL params
 	let src = '/adtype/'+format+".html" + passparams;
 	console.warn("src", src);
