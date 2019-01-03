@@ -34,22 +34,23 @@ if ( ! passparams) {
 } else if (passparams.indexOf('gl.vert') ===-1) {
 	passparams += "&"+defaultAd;
 }
+let selsel = 'select[name=format]:visible';
 // demo format from url?
 if (passparams.indexOf('demoformat=') !== -1) {	
 	let vformat = passparams.match(/demoformat=([^&]+)/)[1];
-	jQuery("#control-format option:selected").removeAttr("selected");	
-	jQuery("#control-format option[value='"+vformat +"']").attr('selected', 'selected');  
-	$('#control-format').val(vformat);
+	jQuery(selsel+" option:selected").removeAttr("selected");	
+	jQuery(selsel+" option[value='"+vformat +"']").attr('selected', 'selected');  
+	$(selsel).val(vformat);
 }
 
 // handle the user picking a format
-$('#control-format').change(function setFormat() {
-	let format = $('select[name=format]').val() || 'mpu2';
+function setFormat() {
+	let format = $(selsel).val() || 'mpu2';
     let iframeDiv = document.getElementById('outer');
     // add iframe to id, making sure to pass URL params
 	let src = '/adtype/'+format+".html" + passparams;
-	console.warn("src", src);
     iframeDiv.innerHTML = '<iframe id="demo-iframe" frameborder=0 src="' + src + '"></iframe>';
-});
+}
+$(selsel).change(setFormat);
 // trigger a set-format to init the default view
-$('#control-format').change();
+setFormat();
