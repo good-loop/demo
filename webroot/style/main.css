@@ -382,3 +382,18 @@ select#control-format {
   height: 604px;
   top: 76px;
 }
+/* iphone shows some sizing issues that weren't showing up in Chrome iphone emulation or the bigger screen on my Android. ^Roscoe Jan 2019 */
+@media (max-width: 361px) {
+  #outer {
+    width: 100vw;
+    margin: auto -15px;
+    /* break out of the container padding */
+    min-width: 100vw;
+    /* override the explicit pixel min-width */
+  }
+  #demo-iframe {
+    width: 88.4vw;
+    height: 166.8vw;
+    top: 21vw;
+  }
+}
