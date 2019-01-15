@@ -19,6 +19,8 @@ PROJECT='Good-Loop Demo Site'
 SSHCOMMAND="ssh winterwell@$TARGET"
 TARGETDIR='/home/winterwell/demo.good-loop.com'
 GITSHORTHAND="git --git-dir=$TARGETDIR/.git/ --work-tree=$TARGETDIR"
+APPBASEDIR='/home/winterwell/wwappbase.js'
+GITSHORTHANDAPP="git --git-dir=$APPBASEDIR/.git --work-tree=$APPBASEDIR"
 
 printf "\nTelling the server to update it's $PROJECT git repo\n"
 printf "\t> Garbage Collecting...\n"
@@ -27,6 +29,11 @@ printf "\t> Pulling Origin...\n"
 $SSHCOMMAND "$GITSHORTHAND pull origin master"
 printf "\t> Resetting Files to version held on github\n"
 $SSHCOMMAND "$GITSHORTHAND reset --hard FETCH_HEAD"
+
+printf "\t> Pulling the latest changes to wwappbase.js project...\n"
+$SSHCOMMAND "$GITSHORTHANDAPP gc --prune=now"
+$SSHCOMMAND "$GITSHORTHANDAPP pull origin master"
+$SSHCOMMAND "$GITSHORTHANDAPP reset --hard FETCH_HEAD"
 
 printf "\t> Converting LESS files ...\n"
 $SSHCOMMAND "cd $TARGETDIR && bash convert.less.sh"
