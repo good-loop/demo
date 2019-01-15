@@ -28,8 +28,8 @@ $SSHCOMMAND "$GITSHORTHAND pull origin master"
 printf "\t> Resetting Files to version held on github\n"
 $SSHCOMMAND "$GITSHORTHAND reset --hard FETCH_HEAD"
 
-echo "TODO convert less as part of publish"
-echo "For now: WE RELY ON YOU HAVING UP TO DATE CSS (convert-less.sh) AND GIT COMMITTING IT"
+printf "\t> Converting LESS files ...\n"
+$SSHCOMMAND "cd $TARGETDIR && bash convert.less.sh"
 
 # printf "\t> Optimising Images...\n"
 # $SSHCOMMAND "optipng $TARGETDIR/webroot/img/*.png"
@@ -41,9 +41,9 @@ echo "For now: WE RELY ON YOU HAVING UP TO DATE CSS (convert-less.sh) AND GIT CO
 # $SSHCOMMAND "chmod 766 $TARGETDIR/webroot/img/*.jpg"
 # $SSHCOMMAND "chmod 766 $TARGETDIR/webroot/img/*.jpeg"
 
-# printf "\t> Converting Markdown to HTML...\n"
-# $SSHCOMMAND 'wget -cO - "https://www.winterwell.com/software/downloads/jerbil-all.jar" >> /home/winterwell/jerbil/jerbil-all.jar'
-# $SSHCOMMAND "cd /home/winterwell/jerbil/ && java -cp jerbil-all.jar Jerbil $TARGETDIR"
+printf "\t> Converting Markdown to HTML...\n"
+$SSHCOMMAND 'wget -cO - "https://www.winterwell.com/software/downloads/jerbil-all.jar" >> /home/winterwell/jerbil/jerbil-all.jar'
+$SSHCOMMAND "cd /home/winterwell/jerbil/ && java -cp jerbil-all.jar Jerbil $TARGETDIR"
 
 # printf "\t> Getting NPM dependencies...\n"
 # $SSHCOMMAND 'cd /home/winterwell/demo.good-loop.com && npm i'
