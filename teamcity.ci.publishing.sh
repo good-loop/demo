@@ -290,12 +290,12 @@ function convert_less_files {
 			printf "\nYour specified project $PROJECT , has the parameter 'CONVERT_LESS' set to 'yes', and an input directory IS specified,\nbut no output directory has been specified\nExiting process\n"
 			exit 0
 		fi
-		
+
 		######
 		### SUPER HACKY FIX TO ALLOW FOR IMPORTS FROM WWAPPBASE.JS REPO
 		######
 		rm -rf $PROJECT_LOCATION/src/js/base
-		ln -s /home/winterwell/TeamCity/buildAgent/work/9307b27f248c307/base
+		ln -s /home/winterwell/TeamCity/buildAgent/work/9307b27f248c307/base $PROJECT_LOCATION/src/js/base
 		#######
 		### END OF SUPER HACKY FIX PORTION
 		#######
