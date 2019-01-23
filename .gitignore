@@ -1,3 +1,6 @@
 webroot/adtype
 bob.log
 boblog
+puppeteer-tests/node_modules
+puppeteer-tests/test-results/Logs(failure)/*
+puppeteer-tests/test-results/Screenshots(success)/*
