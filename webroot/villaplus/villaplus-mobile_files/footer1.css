@@ -1,0 +1,336 @@
+﻿
+#footer ol, #footer ul {
+    list-style: none outside none;
+    margin: 0px;
+    padding: 0px;
+}
+#footer a {
+    text-decoration: none;
+}
+#btaVoteFooterLi{
+    margin: 4% 0 0 15%;
+    height:150px;
+    width:157px;
+}
+ .socialtext
+    {
+        position:absolute;
+        margin-top:65px;
+        margin-left:12px;
+        color:#656565;
+        font-weight:bold;
+    }
+#get_social a:hover{text-decoration: none;}
+
+.headerfooter
+{
+    background: url(/images/common/header_logo_villaplus.png);
+    display:block;
+    border:0px;
+    height:50px; 
+}
+#atolProtected > span{width:61px; background-position: 0 50px; }
+#britishTravelAwards > span{width:105px;background-position: -75px 50px;}
+
+#hATOL1 > span{background-position: -355px -52px; width:54px; height:54px }  
+
+
+.footerSocial
+{
+    background: url(/images/common/footerSocial.png);
+    display:block;
+    border:0px;
+    height:85px; 
+}
+#ancfb > span{width:78px; background-position: 0 0; }
+#anctw > span{width:78px; background-position: -78px 0; }
+#ancgp > span{width:78px; background-position: -157px 0; }
+#ancBlog > span{width:53px; background-position: -235px 0; }
+
+
+/*New changes footer*/
+ .news_text {
+background: transparent;
+color:white !important;
+height:23px;
+width:255px;
+border:1px solid;
+}
+
+#btnSign {   
+    margin:0px 0 -6px 0;
+    height:23px;
+    width:17px;
+    cursor:pointer;
+}
+
+/*#footer img {
+    width: 100%;
+}*/
+#footer {
+    background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #008bae 0%, #044a8f 100%) repeat scroll 0 0;
+    box-sizing: border-box;
+    height: auto;
+    margin-top: 30px;
+    display:inline-block;
+    /*overflow: hidden;*/
+    padding: 40px 20px 40px 25px;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#008bae, endColorstr=#044a8f); /*For IE */
+    background: #008bae; /* Old browsers */
+    background: -moz-linear-gradient(top,  #008bae 0%, #044a8f 50%, #044a8f 51%, #044a8f 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#008bae), color-stop(50%,#044a8f), color-stop(51%,#044a8f), color-stop(100%,#044a8f)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #008bae 0%,#044a8f 50%,#044a8f 51%,#044a8f 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #008bae 0%,#044a8f 50%,#044a8f 51%,#044a8f 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #008bae 0%,#044a8f 50%,#044a8f 51%,#044a8f 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #008bae 0%,#044a8f 50%,#044a8f 51%,#044a8f 100%); /* W3C */
+}
+#newsLetterid {margin-right:7px;}
+
+.BTAimg{
+   cursor: pointer;
+    /*height:75px;
+    width:73px;*/    
+}
+
+#footer .header, #footer .links a{
+    color: #FFFFFF !important;
+    padding-bottom: 10px;     
+}
+
+#footer .links{
+    font-size:17px;
+}
+
+#footer .header{
+    font-size:13px;
+    font-family:"BandaRegularRegular",Arial,Tahoma,Verdana,"MS Sans Serif";
+}
+
+#footer .links a{
+    font-size: 10px;
+    line-height:14px;
+    padding-top:10px;
+}
+.bottompaddingRemove{
+
+    padding-bottom:unset !important;
+}
+
+#footer .links {
+    font-size: 13px;
+    color:white;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    text-align:left;
+}
+
+#footer .links .smallfont{
+    font-size:11px;
+    line-height:29px;
+    opacity:0.7;
+    color:white;
+}
+
+.smallfontBTA {
+ font-size: 12px;
+    font-family: Arial;
+}
+
+.marginLeft {
+margin-left:2px;
+padding-left: 81px;
+margin-top: 10px;
+}
+
+#footer .leftFloatFooter .links{
+    float: left;       
+}
+
+.leftFloatNoMargin {float:left;margin-top: 5px;margin-right:8px;width: 439px;}
+    #footer #bookWithConfidence .links {
+    margin-right:3px;
+    }
+    .joinsocial {
+    font-size: 15px;
+    font-family: 'BandaRegularRegular',Arial,Tahoma,Verdana,'MS Sans Serif';
+    margin-top: 5px;
+    position: center;
+}
+div #bookWithConfidence {
+width:200px;
+}
+
+.padding {
+    padding:10px 0 0 0;
+}
+
+
+
+a{
+    color: #e8561b;
+    text-decoration: none;
+}
+
+.rowSpacer {
+    line-height: 16px;
+    margin: 0;
+    padding: 0;
+}
+.row{
+    border: 0px solid #FF0000;
+    /*overflow: hidden;*/
+    height: auto;
+    clear: both;
+}
+.contentRow{
+    width: 990px;
+    margin: 0px auto;
+    /*border: 1px solid #FF0000;*/
+    display: block;
+}
+.leftFloatFooter {float: left;}
+.rightFloat{
+    float: right;
+}
+.whiteFont{
+    color: #FFFFFF;
+}
+.whiteBackground{
+    background-color: #FFFFFF;
+}
+*:focus {
+    outline: none;
+}
+
+
+#footer #footerThirty{
+    margin:0 auto;
+    height:90px;
+    width:200px;
+    display:block;
+   /* padding:10px 0 45px;*/
+       margin-bottom: 40px;
+       margin-left: -5%;
+
+}
+.footerhr{
+    height:2px; border:none; color:#000; background-color:#0e718a;  text-align:left; margin: 0 0 0 0; width: 180%; margin-left: -50%;  
+ 
+}
+
+#footer img .footerCards{
+    height:20px;
+    width:200px;
+}
+#footer .centre{
+    color:white;
+    text-align:center;
+    padding:16px;
+    font-size:10px;
+    margin:0 auto;
+    width:75%;
+}
+
+#footer .footerCards{
+    width:142px;
+    height:23px;
+}
+
+#footer .leftFloatABTA {
+float:left;
+}
+
+#footer #villaCustomerlinks  .links{
+    float:left;
+     margin-right: 75px;
+}
+
+.footerImages1{   
+    display:block;
+   height:30px;
+   width:30px;
+   margin:0 0 0 6px;
+}
+
+#dvsocialFooter {      
+  /*display: table;*/
+  margin:auto;
+  /*padding:0 0 0 47px;*/
+      margin-top: 10px;
+}
+
+#dvsocialFooter li {      
+  float:left;
+}
+#dvsocialFooter .labeltext{
+  vertical-align: middle;
+  display: table-cell;
+  float:left;
+  margin: 8px 0 0 6px;
+  color:white;
+}
+#dvsocialFooter img {
+       float:left;
+   vertical-align: middle;
+  
+} 
+
+#footer li:hover {text-decoration:none !important;}
+#footer li { background:none !important;}
+.cursorpointer_hand{
+       cursor: pointer; 
+
+ }
+
+/*End new changes footer*/
+
+
+
+/*Join Commumunity footer*/
+.joinsocial{
+    font-size:15px;  
+    font-family: 'BandaRegularRegular',Arial,Tahoma,Verdana,'MS Sans Serif';
+    margin-top:5px;
+    position:center;  
+
+}
+.cardrow{
+
+    width:1024px;
+    display:block;
+    margin-top: 35px;
+    
+}
+.cardrow_third{
+    
+    display: block;
+    width: 300px;
+    height: 10px;
+    float: left;
+    padding-left: 98px;
+
+}
+.cardrow_second{
+    padding-top: 10px;
+    display: block;
+    width: 300px;
+    height: 10px;
+    float: left;
+    padding-left: 170px;
+}
+.footertrustpiolot{
+    width:200px;
+    height:20px;
+    float:right;
+    padding-top: 0px;
+
+}
+#footer{text-align: center;}
+    #footer .links p {
+        font-size: 10px;
+        line-height: 0px;
+        padding-top: 0px;
+    }
+/*communitity end*/
+
