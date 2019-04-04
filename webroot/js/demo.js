@@ -47,6 +47,14 @@ if (passparams.indexOf('demoformat=') !== -1) {
 function setFormat() {
 	let format = $(selsel).val() || 'mpu2';
     let iframeDiv = document.getElementById('outer');
+
+    // Display rotated phone image if landscape is selected
+    if( format === 'landscape' && !iframeDiv.classList.contains('rotated')  ) {
+        iframeDiv.setAttribute('class', 'rotated');
+    } else {
+        iframeDiv.removeAttribute('class', 'rotated');
+    }
+
     // add iframe to id, making sure to pass URL params
 	let src = '/adtype/'+format+".html" + passparams;
     iframeDiv.innerHTML = '<iframe id="demo-iframe" frameborder=0 src="' + src + '"></iframe>';
