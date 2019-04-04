@@ -42,6 +42,14 @@ select#control-format {
 	min-width: 362px;
 	text-align: center;
 	margin: 1vmin 0 0 3vmin;
+
+	iframe {
+		overflow: hidden;
+		position: relative;
+		width: 320px;
+		height: 604px;
+		top: 76px;
+	}
 }
 
 /* 
@@ -57,17 +65,11 @@ select#control-format {
 	margin: 0;
 
 	iframe {
-		width: 100%;
-		top: 0;
+		padding: 6% 10%;
+		width: 80%;
+		height: auto;
+		top: unset;
 	}
-}
-
-#outer iframe {
-	overflow: hidden;
-	position: relative;
-	width: 320px;
-	height: 604px;
-	top: 76px;
 }
 
 /* iphone shows some sizing issues that weren't showing up in Chrome iphone emulation or the bigger screen on my Android. ^Roscoe Jan 2019 */
