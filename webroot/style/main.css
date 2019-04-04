@@ -382,6 +382,26 @@ select#control-format {
   height: 604px;
   top: 76px;
 }
+
+/* 
+  Phone image in landscape mode
+  Height will be set by javascript. Need to maintain 16:9 + some ratio
+
+*/
+#outer.rotated {
+  background-image: url("/img/black-iphone-rotated.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+#outer.rotated iframe {
+  width: 100%;
+  top: 0;
+}
+
 /* iphone shows some sizing issues that weren't showing up in Chrome iphone emulation or the bigger screen on my Android. ^Roscoe Jan 2019 */
 @media (max-width: 361px) {
   #outer {
