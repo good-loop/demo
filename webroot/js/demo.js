@@ -60,6 +60,10 @@ function setFormat() {
     let iframeDiv = document.getElementById('outer');
     let demoFrame = document.getElementById('demo-iframe');
 
+    // add iframe to id, making sure to pass URL params
+	let src = '/adtype/'+format+".html" + passparams;
+    iframeDiv.innerHTML = '<iframe id="demo-iframe" frameborder=0 src="' + src + '"></iframe>';
+
     // Display rotated phone image if landscape is selected
     if( format === 'landscape' && !iframeDiv.classList.contains('rotated')  ) {
         iframeDiv.setAttribute('class', 'rotated');
@@ -69,10 +73,6 @@ function setFormat() {
         // Get rid of height calculated for landscape
         demoFrame.style.height = '';
     }
-
-    // add iframe to id, making sure to pass URL params
-	let src = '/adtype/'+format+".html" + passparams;
-    iframeDiv.innerHTML = '<iframe id="demo-iframe" frameborder=0 src="' + src + '"></iframe>';
 }
 $(selsel).change(setFormat);
 // trigger a set-format to init the default view
