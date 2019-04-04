@@ -44,9 +44,8 @@ if (passparams.indexOf('demoformat=') !== -1) {
 }
 
 // Calculate height to completely fit 16:9 unit plus mobile border
-function calcLandscapeHeight() {
-    let iframeDiv = document.getElementById('outer');
-    let width = iframeDiv.getBoundingClientRect().width;
+function calcLandscapeHeight(div) {
+    let width = div.getBoundingClientRect().width;
 
     let height = width * ( 9 / 16 );
     // Total padding is set to 6% in less   
@@ -59,15 +58,16 @@ function calcLandscapeHeight() {
 function setFormat() {
 	let format = $(selsel).val() || 'mpu2';
     let iframeDiv = document.getElementById('outer');
+    let demoFrame = document.getElementById('demo-iframe');
 
     // Display rotated phone image if landscape is selected
     if( format === 'landscape' && !iframeDiv.classList.contains('rotated')  ) {
         iframeDiv.setAttribute('class', 'rotated');
-        iframeDiv.setAttribute('style', 'height:' + calcLandscapeHeight() + 'px');
+        demoFrame.setAttribute('style', 'height:' + calcLandscapeHeight(demoFrame) + 'px');
     } else {
         iframeDiv.removeAttribute('class', 'rotated');
         // Get rid of height calculated for landscape
-        iframeDiv.removeAttribute('style');
+        demoFrame.removeAttribute('style');
     }
 
     // add iframe to id, making sure to pass URL params
