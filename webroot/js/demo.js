@@ -43,6 +43,18 @@ if (passparams.indexOf('demoformat=') !== -1) {
 	$(selsel).val(vformat);
 }
 
+// Calculate height to completely fit 16:9 unit plus mobile border
+function calcLandscapeHeight() {
+    let iframeDiv = document.getElementById('outer');
+    let width = iframeDiv.getBoundingClientRect().width;
+
+    let height = width * ( 9 / 16 );
+    // Total padding is set to 6% in less   
+    height += ( height * 0.06 );
+
+    return height;
+}
+
 // handle the user picking a format
 function setFormat() {
 	let format = $(selsel).val() || 'mpu2';
@@ -51,8 +63,11 @@ function setFormat() {
     // Display rotated phone image if landscape is selected
     if( format === 'landscape' && !iframeDiv.classList.contains('rotated')  ) {
         iframeDiv.setAttribute('class', 'rotated');
+        iframeDiv.setAttribute('style', 'height:' + calcLandscapeHeight() + 'px');
     } else {
         iframeDiv.removeAttribute('class', 'rotated');
+        // Get rid of height calculated for landscape
+        iframeDiv.removeAttribute('style');
     }
 
     // add iframe to id, making sure to pass URL params
