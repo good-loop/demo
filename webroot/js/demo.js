@@ -46,8 +46,8 @@ if (passparams.indexOf('demoformat=') !== -1) {
 // Calculate height to completely fit 16:9 unit plus mobile border
 function calcLandscapeHeight(div) {
     let width = div.getBoundingClientRect().width;
-
-    let height = width * ( 9 / 16 );
+    // 0.76 is to account for padding  
+    let height = width * 0.76 * ( 9 / 16 );
     // Total padding is set to 6% in less   
     height += ( height * 0.06 );
 
