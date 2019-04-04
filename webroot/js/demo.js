@@ -63,11 +63,11 @@ function setFormat() {
     // Display rotated phone image if landscape is selected
     if( format === 'landscape' && !iframeDiv.classList.contains('rotated')  ) {
         iframeDiv.setAttribute('class', 'rotated');
-        demoFrame.setAttribute('style', 'height:' + calcLandscapeHeight(demoFrame) + 'px');
+        demoFrame.style.height = calcLandscapeHeight(demoFrame);
     } else {
         iframeDiv.removeAttribute('class', 'rotated');
         // Get rid of height calculated for landscape
-        demoFrame.removeAttribute('style');
+        demoFrame.style.height = '';
     }
 
     // add iframe to id, making sure to pass URL params
