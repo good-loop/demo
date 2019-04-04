@@ -58,13 +58,14 @@ function calcLandscapeHeight(div) {
 function setFormat() {
 	let format = $(selsel).val() || 'mpu2';
     let iframeDiv = document.getElementById('outer');
-    let demoFrame = document.getElementById('demo-iframe');
 
     // add iframe to id, making sure to pass URL params
 	let src = '/adtype/'+format+".html" + passparams;
     iframeDiv.innerHTML = '<iframe id="demo-iframe" frameborder=0 src="' + src + '"></iframe>';
 
     // Display rotated phone image if landscape is selected
+    let demoFrame = document.getElementById('demo-iframe');
+
     if( format === 'landscape' && !iframeDiv.classList.contains('rotated')  ) {
         iframeDiv.setAttribute('class', 'rotated');
         demoFrame.style.height = calcLandscapeHeight(demoFrame) + 'px';
