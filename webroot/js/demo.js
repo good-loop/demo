@@ -43,13 +43,14 @@ if (passparams.indexOf('demoformat=') !== -1) {
 	$(selsel).val(vformat);
 }
 
-// Calculate height to completely fit 16:9 unit plus mobile border
-function calcLandscapeHeight(div) {
+// Need to package as function for eventListener
+// May be wrong, but felt that using anonymous function would cause issues when later removing the listener?
+function calcAndSetHeight_16_9(el) {
     let width = div.getBoundingClientRect().width;
     // 0.76 is to account for width padding
     let height = width * 0.76 * ( 9 / 16 );
 
-    return height;
+    el.style.height = height + 'px';
 }
 
 // handle the user picking a format
@@ -64,13 +65,21 @@ function setFormat() {
     // Display rotated phone image if landscape is selected
     let demoFrame = document.getElementById('demo-iframe');
 
+    const calcAndSetHeightDemoFrame = () => calcAndSetHeight_16_9(demoFrame);
+
     if( format === 'landscape' && !iframeDiv.classList.contains('rotated')  ) {
         iframeDiv.setAttribute('class', 'rotated');
-        demoFrame.style.height = calcLandscapeHeight(demoFrame) + 'px';
+        calcAndSetHeightDemoFrame();
+
+        window.addEventListener('resize', calcAndSetHeightDemoFrame);
+        window.addEventListener('orientationchange', calcAndSetHeightDemoFrame);
     } else {
         iframeDiv.removeAttribute('class', 'rotated');
         // Get rid of height calculated for landscape
         demoFrame.style.height = '';
+
+        window.removeEventListener('resize', calcAndSetHeightDemoFrame);
+        window.removeEventListener('orientationchange', calcAndSetHeightDemoFrame);
     }
 }
 $(selsel).change(setFormat);
