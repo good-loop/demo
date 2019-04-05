@@ -37,16 +37,15 @@ select#control-format {
 	background-image: url("/img/black-iphone.png");
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: 362px 766px;
+	background-size: 100% 766px;
 	height: 780px;
-	min-width: 362px;
+	max-width: 362px;
 	text-align: center;
-	margin: 1vmin 0 0 3vmin;
 
 	iframe {
 		overflow: hidden;
 		position: relative;
-		width: 320px;
+		width: 90%;
 		height: 604px;
 		top: 76px;
 	}
@@ -87,14 +86,7 @@ select#control-format {
 /* iphone shows some sizing issues that weren't showing up in Chrome iphone emulation or the bigger screen on my Android. ^Roscoe Jan 2019 */
 @media (max-width: 361px) {
 	#outer {
-		width: 100vw;
 		// height: 215.4vw; Let the full surround show
 		margin: auto -15px; /* break out of the container padding */
-		min-width: 100vw; /* override the explicit pixel min-width */
-	}
-	#demo-iframe {
-		width: 88.4vw;
-		height: 166.8vw;
-		top: 21vw;
 	}
 }
