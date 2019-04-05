@@ -81,6 +81,13 @@ function setFormat() {
         window.removeEventListener('resize', calcAndSetHeightDemoFrame);
         window.removeEventListener('onorientationchange', calcAndSetHeightDemoFrame);
     }
+
+    // Formats that require fixed-width to display correctly
+    if ( format === 'mpu' || format === 'mpu2' ) {
+        iframeDiv.setAttribute('class', 'fixed-width');
+    } else {
+        iframeDiv.removeAttribute('class', 'fixed-width');
+    }
 }
 $(selsel).change(setFormat);
 // trigger a set-format to init the default view

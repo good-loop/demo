@@ -42,12 +42,21 @@ select#control-format {
 	max-width: 362px;
 	text-align: center;
 
+	// MPU2 and click-to-expand use fixed sizing. Cannot display in containers below this sort of size
+	.fixed-width {
+		width: 362px;
+	}
+
 	iframe {
 		overflow: hidden;
 		position: relative;
 		width: 90%;
 		height: 604px;
 		top: 76px;
+	}
+
+	iframe.fixed-width {
+		width: 320px;
 	}
 }
 
