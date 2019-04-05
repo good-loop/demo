@@ -46,7 +46,7 @@ if (passparams.indexOf('demoformat=') !== -1) {
 // Need to package as function for eventListener
 // May be wrong, but felt that using anonymous function would cause issues when later removing the listener?
 function calcAndSetHeight_16_9(el) {
-    let width = div.getBoundingClientRect().width;
+    let width = el.getBoundingClientRect().width;
     // 0.76 is to account for width padding
     let height = width * 0.76 * ( 9 / 16 );
 
