@@ -72,14 +72,14 @@ function setFormat() {
         calcAndSetHeightDemoFrame();
 
         window.addEventListener('resize', calcAndSetHeightDemoFrame);
-        window.addEventListener('orientationchange', calcAndSetHeightDemoFrame);
+        window.addEventListener('onorientationchange', calcAndSetHeightDemoFrame);
     } else {
         iframeDiv.removeAttribute('class', 'rotated');
         // Get rid of height calculated for landscape
         demoFrame.style.height = '';
 
         window.removeEventListener('resize', calcAndSetHeightDemoFrame);
-        window.removeEventListener('orientationchange', calcAndSetHeightDemoFrame);
+        window.removeEventListener('onorientationchange', calcAndSetHeightDemoFrame);
     }
 }
 $(selsel).change(setFormat);
