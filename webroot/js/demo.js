@@ -68,13 +68,13 @@ function setFormat() {
     const calcAndSetHeightDemoFrame = () => calcAndSetHeight_16_9(demoFrame);
 
     if( format === 'landscape' && !iframeDiv.classList.contains('rotated')  ) {
-        iframeDiv.setAttribute('class', 'rotated');
+        iframeDiv.classList.add('rotated');
         calcAndSetHeightDemoFrame();
 
         window.addEventListener('resize', calcAndSetHeightDemoFrame);
         window.addEventListener('onorientationchange', calcAndSetHeightDemoFrame);
     } else {
-        iframeDiv.removeAttribute('class', 'rotated');
+        iframeDiv.classList.remove('rotated');
         // Get rid of height calculated for landscape
         demoFrame.style.height = '';
 
@@ -84,9 +84,9 @@ function setFormat() {
 
     // Formats that require fixed-width to display correctly
     if ( format === 'mpu' || format === 'mpu2' ) {
-        iframeDiv.setAttribute('class', 'fixed-width');
+        iframeDiv.classList.add('fixed-width');
     } else {
-        iframeDiv.removeAttribute('class', 'fixed-width');
+        iframeDiv.classList.remove('fixed-width');
     }
 }
 $(selsel).change(setFormat);
