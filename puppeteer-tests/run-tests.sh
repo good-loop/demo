@@ -68,15 +68,15 @@ bash jest.sh $1
 
 function send_alert {
         TIME=$(date +%Y-%m-%dT%H:%M:%S-%Z)
-	message="Jest Detected Failure for -- $1 --demo page tests"
-	body="Hi,\nThe DemoPage jest/puppeteer script threw out a FAIL notice at $TIME:\n\n$line\n"
+	message="Jest Detected Failure for -- $1 --adserver tests"
+	body="Hi,\nThe Adserver jest/puppeteer script threw out a FAIL notice at $TIME:\n\n$line\n"
 	title="[$HOSTNAME] $message"
 	printf "$body" | mutt -s "$title" ${ATTACHMENTS[@]} -- $EMAIL_RECIPIENTS
 }
 
 ATTACHMENTS=()
 
-NEW_FAIL_LOGS=$(find test-results/Logs\(failure\)/ -type f -iname "*.txt" -amin +0 -amin -4)
+NEW_FAIL_LOGS=$(find ~/winterwell/wwappbase.js/test-base/test-results/Logs/ -type f -iname "*.txt" -amin +0 -amin -4)
 
 if [[ $NEW_FAIL_LOGS = '' ]]; then
         printf "\nNo Failures Detected\n"
