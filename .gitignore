@@ -1,6 +1,5 @@
 node_modules/*
 webroot/style
-!webroot/style/demo.less
 bob.log
 boblog
 puppeteer-tests/node_modules
