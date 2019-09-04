@@ -1,5 +1,18 @@
+
+// How does this relate to main.less??
+// How is it compiled??
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+// colours, copied in from base's colours.less
+@gl-red: #770f00;
+@gl-orange: #af2009;
+@gl-light-blue: #5ca5c0;
+@gl-dark-blue: #3e767f;
+@gl-dark-grey: #928b81;
+@gl-light-grey: #dddad3;
+
 
 * {
     box-sizing: border-box;
@@ -63,7 +76,7 @@ body.landscape {
     #landscape {
         .highlighted-button();
     }
-}
+} // ./body.landscape
 
 body.mobile-portrait {
     #demo-div {
@@ -154,7 +167,7 @@ body.video {
 
 
 .highlighted-button() {
-    color: #830000;
+    color: @gl-red;
     text-decoration: none;
     a {
         font-weight: 700;
@@ -188,13 +201,13 @@ body.video {
     &:hover:after {
         width: 100%; 
         left: 0; 
-        color: #830000;
+        color: @gl-red;
     }
 }
 
 .disabled-button() {
     cursor: default;
-    color: darkgrey;
+    color: @gl-dark-grey;
     &:hover {
         cursor: default;
     }
@@ -219,7 +232,7 @@ i.fas {
     font-size: 45px;
 }
 
-#description-text {
+.description-text {
     font-family: 'Montserrat';
     margin-top: 1.1%;
     max-width: 500px;

@@ -1,4 +1,6 @@
 
+// Not used -- delete??
+
 // ??
 $('.goodloopad').click(function() {
     $('.appear-after-click').css({

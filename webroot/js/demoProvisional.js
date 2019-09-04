@@ -2,6 +2,7 @@ const $player = $('#demo-iframe');
 const $mobile = $('#mobile');
 const $landscape = $('#landscape');
 const $mobileLandscape = $('#mobile-landscape');
+const $body = $('body');
 
 // If id param included, use that one. Otherwise default
 const defaultId = 'JvtlN3pk';
@@ -56,20 +57,32 @@ let format = 'video';
 
 $('.option-button').click(function () {
     const btnId = this.id;
+	setupDemo(btnId);
+});
 
+function setupDemo(btnId) {
+	// what is the current screen and format? 
+	// Why not just store this as a variable?? - DW
     const bodyClasses = document.body.className.split(' ');
     bodyClasses.forEach(function(className) {
+		// NB: includes works for all but IE ref: https://caniuse.com/#search=includes
         if (SCREEN.includes(className)) screen = className;
         if (FORMAT.includes(className)) format = className;
     });
     if (SCREEN.includes(btnId)) screen = btnId;
     if (FORMAT.includes(btnId)) format = btnId;
 
+	// force some combinations
     if (btnId === 'social') screen = 'mobile-portrait';
     if (btnId === 'display') screen = 'landscape';
     
-    if (notAllowed[format][screen]) return;
+	// TODO we must guard against this being possible by disabling buttons
+    if (notAllowed[format][screen]) {
+		console.log("forbidden combo! "+format+" + "+screen);
+		return;
+	}
 
+	// change the player
     $player.hide();
     let playerSrc;
     if (format === 'video') {
@@ -79,10 +92,18 @@ $('.option-button').click(function () {
     } else if (format === 'display') {
         playerSrc = displayUrl;
     }
+	console.log("Change player url to "+playerSrc);
     $player.attr('src', playerSrc);
     $player.fadeIn(200);
 
-    document.querySelector('body').className = '';
-    $('body').addClass(screen);
-    $('body').addClass(format);
-})
+	// Set the body screen / format classes
+	$body.attr('class', '');	
+    $body.addClass(screen).addClass(format);
+	console.log("Change body class to "+$body.attr("class"));
+
+	// show the right text
+	$('.description-text > p').addClass("d-none");
+	$('.description-text > p#describe-'+format).removeClass("d-none").addClass("d-block");
+
+	// TODO disable invalid devices
+};
