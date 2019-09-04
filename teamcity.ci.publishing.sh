@@ -300,6 +300,11 @@ function convert_less_files {
 		### END OF SUPER HACKY FIX PORTION
 		#######
 
+
+		if [[ ! -d $CSS_OUTPUT_LOCATION ]]; then
+			mkdir -p $CSS_OUTPUT_LOCATION
+		fi
+
 		LESS_FILES=$(find $LESS_FILES_LOCATION -type f -iname "*.less")
 		for file in ${LESS_FILES[@]}; do
 			printf "\nconverting $file"
