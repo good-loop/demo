@@ -4,81 +4,53 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="description" content="Discover how Good-Loop can help you improve brand awareness, and generate high quality engagement that's good for everyone.">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="style/demo.css">
+	<script src="https://kit.fontawesome.com/0e51a8c8fe.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>See Good-Loop in Action</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-		crossorigin="anonymous">
-	<link rel="shortcut icon" href="/img/favicon.png" />
-	<link rel="stylesheet" href="style/main.css">
-	<link rel="stylesheet" href="style/print.css">
 </head>
-<body>
-	<div class="container col-mb-2">
-		<div class="row">
-			<div class='col-md'><!-- space on desktop --></div>
-			<div class='col-md mt-2 mb-2' id='nav'>
-				<center><a href="https://www.good-loop.com">
-					<img src="img/Good-Loop_LogoMark_Colour.svg" alt="Good-Loop logo" class="header-image">
-				</a></center>
-				<!-- just link the logo a href="https://www.good-loop.com" class='btn btn-link d-sm-none d-md-block'>Back to Main Site</a>
-				<a href="https://www.good-loop.com" class='btn btn-link d-sm-block d-md-none'>Home</a> -->
+
+<body class="video landscape">
+	<div class="nav justify-content-center" id="format-menu">
+		<div class="first row">
+			<div class="button-box col-auto icon-box option-button" id="social">
+				<a>SOCIAL</a>
+			</div>
+			<div class="button-box col-auto icon-box option-button" id="video">
+				<a>VIDEO</a>
+			</div>
+			<div class="button-box col-auto icon-box option-button" id="display">
+				<a>DISPLAY</a>
 			</div>
 		</div>
+	</div>
 
-		<!-- rearrange layout if on mobile - have this at the top -->
-		<div class="form-group d-block d-md-none">
-			<label for="controlformat">Format</label>
-			<select class='form-control form-control-lg' name='format' id='controlformat-mbl'>
-				<option value='mpu2'> Double-MPU </option>
-				<option value='landscape'> Landscape </option>
-				<option value='pre-roll'>Pre-roll</option>
-				<option value='in-read'>In-read</option>
-				<option value='mpu'> Click-to-expand </option>
-			</select>										
-		</div>
-
-		<div class="row">
-			<div class="col-md flex-vertical-align">
-				<div id="outer">
-					<iframe id='demo-iframe' src="" frameborder="0"></iframe>
-				</div>
+	<div class="nav justify-content-center" id="button-menu">
+		<div class="second row">
+			<div class="button-box col-auto icon-box option-button" id="mobile-landscape">
+				<i class="fas fa-mobile-alt fa-rotate-270"></i>
 			</div>
-			<div class="col-md">
+			<div class="button-box col-auto icon-box option-button" id="landscape">
+				<i class="fas fa-laptop"></i>
+			</div>
+			<div class="button-box col-auto icon-box option-button" id="mobile-portrait">
+				<i class="fas fa-mobile-alt"></i>
+			</div>
+		</div>
+	</div>
 
-				<div class="form-group d-none d-md-block">
-					<label for="controlformat">Format</label>
-					<select class='form-control form-control-lg' name='format' id='controlformat-desk'>
-						<option value='mpu2'> Double-MPU </option>
-						<option value='landscape'> Landscape </option>
-						<option value='pre-roll'>Pre-roll</option>
-						<option value='in-read'>In-read</option>
-						<option value='mpu'> Click-to-expand </option>
-					</select>										
-				</div>
+	<div class="container" id="description-text">
+		<p class="text-center">The Good-Loop video player sits in a web page as people scroll through, or appears as a pre-roll before a video begins.</p>
+	</div>
 
-				<form id="contactform" action="https://formspree.io/xowwlvjx" method="POST">
-					<h3 class='d-sm-block d-md-none'>Interested? Get In Touch</h3>
-					<div class='d-sm-none d-md-block'>
-						These are our most popular formats. Contact us to find out more:
-					</div>
-					<!-- TODO doc this -->
-					<input name="_gotcha" style="display: none">
-					<input class="form-control mb-1" name="namefield" placeholder="Name">
-					<input type="email" class="form-control mb-1" name="email" placeholder="Email">
-					<textarea class="form-control mb-1 d-sm-none d-md-block" 
-						name="message" placeholder="Message"></textarea>
-					<input type="hidden" name="_next" value="https://www.good-loop.com/success" />
-					<button type='submit' class="btn btn-primary mb-4">SEND</button>
-				</form>
 
-			</div><!-- ./col -->
-		</div><!-- ./row -->
-	</div><!-- ./container -->
+	<div class="" id="demo-div">
+		<iframe id="demo-iframe" src="adtype/generic.html?gl.vert=JvtlN3pk&gl.size=landscape"></iframe>
+	</div>
 
-	<footer>
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-			crossorigin="anonymous"></script>
-		<script src="js/demo.js"></script>
-	</footer>
+
+	<script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
+	<script src="js/demoProvisional.js"></script>
 </body>
 </html>
