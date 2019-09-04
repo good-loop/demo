@@ -1,4 +1,4 @@
-node_modules
+node_modules/*
 webroot/style
 bob.log
 boblog
