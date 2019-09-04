@@ -1,8 +1,8 @@
 
 // If gl.vert id param included, use that one. Otherwise default.
 // Because we want to cherry-pick a nice default for the demo.
-const defaultId = isTest? 'ceMIwmVH' // Relish broadband ad
-	: 'JvtlN3pk'; // which ad is this??
+const DEFAULT_AD = 'JvtlN3pk'; // which ad is this??
+const DEFAULT_TEST_AD = 'ceMIwmVH'; // Relish broadband ad
 
 const $player = $('#demo-iframe');
 const $mobile = $('#mobile');
@@ -38,7 +38,7 @@ if (isTest) newParams.set("server", "test");
 
 // We want to cherry-pick a nice default for the demo.
 if ( ! newParams.get('gl.vert')) {
-	newParams.set('gl.vert', defaultId);
+	newParams.set('gl.vert', isTest? DEFAULT_TEST_AD : DEFAULT_AD);
 }
 
 // FIXME this doesnt work (NB: testing on local)
