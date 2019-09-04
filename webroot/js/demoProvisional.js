@@ -54,6 +54,8 @@ const notAllowed = {
 
 let screen = 'landscape';
 let format = 'video';
+// for detecting change
+let oldScreen, oldFormat;
 
 $('.option-button').click(function () {
     const btnId = this.id;
@@ -61,14 +63,14 @@ $('.option-button').click(function () {
 });
 
 function setupDemo(btnId) {
-	// what is the current screen and format? 
-	// Why not just store this as a variable?? - DW
-    const bodyClasses = document.body.className.split(' ');
-    bodyClasses.forEach(function(className) {
-		// NB: includes works for all but IE ref: https://caniuse.com/#search=includes
-        if (SCREEN.includes(className)) screen = className;
-        if (FORMAT.includes(className)) format = className;
-    });
+	// // what is the current screen and format? 
+	// // is this needed?? DW
+    // const bodyClasses = document.body.className.split(' ');
+    // bodyClasses.forEach(function(className) {
+	// 	// NB: includes works for all but IE ref: https://caniuse.com/#search=includes
+    //     if (SCREEN.includes(className)) screen = className;
+    //     if (FORMAT.includes(className)) format = className;
+    // });
     if (SCREEN.includes(btnId)) screen = btnId;
     if (FORMAT.includes(btnId)) format = btnId;
 
@@ -102,8 +104,12 @@ function setupDemo(btnId) {
 	console.log("Change body class to "+$body.attr("class"));
 
 	// show the right text
-	$('.description-text > p').addClass("d-none");
+	// ?? use jquery hide + fadeIn instead of BS d-none / d-block??
+	$('.description-text > p').removeClass("d-block").addClass("d-none");
 	$('.description-text > p#describe-'+format).removeClass("d-none").addClass("d-block");
 
 	// TODO disable invalid devices
+
+	oldScreen = screen;
+	oldFormat = format;
 };
