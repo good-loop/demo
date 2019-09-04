@@ -4,30 +4,40 @@ const $landscape = $('#landscape');
 const $mobileLandscape = $('#mobile-landscape');
 const $body = $('body');
 
-// If id param included, use that one. Otherwise default
-const defaultId = 'JvtlN3pk';
-
-// Copy only gl.* params to the new object, then set gl.vert to default if absent
-const queryFormatter = function(params) {
-    if (params !== '') {
-        for (const pair of params.entries()) {
-            const key = pair[0], val = pair[1];
-            if (key.match(/^gl\.w+/)) newParams.set(key, value);
-        }
-    }
-}
-
-// Grabs params from all parent windows and passes them to the queryFormatter.
-const getAllParams = function(win) {
-    queryFormatter(new URLSearchParams(win.location.search));
-    if (win !== win.top) { getAllParams(win.parent) };
-}
-
-getAllParams(window);
+// NB: losing IE and a couple of others https://caniuse.com/#search=URLSearchParams
 const newParams = new URLSearchParams();
 
-if (!newParams.get('gl.vert')) newParams.set('gl.vert', defaultId);
+/** Copy only gl.* params to the new object, then set gl.vert to default if absent.
+ * This is used to grab gl.* params from each iframe level
+ */
+const queryFormatter = function(params) {
+    if ( ! params) return;
+	for (const pair of params.entries()) {
+		const key = pair[0], val = pair[1];
+		if (key.match(/^gl\.w+/)) newParams.set(key, value);
+	}    
+};
 
+// recursively grabs params from all parent windows and passes them to the queryFormatter.
+const getAllParams = function(win) {
+	queryFormatter(new URLSearchParams(win.location.search));
+	if (win !== win.top) getAllParams(win.parent);
+}
+getAllParams(window);
+
+// TODO Test or Live? Needs code in the adtype pages
+const isTest = (""+window.location).indexOf("test") !== -1;
+console.warn("isTest", isTest);
+if (isTest) newParams.set("server", "test");
+
+// If id param included, use that one. Otherwise default
+const defaultId = isTest? 'JvtlN3pk' : 'JvtlN3pk'; // which ad is this??
+
+if ( ! newParams.get('gl.vert')) {
+	newParams.set('gl.vert', defaultId);
+}
+
+// FIXME this doesnt work (NB: testing on local)
 // TODO Have a good-looking .adblock-warning element to warn the user
 $('body').on('gl:adblock', function() {
     $('.adblock-warning').css({
@@ -36,12 +46,14 @@ $('body').on('gl:adblock', function() {
 	console.warn("Adblocker detected - expect some things to break.");
 });
 
-// Links for video, social, and display units. As long as they maintain video-ad-unit ratios
+// Links for video, social, and display units.
+// As long as they maintain video-ad-unit ratios
 // no further tweaking should be needed when changed.
-const videoLandscapeUrl = `adtype/generic.html?gl.size=landscape&${newParams.toString()}`;
-const videoPortraitUrl = `adtype/generic.html?gl.size=portrait&${newParams.toString()}`;
+// NB: URLSearchParams.toString() handles url encoding nicely
+const videoLandscapeUrl = 'adtype/generic.html?gl.size=landscape&'+newParams;
+const videoPortraitUrl = 'adtype/generic.html?gl.size=portrait&'+newParams;
 const socialUrl = ''; //  Whatever we end up putting here,
-const displayUrl = `adtype/generic.html?gl.size=landscape&${newParams.toString()}`; // and here.
+const displayUrl = 'adtype/generic.html?gl.size=landscape&'+newParams; // and here.
 
 const SCREEN = ['mobile-portrait', 'landscape', 'mobile-landscape'];
 const FORMAT = ['social', 'video', 'display'];
@@ -113,3 +125,6 @@ function setupDemo(btnId) {
 	oldScreen = screen;
 	oldFormat = format;
 };
+
+// init
+setupDemo();

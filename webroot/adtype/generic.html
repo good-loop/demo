@@ -20,7 +20,13 @@
     <body>
         <div class='page'>         
             <div class="goodloopad" />
-            <script src='//as.good-loop.com/unit.js' async></script>
+			<script>
+				// unit.js - but allow dynamic test/production server switch.
+				var isDebug = window.location.search.indexOf("server=test") !== -1;				
+				var istest = isDebug ? 'test' : '';
+				const s = "<script src='//"+istest+"as.good-loop.com/unit.js' async><\/script>";
+				document.write(s);
+			</script>	            
         </div>
     </body>
 </html>
