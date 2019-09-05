@@ -37,7 +37,7 @@ if [[ $WATCH == 'watch' ]]; then
 	else
 	while true
 	do
-		inotifywait -r -e modify,attrib,close_write,move,create,delete $WEB/style && \
+		inotifywait -r -e modify,attrib,close_write,move,create,delete $PROJECTPATH/src/style && \
 		for file in "${TOPLESS[@]}"; do
 			if [ -e "$file" ]; then
 				echo -e "converting $file"
