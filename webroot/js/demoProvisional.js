@@ -32,21 +32,21 @@ $('body').on('gl:adblock', function() {
     $('.adblock-warning').css({
         'display': 'block'
     });
-	console.warn("Adblocker detected - expect some things to break.");
+	console.warn('Adblocker detected - expect some things to break.');
 });
 
 // Links for video, social, and display units. As long as they maintain video-ad-unit ratios
 // no further tweaking should be needed when changed.
-const videoLandscapeUrl = `adtype/generic.html?gl.size=landscape&${newParams.toString()}`;
-const videoPortraitUrl = `adtype/generic.html?gl.size=portrait&${newParams.toString()}`;
+const videoLandscapeUrl = `https://media.good-loop.com/uploads/raw/generic.html?gl.size=landscape&${newParams.toString()}`;
+const videoPortraitUrl = `https://media.good-loop.com/uploads/raw/generic.html?gl.size=portrait&${newParams.toString()}`;
 const socialUrl = ''; //  Whatever we end up putting here,
-const displayUrl = `adtype/generic.html?gl.size=landscape&${newParams.toString()}`; // and here.
+const displayUrl = `https://media.good-loop.com/uploads/raw/generic.html?gl.size=landscape&${newParams.toString()}`; // and here.
 
 const SCREEN = ['mobile-portrait', 'landscape', 'mobile-landscape'];
 const FORMAT = ['social', 'video', 'display'];
 const notAllowed = {
     social: { 'landscape': true, 'mobile-landscape': true },
-    video: {},
+    video: {'mobile-portrait': (window.innerHeight > window.innerWidth)},
     display: { 'mobile-landscape': true, 'mobile-portrait': true },
 };
 
@@ -56,6 +56,9 @@ let format = 'video';
 
 $('.option-button').click(function () {
     const btnId = this.id;
+    
+    // Disables portrait display option if viewing on mobile
+    notAllowed.video = window.innerHeight > window.innerWidth ? { 'mobile-portrait': true } : {};
 
     const bodyClasses = document.body.className.split(' ');
     bodyClasses.forEach(function(className) {

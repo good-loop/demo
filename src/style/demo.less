@@ -37,7 +37,7 @@ body.landscape {
                 top: 25%;
                 width: 43.5%;
             }
-            background-image: url('../img/laptop-websiteholder-text.png');
+            background-image: url('https://media.good-loop.com/uploads/raw/laptop-websiteholder-text.png');
         }
     }
     &.display {
@@ -52,7 +52,7 @@ body.landscape {
                 top: 5%;
                 width: 72%;
             }
-            background-image: url('../img/laptop-websiteholder.png');
+            background-image: url('https://media.good-loop.com/uploads/raw/laptop-websiteholder.png');
         }
     }
     #demo-div:before {
@@ -77,7 +77,7 @@ body.mobile-portrait {
             top: 0;
             width: 86%;
         }
-        background-image: url('../img/black-iphone.png');
+        background-image: url('https://media.good-loop.com/uploads/raw/black-iphone.png');
     }
     #demo-div:before {
         content: '';
@@ -100,7 +100,7 @@ body.mobile-landscape {
             top: 0;
             width: 79%;
         }
-        background-image: url('../img/black-iphone-landscape.png');
+        background-image: url('https://media.good-loop.com/uploads/raw/black-iphone-landscape.png');
     }
     #demo-div:before {
         content: '';
@@ -133,6 +133,11 @@ body.display {
 body.video {
     #video {
         .highlighted-button();
+    }
+    @media (orientation: portrait) {
+        #mobile-portrait {
+            .disabled-button();
+        }
     }
 }
 
