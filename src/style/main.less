@@ -13,11 +13,6 @@
 @gl-dark-grey: #928b81;
 @gl-light-grey: #dddad3;
 
-
-* {
-    box-sizing: border-box;
-}
-
 body {
     margin: 0;
     width: 100vw;
@@ -25,71 +20,75 @@ body {
 }
 
 #demo-div {
-    display: block;
     position: relative;
     margin: 0 auto;
     iframe {
-        display: block;
-        position: absolute;
+        position: absolute; /* so we can move the iframe about within the phone image */
         border: none;
     }
     background-size: contain;
     background-repeat: no-repeat;
 }
 
-body.landscape {
-    &.video {
+// desktop
+body.desktop {
+	#demo-div {
+		width: 900px;
+		max-width:  100%;
+		left: 0.5%; // fix alignment of iframe vs "text" in the desktop image
+		background-image: url('https://testdemo.good-loop.com/img/laptop-websiteholder-text.png');
+	}
+	&.video { // class added by js -- rules for video on desktop
         #demo-div {
-            width: 700px;
-            max-width:  100%;
-            left: 0.5%;
-            iframe {
-                height: 50.5%;
-                left: 26%;
+            iframe { // place the iframe nicely in the desktop image
+                height: 64%;
+                left: 19%;
                 padding-top: 4%;
-                top: 25%;
-                width: 43.5%;
+                top: 10%;
+                width: 57.4%;
             }
-            background-image: url('https://media.good-loop.com/uploads/raw/laptop-websiteholder-text.png');
         }
     }
-    &.display {
+    &.display { // rules for banner ads on desktop
         #demo-div {
-            width: 700px;
-            max-width:  100%;
-            left: 0.5%;
             iframe {
-                height: 78.5%;
-                left: 12.9%;
-                padding-top: 4%;
-                top: 5%;
-                width: 72%;
+				left: 11.8%;
+				top: 7%;
+				width: 74%;
+				height: 82.7%;
             }
-            background-image: url('https://media.good-loop.com/uploads/raw/laptop-websiteholder.png');
         }
-    }
+	}
+	// This fixes "just an iframe -> div has no height" issue
     #demo-div:before {
         content: '';
-        display: block;
-        padding-top: 56.7%;
+		display: block;
+		// To maintain the aspect-ratio of the iframe divide height by width and use the percentage as padding-top
+		// otherwise you have to give it hardcoded values which makes it too tricky to scale.
+        padding-top: 56.7%; 
     }
-} // ./body.landscape
+} // ./body.desktop
 
+// TODO
+// document css
+// simplify and remove repeated rules
+// make demos larger
 body.mobile-portrait {
     #demo-div {
-        width: 190px;
-        height: 400px;
+        width: 280px;
+        height: 580px;
         max-width:  100%;
         iframe {
             height: 86.5%;
-            left: 7%;
+            left: 5%;
             padding-top: 18%;
             top: 0;
-            width: 86%;
+            width: 89%;
         }
-        background-image: url('https://media.good-loop.com/uploads/raw/black-iphone.png');
+        background-image: url('https://testdemo.good-loop.com/img/black-iphone.png');
     }
-    #demo-div:before {
+	#demo-div:before 
+	{
         content: '';
         display: block;
         padding-top: 56.7%;
@@ -108,7 +107,7 @@ body.mobile-landscape {
             top: 0;
             width: 79%;
         }
-        background-image: url('https://media.good-loop.com/uploads/raw/black-iphone-landscape.png');
+        background-image: url('https://testdemo.good-loop.com/img/black-iphone-landscape.png');
     }
     #demo-div:before {
         content: '';
@@ -117,21 +116,22 @@ body.mobile-landscape {
     }
 }
 
-
 .row {
-    max-width: 500px;
-    justify-content: space-around;
-}
-
-.second {
-    max-width: 485px;
+	&.first, &.second {
+		max-width: 330px;
+		width: 100%;
+		justify-content: space-around;
+	}
 }
 
 .icon-box {
-    display: inline-block;
-    padding: 15px 20px;
-    position: relative;
-    font-size: 3.5vw;
+    display: inline-flex;
+	position: relative;
+	width: 5em;
+	height: 5em;
+	padding: 1em;
+	justify-content: center;
+	align-items: center;
 }
 
 
@@ -149,9 +149,18 @@ body.mobile-landscape {
     align-items: center;
     max-width: 150px;
     min-width: 40px;
-    text-decoration: none;
+	text-decoration: none;
 
-    &:after {
+	img {
+		max-height: 100%;
+		max-width: 100%;
+	}
+
+	&:hover {
+        cursor: pointer;
+    }
+
+    &:after { // red underline on hover
         background: none repeat scroll 0 0 transparent;
         bottom: 0;
         content: "";
@@ -163,10 +172,7 @@ body.mobile-landscape {
         transition: width 0.3s ease 0s, left 0.3s ease 0s;
         width: 0;
     }
-    &:hover {
-        cursor: pointer;
-    }
-    &:hover:after {
+    &:hover:after, &.highlighted-button:after {
         width: 100%; 
         left: 0; 
         color: @gl-red;
@@ -190,6 +196,7 @@ a {
     letter-spacing: 0.15em;
     font-size: 15px;
     font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
     margin-right: -10px;
     
     display: inline-block;
@@ -200,6 +207,11 @@ i.fas {
     font-size: 45px;
 }
 
+// Hack to make laptop icon larger
+#desktop {
+    width: 100px;
+}
+
 .description-text {
     font-family: 'Montserrat';
     margin-top: 1.1%;
@@ -207,9 +219,11 @@ i.fas {
     text-align: center;
 }
 
+// ??special case for user on mobile, and webflow has already eaten some width??
+// TODO check and fix
 @media (max-width:290px) {
     .icon-box {
-        padding: 15px 0;
+        padding: 15px 0; // possibly a bug??
         a {
             letter-spacing: 0;
         }

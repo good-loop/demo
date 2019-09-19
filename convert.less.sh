@@ -23,7 +23,7 @@ for file in "${TOPLESS[@]}"; do
 			echo lessc "$file" "$OUTDIR/${F%.less}.css"
 			lessc "$file" "$OUTDIR/${F%.less}.css"
 		else
-			echo "less file not found: $file"				
+			echo "less file not found: $file"
 		fi
 done
 

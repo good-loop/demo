@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <style>
+            /* No scroll bars */
+            body {
+                overflow: hidden;
+                margin: 0;
+                background-color: black;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            /* Don't extend past viewport*/
+            img {
+                width: 100%;
+            }
+
+            @media (orientation: landscape ) {
+                #landscape {
+                    display: block;
+                }
+                #portrait {
+                    display: none;
+                }
+            }
+            @media (orientation: portrait ) {
+                #landscape {
+                    display: none;
+                }
+                #portrait {
+                    display: block;
+                }
+            }            
+        </style>
+    </head>
+    <body>
+        <img id="landscape" src="/img/display-landscape.png" />
+        <img id="portrait" src="/img/display-portrait.png" />
+    </body>
+</html>
