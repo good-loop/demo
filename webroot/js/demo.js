@@ -8,7 +8,6 @@ const $mobileLandscape = $("#mobile-landscape");
 const $body = $("body");
 
 const newParams = new URLSearchParams();
-let adBlockEnabled = false;
 
 const queryFormatter = function(params) {
 	if (!params) return;
@@ -25,9 +24,7 @@ const getAllParams = function(win) {
 };
 getAllParams(window);
 
-const isTest =
-	("" + window.location).indexOf("test") !== -1 ||
-	("" + window.location).indexOf("local");
+const isTest = window.location.href.includes('test');
 console.warn("isTest", isTest);
 if (isTest) newParams.set("server", "test");
 
