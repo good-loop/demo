@@ -8,6 +8,7 @@ const $mobileLandscape = $("#mobile-landscape");
 const $body = $("body");
 
 const newParams = new URLSearchParams();
+let adBlockEnabled = false;
 
 const queryFormatter = function(params) {
 	if (!params) return;
@@ -39,6 +40,18 @@ $("body").on("gl:adblock", function() {
 	});
 	console.warn("Adblocker detected - expect some things to break.");
 });
+
+const detectAdBlock = () => {
+	const $script = document.createElement('script');
+	// Adblockers are expected to always block js files with "ads" in the name
+	$script.setAttribute('src', 'https://as.good-loop.com/ads.js');
+	document.head.appendChild($script);
+	setTimeout(() => {
+		if (document.getElementById('aiPai9th') === null) {
+			$('.alert').css('display', 'block');
+		};
+	}, 1000);
+}
 
 let wrapperserver = "https://" + (isTest ? "test" : "") + "demo.good-loop.com";
 const videoLandscapeUrl =
@@ -163,6 +176,8 @@ function setupDemo(btnId) {
 		? $(fsButton).css("display", "flex")
 		: $(fsButton).css("display", "none");
 }
+
+detectAdBlock();
 
 $(document).ready(function() {
 	setupDemo();

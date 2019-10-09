@@ -14,7 +14,6 @@ a {
 	font-size: 1.1em;
 	font-family: "Montserrat", sans-serif;
 	font-weight: 400;
-	margin-right: -10px;
 	display: inline-block;
 	position: relative;
 	&:hover { text-decoration: none; }
@@ -275,6 +274,14 @@ i.fas {
 	text-align: center;
 }
 
+//// ADBLOCK ALERT ////
+.alert {
+	display: none;
+	font-size: 13px;
+	line-height: 18px;
+}
+//////////////////////
+
 // Change icons' direction on smaller screens
 @media (max-width: 720px) {
 	.icons-column {
@@ -287,12 +294,14 @@ i.fas {
 }
 
 // Small hacks to avoid collapse in super small screens.
-// Still breaks under 260px
+// Displays correctly above 192px;
 @media (max-width: 290px) {
 	.icon-box {
-		padding: 15px 0;
+		max-width: 4em;
+		max-height: 4em;
 	}
 	.icon-box a {
 		letter-spacing: 0;
+		font-size: 1em;
 	}
 }
