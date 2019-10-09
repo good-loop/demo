@@ -89,6 +89,16 @@ $(".option-button").click(function() {
 	setupDemo(btnId);
 });
 
+// Event listener for SEARCH button. Simple hack to avoid using Webflow weird classes.
+let displaySearch = false;
+const $searchDiv = $('#search-div');
+$('#search-button').click(() => {
+	!displaySearch ? $searchDiv.css('display', 'block') : $searchDiv.css('display', 'none');
+	displaySearch = !displaySearch;
+	// Needed to avoid refresh after click
+	$('#search-button').removeAttr('tabindex');
+})
+
 function setupDemo(btnId) {
 	// // what is the current screen and format?
 	// // is this needed?? DW
