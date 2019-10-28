@@ -112,6 +112,11 @@ function setupDemo(btnId) {
 	if (btnId === "social") screen = "mobile-portrait";
 	if (btnId === "display") screen = "desktop";
 
+	// Fullscreen button url
+	const $fsBtn = $('#fullscreen-button');
+	if (btnId === 'display') $fsBtn.attr('href', 'https://as.good-loop.com/pagewrapper.html?gl.status=DRAFT&gl.vert=Bysic1fI');
+	if (btnId === 'video') $fsBtn.attr('href', 'https://demo.good-loop.com/adtype/generic.html?gl.size=landscape&gl.vert=JvtlN3pk');
+
 	// TODO we must guard against this being possible by disabling buttons
 	if (notAllowed[format][screen]) {
 		console.log("forbidden combo! " + format + " + " + screen);
