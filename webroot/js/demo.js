@@ -9,6 +9,8 @@ const $body = $("body");
 
 const newParams = new URLSearchParams();
 
+const isMobile = window.innerWidth <= 767;
+
 const queryFormatter = function(params) {
 	if (!params) return;
 	for (const pair of params.entries()) {
@@ -105,6 +107,10 @@ function setupDemo(btnId) {
 	//     if (SCREEN.includes(className)) screen = className;
 	//     if (FORMAT.includes(className)) format = className;
 	// });
+	let isMobile = window.innerWidth <= 767;
+
+	if(!btnId) btnId = 'video';
+
 	if (SCREEN.includes(btnId)) screen = btnId;
 	if (FORMAT.includes(btnId)) format = btnId;
 
@@ -112,10 +118,14 @@ function setupDemo(btnId) {
 	if (btnId === "social") screen = "mobile-portrait";
 	if (btnId === "display") screen = "desktop";
 
-	// Fullscreen button url
+	// Fullscreen button url.
 	const $fsBtn = $('#fullscreen-button');
-	if (btnId === 'display') $fsBtn.attr('href', 'https://as.good-loop.com/pagewrapper.html?gl.status=DRAFT&gl.vert=Bysic1fI');
 	if (btnId === 'video') $fsBtn.attr('href', 'https://demo.good-loop.com/adtype/generic.html?gl.size=landscape&gl.vert=JvtlN3pk');
+	if (btnId === 'video' && isMobile) {
+		$fsBtn.attr('href', 'https://testdemo.good-loop.com/adtype/generic.html?gl.size=portrait&server=test&gl.vert=ceMIwmVH');
+	}
+	if (btnId === 'display') $fsBtn.attr('href', 'https://as.good-loop.com/pagewrapper.html?gl.status=DRAFT&gl.vert=Bysic1fI');
+	btnId === 'social' ? $fsBtn.addClass('d-none') : $fsBtn.removeClass('d-none');
 
 	// TODO we must guard against this being possible by disabling buttons
 	if (notAllowed[format][screen]) {
@@ -165,28 +175,6 @@ function setupDemo(btnId) {
 
 	oldScreen = screen;
 	oldFormat = format;
-	const topDoc = window.parent.document;
-	const desc = document.querySelector("#describe-" + format);
-	topDoc.querySelector(".iframe-sizer-text").innerHTML = desc.innerHTML;
-	topDoc.querySelector(".iframe-sizer-viewport").style =
-		"height: " +
-		{
-			"mobile-portrait": "610px",
-			desktop: "60vw",
-			"mobile-landscape": "60vw"
-		}[screen] +
-		"; max-height: " +
-		{
-			"mobile-portrait": "615px",
-			desktop: "540px",
-			"mobile-landscape": "310px"
-		}[screen] +
-		";";
-
-	const fsButton = topDoc.querySelector("#fullscreen-button");
-	format === "video"
-		? $(fsButton).css("display", "flex")
-		: $(fsButton).css("display", "none");
 }
 
 detectAdBlock();
