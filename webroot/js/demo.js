@@ -52,7 +52,7 @@ const detectAdBlock = () => {
 	}, 1000);
 }
 
-let wrapperserver = "https://" + (isTest ? "test" : "") + "demo.good-loop.com";
+let wrapperserver = "https://" + (isTest ? "" : "") + "demo.good-loop.com";
 const videoLandscapeUrl =
 	wrapperserver + "/adtype/generic.html?gl.size=landscape&" + newParams;
 const videoPortraitUrl =
