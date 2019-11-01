@@ -28,7 +28,7 @@ getAllParams(window);
 
 const isTest = window.location.href.includes('test');
 console.warn("isTest", isTest);
-if (isTest) newParams.set("server", "test");
+//if (isTest) newParams.set("server", "test");
 
 if (!newParams.get("gl.vert")) {
 	newParams.set("gl.vert", isTest ? DEFAULT_TEST_AD : DEFAULT_AD);

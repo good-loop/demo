@@ -89,6 +89,25 @@ body.desktop {
 			top: 10%;
 			width: 57.4%;
 		}
+		// On mobile we centre the iframe and apply a black background around it
+		@media (max-width: 767px) {
+			#demo-div iframe {
+				height: 82%;
+				left: 11.5%;
+				padding-top: 0%;
+				top: 11%;
+				width: 75%;
+			}
+			.demo-background-div {
+				height: 83%;
+				width: 74%;
+				left: 12%;
+				top: 108%;
+				background-color: black;
+				position: absolute;
+				margin-top: -57%;
+			}
+		}
 	}
 	&.display {
 		#demo-div iframe {
@@ -174,16 +193,6 @@ body.mobile-landscape {
 		left: 2%;
 		border-radius: 40px;
 		position: absolute;
-	}
-}
-
-@media (max-width: 767px) {
-	body.desktop.video #demo-div iframe {
-		height: 82%;
-		left: 12.5%;
-		padding-top: 0%;
-		width: 72.4%;
-		top: 16px;
 	}
 }
 
