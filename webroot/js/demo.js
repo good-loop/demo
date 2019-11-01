@@ -1,5 +1,5 @@
 const DEFAULT_AD = "JvtlN3pk"; // Method ad
-const DEFAULT_TEST_AD = "ceMIwmVH"; // Relish broadband ad
+const DEFAULT_TEST_AD = "JvtlN3pk"; // Relish broadband ad
 
 const $player = $("#demo-iframe");
 const $mobile = $("#mobile");
