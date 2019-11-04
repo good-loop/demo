@@ -1,3 +1,4 @@
+// TODO pick a different test ad, and fix wrappers to reflect this
 const DEFAULT_AD = "JvtlN3pk"; // Method ad
 const DEFAULT_TEST_AD = "JvtlN3pk"; // Relish broadband ad
 
@@ -52,6 +53,7 @@ const detectAdBlock = () => {
 	}, 1000);
 }
 
+//Todo: Update wrapper after picking new test id
 let wrapperserver = "https://" + (isTest ? "" : "") + "demo.good-loop.com";
 const videoLandscapeUrl =
 	wrapperserver + "/adtype/generic.html?gl.size=landscape&" + newParams;
@@ -122,7 +124,7 @@ function setupDemo(btnId) {
 	const $fsBtn = $('#fullscreen-button');
 	if (btnId === 'video') $fsBtn.attr('href', 'https://demo.good-loop.com/adtype/generic.html?gl.size=landscape&gl.vert=JvtlN3pk');
 	if (btnId === 'video' && isMobile) {
-		$fsBtn.attr('href', 'https://testdemo.good-loop.com/adtype/generic.html?gl.size=portrait&server=test&gl.vert=ceMIwmVH');
+		$fsBtn.attr('href', 'https://demo.good-loop.com/adtype/generic.html?gl.size=portrait&gl.vert=JvtlN3pk');
 	}
 	if (btnId === 'display') $fsBtn.attr('href', 'https://as.good-loop.com/pagewrapper.html?gl.status=DRAFT&gl.vert=Bysic1fI');
 	btnId === 'social' ? $fsBtn.addClass('d-none') : $fsBtn.removeClass('d-none');
