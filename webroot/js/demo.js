@@ -8,24 +8,34 @@ const $desktop = $("#desktop");
 const $mobileLandscape = $("#mobile-landscape");
 const $body = $("body");
 
-const newParams = new URLSearchParams();
-
 const isMobile = window.innerWidth <= 767;
 
-const queryFormatter = function(params) {
-	if (!params) return;
+// Collect all url params here.
+const newParams = new URLSearchParams();
+//
+const getAllParams2 = function(params) {
+	if ( ! params) return;
 	for (const pair of params.entries()) {
 		const key = pair[0],
 			val = pair[1];
 		if (key.match(/^gl\.w+/)) newParams.set(key, value);
 	}
 };
-
+/**
+ * recurse up through iframes, collecting url parameters
+ */
 const getAllParams = function(win) {
-	queryFormatter(new URLSearchParams(win.location.search));
+	if ( ! win) return;
+	getAllParams2(new URLSearchParams(win.location.search));
 	if (win !== win.top) getAllParams(win.parent);
 };
 getAllParams(window);
+
+// Hide the format choice controls (i.e. lock to video)
+if ((window.location+"").includes("format")) {
+	$('#pick-format-row').hide();
+}
+
 
 const isTest = window.location.href.includes('test');
 console.warn("isTest", isTest);
