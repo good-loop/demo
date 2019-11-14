@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<title>Good-Loop Test Pages</title>
+		<link href="/favicon-32.png" rel="shortcut icon" />
+		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+		<script src="https://cdn.jsdelivr.net/npm/vast-player@latest/dist/vast-player.js"></script>
+		<link href="/style/main.css" rel="stylesheet" />
+	</head>
+	<body>
+
+		<!-- everything else comes via webpack -->
+		<script>
+			// Insert bundle[-debug].js - but allow dynamic test/production build switch.
+			// Default to debug build on test and local servers.
+			var isDebug = window.location.hostname.match(/^local/) || window.location.hostname.match(/^test/);
+			
+			// Has the user specified debug/production build with a URL param?
+			var debugParam = window.location.search.match(/debug=(\w+)/i);
+			if (debugParam && debugParam[1]) {
+				// Require an exact match to change from default
+				if (debugParam[1] === 'false') isDebug = false;
+				else if (debugParam[1] === 'true') isDebug = true;
+			}
+			
+			var filename = isDebug ? 'bundle-debug.js' : 'bundle.js';
+			document.write('<script src="/' + filename + '"/><\/script>');
+		</script>
+
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script>
+		/*!
+		* IE10 viewport hack for Surface/desktop Windows 8 bug
+		* Copyright 2014-2015 Twitter, Inc.
+		* Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+		*/
+
+		// See the Getting Started docs for more information:
+		// http://getbootstrap.com/getting-started/#support-ie10-width
+
+		(function () {
+			'use strict';
+			if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+				var msViewportStyle = document.createElement('style')
+				msViewportStyle.appendChild(
+					document.createTextNode('@-ms-viewport{width:auto!important}')
+				)
+				document.querySelector('head').appendChild(msViewportStyle)
+			}
+		})();
+	</script>
+
+	</body>
+</html>

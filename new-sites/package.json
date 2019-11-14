@@ -1,0 +1,37 @@
+{
+  "name": "good-loop-test-site",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "",
+  "author": "Roscoe McInerney <roscoe@winterwell.com>",
+  "license": "",
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.6.2",
+    "babel-loader": "^8.0.5",
+    "reactstrap": "^8.1.1",
+    "webpack": "^4.41.2",
+    "webpack-bundle-size-analyzer": "^3.1.0",
+    "webpack-cli": "^3.3.9"
+  },
+  "dependencies": {
+    "preact": "^10.0.4",
+    "preact-router": "^3.1.0",
+    "react-redux": "^7.1.1",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6"
+  },
+  "scripts": {
+    "build": "webpack --config ./webpack.config.js --progress",
+    "watch": "webpack --config ./webpack.config.js --progress --watch",
+    "watch-fast": "NO_PROD=true webpack --config ./webpack.config.js --progress --watch",
+    "size:imports": "webpack -p --config ./webpack.config.js --progress --colors --json | webpack-bundle-size-analyzer"
+  }
+}
