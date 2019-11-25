@@ -93,6 +93,7 @@ const HowItWorksSection = () => {
 						People can opt-in to watch an ad in exchange for a free donation.
 					</div>
 				</div>
+<<<<<<< HEAD
 				<div class="column-40 w-col w-col-3">
 					<div class="div-block-36">
 						<img
@@ -104,6 +105,23 @@ const HowItWorksSection = () => {
 					<div class="text-block-103">
 						They give the advertiser 100% of their attention for at least 15
 						seconds.
+=======
+
+				{/* Describe the unit in question */}
+				<div class='container description-text text-center'>
+					<p id='describe-social' class='d-none'>
+						The Good-Loop social swipe-to-donate player is shown in social media apps: SnapChat, Instagram, Facebook, or Twitter.
+					</p>
+					<p id='describe-video'>
+						Our core product, the Good-Loop video player is shown in a website article as people scroll, or appears as a pre-roll before a video begins.
+					</p>
+					<p id='describe-display' class='d-none'>
+						The Good-Loop click-to-donate display advert can be used anywhere that banner ads are used. A range of standard sizes are supported (banner, leaderboard, MPU, Double-MPU, etc.).
+					</p>
+					<div class="alert alert-warning alert-dismissible" role="alert">
+						Adblocker detected. Some of our adverts might not play properly!
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+>>>>>>> d8d7d75382cafd682aefeecd054d451961783a56
 					</div>
 				</div>
 				<div class="column-41 w-col w-col-3">
@@ -124,6 +142,7 @@ const HowItWorksSection = () => {
 	);
 };
 
+<<<<<<< HEAD
 const RedMiddleSection = () => {
 	return (
 		<div class="red-background">
@@ -152,6 +171,15 @@ const RedMiddleSection = () => {
 		</div>
 	);
 };
+=======
+				{/* The red-background section */}
+				<div class="red-background">
+					<a id="fullscreen-button" href="https://media.good-loop.com/uploads/raw/generic.html?gl.vert=Zo0BX34s&amp;gl.size=landscape" target="_blank" class="fullscreen-button w-button">Full Screen Demo</a>
+					<h4 class="playermiddleheader">if you&#x27;re running an ad online then why not work with us?</h4>
+					<div class="text-block-101">Our ethical ad formats are proven to drive higher engagement and significant brand uplift. So you can connect with your consumer in a meaningful way whilst enabling them to do good, for free.<br/><br/>Want to know more?</div>
+					<a href="https://www.good-loop.com/contact-us" class="button-7 w-button">Get In Touch</a>
+				</div>
+>>>>>>> d8d7d75382cafd682aefeecd054d451961783a56
 
 const Footer = () => {
 	return (
