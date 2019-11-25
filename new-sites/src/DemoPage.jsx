@@ -140,7 +140,7 @@ class DemoPage extends Component {
 						The Good-Loop social swipe-to-donate player is shown in social media apps: SnapChat, Instagram, Facebook, or Twitter.
 					</p>
 					<p id='describe-video'>
-						Our core product, the Good-Loop video player is shown in a website article as people scroll through (&quot;in-stream&quot;), or appears as a pre-roll before a video begins.
+						Our core product, the Good-Loop video player is shown in a website article as people scroll, or appears as a pre-roll before a video begins.
 					</p>
 					<p id='describe-display' class='d-none'>
 						The Good-Loop click-to-donate display advert can be used anywhere that banner ads are used. A range of standard sizes are supported (banner, leaderboard, MPU, Double-MPU, etc.).
