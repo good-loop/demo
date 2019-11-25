@@ -1,35 +1,75 @@
 .navbar-brand {
-	height: 2em;
+  height: 2em;
 }
-
 .navbar-brand img {
-	height: 100%;
+  height: 100%;
 }
-
 .ad-sizer {
-	position: relative;
-	overflow: hidden; /* prevent margin collapse with aspectifier */
+  position: relative;
+  overflow: hidden;
+  /* prevent margin collapse with aspectifier */
 }
-
-.ad-sizer .goodloopad, .ad-sizer iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
+.ad-sizer .goodloopad,
+.ad-sizer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-
 .ad-sizer .vpaid-container {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
-
 .ad-sizer.landscape .aspectifier {
-	margin-top: 56.25%
+  margin-top: 56.25%;
 }
-
 .ad-sizer.portrait .aspectifier {
-	margin-top: 177.77%
+  margin-top: 177.77%;
 }
-
 .ad-sizer.square .aspectifier {
-	margin-top: 100%
+  margin-top: 100%;
+}
+.navbar {
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+.gl-icon-centred {
+  position: absolute;
+}
+#navbar {
+  justify-content: center;
+}
+.disabled-button {
+  pointer-events: none;
+}
+.disabled-button.button-box:hover:after {
+  width: 0;
+}
+/* ADVERT DISPLAY */
+.frame {
+  background-image: url('../../webroot/img/laptop-mockup2.png');
+}
+#video-player {
+  position: absolute;
+  width: 33%;
+  left: 33.5%;
+  top: 19%;
+}
+@media screen and (max-width: 767px) {
+  #video-player {
+    width: 80%;
+    left: 14%;
+    top: 11%;
+  }
+}
+#frame {
+  position: relative;
+  width: 55%;
+  left: 22.5%;
+  top: -7%;
+  z-index: 999;
+}
+@media screen and (max-width: 767px) {
+  #frame {
+    width: 100%;
+    left: 0;
+  }
 }

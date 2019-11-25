@@ -76,8 +76,8 @@ const configs = [
 
 // Allow debug-only compilation for faster iteration in dev
 if (process.env.NO_PROD !== 'true') {
-	makeConfig({entryFile: './src/index-test.js', pathname: '../web-test/', filename: 'bundle.js', mode: 'production'}),
-	makeConfig({entryFile: './src/index-demo.js', pathname: '../web-demo/', filename: 'bundle.js', mode: 'production'})
+	configs.push(makeConfig({entryFile: './src/index-test.js', pathname: '../web-test/', filename: 'bundle.js', mode: 'production'}));
+	configs.push(makeConfig({entryFile: './src/index-demo.js', pathname: '../web-demo/', filename: 'bundle.js', mode: 'production'}))
 }
 
 module.exports = configs;
