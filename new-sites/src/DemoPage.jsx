@@ -163,7 +163,7 @@ class DemoPage extends Component {
 
 				{/* The red-background section */}
 				<div class="red-background">
-					<a id="fullscreen-button" href="https://media.good-loop.com/uploads/raw/generic.html?gl.vert=JvtlN3pk&amp;gl.size=landscape" target="_blank" class="fullscreen-button w-button">Full Screen Demo</a>
+					<a id="fullscreen-button" href="https://media.good-loop.com/uploads/raw/generic.html?gl.vert=Zo0BX34s&amp;gl.size=landscape" target="_blank" class="fullscreen-button w-button">Full Screen Demo</a>
 					<h4 class="playermiddleheader">if you&#x27;re running an ad online then why not work with us?</h4>
 					<div class="text-block-101">Our ethical ad formats are proven to drive higher engagement and significant brand uplift. So you can connect with your consumer in a meaningful way whilst enabling them to do good, for free.<br/><br/>Want to know more?</div>
 					<a href="/contact-us" class="button-7 w-button">Get In Touch</a>
