@@ -15,7 +15,9 @@ function reducer(state, action) {
         case 'UPDATE_FORMAT':
             return { ...state, format: action.payload }
         case 'UPDATE_DEVICE':
-            return { ...state, device: action.payload } 
+            return { ...state, device: action.payload }
+        case 'UPDATE_SIZE':
+            return { ...state, size: action.payload } 
         default:
             return state;
     }

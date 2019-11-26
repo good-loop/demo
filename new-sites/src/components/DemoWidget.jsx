@@ -7,45 +7,56 @@ import { Store } from '../Store';
 
 import { Row, Col, Container, Alert } from 'reactstrap';
 
-
 const DemoWidget = () => {
-    const vpaid = false;
-	const {state} = useContext(Store);
-
-    const videoPlayer = (
-        <Row id="video-player">
-			<Col xs="12" style={{ width: '100%', height: '100%' }}>
-				{
-					vpaid ? <VpaidAd vertId={state.vertId} size={state.size} nonce={state.size} style={{width: '600px'}} /> 
-					: <GoodLoopAd vertId={state.vertId} size={state.size} nonce={state.size} style={{width: '600px', height: '400px'}} />
-				}
-			</Col>
-		</Row>
-    );
-
-    const socialPlayer = (
-        <Row><Col xs="12">Social test page: Work in progress</Col></Row>
-    )
-
 
 	return (
 		<>
             <FormatPicker />
             <DevicePicker />
             <ExplanationText />
-			<div className="demo-div-container">
-				<div className="demo-div-bg"></div>
-				<img 
-					id="frame"
-					src="https://demo.good-loop.com/img/laptop-websiteholder-text.png" 
-					alt="laptop frame"
-					// style={{position: 'relative', width: '60%', left: '-22.5%', top: '-7%', zIndex: '999'}}
-				/>
-            	{ state.format === 'social' ? socialPlayer : videoPlayer }
-			</div>
+			<Player />
 		</>
 	);
 };
+
+const Player = () => {
+	const {state} = useContext(Store);
+	const vpaid = false;
+
+	const frameImages = {
+		landscape: 'https://demo.good-loop.com/img/iphone-frame-16-9-padded-notch.svg',
+		desktop: 'https://demo.good-loop.com/img/laptop-websiteholder-text.png',
+		portrait: 'https://demo.good-loop.com/img/iphone-frame-16-9-padded-notch-portrait.svg'
+	}
+
+	const videoPlayer = () => {
+        return (
+				<>{
+					vpaid ? <VpaidAd vertId={state.vertId} size={state.size} nonce={state.size} style={{width: '600px'}} /> 
+					: <GoodLoopAd vertId={state.vertId} size={state.size} nonce={state.size} style={{width: '600px', height: '400px'}} />
+				}</>
+		)
+	};
+
+    const socialPlayer = (
+        <Row><Col xs="12">Social test page: Work in progress</Col></Row>
+    )
+
+	return (
+		<>
+			<div className="container">
+				<div className="row" style={{ position: 'relative' }}>
+					<div className="half-bg"></div>
+					<img id="frame" className={`${state.device}`} src={frameImages[state.device]} alt="device frame"/>
+					<div className={`device-white-bg ${state.device}`}></div>
+					<div className={`ad-container ${state.device}`}>
+						{ state.format === 'social'? socialPlayer : videoPlayer() }
+					</div>
+				</div>
+			</div>
+		</>
+	)
+}
 
 const FormatPicker = () => {
     const {state, dispatch} = useContext(Store);
@@ -82,10 +93,17 @@ const FormatPicker = () => {
 
 const DevicePicker = () => {
     const {state, dispatch} = useContext(Store);
-    const handleClick = e => dispatch({ type: 'UPDATE_DEVICE', payload: e.target.id });
+
+    const handleClick = e => {
+		dispatch({ type: 'UPDATE_DEVICE', payload: e.target.id });
+
+		// Update SIZE depending on device:
+		if (e.target.id === 'portrait') dispatch({ type: 'UPDATE_SIZE', payload: 'portrait' });
+		else dispatch({ type: 'UPDATE_SIZE', payload: 'landscape' });
+	} 
+
 
 	const highlighter = id => { return id === state.device ? 'highlighted-button' : '' }
-
 	const disabler = id => {
 		return state.format === 'social' && id !== 'portrait' ? 'disabled-button' : '';
 	}
