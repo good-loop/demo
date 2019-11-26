@@ -252,7 +252,7 @@ function webpack {
 		printf "\nGetting NPM Dependencies ..."
 		$PSSH "cd $TARGET_DIRECTORY/new-sites && npm i"
 		printf "\nWebpacking ..."
-    	$PSSH "cd $TARGET_DIRECTORY/new-sites && npm run compile"
+    	$PSSH "cd $TARGET_DIRECTORY/new-sites && npm run build"
 	fi
 }
 
