@@ -18,14 +18,14 @@ CONVERT_LESS='yes'
 LESS_FILES_LOCATION="$PROJECT_LOCATION/src/style"
 MINIFY_CSS='yes'
 CSS_OUTPUT_LOCATION="$PROJECT_LOCATION/webroot/style"
-WEBPACK='no'
+WEBPACK='yes'
 TEST_JAVASCRIPT='no'
 JAVASCRIPT_FILES_TO_TEST=""
 COMPILE_UNITS='no'
 UNITS_LOCATION=""
 RESTART_SERVICE_AFTER_SYNC='no'
 SERVICE_NAME=('')
-PLEASE_SYNC=("config" "webroot" "pages" "package.json" "ssl.testdemo.good-loop.com.conf" "ssl.demo.good-loop.com")
+PLEASE_SYNC=("config" "webroot" "pages" "package.json" "ssl.testdemo.good-loop.com.conf" "ssl.demo.good-loop.com" "web-demo" "new-sites" "web-test")
 AUTOMATED_TESTING='no'
 PRESERVE=()
 JERBIL_RENDER='yes'
@@ -250,9 +250,9 @@ function image_optimisation {
 function webpack {
 	if [[ $WEBPACK = yes ]]; then
 		printf "\nGetting NPM Dependencies ..."
-		$PSSH "cd $TARGET_DIRECTORY && npm i"
+		$PSSH "cd $TARGET_DIRECTORY/new-sites && npm i"
 		printf "\nWebpacking ..."
-    	$PSSH "cd $TARGET_DIRECTORY && webpack --progress -p"
+    	$PSSH "cd $TARGET_DIRECTORY/new-sites && npm run compile"
 	fi
 }
 
