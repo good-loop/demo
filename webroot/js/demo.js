@@ -1,6 +1,6 @@
 // TODO pick a different test ad, and fix wrappers to reflect this
-const DEFAULT_AD = "Zo0BX34s"; // DryNites
-const DEFAULT_TEST_AD = "Zo0BX34s"; // DryNites
+const DEFAULT_AD = "ojRZHHd48s"; // H&M
+const DEFAULT_TEST_AD = "ojRZHHd48s"; // H&M
 
 const $player = $("#demo-iframe");
 const $mobile = $("#mobile");
@@ -132,9 +132,9 @@ function setupDemo(btnId) {
 
 	// Fullscreen button url.
 	const $fsBtn = $('#fullscreen-button');
-	if (btnId === 'video') $fsBtn.attr('href', 'https://demo.good-loop.com/adtype/generic.html?gl.size=landscape&gl.vert=Zo0BX34s');
+	if (btnId === 'video') $fsBtn.attr('href', 'https://demo.good-loop.com/adtype/generic.html?gl.size=landscape&gl.vert=ojRZHHd48s');
 	if (btnId === 'video' && isMobile) {
-		$fsBtn.attr('href', 'https://demo.good-loop.com/adtype/generic.html?gl.size=portrait&gl.vert=Zo0BX34s');
+		$fsBtn.attr('href', 'https://demo.good-loop.com/adtype/generic.html?gl.size=portrait&gl.vert=ojRZHHd48s');
 	}
 	if (btnId === 'display') $fsBtn.attr('href', 'https://as.good-loop.com/pagewrapper.html?gl.status=DRAFT&gl.vert=Bysic1fI');
 	btnId === 'social' ? $fsBtn.addClass('d-none') : $fsBtn.removeClass('d-none');
