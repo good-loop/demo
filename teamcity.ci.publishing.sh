@@ -25,7 +25,7 @@ COMPILE_UNITS='no'
 UNITS_LOCATION=""
 RESTART_SERVICE_AFTER_SYNC='no'
 SERVICE_NAME=('')
-PLEASE_SYNC=("convert.less.sh" "config" "pages" "package.json" "ssl.testdemo.good-loop.com.conf" "ssl.demo.good-loop.com" "web-demo" "web-test" "webpack.config.js" "src")
+PLEASE_SYNC=("convert.less.sh" "config" "pages" "package.json" "web-demo" "web-test" "webpack.config.js" "src")
 AUTOMATED_TESTING='no'
 PRESERVE=()
 JERBIL_RENDER='yes'
@@ -281,7 +281,7 @@ function start_proc {
 ### Section 05: Defining the 'Convert Less Files' function
 ##################################
 function convert_less_files {
-	cd $TARGET_DIRECTORY && bash convert.less.sh
+	$PSSH "cd $TARGET_DIRECTORY && bash convert.less.sh"
 }
 
 ##########################################
