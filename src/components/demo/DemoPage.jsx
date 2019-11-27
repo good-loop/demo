@@ -20,11 +20,11 @@ const descriptions = {
 };
 
 
-const makeUrl = (format, device, props) => {
+const makeUrl = (device, format, props) => {
 	if (format === 'social') device = 'portrait';
 	// TODO Make sure this is escaping things that should be escaped
 	const propsString = props ? '?' + Object.entries(props).map(([k, v]) => `${k}=${v}`).join('&') : '';
-	return `/${format}/${device}${propsString}`;
+	return `/${device}/${format}${propsString}`;
 };
 
 
