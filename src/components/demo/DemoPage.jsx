@@ -20,11 +20,12 @@ const descriptions = {
 };
 
 
-const makeUrl = (format, device, props) => {
+const makeUrl = ({device, format, ...props}) => {
 	if (format === 'social') device = 'portrait';
 	// TODO Make sure this is escaping things that should be escaped
+	
 	const propsString = props ? '?' + Object.entries(props).map(([k, v]) => `${k}=${v}`).join('&') : '';
-	return `/${format}/${device}${propsString}`;
+	return `/${device}/${format}${propsString}`;
 };
 
 
@@ -33,7 +34,7 @@ const FormatButton = ({format, current, ...props}) => {
 	let url = '#'; // default to go-nowhere
 	
 	if (format !== current.format) {
-		url = makeUrl(current.device, format, props);
+		url = makeUrl({device: current.device, format, ...props});
 	} else {
 		classes.push('current'); // add marker class to highlight currently active format
 	}
@@ -48,24 +49,24 @@ const DeviceButton = ({device, current, ...props}) => {
 	// can't show social on anything but portrait phone
 	const disabled = (current.format === 'social' && device !== 'portrait'); 
 	const isCurrent = (device === current.device);
-
+	console.log(device, current, props);
 	let url = '#'; // default to go-nowhere
 
 	if (!isCurrent && !disabled) {
-		url = makeUrl(device, current.format, props);
+		url = makeUrl({device, format: current.format, ...props});
 	} else if (isCurrent) {
 		classes.push('current'); // add marker class to highlight currently active device
 	} else if (disabled) {
 		classes.push('disabled');
 	}
 
-	return <a href={makeUrl(device, current.format, props)} className={classes.join(' ')}>{deviceSvgs[device]}</a>
+	return <a href={url} className={classes.join(' ')}>{deviceSvgs[device]}</a>
 };
 
 
 const fullScreenUrl = 'https://media.good-loop.com/uploads/raw/generic.html?gl.vert=JvtlN3pk&gl.size=landscape';
 
-/** We don't do anything with matches, path, url here, but we want to pull them out and only leave search params */
+/** We don't do anything with {matches, path, url} here, but we want to pull them out and only leave search params */
 const DemoPage = ({device, format, matches, path, url, ...props}) => <>
 	<DemoSiteNavBar />
 	<Container>
