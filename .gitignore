@@ -1,4 +1,10 @@
-node_modules/*
+# no generated node stuff
+**/node_modules
+**/package-lock.json
+
+# no compiled output
+**/bundle-*.js*
+
 webroot/style
 bob.log
 boblog
