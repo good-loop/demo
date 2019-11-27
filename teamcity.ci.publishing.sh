@@ -281,37 +281,7 @@ function start_proc {
 ### Section 05: Defining the 'Convert Less Files' function
 ##################################
 function convert_less_files {
-	if [[ $CONVERT_LESS = 'yes' ]]; then
-		if [[ $LESS_FILES_LOCATION = "" ]]; then
-			printf "\nYour specified project $PROJECT , has the parameter 'CONVERT_LESS' set to 'yes', but no input directory has been set\nExiting process\n"
-			exit 0
-		elif
-			[[ $CSS_OUTPUT_LOCATION = "" ]]; then
-			printf "\nYour specified project $PROJECT , has the parameter 'CONVERT_LESS' set to 'yes', and an input directory IS specified,\nbut no output directory has been specified\nExiting process\n"
-			exit 0
-		fi
-
-		######
-		### SUPER HACKY FIX TO ALLOW FOR IMPORTS FROM WWAPPBASE.JS REPO
-		######
-		rm -rf $PROJECT_LOCATION/src/js/base
-		ln -s /home/winterwell/TeamCity/buildAgent/work/9307b27f248c307/base $PROJECT_LOCATION/src/js/base
-		#######
-		### END OF SUPER HACKY FIX PORTION
-		#######
-
-
-		if [[ ! -d $CSS_OUTPUT_LOCATION ]]; then
-			mkdir -p $CSS_OUTPUT_LOCATION
-		fi
-
-		LESS_FILES=$(find $LESS_FILES_LOCATION -type f -iname "*.less")
-		for file in ${LESS_FILES[@]}; do
-			printf "\nconverting $file"
-			lessc "$file" "${file%.less}.css"
-		done
-		mv $LESS_FILES_LOCATION/*.css $CSS_OUTPUT_LOCATION/
-	fi
+	cd $TARGET_DIRECTORY && bash convert.less.sh
 }
 
 ##########################################
