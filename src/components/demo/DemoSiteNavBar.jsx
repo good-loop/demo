@@ -39,16 +39,16 @@ const DemoPageNavBar = () => {
 						</DropdownMenu>
 					</UncontrolledDropdown>
 					<NavItem>
-						<NavLink>Contact Us</NavLink>
+						<NavLink href="https://www.good-loop.com/contact-us">Contact Us</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink>Players</NavLink>
+						<NavLink href="https://demo.good-loop.com/">Players</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink>My Impact</NavLink>
+						<NavLink href="https://my.good-loop.com/">My Impact</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink>Careers</NavLink>
+						<NavLink href="https://www.good-loop.com/careers">Careers</NavLink>
 					</NavItem>
 				</Nav>
 			</Collapse>
