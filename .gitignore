@@ -3,7 +3,7 @@
 **/package-lock.json
 
 # no compiled output
-**/bundle-*.js*
+**/bundle*.js*
 
 webroot/style
 bob.log
