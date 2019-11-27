@@ -8,7 +8,7 @@ echo "PROJECT: $PROJECT"
 #PROJECTPATH=/home/$USER/winterwell/code/$PROJECT
 #PROJECTPATH=/home/$USER/winterwell/$PROJECT
 PROJECTPATH=$DIR
-WEB=$PROJECTPATH/webroot # non-standard!
+WEB=$PROJECTPATH/web-demo # non-standard!
 OUTDIR=$WEB/style
 
 # the TOPLESS files are the top level files referenced in index.html
@@ -30,10 +30,10 @@ done
 # watch?
 if [[ $WATCH == 'watch' ]]; then
 	if [ "$GOTINOTIFYTOOLS" = "" ]; then
-    	echo "In order to watch and continuously convert less files, you will first need to install inotify-tools on this system"
-    	echo ""
-    	echo "run sudo apt-get install inotify-tools in order to install"
-    	exit 0
+		echo "In order to watch and continuously convert less files, you will first need to install inotify-tools on this system"
+		echo ""
+		echo "run sudo apt-get install inotify-tools in order to install"
+		exit 0
 	else
 	while true
 	do

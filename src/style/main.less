@@ -3,6 +3,11 @@
 // TODO Is this correct? We have a LOT of different reds defined now.
 @gl-red: #830000;
 
+h1, h2, h3, h4, h5 {
+	text-transform: uppercase;
+}
+
+
 .navbar-brand {
 	height: 2em;
 }
@@ -32,18 +37,21 @@
 .picker-button {
 	display: inline-block;
 
+
 	// The red animated underline - it always exists at zero width
+	
 	&:after {
-		background: none repeat scroll 0 0 transparent;
-		bottom: 0;
 		content: "";
 		display: block;
-		height: 2px;
-		left: 50%;
 		position: absolute;
+		bottom: 0;
+		height: 2px;
+
 		background: @gl-red;
 		transition: width 0.3s ease 0s, left 0.3s ease 0s;
+
 		width: 0;
+		left: 50%;
 	}
 
 	// Highlight the button for the page we're on
@@ -59,14 +67,17 @@
 	}
 
 	// Animate the underline on hover if clickable
-	&:not(.current, .disabled):hover:after {
-		width: 100%;
-		left: 0;
+	&:not(.current):not(.disabled) {
+		&:hover:after {
+			width: 100%;
+			left: 0;
+		}
 	}
 }
 
 .format-picker, .device-picker {
-	a, svg {
+	a {
+		text-transform: uppercase;
 		display: inline-block;
 		color: black;
 		position: relative;
