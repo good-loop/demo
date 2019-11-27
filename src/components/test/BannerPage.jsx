@@ -2,7 +2,7 @@ import { h, Component, Fragment } from 'preact';
 import { Container, Row, Col } from 'reactstrap';
 
 import TestSiteNavBar from './TestSiteNavBar';
-import GoodLoopAd from './GoodLoopAd';
+import GoodLoopAd from '../GoodLoopAd';
 
 
 const BannerPage = ({size, vertId, 'gl.vert': vertParam, ...params}) => <>

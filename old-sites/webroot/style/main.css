@@ -1,0 +1,327 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+body {
+  margin: 0;
+  width: 100vw;
+  background: transparent;
+  overflow-x: hidden;
+}
+a {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  display: inline-block;
+  position: relative;
+}
+a:hover {
+  text-decoration: none;
+}
+#demo-div {
+  position: relative;
+  margin: 0 auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#demo-div iframe {
+  position: absolute;
+  border: 0;
+}
+.demo-div-bg {
+  background-color: #830000;
+  height: 50%;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+.demo-div-container {
+  width: 100vw;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  margin-bottom: -1px;
+}
+body.desktop #demo-div {
+  width: 900px;
+  max-width: 100%;
+  left: 0.5%;
+  background-image: url("https://demo.good-loop.com/img/laptop-websiteholder-text.png");
+}
+body.desktop #demo-div:before {
+  content: "";
+  display: block;
+  padding-top: 56.7%;
+}
+body.desktop.video #demo-div iframe {
+  height: 64%;
+  left: 19%;
+  padding-top: 4%;
+  top: 10%;
+  width: 57.4%;
+}
+@media (max-width: 767px) {
+  body.desktop.video #demo-div iframe {
+    height: 82%;
+    left: 11.5%;
+    padding-top: 0%;
+    top: 11%;
+    width: 75%;
+  }
+  body.desktop.video .demo-background-div {
+    height: 83%;
+    width: 74%;
+    left: 12%;
+    top: 108%;
+    background-color: black;
+    position: absolute;
+    margin-top: -57%;
+  }
+}
+body.desktop.display #demo-div iframe {
+  left: 11.8%;
+  top: 7%;
+  width: 74%;
+  height: 82.7%;
+}
+body.mobile-portrait #demo-div {
+  width: 280px;
+  height: 580px;
+  max-width: 100%;
+}
+body.mobile-portrait #demo-div .demo-background-div {
+  height: 85%;
+  width: 95%;
+  border-radius: 40px;
+  background-color: #000000;
+  margin-left: 3%;
+  margin-top: -48%;
+  position: absolute;
+}
+body.mobile-portrait #demo-div iframe {
+  height: 86.5%;
+  left: 5%;
+  padding-top: 18%;
+  top: 0;
+  width: 90%;
+}
+body.mobile-portrait #demo-div:before {
+  content: "";
+  display: block;
+  padding-top: 56.7%;
+}
+body.mobile-portrait .frame {
+  background-image: url("https://demo.good-loop.com/img/iphone-frame-16-9-padded-notch-portrait.svg");
+  width: 100%;
+  left: 0;
+  position: absolute;
+  height: 89.5%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  top: 2%;
+}
+body.mobile-landscape #demo-div {
+  width: 580px;
+  max-width: 100%;
+}
+body.mobile-landscape #demo-div iframe {
+  height: 94.5%;
+  left: 7%;
+  padding-top: 4%;
+  top: 0;
+  width: 87%;
+}
+body.mobile-landscape #demo-div:before {
+  content: "";
+  display: block;
+  padding-top: 56.7%;
+}
+body.mobile-landscape .frame {
+  background-image: url("https://demo.good-loop.com/img/iphone-frame-16-9-padded-notch.svg");
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+body.mobile-landscape .demo-background-div {
+  height: 94%;
+  width: 97%;
+  background-color: #000000;
+  top: 2%;
+  left: 2%;
+  border-radius: 40px;
+  position: absolute;
+}
+.navbar {
+  padding-top: 0;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100vw;
+}
+.nav {
+  width: 100vw;
+}
+.gl-navmenu {
+  width: 100vw;
+}
+.w-nav-link {
+  font-size: 1vw;
+}
+@media (max-width: 991px) {
+  .w-nav-link {
+    font-size: 2vw;
+  }
+}
+@media (max-width: 767px) {
+  .w-nav-link {
+    font-size: 3vw;
+  }
+}
+@media (max-width: 479px) {
+  .w-nav-link {
+    font-size: 5vw;
+  }
+}
+.current {
+  color: #830000;
+}
+#search-div {
+  display: none;
+  max-width: 500px;
+}
+form.search-2 {
+  display: flex;
+  align-items: flex-end;
+}
+.row.first,
+.row.second {
+  max-width: 330px;
+  width: 100%;
+  justify-content: space-around;
+}
+.icon-box {
+  display: inline-flex;
+  position: relative;
+  width: 5em;
+  height: 5em;
+  padding: 1em;
+  justify-content: center;
+  align-items: center;
+}
+.highlighted-button {
+  color: #770f00;
+  text-decoration: none;
+}
+.highlighted-button a {
+  font-weight: 700;
+}
+.button-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 150px;
+  min-width: 40px;
+  text-decoration: none;
+}
+.button-box img {
+  max-height: 100%;
+  max-width: 100%;
+}
+.button-box:hover {
+  cursor: pointer;
+}
+.button-box:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #830000;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.button-box:hover:after,
+.button-box.highlighted-button:after {
+  width: 100%;
+  left: 0;
+  color: #770f00;
+}
+.disabled-button {
+  cursor: default;
+  color: #928b81;
+}
+.disabled-button:hover {
+  cursor: default;
+}
+.disabled-button:after {
+  display: none;
+}
+.red-background {
+  position: relative;
+  background-color: #830000;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.fullscreen-button {
+  margin-top: 1em;
+}
+.playerheadingbottom {
+  text-align: center;
+}
+.icons-column {
+  max-width: fit-content;
+  margin: 0 auto;
+  max-width: 1080px;
+}
+.social-links-container {
+  display: flex;
+  justify-content: center;
+}
+.gl-footertext-muted a {
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+  text-decoration: underline;
+  text-transform: inherit;
+}
+i.fas {
+  font-size: 45px;
+}
+.w-inline-block {
+  margin: 0 0.5px;
+  margin-top: 0.5em;
+}
+#desktop {
+  width: 100px;
+}
+.alert {
+  display: none;
+  font-size: 13px;
+  line-height: 18px;
+}
+@media (max-width: 720px) {
+  .icons-column {
+    flex-direction: column;
+    align-items: center;
+  }
+  .icons-column * {
+    max-width: 70%;
+  }
+}
+@media (max-width: 290px) {
+  .icon-box {
+    max-width: 4em;
+    max-height: 4em;
+  }
+  .icon-box a {
+    letter-spacing: 0;
+    font-size: 1em;
+  }
+}

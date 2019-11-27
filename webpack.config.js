@@ -70,14 +70,14 @@ const makeConfig = ({ entryFile, pathname, filename, mode }) => {
 // Output bundle files for production and dev/debug
 
 const configs = [
-	makeConfig({entryFile: './src/index-test.js', pathname: '../web-test/', filename: 'bundle-debug.js', mode: 'development'}),
-	makeConfig({entryFile: './src/index-demo.js', pathname: '../web-demo/', filename: 'bundle-debug.js', mode: 'development'}),
+	makeConfig({entryFile: './src/index-test.js', pathname: './web-test/', filename: 'bundle-debug.js', mode: 'development'}),
+	makeConfig({entryFile: './src/index-demo.js', pathname: './web-demo/', filename: 'bundle-debug.js', mode: 'development'}),
 ];
 
 // Allow debug-only compilation for faster iteration in dev
 if (process.env.NO_PROD !== 'true') {
-	configs.push(makeConfig({entryFile: './src/index-test.js', pathname: '../web-test/', filename: 'bundle.js', mode: 'production'}));
-	configs.push(makeConfig({entryFile: './src/index-demo.js', pathname: '../web-demo/', filename: 'bundle.js', mode: 'production'}))
+	configs.push(makeConfig({entryFile: './src/index-test.js', pathname: './web-test/', filename: 'bundle.js', mode: 'production'}));
+	configs.push(makeConfig({entryFile: './src/index-demo.js', pathname: './web-demo/', filename: 'bundle.js', mode: 'production'}))
 }
 
 module.exports = configs;
