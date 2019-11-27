@@ -25,10 +25,10 @@ COMPILE_UNITS='no'
 UNITS_LOCATION=""
 RESTART_SERVICE_AFTER_SYNC='no'
 SERVICE_NAME=('')
-PLEASE_SYNC=("convert.less.sh" "config" "pages" "package.json" "web-demo" "web-test" "webpack.config.js" "src")
+PLEASE_SYNC=("convert.less.sh" "package.json" "web-demo" "web-test" "webpack.config.js" "src")
 AUTOMATED_TESTING='no'
 PRESERVE=()
-JERBIL_RENDER='yes'
+JERBIL_RENDER='no'
 
 ######################
 ### Section 01: ESOTERIC TO TEAMCITY:: Creating a manifest html page
@@ -348,7 +348,6 @@ function jerbil {
 printf "\nCreating Target List\n"
 create_target_list
 image_optimisation
-convert_less_files
 minify_css
 preserve_items
 printf "\nSyncing $PROJECT to $TARGETS\n"
@@ -356,5 +355,5 @@ sync_whole_project
 restore_preserved
 printf "\nSyncing Configs\n"
 webpack
-jerbil
+convert_less_files
 printf "\nPublishing Process has completed\n"
