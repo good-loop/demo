@@ -7,7 +7,7 @@ import DemoPage from './DemoPage';
 const TestMain = () => <>
 	<Router>
 		<DemoPage path="/" format="video" device="desktop" />
-		<DemoPage path="/:format/:device" />
+		<DemoPage path="/:device/:format" />
 	</Router>
 </>;
 

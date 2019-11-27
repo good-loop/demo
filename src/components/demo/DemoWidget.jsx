@@ -12,7 +12,9 @@ const frameImages = {
 
 /** Advert sizes for different devices */
 const sizes = {
-	social: {}, // TODO Implement and use correct size then
+	social: {
+		portrait: 'social',
+	}, // TODO Implement and use correct size then
 	video: {
 		landscape: 'landscape',
 		desktop: 'landscape',

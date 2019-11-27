@@ -23,7 +23,7 @@ const descriptions = {
 const makeUrl = (format, device, props) => {
 	if (format === 'social') device = 'portrait';
 	// TODO Make sure this is escaping things that should be escaped
-	const propsString = props ? '?' + Object.entries(props).map((k, v) => `${k}=${v}`).join('&') : '';
+	const propsString = props ? '?' + Object.entries(props).map(([k, v]) => `${k}=${v}`).join('&') : '';
 	return `/${format}/${device}${propsString}`;
 };
 
@@ -31,7 +31,7 @@ const makeUrl = (format, device, props) => {
 const FormatButton = ({format, current, ...props}) => {
 	const classes = ['picker-button'];
 	let url = '#'; // default to go-nowhere
-
+	
 	if (format !== current.format) {
 		url = makeUrl(current.device, format, props);
 	} else {
@@ -40,6 +40,7 @@ const FormatButton = ({format, current, ...props}) => {
 
 	return <a href={url} className={classes.join(' ')}>{format}</a>
 };
+
 
 
 const DeviceButton = ({device, current, ...props}) => {
@@ -64,7 +65,8 @@ const DeviceButton = ({device, current, ...props}) => {
 
 const fullScreenUrl = 'https://media.good-loop.com/uploads/raw/generic.html?gl.vert=JvtlN3pk&gl.size=landscape';
 
-const DemoPage = ({device, format, ...props}) => <>
+/** We don't do anything with matches, path, url here, but we want to pull them out and only leave search params */
+const DemoPage = ({device, format, matches, path, url, ...props}) => <>
 	<DemoSiteNavBar />
 	<Container>
 
