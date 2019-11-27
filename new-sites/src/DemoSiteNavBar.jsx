@@ -22,7 +22,7 @@ const DemoPageNavBar = () => {
         <Navbar expand="md" style={{backgroundColor: '#fff'}}> {/* css inStyle */}
             <NavbarBrand className="gl-icon-centred">
                 <div className="shadowcaster"></div>
-                <img className="navbar-gl-icon" src="img/favicon-60x60.png" alt=""/>
+                <img className="navbar-gl-icon" src="/img/favicon-60x60.png" alt=""/>
             </NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar className="gl-bootstrap-navbar" id="navbar">

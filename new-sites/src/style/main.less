@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+// TODO Is this correct? We have a LOT of different reds defined now.
+@gl-red: #830000;
+
 .navbar-brand {
 	height: 2em;
 }
@@ -8,19 +13,110 @@
 
 //// DemoWidget ////
 
+.format-picker {
+    a {
+        color: #000;
+        padding: 1em 2em;
+    }
+}
+
+.device-picker {
+    svg {
+        color: black;
+        max-width: 4em;
+        max-height: 4em;
+        margin: 1em;
+        &#desktop {
+            max-width: 6em;
+        }
+    }
+}
+
+.desktop .desktop-button {
+    svg {
+        color: @gl-red;
+    }
+}
+
+.landscape .landscape-button {
+    svg {
+        color: @gl-red;
+    }
+}
+
+.portrait .portrait-button {
+    svg {
+        color: @gl-red;
+    }
+}
+
+.social .social-button {
+    a {
+        color: @gl-red!important;
+    }
+}
+
+.video .video-button {
+    a {
+        color: @gl-red!important;
+    }
+} 
+
+.format-picker, .device-picker {
+    a:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #830000;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+    a:hover:after {
+        width: 100%;
+        left: 0;
+        color: #770f00;
+    }
+} 
+
 .demo-div-container {
     width: 100%!important;
 }
 
-.half-bg {
-    background-color: #830000;
-    height: 50%;
+.red-bg, .half-bg {
+    position: relative;
+    &:before, &:after {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 50vw;
+        position: absolute;
+        top: 0;
+        z-index: -1;
+    }
 
-    // Stretch red bg bar outside container
-    width: 100vw;
-    margin: -1px calc(~"-50vw + 50%");
-    position: absolute;
-    bottom: 0;
+    &:before {
+        right: 50%;
+    }
+
+    &:after {
+        left: 50%;
+    }
+}
+
+.red-bg {
+&:before, &:after {
+        background-color: @gl-red;
+    }
+}
+
+.half-bg {
+    &:before, &:after {
+        background-image: linear-gradient(to bottom, white 50%, @gl-red 50%);
+    }
 }
 
 .device-white-bg {
@@ -136,7 +232,30 @@
     max-height: 2.5em;
 }
 
+.highlighted-button {
+	color: #770f00;
+	text-decoration: none;
+    svg {
+        fill: #770f00;
+    }
+}
+.highlighted-button a {
+	font-weight: 700;
+}
+
 /// Navbar ///
+
+.nav-link {
+    font-family: 'Open Sans', sans-serif;
+    color: #678;
+    line-height: 1.45;
+    text-decoration: none;
+    font-size: 1vw!important; // Replicates webflow site behaviour. Not beautiful, but consistent with other sections.
+
+    padding: 20px!important;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 .gl-bootstrap-navbar {
 	justify-content: center;
@@ -264,5 +383,15 @@ nav.navbar.bg-light {
 
 #mobileNavbar {
 	right: 10px;
+}
+
+//// How it works section ////
+
+.how-it-works-row {
+    img {
+        width: 8em;
+        height: 10em;
+        object-fit: contain;
+    }
 }
 
