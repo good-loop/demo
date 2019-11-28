@@ -131,58 +131,80 @@ h1, h2, h3, h4, h5 {
 	}
 }
 
-.device-white-bg {
-	border-radius: 50px;
-	background-color: #fff;
-	position: absolute;
-	&.landscape {
-		width: 78%;
-		height: 95%;
-		left: 12%;
-	}
-	&.portrait {
-		width: 32%;
-		left: 34%;
-		height: 100%;
-	}
-}
+.device-container {
+	// Let text-center handle horizontal positioning - we DON'T want this fullwidth.
+	// Size will be determined by the width or height set on frame-img below, and the image's own aspect
+	display: inline-block;
+	position: relative; // allow children to use this as sizing/position reference
 
-#frame {
-	position: relative;
-	margin: 0 auto;
-	top: -7%;
-	z-index: 999;
-	width: 100%;
-	&.landscape {
-		width: 80%;
+	.device-screen-bg {
+		position: absolute;
+		z-index: 0;
+		background-color: #fff;
 	}
-	&.portrait {
-		max-width: 35%;
-	}
-	// @media screen and (max-width: 767px) {
-	//     width: 100%;
-	//     left: 0;
-	// }
-}
 
-.ad-container {
-	position: absolute;
+	.ad-container {
+		position: absolute;
+		z-index: 1;
+	}
+
+	.frame-img {
+		position: relative;
+		pointer-events: none;
+		z-index: 2
+	}
+
+	&.landscape {
+		width: 100%;// Take width of BS container
+		.device-screen-bg {
+			left: 3%;
+			top: 6%;
+			width: 94%;
+			height: 87%;
+		}
+		.ad-container {
+			left: 7%;
+			top: 7%;
+			width: 86%;
+		}
+		.frame-img {
+			width: 100%; // height comes from image aspect
+		}
+	}
+
 	&.desktop {
-		width: 64%;
-		left: 19%;
-		top: 18%;
+		width: 100%;// Take width of BS container
+		.device-screen-bg {
+			display: none;
+		}
+		.ad-container {
+			width: 64%;
+			left: 19%;
+			top: 18%;
+		}
+		.frame-img {
+			width: 100%; // height comes from image aspect
+			z-index: 0; // not transparent (yet)
+		}
 	}
-	&.landscape {
-		width: 70%;
-		left: 15%;
-		top: 6.5%;
-		z-index: 990; // Puts ad behind device frame image
-	}
+
 	&.portrait {
-		width: 30%;
-		left: 35%;
-		top: 7.5%;
-		z-index: 990;
+		height: 80vh;// Fit inside browser window
+		.device-screen-bg {
+			left: 6%;
+			top: 3%;
+			width: 88%;
+			height: 94%;
+			border-radius: 5vh;
+		}
+		.ad-container {
+			left: 7%;
+			top: 7%;
+			width: 86%;
+		}
+		.frame-img {
+			height: 100%; // width comes from image aspect
+		}
 	}
 }
 
@@ -213,6 +235,8 @@ h1, h2, h3, h4, h5 {
 .ad-sizer.square .aspectifier {
 	margin-top: 100%
 }
+
+
 //////////////////
 
 .navbar {

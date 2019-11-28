@@ -35,9 +35,12 @@ const DemoWidget = ({ format, device, ...props }) => {
 	return (
 		<Row className="half-bg">
 			<Col xs="12" className="text-center">
-				<img id="frame" className={device} src={frameImages[device]} alt="device frame"/>
-				<div className={`device-white-bg ${device}`}></div>
-				<div className={`ad-container ${device}`}>{ad}</div>
+				<div className={`device-container ${device}`}>
+					<div className="device-screen-bg" />
+					<div className="ad-container">{ad}</div>
+					<img className="frame-img" src={frameImages[device]} alt="Framing image for device"/>	
+				</div>
+				
 			</Col>
 		</Row>
 	);
