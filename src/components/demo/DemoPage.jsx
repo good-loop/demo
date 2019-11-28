@@ -108,15 +108,15 @@ const HowItWorksSection = () => {
 	return <>
 		<h4 className="playerheadingbottom">How It Works</h4>
 		<Row className="how-it-works-row text-center">
-			<Col xs='4'>
+			<Col sm='4'>
 				<img src="/img/icon-heart.png" alt=""/>
 				<p>People can opt-in to watch an ad in exchange for a free donation.</p>
 			</Col>
-			<Col xs='4'>
+			<Col sm='4'>
 				<img src="/img/icon-eye.png" alt=""/>
 				<p>They give the advertiser 100% of their attention for at least 15 seconds.</p>
 			</Col>
-			<Col xs='4'>
+			<Col sm='4'>
 				<img src="/img/icon-coins.png" alt=""/>
 				<p>Then they get to donate half of the payment to a charity of their choice.</p>
 			</Col>
