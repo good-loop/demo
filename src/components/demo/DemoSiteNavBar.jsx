@@ -19,7 +19,7 @@ const DemoPageNavBar = () => {
 	const toggle = () => setIsOpen(!isOpen);
 
 	return (
-		<Navbar expand="md" style={{backgroundColor: '#fff'}}> {/* css inStyle */}
+		<Navbar expand="md" color="faded" light style={{backgroundColor: '#fff'}}> {/* css inStyle */}
 			<NavbarBrand className="gl-icon-centred">
 				<div className="shadowcaster"></div>
 				<img className="navbar-gl-icon" src="/img/favicon-60x60.png" alt=""/>
