@@ -24,7 +24,7 @@ const sizes = {
 
 
 const DemoWidget = ({ format, device, ...props }) => {
-	const vertId = props['gl.vert'];
+	const vertId = props['gl.vert'] || 'ojRZHHd48s';
 
 	const ad = format === 'social' ? (
 		<div>Social test page: Work in progress</div>
