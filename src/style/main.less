@@ -12,14 +12,13 @@ h1, h2, h3, h4, h5 {
 .navbar {
 	position: fixed;
 	width: 100%;
+	@media (max-width: 767px) {
+		width: auto;
+	}
 }
 
 .navbar-brand {
 	height: 2em;
-}
-
-.navbar-brand img {
-	height: 100%;
 }
 
 .nav-link:hover {
@@ -29,6 +28,9 @@ h1, h2, h3, h4, h5 {
 //// Main Container ////
 .container {
 	padding-top: 10em;
+	@media (max-width: 767px) {
+		padding-top: 4em;
+	}
 }
 
 //// DemoWidget ////
@@ -263,15 +265,13 @@ h1, h2, h3, h4, h5 {
 .navbar {
 	box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
 	z-index: 1200; // Necessary because of the z-index manipulation in the DemoWidget rules
+	@media (max-width: 767px) {
+		box-shadow: none;
+	}
 }
 
 .gl-icon-centred {
 	position: absolute;
-}
-
-
-.navbar-toggler {
-	background-color: #830000;
 }
 
 .nav-item {
@@ -321,6 +321,12 @@ h1, h2, h3, h4, h5 {
 nav.navbar.bg-light {
 	background-color: white !important;
 	box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+
+.navbar-nav {
+	@media (max-width: 767px) {
+		max-width: 70vw;
+	}
 }
 
 .navbar-light .navbar-nav .nav-link {
