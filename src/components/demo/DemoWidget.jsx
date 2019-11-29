@@ -23,8 +23,9 @@ const sizes = {
 }
 
 
-const DemoWidget = ({ format, device, ...props }) => {
-	const vertId = props['gl.vert'] || 'ojRZHHd48s';
+const DemoWidget = ({ format, device, defaultVertId, ...props }) => {
+	// const vertId = props['gl.vert'] || 'ojRZHHd48s';
+	const vertId = props['gl.vert'] || defaultVertId;
 
 	const ad = format === 'social' ? (
 		<img className="social-mockup" src="/img/snapchat.lynx.preview.jpg" />

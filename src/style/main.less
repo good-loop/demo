@@ -9,11 +9,15 @@ h1, h2, h3, h4, h5 {
 	font-family: 'Montserrat', sans-serif;
 }
 
+body {
+	overflow-x: hidden;
+}
+
 .navbar {
 	position: fixed;
 	width: 100%;
-	@media (max-width: 767px) {
-		width: auto;
+	@media (max-width: 767px) { 
+		width: auto; // Reduces navbar to toggle button on the top left corner
 	}
 }
 
@@ -40,6 +44,10 @@ h1, h2, h3, h4, h5 {
 	&:hover {
 		text-decoration: none;
 	}
+
+	.picker-button {
+		font-size: 1.2em;
+	}
 }
 
 .device-picker svg {
@@ -48,7 +56,7 @@ h1, h2, h3, h4, h5 {
 	margin: 1em;
 	width: 100%;
 	&#desktop {
-		max-width: 6em;
+		max-width: 6em; // Desktop (laptop) svg is slightly larger that the others
 	}
 	@media (max-width: 350px) { // Removes margin on super small screens
 		margin: 0;
@@ -57,6 +65,7 @@ h1, h2, h3, h4, h5 {
 
 .picker-button {
 	display: inline-block;
+	font-family: 'Montserrat', sans-serif;
 
 	// The red animated underline - it always exists at zero width
 	
@@ -79,6 +88,10 @@ h1, h2, h3, h4, h5 {
 		color: @gl-red !important;
 		font-weight: bold;
 		text-decoration: underline;
+		// &:after {
+		// 	width: 100%;
+		// 	left: 0;
+		// }
 	}
 
 	// Make it clear this won't do anything useful
@@ -274,8 +287,8 @@ h1, h2, h3, h4, h5 {
 	position: absolute;
 }
 
-.nav-item {
-	@media (max-width: 767px) {
+.nav-item { 
+	@media (max-width: 767px) { // On smaller screens expand dropdown buttons horizontally (pushing to the left), make text larger
 		width: 100%;
 		a {
 			font-size: 1em!important;
@@ -344,10 +357,10 @@ nav.navbar.bg-light {
 
 //// Red BG Section ////
 
-.red-bg {
+.red-bg { 
 	color: #fff;
 	padding: 2em;
-	@media (max-width: 767px) {
+	@media (max-width: 767px) { // Small chages in layout on smaller screen
 		padding: 2em 0;
 		.playermiddleheader {
 			padding: 2em 0;
@@ -393,6 +406,12 @@ nav.navbar.bg-light {
 .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus, .nav-link {
 	// color: #000;
 	text-transform: uppercase;
+}
+
+.dropdown-item {
+	font-family: 'Open Sans', sans-serif;
+	text-transform: uppercase;
+	font-size: 1.2em;
 }
 
 .dropdown-item.active, .dropdown-item:active {
@@ -517,6 +536,9 @@ nav.navbar.bg-light {
 		width: 8em;
 		height: 10em;
 		object-fit: contain;
+		&.coins-img { // Coins image slightly too big comapred to others
+			width: 7em;
+		}
 	}
 }
 

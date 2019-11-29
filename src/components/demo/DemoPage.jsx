@@ -18,10 +18,18 @@ const deviceSvgs = {
 /** Descriptions of the Good-Loop formats */
 const descriptions = {
 	social: 'The Good-Loop social swipe-to-donate player is shown in social media apps: SnapChat, Instagram, Facebook, or Twitter.',
-	video: 'Our core product, the Good-Loop video player is shown in a website article as people scroll through ("in-stream"), or appears as a pre-roll before a video begins.',
+	video: 'Our core product, the Good-Loop video player is shown in a website article as people scroll through, or appears as a pre-roll before a video begins.',
 	// display: '',
 };
 
+const detectEnvironment = () => {
+	const host = window.location.hostname;
+	if (host.includes('test')) return 'test';
+	if (host.includes('local')) return 'local';
+	return null;
+}
+
+const defaultVertId = detectEnvironment() ? 'test_wide_multiple' : 'ojRZHHd48s';
 
 const makeUrl = ({device, format, ...props}) => {
 	if (format === 'social') device = 'portrait';
@@ -120,7 +128,7 @@ const DemoPage = ({device, format, matches, path, url, ...props}) => <>
 		}
 
 
-		<DemoWidget device={device} format={format} {...props} />
+		<DemoWidget device={device} format={format} defaultVertId={defaultVertId} {...props} />
 
 		<RedMiddleSection format={format} {...props} />
 		<HowItWorksSection />
@@ -142,7 +150,7 @@ const HowItWorksSection = () => {
 				<p>They give the advertiser 100% of their attention for at least 15 seconds.</p>
 			</Col>
 			<Col md='3'>
-				<img src="/img/icon-coins.png" alt=""/>
+				<img className="coins-img" src="/img/icon-coins.png" alt=""/>
 				<p>Then they get to donate half of the payment to a charity of their choice.</p>
 			</Col>
 		</Row>
