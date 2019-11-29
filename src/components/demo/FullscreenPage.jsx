@@ -17,6 +17,7 @@ const FullscreenPage = ({format, device}) => {
     const getVertId = () => {
         const url = new URL(window.location);
         const params = new URLSearchParams(url);
+        // Grab vertId from url. If for whatever reason it's not provided let it fail.
         return params.get('gl.vert') || '';
     }
 

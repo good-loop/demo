@@ -42,7 +42,7 @@ const DemoPageNavBar = () => {
 						<NavLink href="https://www.good-loop.com/contact-us">Contact Us</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="https://demo.good-loop.com/">Players</NavLink>
+						<NavLink id="current-nav-link" href="https://demo.good-loop.com/">Players</NavLink>
 					</NavItem>
 					<NavItem>
 						<NavLink href="https://my.good-loop.com/">My Impact</NavLink>

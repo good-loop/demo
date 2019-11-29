@@ -156,11 +156,18 @@ const HowItWorksSection = () => {
 };
 
 const RedMiddleSection = ({format, ...props }) => {
+
+	const fullscreenURL = {
+		local: window.location.pathname + '/fullscreen' + '?gl.vert=' + (props['gl.vert'] || defaultVertId),
+		testOrProd: window.location.host + window.location.pathname + '/fullscreen' + '?gl.vert=' + (props['gl.vert'] || defaultVertId),
+	}
+	const fullscreenHref = detectEnvironment() === 'local' ? fullscreenURL['local'] : fullscreenURL['testOrProd'];
+
 	return (
 		<Row className="red-bg">
 			<Col className="justify-content-md-center text-center red-middle-col">
 				{ format === 'social' ? '' :
-				<a href={window.location.pathname + '/fullscreen' + '?gl.vert=' + (props['gl.vert'] || defaultVertId)} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
+				<a href={fullscreenHref} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
 				}
 				<h4 className="playermiddleheader">if you&#x27;re running an ad online then why not work with us?</h4>
 				<p>
