@@ -8,7 +8,6 @@
 
 .ad-sizer {
 	position: relative;
-	overflow: hidden; /* prevent margin collapse with aspectifier */
 }
 
 .ad-sizer .goodloopad, .ad-sizer iframe {
@@ -32,4 +31,9 @@
 
 .ad-sizer.square .aspectifier {
 	margin-top: 100%
+}
+
+/* variable-size, fixed-aspect containers: prevent margin collapse with aspectifier */
+.ad-sizer.portrait, .ad-sizer.landscape, .ad-sizer.square {
+	overflow: hidden;
 }
