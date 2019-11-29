@@ -26,7 +26,7 @@ const DemoPageNavBar = () => {
 			</NavbarBrand>
 			<NavbarToggler onClick={toggle} />
 			<Collapse isOpen={isOpen} navbar className="gl-bootstrap-navbar" id="navbar">
-				<Nav navbar style={{marginTop: '0', alignItems: 'center'}}> {/* css inStyle */}
+				<Nav navbar className="navbar-dark" style={{marginTop: '0', alignItems: 'center'}}> {/* css inStyle */}
 					<NavItem>
 						<NavLink href="/">Home</NavLink>
 					</NavItem>
