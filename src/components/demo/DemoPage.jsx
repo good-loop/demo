@@ -8,7 +8,6 @@ import DemoSiteNavBar from "./DemoSiteNavBar";
 import DemoWidget from "./DemoWidget";
 import { portraitSvg, desktopSvg, landscapeSvg } from './DemoSvg';
 
-const DEFAULT_ADVERTID = 'JvtlN3pk';
 
 const deviceSvgs = {
 	landscape: landscapeSvg,
@@ -37,9 +36,6 @@ const makeUrl = ({device, format, ...props}) => {
 const url = new URL(window.location);
 const query = new URLSearchParams(url.search);
 const formatParam = query.get('format');
-
-let urlAdId = query.get('gl.vert');
-
 
 const detectAdBlock = () => {
 	const script = document.createElement('script');
@@ -87,7 +83,7 @@ const DeviceButton = ({device, current, ...props}) => {
 };
 
 
-const fullScreenUrl = `https://media.good-loop.com/uploads/raw/generic.html?gl.vert=${urlAdId ? urlAdId : DEFAULT_ADVERTID}&gl.size=landscape`;
+const fullScreenUrl = 'https://media.good-loop.com/uploads/raw/generic.html?gl.size=landscape';
 
 /** We don't do anything with {matches, path, url} here, but we want to pull them out and only leave search params */
 const DemoPage = ({device, format, matches, path, url, ...props}) => <>
@@ -124,9 +120,9 @@ const DemoPage = ({device, format, matches, path, url, ...props}) => <>
 		}
 
 
-		<DemoWidget device={device} format={format} customVertId={urlAdId? urlAdId : DEFAULT_ADVERTID} {...props} />
+		<DemoWidget device={device} format={format} {...props} />
 
-		<RedMiddleSection />
+		<RedMiddleSection format={format} {...props} />
 		<HowItWorksSection />
 		<FooterSection />
 	</Container>
@@ -153,11 +149,13 @@ const HowItWorksSection = () => {
 	</>
 };
 
-const RedMiddleSection = () => {
+const RedMiddleSection = ({format, ...props }) => {
 	return (
 		<Row className="red-bg">
 			<Col className="justify-content-md-center text-center red-middle-col">
-				<a href={fullScreenUrl} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
+				{ format === 'social' ? '' :
+				<a href={fullScreenUrl + '&gl.vert=' + (props['gl.vert'] || 'ojRZHHd48s')} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
+				}
 				<h4 className="playermiddleheader">if you&#x27;re running an ad online then why not work with us?</h4>
 				<p>
 					Our ethical ad formats are proven to drive higher engagement and
