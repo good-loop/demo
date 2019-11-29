@@ -8,6 +8,8 @@ import DemoSiteNavBar from "./DemoSiteNavBar";
 import DemoWidget from "./DemoWidget";
 import { portraitSvg, desktopSvg, landscapeSvg } from './DemoSvg';
 
+const DEFAULT_ADVERTID = 'JvtlN3pk';
+
 const deviceSvgs = {
 	landscape: landscapeSvg,
 	desktop: desktopSvg,
@@ -34,7 +36,9 @@ const makeUrl = ({device, format, ...props}) => {
 // This will determine if we display the format buttons.
 const url = new URL(window.location);
 const query = new URLSearchParams(url.search);
-const formatParam = query.getAll('format')[0];
+const formatParam = query.get('format');
+
+let urlAdId = query.get('gl.vert');
 
 
 const detectAdBlock = () => {
@@ -83,7 +87,7 @@ const DeviceButton = ({device, current, ...props}) => {
 };
 
 
-const fullScreenUrl = 'https://media.good-loop.com/uploads/raw/generic.html?gl.vert=JvtlN3pk&gl.size=landscape';
+const fullScreenUrl = `https://media.good-loop.com/uploads/raw/generic.html?gl.vert=${urlAdId ? urlAdId : DEFAULT_ADVERTID}&gl.size=landscape`;
 
 /** We don't do anything with {matches, path, url} here, but we want to pull them out and only leave search params */
 const DemoPage = ({device, format, matches, path, url, ...props}) => <>
@@ -120,7 +124,7 @@ const DemoPage = ({device, format, matches, path, url, ...props}) => <>
 		}
 
 
-		<DemoWidget device={device} format={format} {...props} />
+		<DemoWidget device={device} format={format} customVertId={urlAdId? urlAdId : DEFAULT_ADVERTID} {...props} />
 
 		<RedMiddleSection />
 		<HowItWorksSection />
@@ -133,15 +137,15 @@ const HowItWorksSection = () => {
 	return <>
 		<h4 className="playerheadingbottom text-center p-5">How It Works</h4>
 		<Row className="how-it-works-row text-center pb-5 justify-content-center">
-			<Col sm='3'>
+			<Col md='3'>
 				<img src="/img/icon-heart.png" alt=""/>
 				<p>People can opt-in to watch an ad in exchange for a free donation.</p>
 			</Col>
-			<Col sm='3'>
+			<Col md='3'>
 				<img src="/img/icon-eye.png" alt=""/>
 				<p>They give the advertiser 100% of their attention for at least 15 seconds.</p>
 			</Col>
-			<Col sm='3'>
+			<Col md='3'>
 				<img src="/img/icon-coins.png" alt=""/>
 				<p>Then they get to donate half of the payment to a charity of their choice.</p>
 			</Col>
