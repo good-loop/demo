@@ -1,0 +1,31 @@
+.ad-sizer {
+	position: relative;
+
+	.goodloopad, iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.vpaid-container {
+		width: 100%;
+		height: 100%;
+	}
+
+	&.landscape .aspectifier {
+		margin-top: 56.25%
+	}
+
+	&.portrait .aspectifier {
+		margin-top: 177.77%
+	}
+
+	&.square .aspectifier {
+		margin-top: 100%
+	}
+
+	// Variable-size, fixed-aspect containers: prevent margin collapse between ad-sizer and aspectifier
+	&.portrait, &.landscape, &.square {
+		overflow: hidden;
+	}
+}

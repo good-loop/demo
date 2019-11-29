@@ -1,0 +1,517 @@
+@import 'ad-sizer.less';
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+// TODO Is this correct? We have a LOT of different reds defined now.
+@gl-red: #830000;
+
+h1, h2, h3, h4, h5 {
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body {
+	overflow-x: hidden;
+}
+
+.navbar {
+	position: fixed;
+	width: 100%;
+	@media (max-width: 767px) { 
+		width: auto; // Reduces navbar to toggle button on the top left corner
+	}
+}
+
+.navbar-brand {
+	height: 2em;
+}
+
+.nav-link:hover {
+	color: #32343a
+}
+
+//// Main Container ////
+.container {
+	padding-top: 10em;
+	@media (max-width: 767px) {
+		padding-top: 4em;
+	}
+}
+
+//// DemoWidget ////
+
+.format-picker .picker-button {
+	padding: 1em 2em;
+	&:hover {
+		text-decoration: none;
+	}
+
+	.picker-button {
+		font-size: 1.2em;
+	}
+}
+
+.device-picker svg {
+	max-width: 60px;
+	max-height: 3.5em;
+	margin: 1em;
+	width: 100%;
+	&#desktop {
+		max-width: 6em; // Desktop (laptop) svg is slightly larger that the others
+	}
+	@media (max-width: 350px) { // Removes margin on super small screens
+		margin: 0;
+	}
+}
+
+.picker-button {
+	display: inline-block;
+	font-family: 'Montserrat', sans-serif;
+
+	// The red animated underline - it always exists at zero width
+	
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		bottom: 0;
+		height: 2px;
+
+		background: @gl-red;
+		transition: width 0.3s ease 0s, left 0.3s ease 0s;
+
+		width: 0;
+		left: 50%;
+	}
+
+	// Highlight the button for the page we're on
+	&.current {
+		color: @gl-red !important;
+		font-weight: bold;
+		text-decoration: underline;
+		// &:after {
+		// 	width: 100%;
+		// 	left: 0;
+		// }
+	}
+
+	// Make it clear this won't do anything useful
+	&.disabled {
+		color: gray;
+		pointer-events: none;
+	}
+
+	// Animate in the underline on hover, if button is clickable
+	&:not(.current):not(.disabled) {
+		&:hover:after {
+			width: 100%;
+			left: 0;
+		}
+	}
+}
+
+.format-picker, .device-picker {
+	a {
+		text-transform: uppercase;
+		display: inline-block;
+		color: black;
+		position: relative;
+	}
+}
+
+.alert {
+	max-width: 600px;
+	margin: 0 auto;
+	margin-bottom: 1em;
+}
+
+.demo-div-container {
+	width: 100%!important;
+}
+
+.red-bg, .half-bg {
+	position: relative;
+	&:before, &:after {
+		content: '';
+		display: block;
+		height: 100%;
+		width: 50vw;
+		position: absolute;
+		top: 0;
+		z-index: -1;
+	}
+
+	&:before {
+		right: 50%;
+	}
+
+	&:after {
+		left: 50%;
+	}
+}
+
+.red-bg {
+	&:before, &:after {
+		background-color: @gl-red;
+	}
+}
+
+.half-bg {
+	&:before, &:after {
+		background-image: linear-gradient(to bottom, white 50%, @gl-red 50%);
+	}
+}
+
+.device-container {
+	// Let text-center handle horizontal positioning - we DON'T want this fullwidth.
+	// Size will be determined by the width or height set on frame-img below, and the image's own aspect
+	display: inline-block;
+	position: relative; // allow children to use this as sizing/position reference
+
+	.device-screen-bg {
+		position: absolute;
+		z-index: 0;
+		background-color: #fff;
+	}
+
+	.ad-container {
+		position: absolute;
+		z-index: 1;
+	}
+
+	// Image for the social format. This will be removed once we add the porper social demo
+	.social-mockup {
+		width: 101%;
+		margin-left: -1%;
+	}
+
+	.frame-img {
+		position: relative;
+		pointer-events: none;
+		z-index: 2
+	}
+
+	&.landscape {
+		width: 100%;// Take width of BS container
+		.device-screen-bg {
+			left: 3%;
+			top: 6%;
+			width: 94%;
+			height: 87%;
+		}
+		.ad-container {
+			left: 7%;
+			top: 7%;
+			width: 86%;
+		}
+		.frame-img {
+			width: 100%; // height comes from image aspect
+		}
+	}
+
+	&.desktop {
+		width: 100%;// Take width of BS container
+		.device-screen-bg {
+			display: none;
+		}
+		.ad-container {
+			width: 64%;
+			left: 19%;
+			top: 18%;
+		}
+		.frame-img {
+			width: 100%; // height comes from image aspect
+			z-index: 0; // not transparent (yet)
+		}
+	}
+
+	&.portrait {
+		height: 80vh;// Fit inside browser window
+		.device-screen-bg {
+			left: 6%;
+			top: 3%;
+			width: 88%;
+			height: 94%;
+			border-radius: 5vh;
+		}
+		.ad-container {
+			left: 7%;
+			top: 7%;
+			width: 86%;
+		}
+		.frame-img {
+			height: 100%; // width comes from image aspect
+		}
+	}
+}
+
+//////////////////
+
+.navbar {
+	box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+	z-index: 1200; // Necessary because of the z-index manipulation in the DemoWidget rules
+	@media (max-width: 767px) {
+		box-shadow: none;
+	}
+}
+
+.gl-icon-centred {
+	position: absolute;
+}
+
+.nav-item { 
+	@media (max-width: 767px) { // On smaller screens expand dropdown buttons horizontally (pushing to the left), make text larger
+		width: 100%;
+		a {
+			font-size: 1em!important;
+		}
+	}
+}
+
+/// DemoWidget Buttons ///
+.option-button svg {
+	width: 100%;
+	max-height: 2.5em;
+}
+
+.highlighted-button {
+	color: #770f00;
+	text-decoration: none;
+	svg {
+		fill: #770f00;
+	}
+}
+.highlighted-button a {
+	font-weight: 700;
+}
+
+/// Navbar ///
+
+.nav-link {
+	font-family: 'Open Sans', sans-serif;
+	color: #678;
+	line-height: 1.45;
+	text-decoration: none;
+	font-size: 1vw!important; // Replicates webflow site behaviour. Not beautiful, but consistent with other sections.
+
+	padding: 20px!important;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.gl-bootstrap-navbar {
+	justify-content: center;
+}
+
+nav.navbar.bg-light {
+	background-color: white !important;
+	box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+
+.navbar-nav {
+	@media (max-width: 767px) {
+		max-width: 70vw;
+	}
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: #678;
+	line-height: 1.45;
+	outline-width: 1px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	text-decoration-line: none;
+	text-size-adjust: 100%;
+	font-size: 2vw;
+}
+
+//// Red BG Section ////
+
+.red-bg { 
+	color: #fff;
+	padding: 2em;
+	@media (max-width: 767px) { // Small chages in layout on smaller screen
+		padding: 2em 0;
+		.playermiddleheader {
+			padding: 2em 0;
+		}
+	}
+}
+
+.red-middle-col {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.fullscreen-button, .get-in-touch-button {
+	border: 1px solid white;
+	padding: 1em 2em;
+	border-radius: 50px;
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	margin: 2em 0;
+	text-transform: uppercase;
+	&:hover {
+		text-decoration: none;
+		color: #fff;
+		background-color: #a30000;
+	}
+}
+
+.playermiddleheader {
+	padding: 2em;
+}
+
+@media (min-width: 960px) {
+	.navbar-light .navbar-nav .nav-link {
+		font-size: 19.2px;
+	}
+}
+
+.navbar-collapse {
+	width: max-content;
+}
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus, .nav-link {
+	// color: #000;
+	text-transform: uppercase;
+}
+
+.dropdown-item {
+	font-family: 'Open Sans', sans-serif;
+	text-transform: uppercase;
+	font-size: 1.2em;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+	background-color: #790000;
+}
+
+.navbar-brand.gl-icon-centred {
+	position: relative;
+	left: 50%;
+	bottom: 0;
+	top:25px;
+	margin: 0 0 -25px -25px;
+	padding: 0;
+	z-index: 1;
+	@media (max-width: 767px) {
+		display: none;
+	}
+}
+
+.navbar-gl-icon {
+	width: 50px;
+	height: 50px;
+	padding: 5px;
+	background-color: white;
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.shadowcaster {
+	border-bottom-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+	box-shadow: 0 1px 3px 1px rgba(0,0,0,0.4);
+	width: 50px;
+	height: 25px;
+	margin-top: 25px;
+}
+
+.fixed-navbar {
+	position: fixed;
+	width: 100%;
+	margin-bottom: 15vh;
+	top: 0;
+	z-index: 999;
+}
+
+#mobileNavbar {
+	position: absolute;
+}
+
+.gl-mobile-nav-btn {
+	background-color: inherit;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	line-height: 1.45;
+}
+
+.mobile-only-nav {
+	position: fixed;
+	right: 10px;
+	top: 10px;
+	z-index: 2;
+}
+
+.mobile-only-gl-logo-div {
+	text-align: center;
+	position: relative;
+	top: 1em;
+}
+
+.mobile-gl-logo {
+	position: relative;
+	z-index: 2;
+	top: 4em;
+	width: 120px;
+	height: 120px;
+}
+
+.mr-auto {
+	background-color: white;
+	box-shadow: 0.05em 0.05em 0.1em rgba(1,1,1,0.5);
+}
+
+.navbar-nav .nav-link {
+	font-size: 2em;
+}
+
+#mobileNavbar {
+	right: 10px;
+}
+
+//// Footer ////
+
+.footer {
+	.col {
+		color: #50555c;
+		@media (max-width: 767px) {
+			font-size: .8em;
+		}
+	}
+	a {
+		color: black!important;
+		text-decoration: underline!important;
+	}
+}
+
+.fa-svg {
+	margin: 0 .2em;
+	svg {
+		width: 30px!important;
+		height: 30px;
+	}
+}
+
+//// How it works section ////
+
+.how-it-works-row {
+	img {
+		width: 8em;
+		height: 10em;
+		object-fit: contain;
+		&.coins-img { // Coins image slightly too big comapred to others
+			width: 7em;
+		}
+	}
+}
+
