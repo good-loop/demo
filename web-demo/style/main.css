@@ -5,58 +5,90 @@
   font-display: swap;
   src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
 }
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459Wlhzg.ttf) format('truetype');
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+}
+.navbar {
+  position: fixed;
+  width: 100%;
+}
 .navbar-brand {
   height: 2em;
 }
 .navbar-brand img {
   height: 100%;
 }
-.format-picker a {
-  color: #000;
+.nav-link:hover {
+  color: #32343a;
+}
+.container {
+  padding-top: 10em;
+}
+.format-picker .picker-button {
   padding: 1em 2em;
 }
+.format-picker .picker-button:hover {
+  text-decoration: none;
+}
 .device-picker svg {
-  color: black;
-  max-width: 4em;
-  max-height: 4em;
+  max-width: 60px;
+  max-height: 3.5em;
   margin: 1em;
+  width: 100%;
 }
 .device-picker svg#desktop {
   max-width: 6em;
 }
-.desktop .desktop-button svg {
-  color: #830000;
+.picker-button {
+  display: inline-block;
 }
-.landscape .landscape-button svg {
-  color: #830000;
-}
-.portrait .portrait-button svg {
-  color: #830000;
-}
-.social .social-button a {
-  color: #830000 !important;
-}
-.video .video-button a {
-  color: #830000 !important;
-}
-.format-picker a:after,
-.device-picker a:after {
-  background: none repeat scroll 0 0 transparent;
-  bottom: 0;
+.picker-button:after {
   content: "";
   display: block;
-  height: 2px;
-  left: 50%;
   position: absolute;
+  bottom: 0;
+  height: 2px;
   background: #830000;
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
+  left: 50%;
 }
-.format-picker a:hover:after,
-.device-picker a:hover:after {
+.picker-button.current {
+  color: #830000 !important;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.picker-button.disabled {
+  color: gray;
+  pointer-events: none;
+}
+.picker-button:not(.current):not(.disabled):hover:after {
   width: 100%;
   left: 0;
-  color: #770f00;
+}
+.format-picker a,
+.device-picker a {
+  text-transform: uppercase;
+  display: inline-block;
+  color: black;
+  position: relative;
+}
+.alert {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 1em;
 }
 .demo-div-container {
   width: 100%!important;
@@ -93,53 +125,73 @@
 .half-bg:after {
   background-image: linear-gradient(to bottom, white 50%, #830000 50%);
 }
-.device-white-bg {
-  border-radius: 50px;
-  background-color: #fff;
-  position: absolute;
-}
-.device-white-bg.landscape {
-  width: 78%;
-  height: 95%;
-  left: 12%;
-}
-.device-white-bg.portrait {
-  width: 32%;
-  left: 34%;
-  height: 100%;
-}
-#frame {
+.device-container {
+  display: inline-block;
   position: relative;
-  margin: 0 auto;
-  top: -7%;
-  z-index: 999;
+}
+.device-container .device-screen-bg {
+  position: absolute;
+  z-index: 0;
+  background-color: #fff;
+}
+.device-container .ad-container {
+  position: absolute;
+  z-index: 1;
+}
+.device-container .frame-img {
+  position: relative;
+  pointer-events: none;
+  z-index: 2;
+}
+.device-container.landscape {
   width: 100%;
 }
-#frame.landscape {
-  width: 80%;
+.device-container.landscape .device-screen-bg {
+  left: 3%;
+  top: 6%;
+  width: 94%;
+  height: 87%;
 }
-#frame.portrait {
-  max-width: 35%;
+.device-container.landscape .ad-container {
+  left: 7%;
+  top: 7%;
+  width: 86%;
 }
-.ad-container {
-  position: absolute;
+.device-container.landscape .frame-img {
+  width: 100%;
 }
-.ad-container.desktop {
+.device-container.desktop {
+  width: 100%;
+}
+.device-container.desktop .device-screen-bg {
+  display: none;
+}
+.device-container.desktop .ad-container {
   width: 64%;
   left: 19%;
   top: 18%;
 }
-.ad-container.landscape {
-  width: 70%;
-  left: 15%;
-  top: 6.5%;
-  z-index: 990;
+.device-container.desktop .frame-img {
+  width: 100%;
+  z-index: 0;
 }
-.ad-container.portrait {
-  width: 30%;
-  left: 35%;
-  top: 7.5%;
-  z-index: 990;
+.device-container.portrait {
+  height: 80vh;
+}
+.device-container.portrait .device-screen-bg {
+  left: 6%;
+  top: 3%;
+  width: 88%;
+  height: 94%;
+  border-radius: 5vh;
+}
+.device-container.portrait .ad-container {
+  left: 7%;
+  top: 7%;
+  width: 86%;
+}
+.device-container.portrait .frame-img {
+  height: 100%;
 }
 .ad-sizer {
   position: relative;
@@ -177,11 +229,21 @@
   width: 100%;
   height: 4em;
 }
-.disabled-button {
-  pointer-events: none;
+@media (max-width: 767px) {
+  #navbar {
+    width: 70vw;
+  }
 }
-.disabled-button.button-box:hover:after {
-  width: 0;
+.navbar-toggler {
+  background-color: #830000;
+}
+@media (max-width: 767px) {
+  .nav-item {
+    width: 100%;
+  }
+  .nav-item a {
+    font-size: 1em!important;
+  }
 }
 .option-button svg {
   width: 100%;
@@ -226,6 +288,27 @@ nav.navbar.bg-light {
   text-size-adjust: 100%;
   font-size: 2vw;
 }
+.red-bg {
+  color: #fff;
+  padding: 2em;
+}
+.red-middle-col {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.fullscreen-button,
+.get-in-touch-button {
+  border: 1px solid white;
+  padding: 1em 2em;
+  border-radius: 50px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  margin: 2em 0;
+  text-transform: uppercase;
+}
+.playermiddleheader {
+  padding: 2em;
+}
 @media (min-width: 960px) {
   .navbar-light .navbar-nav .nav-link {
     font-size: 19.2px;
@@ -237,7 +320,6 @@ nav.navbar.bg-light {
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link:focus,
 .nav-link {
-  color: #000;
   text-transform: uppercase;
 }
 .dropdown-item.active,
@@ -245,14 +327,19 @@ nav.navbar.bg-light {
   background-color: #790000;
 }
 .navbar-brand.gl-icon-centred {
-  position: absolute;
+  position: relative;
   left: 50%;
   bottom: 0;
+  top: 25px;
   margin: 0 0 -25px -25px;
   padding: 0;
   z-index: 1;
-  width: 100%;
   height: 60%;
+}
+@media (max-width: 767px) {
+  .navbar-brand.gl-icon-centred {
+    display: none;
+  }
 }
 .navbar-gl-icon {
   width: 50px;
@@ -317,6 +404,20 @@ nav.navbar.bg-light {
 }
 #mobileNavbar {
   right: 10px;
+}
+.footer .col {
+  color: #50555c;
+}
+.footer a {
+  color: black!important;
+  text-decoration: underline!important;
+}
+.fa-svg {
+  margin: 0 0.2em;
+}
+.fa-svg svg {
+  width: 30px!important;
+  height: 30px;
 }
 .how-it-works-row img {
   width: 8em;

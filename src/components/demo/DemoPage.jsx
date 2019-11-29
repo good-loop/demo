@@ -8,6 +8,7 @@ import DemoSiteNavBar from "./DemoSiteNavBar";
 import DemoWidget from "./DemoWidget";
 import { portraitSvg, desktopSvg, landscapeSvg } from './DemoSvg';
 
+
 const deviceSvgs = {
 	landscape: landscapeSvg,
 	desktop: desktopSvg,
@@ -17,10 +18,18 @@ const deviceSvgs = {
 /** Descriptions of the Good-Loop formats */
 const descriptions = {
 	social: 'The Good-Loop social swipe-to-donate player is shown in social media apps: SnapChat, Instagram, Facebook, or Twitter.',
-	video: 'Our core product, the Good-Loop video player is shown in a website article as people scroll through ("in-stream"), or appears as a pre-roll before a video begins.',
+	video: 'Our core product, the Good-Loop video player is shown in a website article as people scroll through, or appears as a pre-roll before a video begins.',
 	// display: '',
 };
 
+const detectEnvironment = () => {
+	const host = window.location.hostname;
+	if (host.includes('test')) return 'test';
+	if (host.includes('local')) return 'local';
+	return null;
+}
+
+const defaultVertId = detectEnvironment() ? 'test_wide_multiple' : 'ojRZHHd48s';
 
 const makeUrl = ({device, format, ...props}) => {
 	if (format === 'social') device = 'portrait';
@@ -34,8 +43,7 @@ const makeUrl = ({device, format, ...props}) => {
 // This will determine if we display the format buttons.
 const url = new URL(window.location);
 const query = new URLSearchParams(url.search);
-const formatParam = query.getAll('format')[0];
-
+const formatParam = query.get('format');
 
 const detectAdBlock = () => {
 	const script = document.createElement('script');
@@ -83,7 +91,7 @@ const DeviceButton = ({device, current, ...props}) => {
 };
 
 
-const fullScreenUrl = 'https://media.good-loop.com/uploads/raw/generic.html?gl.vert=JvtlN3pk&gl.size=landscape';
+const fullScreenUrl = 'https://media.good-loop.com/uploads/raw/generic.html?gl.size=landscape';
 
 /** We don't do anything with {matches, path, url} here, but we want to pull them out and only leave search params */
 const DemoPage = ({device, format, matches, path, url, ...props}) => <>
@@ -120,9 +128,9 @@ const DemoPage = ({device, format, matches, path, url, ...props}) => <>
 		}
 
 
-		<DemoWidget device={device} format={format} {...props} />
+		<DemoWidget device={device} format={format} defaultVertId={defaultVertId} {...props} />
 
-		<RedMiddleSection />
+		<RedMiddleSection format={format} {...props} />
 		<HowItWorksSection />
 		<FooterSection />
 	</Container>
@@ -133,27 +141,29 @@ const HowItWorksSection = () => {
 	return <>
 		<h4 className="playerheadingbottom text-center p-5">How It Works</h4>
 		<Row className="how-it-works-row text-center pb-5 justify-content-center">
-			<Col sm='3'>
+			<Col md='3'>
 				<img src="/img/icon-heart.png" alt=""/>
 				<p>People can opt-in to watch an ad in exchange for a free donation.</p>
 			</Col>
-			<Col sm='3'>
+			<Col md='3'>
 				<img src="/img/icon-eye.png" alt=""/>
 				<p>They give the advertiser 100% of their attention for at least 15 seconds.</p>
 			</Col>
-			<Col sm='3'>
-				<img src="/img/icon-coins.png" alt=""/>
+			<Col md='3'>
+				<img className="coins-img" src="/img/icon-coins.png" alt=""/>
 				<p>Then they get to donate half of the payment to a charity of their choice.</p>
 			</Col>
 		</Row>
 	</>
 };
 
-const RedMiddleSection = () => {
+const RedMiddleSection = ({format, ...props }) => {
 	return (
 		<Row className="red-bg">
 			<Col className="justify-content-md-center text-center red-middle-col">
-				<a href={fullScreenUrl} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
+				{ format === 'social' ? '' :
+				<a href={fullScreenUrl + '&gl.vert=' + (props['gl.vert'] || 'ojRZHHd48s')} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
+				}
 				<h4 className="playermiddleheader">if you&#x27;re running an ad online then why not work with us?</h4>
 				<p>
 					Our ethical ad formats are proven to drive higher engagement and
