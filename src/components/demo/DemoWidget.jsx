@@ -23,14 +23,14 @@ const sizes = {
 }
 
 
-const DemoWidget = ({ format, device, defaultVertId, ...props }) => {
+const DemoWidget = ({ format, device, defaultVertId, production, ...props }) => {
 	// const vertId = props['gl.vert'] || 'ojRZHHd48s';
 	const vertId = props['gl.vert'] || defaultVertId;
 
 	const ad = format === 'social' ? (
 		<img className="social-mockup" src="/img/snapchat.lynx.preview.jpg" />
 	) : (
-		<GoodLoopAd vertId={vertId} size={sizes[format][device]} nonce={`${format}${device}${vertId}`} />
+		<GoodLoopAd vertId={vertId} size={sizes[format][device]} nonce={`${format}${device}${vertId}`} production={production} />
 	);
 
 	return (
