@@ -25,7 +25,7 @@ const FullscreenPage = ({format, device}) => {
 
     return (
         <div id="fullscreen">
-            <GoodLoopAd vertId={vertId} size={sizes[format][device]} nonce={`${format}${device}${vertId}`} />
+            <GoodLoopAd vertId={vertId} size={sizes[format || 'video'][device || 'desktop']} nonce={`${format}${device}${vertId}`} />
         </div>
     )
 }

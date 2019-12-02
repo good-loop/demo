@@ -45,17 +45,6 @@ const url = new URL(window.location);
 const query = new URLSearchParams(url.search);
 const formatParam = query.get('format');
 
-const detectAdBlock = () => {
-	const script = document.createElement('script');
-	// Adblockers are expected to always block js files with "ads" in the name
-	script.setAttribute('src', 'https://as.good-loop.com/ads.js');
-	document.head.appendChild(script);
-	setTimeout(() => {
-		return document.getElementById('aiPai9th') ? true : false;
-	}, 1000);
-}
-
-
 const FormatButton = ({format, current, ...props}) => {
 	const classes = ['picker-button'];
 	let url = '#'; // default to go-nowhere
@@ -118,13 +107,13 @@ const DemoPage = ({device, format, matches, path, url, ...props}) => <>
 			<Col xs="12" md="6" className="text-center">{descriptions[format]}</Col>
 		</Row>
 
+		{/* Dodgy script inserting a ghost div included at the beggining of index.html. Used to fish out adblockers and warn the user accordingly*/}
 		{
-			detectAdBlock() ?
+			document.getElementById('aiPai9th') ? '' :
 			<UncontrolledAlert color="warning" role="alert">
 				Adblocker detected. Some of our adverts might not play properly!
-			</UncontrolledAlert> : ''
+			</UncontrolledAlert>
 		}
-
 
 		<DemoWidget device={device} format={format} defaultVertId={defaultVertId} {...props} />
 
@@ -157,17 +146,11 @@ const HowItWorksSection = () => {
 
 const RedMiddleSection = ({format, ...props }) => {
 
-	const fullscreenURL = {
-		local: window.location.pathname + '/fullscreen' + '?gl.vert=' + (props['gl.vert'] || defaultVertId),
-		testOrProd: window.location.host + window.location.pathname + '/fullscreen' + '?gl.vert=' + (props['gl.vert'] || defaultVertId),
-	}
-	const fullscreenHref = detectEnvironment() === 'local' ? fullscreenURL['local'] : fullscreenURL['testOrProd'];
-
 	return (
 		<Row className="red-bg">
 			<Col className="justify-content-md-center text-center red-middle-col">
 				{ format === 'social' ? '' :
-				<a href={fullscreenHref} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
+				<a href={window.location.pathname + '/fullscreen' + '?gl.vert=' + (props['gl.vert'] || defaultVertId)} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
 				}
 				<h4 className="playermiddleheader">if you&#x27;re running an ad online then why not work with us?</h4>
 				<p>
