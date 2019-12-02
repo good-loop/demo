@@ -21,11 +21,13 @@ const FullscreenPage = ({format, device}) => {
         return params.get('gl.vert') || '';
     }
 
+    const isProduction = window.location.hostname.match(/^test/) || window.location.hostname.match(/^local/) ? false : true; 
+
     const vertId = getVertId();
 
     return (
         <div id="fullscreen">
-            <GoodLoopAd vertId={vertId} size={sizes[format || 'video'][device || 'desktop']} nonce={`${format}${device}${vertId}`} />
+            <GoodLoopAd vertId={vertId} production={isProduction} size={sizes[format || 'video'][device || 'desktop']} nonce={`${format}${device}${vertId}`} />
         </div>
     )
 }
