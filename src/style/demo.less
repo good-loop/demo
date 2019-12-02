@@ -1,0 +1,232 @@
+@import 'ad-sizer.less';
+
+@import 'demo/navbar.less';
+@import 'demo/device-frame.less';
+@import 'demo/footer.less';
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+// TODO Is this correct? We have a LOT of different reds defined now.
+@gl-red: #830000;
+
+h1, h2, h3, h4, h5 {
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+}
+
+body {
+	overflow-x: hidden;
+}
+
+
+//// Main Container ////
+.container {
+	padding-top: 10em;
+	@media (max-width: 767px) {
+		padding-top: 4em;
+	}
+}
+
+//// DemoWidget ////
+
+.format-picker .picker-button {
+	padding: 1em 2em;
+	&:hover {
+		text-decoration: none;
+	}
+
+	.picker-button {
+		font-size: 1.2em;
+	}
+}
+
+.device-picker svg {
+	max-width: 60px;
+	max-height: 3.5em;
+	margin: 1em;
+	width: 100%;
+	&#desktop {
+		max-width: 6em; // Desktop (laptop) svg is slightly larger that the others
+	}
+	@media (max-width: 350px) { // Removes margin on super small screens
+		margin: 0;
+	}
+}
+
+.picker-button {
+	display: inline-block;
+	font-family: 'Montserrat', sans-serif;
+
+	// The red animated underline - it always exists at zero width
+	
+	&:after {
+		content: "";
+		display: block;
+		position: absolute;
+		bottom: 0;
+		height: 2px;
+
+		background: @gl-red;
+		transition: width 0.3s ease 0s, left 0.3s ease 0s;
+
+		width: 0;
+		left: 50%;
+	}
+
+	// Highlight the button for the page we're on
+	&.current {
+		color: @gl-red !important;
+		font-weight: bold;
+		text-decoration: underline;
+		// &:after {
+		// 	width: 100%;
+		// 	left: 0;
+		// }
+	}
+
+	// Make it clear this won't do anything useful
+	&.disabled {
+		color: gray;
+		pointer-events: none;
+	}
+
+	// Animate in the underline on hover, if button is clickable
+	&:not(.current):not(.disabled) {
+		&:hover:after {
+			width: 100%;
+			left: 0;
+		}
+	}
+}
+
+.format-picker, .device-picker {
+	a {
+		text-transform: uppercase;
+		display: inline-block;
+		color: black;
+		position: relative;
+	}
+}
+
+.alert {
+	max-width: 600px;
+	margin: 0 auto;
+	margin-bottom: 1em;
+}
+
+.demo-div-container {
+	width: 100%!important;
+}
+
+.red-bg, .half-bg {
+	position: relative;
+	&:before, &:after {
+		content: '';
+		display: block;
+		height: 100%;
+		width: 50vw;
+		position: absolute;
+		top: 0;
+		z-index: -1;
+	}
+
+	&:before {
+		right: 50%;
+	}
+
+	&:after {
+		left: 50%;
+	}
+}
+
+.red-bg {
+	&:before, &:after {
+		background-color: @gl-red;
+	}
+}
+
+.half-bg {
+	&:before, &:after {
+		background-image: linear-gradient(to bottom, white 50%, @gl-red 50%);
+	}
+}
+
+//////////////////
+
+
+/// DemoWidget Buttons ///
+.option-button svg {
+	width: 100%;
+	max-height: 2.5em;
+}
+
+.highlighted-button {
+	color: #770f00;
+	text-decoration: none;
+	svg {
+		fill: #770f00;
+	}
+}
+.highlighted-button a {
+	font-weight: 700;
+}
+
+/// Navbar ///
+
+
+//// Red BG Section ////
+
+.red-bg { 
+	color: #fff;
+	padding: 2em;
+	@media (max-width: 767px) { // Small chages in layout on smaller screen
+		padding: 2em 0;
+		.playermiddleheader {
+			padding: 2em 0;
+		}
+	}
+}
+
+.red-middle-col {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.fullscreen-button, .get-in-touch-button {
+	border: 1px solid white;
+	padding: 1em 2em;
+	border-radius: 50px;
+	color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	margin: 2em 0;
+	text-transform: uppercase;
+	&:hover {
+		text-decoration: none;
+		color: #fff;
+		background-color: #a30000;
+	}
+}
+
+.playermiddleheader {
+	padding: 2em;
+}
+
+
+//// Footer ////
+
+
+//// How it works section ////
+
+.how-it-works-row {
+	img {
+		width: 8em;
+		height: 10em;
+		object-fit: contain;
+		&.coins-img { // Coins image slightly too big comapred to others
+			width: 7em;
+		}
+	}
+}
+

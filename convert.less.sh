@@ -5,27 +5,41 @@ GOTINOTIFYTOOLS=`which inotifywait`
 DIR=`pwd`;
 PROJECT=`basename $DIR`
 echo "PROJECT: $PROJECT"
-#PROJECTPATH=/home/$USER/winterwell/code/$PROJECT
-#PROJECTPATH=/home/$USER/winterwell/$PROJECT
+
 PROJECTPATH=$DIR
-WEB=$PROJECTPATH/web-demo # non-standard!
-OUTDIR=$WEB/style
+
+# declare associative arrays
+declare -A WEB
+declare -A TOPLESS
+
+# populate them
+WEB[demo]=$PROJECTPATH/web-demo # non-standard!
+WEB[test]=$PROJECTPATH/web-test # non-standard!
 
 # the TOPLESS files are the top level files referenced in index.html
-TOPLESS[0]=$PROJECTPATH/src/style/main.less;
-TOPLESS[1]=$PROJECTPATH/src/style/print.less;
+TOPLESS[demo]=$PROJECTPATH/src/style/demo.less;
+TOPLESS[test]=$PROJECTPATH/src/style/test.less;
 
-# run through files
-for file in "${TOPLESS[@]}"; do
-		if [ -e "$file" ]; then
-			echo -e "converting $file"
-			F=`basename $file`
-			echo lessc "$file" "$OUTDIR/${F%.less}.css"
-			lessc "$file" "$OUTDIR/${F%.less}.css"
+# define function to compile test and demo
+compileAll () 
+{
+	# run through files
+	for key in "${!TOPLESS[@]}"; do
+		infile="${TOPLESS[$key]}";
+		if [ -e "$infile" ]; then
+			outdir="${WEB[$key]}"/style
+			echo -e "converting $infile"
+			outfile=main.css
+			echo lessc "$infile" "$outdir/$outfile"
+			lessc "$infile" "$outdir/$outfile"
 		else
-			echo "less file not found: $file"
+			echo "less file not found: $infile"
 		fi
-done
+	done
+}
+
+# call it immediately
+compileAll
 
 # watch?
 if [[ $WATCH == 'watch' ]]; then
@@ -37,16 +51,10 @@ if [[ $WATCH == 'watch' ]]; then
 	else
 	while true
 	do
+		# block until filesystem change detected
 		inotifywait -r -e modify,attrib,close_write,move,create,delete $PROJECTPATH/src/style && \
-		for file in "${TOPLESS[@]}"; do
-			if [ -e "$file" ]; then
-				echo -e "converting $file"
-				F=`basename $file`
-				lessc "$file" "$OUTDIR/${F%.less}.css"
-			else
-				echo "less file not found: $file"
-			fi
-		done
+		# then call compile function
+		compileAll
 	done
 	fi
 fi
