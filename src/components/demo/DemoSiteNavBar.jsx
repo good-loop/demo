@@ -28,7 +28,7 @@ const DemoPageNavBar = () => {
 			<Collapse isOpen={isOpen} navbar className="gl-bootstrap-navbar" id="navbar">
 				<Nav navbar className="navbar-dark" style={{marginTop: '0', alignItems: 'center'}}> {/* css inStyle */}
 					<NavItem>
-						<NavLink href="/">Home</NavLink>
+						<NavLink href="https://www.good-loop.com/">Home</NavLink>
 					</NavItem>
 					<UncontrolledDropdown nav inNavbar> 
 						<DropdownToggle nav caret>
