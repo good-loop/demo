@@ -9,7 +9,7 @@ DO_NOT_SYNC_LIST='/tmp/do_not_sync_list.txt'
 
 
 PROJECT='demo'
-TARGETS=('simmons.soda.sh')
+TARGETS=('hugh.soda.sh')
 PROJECT_LOCATION="."
 TARGET_DIRECTORY='/home/winterwell/demo.good-loop.com'
 IMAGE_OPTIMISE='yes'
