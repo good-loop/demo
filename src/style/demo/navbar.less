@@ -6,6 +6,12 @@
 	@media (max-width: 767px) { 
 		width: auto; // Reduces navbar to toggle button on the top left corner
 	}
+
+	box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+	z-index: 1200; // Necessary because of the z-index manipulation in the DemoWidget rules
+	@media (max-width: 767px) {
+		box-shadow: none;
+	}
 }
 
 .navbar-brand {
@@ -14,19 +20,6 @@
 
 .nav-link:hover {
 	color: #32343a
-}
-
-
-.navbar {
-	box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
-	z-index: 1200; // Necessary because of the z-index manipulation in the DemoWidget rules
-	@media (max-width: 767px) {
-		box-shadow: none;
-	}
-}
-
-.gl-icon-centred {
-	position: absolute;
 }
 
 .nav-item { 
@@ -104,6 +97,12 @@ nav.navbar.bg-light {
 .dropdown-item.active, .dropdown-item:active {
 	background-color: #790000;
 }
+
+
+.gl-icon-centred {
+	position: absolute;
+}
+
 
 .navbar-brand.gl-icon-centred {
 	position: relative;

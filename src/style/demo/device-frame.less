@@ -80,4 +80,16 @@
 			height: 100%; // width comes from image aspect
 		}
 	}
+
+	// Place a small shadow at the bottom of the div
+	.device-shadow {
+		position: absolute;
+		width: 95%;
+		left: 2.5%;
+		height: 1em;
+		// Even though it's transparent, the casting div will clip its shadow - so move it up and the shadow down.
+		bottom: 2em;
+		box-shadow: 0 2em 1em rgba(0, 0, 0, 0.6);
+		border-radius: 1.5em / 0.5em;
+	}
 }

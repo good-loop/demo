@@ -230,3 +230,40 @@ body {
 	}
 }
 
+#fullscreen {
+	height: 100vh;
+	width: 100vw;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+// Optimise aspect ratios
+// Landscape ad, screen wider than 16:9
+@media (min-aspect-ratio: ~"16/9") {
+	#fullscreen.landscape .goodloopad {
+		width: 177.77vh;
+	}
+}
+
+// Landscape ad, screen taller than 16:9
+@media (max-aspect-ratio: ~"16/9") {
+	#fullscreen.landscape .goodloopad {
+		height: 56.25vw;
+	}
+}
+
+// Portrait ad, screen wider than 9:16
+@media (min-aspect-ratio: ~"9/16") {
+	#fullscreen.portrait .goodloopad {
+		width: 56.25vh;
+	}
+}
+
+// Portrait ad, screen taller than 9:16
+@media (max-aspect-ratio: ~"9/16") {
+	#fullscreen.portrait .goodloopad {
+		height: 177.77vw;
+	}
+}
