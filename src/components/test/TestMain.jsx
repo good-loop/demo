@@ -14,11 +14,12 @@ const TestMain = () => <>
 		<PlayerPage path="/vpaid/:size/:vertId?" vpaid />
 		<BannerPage path="/banner/:vertId?" size="mpu" />
 		<BannerPage path="/banner/:size/:vertId?" />
-		<SocialPage path="/social/video" /> {/* portrait/MPU2-style - full-screen with video */}
-		<SocialPage path="/social/full" noVideo /> {/* full-screen, with no video */}
-		<SocialPage path="/social/half" halfHeight novideo /> {/* half-screen, with externally-hosted video */}
 	</Router>
 </>;
+
+// <SocialPage path="/social/video" /> {/* portrait/MPU2-style - full-screen with video */}
+// <SocialPage path="/social/full" noVideo /> {/* full-screen, with no video */}
+// <SocialPage path="/social/half" halfHeight novideo /> {/* half-screen, with externally-hosted video */}
 
 
 export default TestMain;

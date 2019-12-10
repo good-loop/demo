@@ -44,9 +44,9 @@ const stringParams = params => {
  * Iterates through pageGroups and creates a drop-down set of links for each top-level entry.
  */
 const LinkBlock = ({vertId, ...params}) => (
-	Object.entries(pageGroups).map(([path1, section]) => (
+	Object.entries(pageGroups).map(([path1, {links, title}]) => (
 		<UncontrolledDropdown nav inNavBar>
-			<DropdownToggle nav caret>{section.title}</DropdownToggle>
+			<DropdownToggle nav caret>{title}</DropdownToggle>
 			<DropdownMenu>
 				{Object.entries(links).map(([path2, text]) => {
 					// append auxiliary "VPAID" links onto the player entries
