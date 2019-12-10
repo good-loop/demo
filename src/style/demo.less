@@ -247,29 +247,32 @@ body {
 
 // Landscape ad, screen wider than 16:9
 @media (min-aspect-ratio: ~"16/9") {
-	#fullscreen.landscape .unit-container {
-		height: 100%;
+	#fullscreen.landscape .fullscreen-inner {
 		width: 177.77em;
+		height: 100%;
 	}
 }
 
 // Landscape ad, screen taller than 16:9
 @media (max-aspect-ratio: ~"16/9") {
-	#fullscreen.landscape .unit-container {
+	#fullscreen.landscape .fullscreen-inner {
+		width: 100%;
 		height: 56.25vw;
 	}
 }
 
 // Portrait ad, screen wider than 9:16
 @media (min-aspect-ratio: ~"9/16") {
-	#fullscreen.portrait .unit-container {
+	#fullscreen.portrait .fullscreen-inner {
 		width: 56.25em;
+		height: 100%;
 	}
 }
 
 // Portrait ad, screen taller than 9:16
 @media (max-aspect-ratio: ~"9/16") {
-	#fullscreen.portrait .unit-container {
+	#fullscreen.portrait .fullscreen-inner {
+		width: 100%;
 		height: 177.77vw;
 	}
 }

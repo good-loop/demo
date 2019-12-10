@@ -26,7 +26,7 @@ const FullscreenPage = ({size = 'landscape'}) => {
 
 	return (
 		<div id="fullscreen" className={size}>
-			<div className="unit-container">
+			<div className="fullscreen-inner">
 				<GoodLoopAd bare size={size} vertId={vertId} nonce={`${size}${vertId}`} />
 			</div>
 		</div>

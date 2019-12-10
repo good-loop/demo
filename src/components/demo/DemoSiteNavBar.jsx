@@ -53,7 +53,7 @@ const DemoPageNavBar = () => {
 				</Nav>
 			</Collapse>
 		</Navbar>
-	)
+	);
 }
 
 export default DemoPageNavBar;
