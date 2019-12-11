@@ -2,6 +2,7 @@
 
 @import 'demo/navbar.less';
 @import 'demo/device-frame.less';
+@import 'demo/DemoPlayer.less';
 @import 'demo/footer.less';
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
@@ -26,97 +27,6 @@ body {
 	@media (max-width: 767px) {
 		padding-top: 4em;
 	}
-}
-
-//// DemoWidget ////
-
-.format-picker .picker-button {
-	padding: 1em 2em;
-	&:hover {
-		text-decoration: none;
-	}
-
-	.picker-button {
-		font-size: 1.2em;
-	}
-}
-
-.device-picker svg {
-	max-width: 60px;
-	max-height: 3.5em;
-	margin: 1em;
-	width: 100%;
-	&#desktop {
-		max-width: 6em; // Desktop (laptop) svg is slightly larger that the others
-	}
-	@media (max-width: 350px) { // Removes margin on super small screens
-		margin: 0;
-	}
-}
-
-.picker-button {
-	display: inline-block;
-	font-family: 'Montserrat', sans-serif;
-
-	// The red animated underline - it always exists at zero width
-	
-	&:after {
-		content: "";
-		display: block;
-		position: absolute;
-		bottom: 0;
-		height: 2px;
-
-		background: @gl-red;
-		transition: width 0.3s ease 0s, left 0.3s ease 0s;
-
-		width: 0;
-		left: 50%;
-	}
-
-	// Highlight the button for the page we're on
-	&.current {
-		color: @gl-red !important;
-		font-weight: bold;
-		text-decoration: underline;
-		// &:after {
-		// 	width: 100%;
-		// 	left: 0;
-		// }
-	}
-
-	// Make it clear this won't do anything useful
-	&.disabled {
-		color: gray;
-		pointer-events: none;
-	}
-
-	// Animate in the underline on hover, if button is clickable
-	&:not(.current):not(.disabled) {
-		&:hover:after {
-			width: 100%;
-			left: 0;
-		}
-	}
-}
-
-.format-picker, .device-picker {
-	a {
-		text-transform: uppercase;
-		display: inline-block;
-		color: black;
-		position: relative;
-	}
-}
-
-.alert {
-	max-width: 600px;
-	margin: 0 auto;
-	margin-bottom: 1em;
-}
-
-.demo-div-container {
-	width: 100%!important;
 }
 
 .red-bg, .half-bg {
@@ -151,29 +61,6 @@ body {
 		background-image: linear-gradient(to bottom, white 50%, @gl-red 50%);
 	}
 }
-
-//////////////////
-
-
-/// DemoWidget Buttons ///
-.option-button svg {
-	width: 100%;
-	max-height: 2.5em;
-}
-
-.highlighted-button {
-	color: #770f00;
-	text-decoration: none;
-	svg {
-		fill: #770f00;
-	}
-}
-.highlighted-button a {
-	font-weight: 700;
-}
-
-/// Navbar ///
-
 
 //// Red BG Section ////
 

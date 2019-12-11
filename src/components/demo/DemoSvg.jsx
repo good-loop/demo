@@ -1,4 +1,5 @@
 import { h } from 'preact';
+// import React from 'react';
 
 const landscapeSvg = (
 	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 46.9 25.6" id="landscape">
