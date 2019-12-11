@@ -230,3 +230,49 @@ body {
 	}
 }
 
+
+// Using em for height instead of vh because vh can cause scrolling on mobile Webkit, due to
+// dodgy address-bar height reporting - we have JS setting font-size to 1% window.inner-height
+#fullscreen {
+	height: 100em;
+	width: 100vw;
+	background-color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+// Optimise aspect ratios
+// Using em instead of vh, see above
+
+// Landscape ad, screen wider than 16:9
+@media (min-aspect-ratio: ~"16/9") {
+	#fullscreen.landscape .fullscreen-inner {
+		width: 177.77em;
+		height: 100%;
+	}
+}
+
+// Landscape ad, screen taller than 16:9
+@media (max-aspect-ratio: ~"16/9") {
+	#fullscreen.landscape .fullscreen-inner {
+		width: 100%;
+		height: 56.25vw;
+	}
+}
+
+// Portrait ad, screen wider than 9:16
+@media (min-aspect-ratio: ~"9/16") {
+	#fullscreen.portrait .fullscreen-inner {
+		width: 56.25em;
+		height: 100%;
+	}
+}
+
+// Portrait ad, screen taller than 9:16
+@media (max-aspect-ratio: ~"9/16") {
+	#fullscreen.portrait .fullscreen-inner {
+		width: 100%;
+		height: 177.77vw;
+	}
+}

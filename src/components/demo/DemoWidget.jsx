@@ -6,7 +6,7 @@ import { Row, Col, Alert } from 'reactstrap';
 /** Simulated device screen images */
 const frameImages = {
 	landscape: '/img/iphone-frame-16-9-padded-notch.svg',
-	desktop: '/img/laptop-websiteholder-text.png',
+	desktop: '/img/laptop-websiteholder-text.svg',
 	portrait: '/img/iphone-frame-16-9-padded-notch-portrait.svg'
 }
 
@@ -37,11 +37,11 @@ const DemoWidget = ({ format, device, defaultVertId, production, ...props }) => 
 		<Row className="half-bg">
 			<Col xs="12" className="text-center">
 				<div className={`device-container ${device}`}>
+					<div className="device-shadow"/>
 					<div className="device-screen-bg" />
 					<div className="ad-container">{ad}</div>
-					<img className="frame-img" src={frameImages[device]} alt="Framing image for device"/>	
+					<img className="frame-img" src={frameImages[device]} alt="Framing image for device"/>
 				</div>
-				
 			</Col>
 		</Row>
 	);

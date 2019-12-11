@@ -82,19 +82,17 @@ const DeviceButton = ({device, current, ...props}) => {
 
 
 /** We don't do anything with {matches, path, url} here, but we want to pull them out and only leave search params */
-const DemoPage = ({device, format, matches, path, url, ...props}) => <>
+const DemoPage = ({device, format = 'video', matches, path, url, ...props}) => <>
 	<DemoSiteNavBar />
 	<Container>
-
 		<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
-		{
-			!(formatParam === 'video') ? 
+		{(formatParam !== 'video') ? (
 			<Row className="format-picker text-center justify-content-center pt-5">
-			<FormatButton format="social" current={{device, format}} {...props} />
-			<FormatButton format="video" current={{device, format}} {...props} />
-			{/* <FormatButton format="display" current={{device, format}} {...props} /> */}
-		</Row> : ''
-		}
+				<FormatButton format="social" current={{device, format}} {...props} />
+				<FormatButton format="video" current={{device, format}} {...props} />
+				{/* <FormatButton format="display" current={{device, format}} {...props} /> */}
+			</Row>
+		) : ''}
 
 		<Row className="device-picker justify-content-center pb-4">
 			<Col xs="12" md="6" className="text-center">
@@ -108,13 +106,12 @@ const DemoPage = ({device, format, matches, path, url, ...props}) => <>
 			<Col xs="12" md="6" className="text-center">{descriptions[format]}</Col>
 		</Row>
 
-		{/* Dodgy script inserting a ghost div included at the beggining of index.html. Used to fish out adblockers and warn the user accordingly*/}
-		{
-			document.getElementById('aiPai9th') ? '' :
+		{/* Check for the div that ads.js should have inserted - if it's not present, warn the user about adblock. */}
+		{document.getElementById('aiPai9th') ? '' : (
 			<UncontrolledAlert color="warning" role="alert">
 				Adblocker detected. Some of our adverts might not play properly!
 			</UncontrolledAlert>
-		}
+		)}
 
 		<DemoWidget device={device} format={format} defaultVertId={defaultVertId} production={isProduction} {...props} />
 
@@ -123,6 +120,36 @@ const DemoPage = ({device, format, matches, path, url, ...props}) => <>
 		<FooterSection />
 	</Container>
 </>;
+
+const deviceToSize = {
+	landscape: 'landscape',
+	portrait: 'portrait',
+	desktop: 'landscape',
+};
+
+const RedMiddleSection = ({format, device, ...props }) => {
+	const fullscreenHref = `//${window.location.host}/fullscreen/${deviceToSize[device]}?gl.vert=${props['gl.vert'] || defaultVertId}`;
+
+	return (
+		<Row className="red-bg">
+			<Col className="justify-content-md-center text-center red-middle-col">
+				{format !== 'social' ? (
+					<a href={fullscreenHref} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
+				) : ''}
+				<h4 className="playermiddleheader">if you&#x27;re running an ad online then why not work with us?</h4>
+				<p>
+					Our ethical ad formats are proven to drive higher engagement and
+					significant brand uplift. So you can connect with your consumer in a
+					meaningful way whilst enabling them to do good, for free.
+				</p>
+				<p>
+					Want to know more?
+					<div className="pt-5 pb-3"><a href="https://www.good-loop.com/contact-us" className="get-in-touch-button">Get In Touch</a></div>
+				</p>
+			</Col>
+		</Row>
+	);
+};
 
 
 const HowItWorksSection = () => {
@@ -145,29 +172,6 @@ const HowItWorksSection = () => {
 	</>
 };
 
-const RedMiddleSection = ({format, device, ...props }) => {
-	const fullscreenHref = '//' + window.location.host + '/' + device + '/' + format + '/fullscreen?gl.vert=' + (props['gl.vert'] || defaultVertId);
-
-	return (
-		<Row className="red-bg">
-			<Col className="justify-content-md-center text-center red-middle-col">
-				{ format === 'social' ? '' :
-				<a href={fullscreenHref} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
-				}
-				<h4 className="playermiddleheader">if you&#x27;re running an ad online then why not work with us?</h4>
-				<p>
-					Our ethical ad formats are proven to drive higher engagement and
-					significant brand uplift. So you can connect with your consumer in a
-					meaningful way whilst enabling them to do good, for free.
-				</p>
-				<p>
-					Want to know more?
-					<div className="pt-5 pb-3"><a href="https://www.good-loop.com/contact-us" className="get-in-touch-button">Get In Touch</a></div>
-				</p>
-			</Col>
-		</Row>
-	);
-};
 
 const FooterSection = () => {
 	return (

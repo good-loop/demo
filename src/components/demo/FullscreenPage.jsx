@@ -1,35 +1,36 @@
+/* @jsx h */
 import { h } from 'preact';
+import { useEffect } from 'preact/hooks';
 import GoodLoopAd from "../GoodLoopAd";
 
-const sizes = {
-	social: {
-		portrait: 'social',
-	},
-	video: {
-		landscape: 'landscape',
-		desktop: 'landscape',
-		portrait: 'portrait',
-	}
-}
+/**
+ * Set font size on the containing div to 1% window.innerHeight
+ * so we can use it to set proportional height and width
+ * - because in mobile Chrome and Safari, vh units take the area
+ * behind the address bar to be part of the viewport's height,
+ * meaning a 100vh element will need to scroll.
+ */
+const sizeElements = (event) => {
+	document.getElementById('fullscreen').style.fontSize = (window.innerHeight / 100) + 'px';
+};
 
-const FullscreenPage = ({format, device}) => {
+const FullscreenPage = ({size = 'landscape'}) => {
+	useEffect(() => {
+		sizeElements(); // set sizing once
+		window.addEventListener('resize', sizeElements); // and update on resize/rotate
+		return () => window.removeEventListener('resize', sizeElements); // and clean up on unmount
+	}, true);
 
-    const getVertId = () => {
-        const url = new URL(window.location);
-        const params = new URLSearchParams(url);
-        // Grab vertId from url. If for whatever reason it's not provided let it fail.
-        return params.get('gl.vert') || '';
-    }
+	// gl.vert param is absolutely required!
+	const vertId = new URL(window.location).searchParams.get('gl.vert') || '';
 
-    const isProduction = window.location.hostname.match(/^test/) || window.location.hostname.match(/^local/) ? false : true; 
-
-    const vertId = getVertId();
-
-    return (
-        <div id="fullscreen">
-            <GoodLoopAd vertId={vertId} production={isProduction} size={sizes[format || 'video'][device || 'desktop']} nonce={`${format}${device}${vertId}`} />
-        </div>
-    )
-}
+	return (
+		<div id="fullscreen" className={size}>
+			<div className="fullscreen-inner">
+				<GoodLoopAd bare size={size} vertId={vertId} nonce={`${size}${vertId}`} />
+			</div>
+		</div>
+	);
+};
 
 export default FullscreenPage;

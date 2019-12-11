@@ -40,28 +40,25 @@ const stringParams = params => {
 }
 
 
-const LinkItem = ({path1, path2, vertId = '', params, title}) => {
-	const pathEnding = `${path2}/${vertId}${stringParams(params)}`;
-	let vpaid = '';
-	if (path1 === 'player') vpaid = <> (<a href={`/vpaid/${pathEnding}`}>VPAID</a>)</>;
-
-	return <><a href={`/${path1}/${pathEnding}`}>{title}</a>{vpaid}</>;
-}
-
-
-const LinkSection = ({path1, links, vertId, params }) => <>
-	{Object.entries(links).map(([path2, text]) => (
-		<DropdownItem><LinkItem path1={path1} path2={path2} vertId={vertId} params={params} title={text}/></DropdownItem>
-	))}
-</>;
-
-
-const LinkBlock = ({vertId, params}) => (
-	Object.entries(pageGroups).map(([path1, section]) => (
+/**
+ * Iterates through pageGroups and creates a drop-down set of links for each top-level entry.
+ */
+const LinkBlock = ({vertId, ...params}) => (
+	Object.entries(pageGroups).map(([path1, {links, title}]) => (
 		<UncontrolledDropdown nav inNavBar>
-			<DropdownToggle nav caret>{section.title}</DropdownToggle>
+			<DropdownToggle nav caret>{title}</DropdownToggle>
 			<DropdownMenu>
-				<LinkSection {...section} path1={path1} vertId={vertId} params={params} />
+				{Object.entries(links).map(([path2, text]) => {
+					// append auxiliary "VPAID" links onto the player entries
+					const pathEnding = `${path2}/${vertId}${stringParams(params)}`;
+					let vpaid = '';
+					if (path1 === 'player') vpaid = <> (<a href={`/vpaid/${pathEnding}`}>VPAID</a>)</>;
+					return (
+						<DropdownItem>
+							<a href={`/${path1}/${pathEnding}`}>{title}</a>{vpaid}
+						</DropdownItem>
+					);
+				})}
 			</DropdownMenu>
 		</UncontrolledDropdown>
 	))
@@ -73,10 +70,7 @@ const TestSiteNavBar = ({ vertId = '', matches, path, url, ...params }) => (
 		<Container>
 			<Nav navbar>
 				<NavbarBrand><img src="/img/gl-test-pages-logo-light.svg" /></NavbarBrand>
-					<LinkBlock
-						vertId={vertId}
-						params={params}
-					/>
+					<LinkBlock vertId={vertId} {...params} />
 				<NavbarToggler />
 			</Nav>
 		</Container>
