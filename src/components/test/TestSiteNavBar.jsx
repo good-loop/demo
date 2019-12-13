@@ -55,7 +55,7 @@ const LinkBlock = ({vertId, ...params}) => (
 					if (path1 === 'player') vpaid = <> (<a href={`/vpaid/${pathEnding}`}>VPAID</a>)</>;
 					return (
 						<DropdownItem>
-							<a href={`/${path1}/${pathEnding}`}>{title}</a>{vpaid}
+							<a href={`/${path1}/${pathEnding}`}>{text}</a>{vpaid}
 						</DropdownItem>
 					);
 				})}
