@@ -43,22 +43,22 @@ const DemoPlayer = ({ vertId, production, noSocial, adBlockerDetected, format, d
 		device: device || "desktop"
 	});
 	urlParams(state);
+
 	const handleFormatPickerClick = e => {
 		// If social format is picked, default to portrait device.
 		if (e.target.getAttribute('format') === 'social') {
 			setState({ ...state, device: 'portrait', format: 'social' });
-		}
-		else setState({ ...state, format: e.target.getAttribute('format')});
+		} else setState({ ...state, format: e.target.getAttribute('format')});
 	}
 	const handleDevicePickerClick = e => setState({ ...state, device: e.target.getAttribute('device')});
 
 	const ad = state.format === 'social' ? (
-		<SocialAd 
+		<SocialAd
 			vertId={vertId}
 			nonce={`${state.format}${state.device}${vertId}`}
 		/>
 	) : (
-		<GoodLoopAd 
+		<GoodLoopAd
 			vertId={vertId}
 			size={sizes[state.format][state.device]}
 			nonce={`${state.format}${state.device}${vertId}`}
@@ -80,7 +80,7 @@ const DemoPlayer = ({ vertId, production, noSocial, adBlockerDetected, format, d
 	return (
 		<Row className="demo-section flex-column">
 			{ noSocial ? '' :
-			<Row className="format-picker text-center justify-content-center pt-5">
+			<Row className="format-picker text-center justify-content-center">
 				<button outline color="secondary"
 					format="social"
 					className={`picker-button ${currentButtonHighlighter('social')}`}
@@ -150,9 +150,32 @@ const DemoPlayer = ({ vertId, production, noSocial, adBlockerDetected, format, d
 					</div>
 				</Col>
 			</Row>
+
+			<Row className="red-bg justify-content-center pt-1">
+				<FullscreenButton format={state.format} device={state.device} vertId={vertId} />
+			</Row>
 		</Row>
 	);
 };
+
+
+//// Fullscreen Button ////
+
+const deviceToSize = {
+	landscape: 'landscape',
+	portrait: 'portrait',
+	desktop: 'landscape',
+};
+
+const FullscreenButton = ({ format, device, vertId }) => {
+	const fullscreenURL = `//${window.location.host}/fullscreen/${deviceToSize[device]}?gl.vert=${vertId}`
+	if (format !== 'social') {
+		return <a href={fullscreenURL} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
+	} else {
+		return '';
+	}
+}
+//////////////////////////
 
 
 const GoodLoopAd = memo(({ vertId, size, nonce, production, social }) => {
@@ -208,7 +231,6 @@ const SocialAd = ({vertId, nonce}) => {
 			</div>
 			<div className={`social-ad ${showAd ? 'show' : ''}`}>
 				{ showAd ? <GoodLoopAd vertId={vertId} size={size} nonce={nonce} production social /> : '' }
-				{/* showAd ?  : '' */}
 			</div>
 		</div>
 	);

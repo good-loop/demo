@@ -35,12 +35,12 @@ const DemoPage = ({matches, path, url, ...props}) => <>
 		<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
 
 		{/* <DemoWidget device={device} format={format} defaultVertId={defaultVertId} production={isProduction} {...props} /> */}
-		<DemoPlayer 
-			vertId={defaultVertId} 
-			format={format} 
-			device={device} 
-			noSocial={noSocial} 
-			adBlockerDetected={adBlockDetected} 
+		<DemoPlayer
+			vertId={defaultVertId}
+			format={format}
+			device={device}
+			noSocial={noSocial}
+			adBlockerDetected={adBlockDetected}
 			isProduction={isProduction}
 		/>
 
@@ -60,12 +60,12 @@ const RedMiddleSection = ({format, device, ...props }) => {
 	const fullscreenHref = `//${window.location.host}/fullscreen/${deviceToSize[device]}?gl.vert=${props['gl.vert'] || defaultVertId}`;
 
 	return (
-		<Row className="red-bg">
+		<Row className="red-bg pt-0">
 			<Col className="justify-content-md-center text-center red-middle-col">
-				{format !== 'social' ? (
+				{/* {format !== 'social' ? (
 					<a href={fullscreenHref} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
-				) : ''}
-				<h4 className="playermiddleheader">if you&#x27;re running an ad online then why not work with us?</h4>
+				) : ''} */}
+				<h4 className="playermiddleheader pt-0">if you&#x27;re running an ad online then why not work with us?</h4>
 				<p>
 					Our ethical ad formats are proven to drive higher engagement and
 					significant brand uplift. So you can connect with your consumer in a
