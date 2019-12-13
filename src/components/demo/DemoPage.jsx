@@ -5,22 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faTwitterSquare, faFacebookSquare, faYoutubeSquare, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 import DemoSiteNavBar from "./DemoSiteNavBar";
-import DemoWidget from "./DemoWidget";
-import { portraitSvg, desktopSvg, landscapeSvg } from './DemoSvg';
-
-
-const deviceSvgs = {
-	landscape: landscapeSvg,
-	desktop: desktopSvg,
-	portrait: portraitSvg,
-};
-
-/** Descriptions of the Good-Loop formats */
-const descriptions = {
-	social: 'The Good-Loop social swipe-to-donate player is shown in social media apps: SnapChat, Instagram, Facebook, or Twitter.',
-	video: 'Our core product, the Good-Loop video player is shown in a website article as people scroll through, or appears as a pre-roll before a video begins.',
-	// display: '',
-};
+import DemoPlayer from './DemoPlayer';
 
 const detectEnvironment = () => {
 	const host = window.location.hostname;
@@ -33,87 +18,31 @@ const isProduction = !detectEnvironment();
 
 const defaultVertId = detectEnvironment() ? 'test_wide_multiple' : 'ojRZHHd48s';
 
-const makeUrl = ({device, format, ...props}) => {
-	if (format === 'social') device = 'portrait';
-	// TODO Make sure this is escaping things that should be escaped
-	
-	const propsString = props ? '?' + Object.entries(props).map(([k, v]) => `${k}=${v}`).join('&') : '';
-	return `/${device}/${format}${propsString}`;
-};
-
 // Check FORMAT param in URL and store it in formatParam
 // This will determine if we display the format buttons.
 const url = new URL(window.location);
 const query = new URLSearchParams(url.search);
-const formatParam = query.get('format');
+const format = query.get('format');
+const device = format === 'social' ? 'portrait' : query.get('device');
+const noSocial = query.get('nosocial');
 
-const FormatButton = ({format, current, ...props}) => {
-	const classes = ['picker-button'];
-	let url = '#'; // default to go-nowhere
-	
-	if (format !== current.format) {
-		url = makeUrl({device: current.device, format, ...props});
-	} else {
-		classes.push('current'); // add marker class to highlight currently active format
-	}
-
-	return <a href={url} className={classes.join(' ')}>{format}</a>
-};
-
-
-const DeviceButton = ({device, current, ...props}) => {
-	const classes = ['picker-button'];
-	// can't show social on anything but portrait phone
-	const disabled = (current.format === 'social' && device !== 'portrait'); 
-	const isCurrent = (device === current.device);
-	console.log(device, current, props);
-	let url = '#'; // default to go-nowhere
-
-	if (!isCurrent && !disabled) {
-		url = makeUrl({device, format: current.format, ...props});
-	} else if (isCurrent) {
-		classes.push('current'); // add marker class to highlight currently active device
-	} else if (disabled) {
-		classes.push('disabled');
-	}
-
-	return <a href={url} className={classes.join(' ')}>{deviceSvgs[device]}</a>
-};
-
+const adBlockDetected = !document.getElementById('aiPai9th');
 
 /** We don't do anything with {matches, path, url} here, but we want to pull them out and only leave search params */
-const DemoPage = ({device, format = 'video', matches, path, url, ...props}) => <>
+const DemoPage = ({matches, path, url, ...props}) => <>
 	<DemoSiteNavBar />
 	<Container>
 		<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
-		{(formatParam !== 'video') ? (
-			<Row className="format-picker text-center justify-content-center pt-5">
-				<FormatButton format="social" current={{device, format}} {...props} />
-				<FormatButton format="video" current={{device, format}} {...props} />
-				{/* <FormatButton format="display" current={{device, format}} {...props} /> */}
-			</Row>
-		) : ''}
 
-		<Row className="device-picker justify-content-center pb-4">
-			<Col xs="12" md="6" className="text-center">
-				<DeviceButton device="landscape" current={{device, format}} {...props} />
-				<DeviceButton device="desktop" current={{device, format}} {...props} />
-				<DeviceButton device="portrait" current={{device, format}} {...props} />
-			</Col>
-		</Row>
-
-		<Row className="justify-content-center pb-4">
-			<Col xs="12" md="6" className="text-center">{descriptions[format]}</Col>
-		</Row>
-
-		{/* Check for the div that ads.js should have inserted - if it's not present, warn the user about adblock. */}
-		{document.getElementById('aiPai9th') ? '' : (
-			<UncontrolledAlert color="warning" role="alert">
-				Adblocker detected. Some of our adverts might not play properly!
-			</UncontrolledAlert>
-		)}
-
-		<DemoWidget device={device} format={format} defaultVertId={defaultVertId} production={isProduction} {...props} />
+		{/* <DemoWidget device={device} format={format} defaultVertId={defaultVertId} production={isProduction} {...props} /> */}
+		<DemoPlayer 
+			vertId={defaultVertId} 
+			format={format} 
+			device={device} 
+			noSocial={noSocial} 
+			adBlockerDetected={adBlockDetected} 
+			isProduction={isProduction}
+		/>
 
 		<RedMiddleSection format={format} device={device} {...props} />
 		<HowItWorksSection />
