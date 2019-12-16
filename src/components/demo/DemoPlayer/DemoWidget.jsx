@@ -73,14 +73,10 @@ const SocialAd = ({vertId, nonce}) => {
 	// Prevents scrolling on mobile when user attempts to swipe the social ad. Trick does not work on Safari, cause that browser's poop.
 	const lockScreen = () => { 
 		document.body.style.overflow = 'hidden';
-		document.body.style.position = 'relative';
-		document.body.style.height = '100%';
 		setShowAd(true);
 	};
 	const unlockScreen = () => { 
 		document.body.style.overflow = 'auto';
-		document.body.style.position = 'static';
-		document.body.style.height = 'auto';
 	};
 
 	return (
@@ -91,6 +87,7 @@ const SocialAd = ({vertId, nonce}) => {
 					onMouseDown={ () => setShowAd(true) }
 					onTouchStart={ lockScreen }
 					onTouchEnd={ unlockScreen }
+					onTouchMove={ e => e.preventDefault() }
 					width="100%"
 					autoPlay	//
 					muted		// 'muted' required for browsers to allow autoplay.
