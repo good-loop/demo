@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
-.format-picker button {
+.format-picker .picker-button {
 	margin: 1em 1em;
 	font-size: 1.2em;
 }
@@ -12,14 +12,34 @@
 	}
 }
 
-.row {
-	margin: 0!important;
+// .row {
+// 	margin: 0!important;
+// }
+
+.device-picker .flex-row {
+	display: flex;
+	align-items: center;
 }
 
-.device-picker button {
+.device-picker .picker-button {
 	padding: 0 1em;
 	max-width: 8em;
 	min-width: 6em;
+	height: 5em;
+
+	display: inline-flex;
+	align-items: center;
+
+	// Make button's image vertically align.
+	& * {
+		vertical-align: middle;
+		pointer-events: none;
+	}
+
+	&.desktop * {
+		max-width: 90px;
+	}
+
 	@media (max-width: 350px) {
 		padding: 0;
 		min-width: 3em;
@@ -34,8 +54,7 @@
 	max-height: 3.5em;
 	margin: 0 auto;
 	width: 100%;
-	pointer-events: none; // Passes click to parent button
-	&#desktop {
+	&.desktop {
 		max-width: 6em; // Desktop (laptop) svg is slightly larger that the others
 	}
 }
@@ -54,11 +73,11 @@
 	background-color: #fff;
 
 	// Standardises device picker buttons' height (SVG ones)
-	&:not(.format-picker) {
+	&.device-picker {
 		height: 5em;
 	}
 
-		// Make it clear this won't do anything useful
+	// Make it clear this won't do anything useful
 	&.disabled {
 		color: lightgray!important;
 		pointer-events: none!important;
@@ -119,151 +138,39 @@
 	width: 100%!important;
 }
 
-.red-bg, .half-bg {
-	width: 100%;
-	position: relative;
-	&:before, &:after {
-		content: '';
-		display: block;
-		height: 100%;
-		width: 50vw;
-		position: absolute;
-		top: 0;
-		z-index: -1;
-	}
+// .red-bg, .half-bg {
+// 	width: 100%;
+// 	position: relative;
+// 	&:before, &:after {
+// 		content: '';
+// 		display: block;
+// 		height: 100%;
+// 		width: 50vw;
+// 		position: absolute;
+// 		top: 0;
+// 		z-index: -1;
+// 	}
 
-	&:before {
-		right: 50%;
-	}
+// 	&:before {
+// 		right: 50%;
+// 	}
 
-	&:after {
-		left: 50%;
-	}
-}
+// 	&:after {
+// 		left: 50%;
+// 	}
+// }
 
-.red-bg {
-	&:before, &:after {
-		background-color: @gl-red;
-	}
-}
+// .red-bg {
+// 	&:before, &:after {
+// 		background-color: @gl-red;
+// 	}
+// }
 
-.half-bg {
-	&:before, &:after {
-		background-image: linear-gradient(to bottom, white 50%, @gl-red 50%);
-	}
-}
-
-.device-container {
-	// Let text-center handle horizontal positioning - we DON'T want this fullwidth.
-	// Size will be determined by the width or height set on frame-img below, and the image's own aspect
-	display: inline-block;
-	position: relative; // allow children to use this as sizing/position reference
-
-	.device-screen-bg {
-		position: absolute;
-		z-index: 0;
-		background-color: #fff;
-	}
-
-	.ad-container {
-		position: absolute;
-		z-index: 1;
-	}
-
-	// Image for the social format. This will be removed once we add the porper social demo
-	.social-mockup {
-		width: 101%;
-		margin-left: -1%;
-	}
-
-	.frame-img {
-		position: relative;
-		pointer-events: none;
-		z-index: 2
-	}
-
-	&.landscape {
-		width: 100%;// Take width of BS container
-		max-width: 800px;
-		.device-screen-bg {
-			left: 3%;
-			top: 6%;
-			width: 94%;
-			height: 87%;
-		}
-		.ad-container {
-			left: 7%;
-			top: 7%;
-			width: 86%;
-		}
-		.frame-img {
-			width: 100%; // height comes from image aspect
-		}
-	}
-
-	&.desktop {
-		width: 100%;// Take width of BS container
-		.device-screen-bg {
-			display: none;
-		}
-		.ad-container {
-			width: 64%;
-			left: 19%;
-			top: 18%;
-		}
-		.frame-img {
-			width: 100%; // height comes from image aspect
-			z-index: 0; // not transparent (yet)
-		}
-	}
-
-	&.portrait {
-		height: 80vh;// Fit inside browser window
-		.device-screen-bg {
-			left: 6%;
-			top: 3%;
-			width: 88%;
-			height: 94%;
-			border-radius: 5vh;
-		}
-		.ad-container {
-			left: 7%;
-			top: 7%;
-			width: 86%;
-		}
-		.frame-img {
-			height: 100%; // width comes from image aspect
-		}
-	}
-}
-
-.ad-sizer {
-	position: relative;
-	overflow: hidden; /* prevent margin collapse with aspectifier */
-}
-
-.ad-sizer .goodloopad, .ad-sizer iframe {
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
-.ad-sizer .vpaid-container {
-	width: 100%;
-	height: 100%;
-}
-
-.ad-sizer.landscape .aspectifier {
-	margin-top: 56.25%
-}
-
-.ad-sizer.portrait .aspectifier {
-	margin-top: 177.77%
-}
-
-.ad-sizer.square .aspectifier {
-	margin-top: 100%
-}
+// .half-bg {
+// 	&:before, &:after {
+// 		background-image: linear-gradient(to bottom, white 50%, @gl-red 50%);
+// 	}
+// }
 
 .fake-feed, .social-ad {
 	position: absolute;

@@ -25,7 +25,15 @@
 	.frame-img {
 		position: relative;
 		pointer-events: none;
-		z-index: 2
+		z-index: 2;
+		/* We render the not-in-use frame images with height:0
+		 * so that the image files load preemptively - but <img>
+		 * elements are inline-block and will occupy an extra line
+		 * of vertical space even with height: 0. So we make them
+		 * display: block, so they occupy only as much vertical
+		 * space as their height.
+		 */
+		display: block;
 	}
 
 	&.landscape {

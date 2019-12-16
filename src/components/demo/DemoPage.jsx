@@ -5,45 +5,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faTwitterSquare, faFacebookSquare, faYoutubeSquare, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 import DemoSiteNavBar from "./DemoSiteNavBar";
-import DemoPlayer from './DemoPlayer';
+import DemoPlayer from './DemoPlayer/DemoPlayer';
 
-const detectEnvironment = () => {
-	const host = window.location.hostname;
-	if (host.includes('test')) return 'test';
-	if (host.includes('local')) return 'local';
-	return null;
-}
 
-const isProduction = !detectEnvironment();
 
-const defaultVertId = detectEnvironment() ? 'test_wide_multiple' : 'ojRZHHd48s';
-
-// Check FORMAT param in URL and store it in formatParam
-// This will determine if we display the format buttons.
-const url = new URL(window.location);
-const query = new URLSearchParams(url.search);
-const format = query.get('format');
-const device = format === 'social' ? 'portrait' : query.get('device');
-const noSocial = query.get('nosocial');
-
-const adBlockDetected = !document.getElementById('aiPai9th');
 
 /** We don't do anything with {matches, path, url} here, but we want to pull them out and only leave search params */
-const DemoPage = ({matches, path, url, ...props}) => <>
+const DemoPage = ({device, format, matches, path, url, ...props}) => <>
 	<DemoSiteNavBar />
 	<Container>
 		<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
-
-		{/* <DemoWidget device={device} format={format} defaultVertId={defaultVertId} production={isProduction} {...props} /> */}
-		<DemoPlayer
-			vertId={defaultVertId}
-			format={format}
-			device={device}
-			noSocial={noSocial}
-			adBlockerDetected={adBlockDetected}
-			isProduction={isProduction}
-		/>
-
+		<DemoPlayer format={format} device={device} />
 		<RedMiddleSection format={format} device={device} {...props} />
 		<HowItWorksSection />
 		<FooterSection />
@@ -57,14 +29,10 @@ const deviceToSize = {
 };
 
 const RedMiddleSection = ({format, device, ...props }) => {
-	const fullscreenHref = `//${window.location.host}/fullscreen/${deviceToSize[device]}?gl.vert=${props['gl.vert'] || defaultVertId}`;
 
 	return (
 		<Row className="red-bg pt-0">
 			<Col className="justify-content-md-center text-center red-middle-col">
-				{/* {format !== 'social' ? (
-					<a href={fullscreenHref} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
-				) : ''} */}
 				<h4 className="playermiddleheader pt-0">if you&#x27;re running an ad online then why not work with us?</h4>
 				<p>
 					Our ethical ad formats are proven to drive higher engagement and
