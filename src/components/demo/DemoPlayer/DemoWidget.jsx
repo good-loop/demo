@@ -87,8 +87,9 @@ const SocialAd = ({vertId, nonce}) => {
 					onTouchEnd={ unlockScreen }
 					width="100%"
 					autoPlay
-					muted 
-					loop 
+					muted
+					playsInline
+					loop
 					src="https://media.good-loop.com/uploads/standard/toms_snapchat_ad.mp4" 
 				/>
 				<div className="show-ad" onClick={() => setShowAd(true)}>trigger ad</div>
