@@ -70,25 +70,31 @@ const SocialAd = ({vertId, nonce}) => {
 	// Hardcoded TOMS Josh EN Male advert. We will show this only on the DemoPage.
 	vertId = '0PVrD1kX';
 
-	// Prevents scrolling on mobile when user attempts to swipe the social ad.
+	// Prevents scrolling on mobile when user attempts to swipe the social ad. Trick does not work on Safari, cause that browser's poop.
 	const lockScreen = () => { 
 		document.body.style.overflow = 'hidden';
+		document.body.style.position = 'relative';
+		document.body.style.height = '100%';
 		setShowAd(true);
 	};
-	const unlockScreen = () => { document.body.style.overflow = 'auto' };
+	const unlockScreen = () => { 
+		document.body.style.overflow = 'auto';
+		document.body.style.position = 'static';
+		document.body.style.height = 'auto';
+	};
 
 	return (
 		<div className="ad-sizer portrait" >
 			<div className="aspectifier" />
 			<div className="fake-feed" >
 				<video
-					onClick={ () => setShowAd(true) }
+					onMouseDown={ () => setShowAd(true) }
 					onTouchStart={ lockScreen }
 					onTouchEnd={ unlockScreen }
 					width="100%"
-					autoPlay
-					muted
-					playsInline
+					autoPlay	//
+					muted		// 'muted' required for browsers to allow autoplay.
+					playsInline // This one required to allow autoplay in Safari.
 					loop
 					src="https://media.good-loop.com/uploads/standard/toms_snapchat_ad.mp4" 
 				/>
