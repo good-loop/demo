@@ -179,18 +179,36 @@
 	height: 100%;
 }
 
+@feed-delay: 1.2s;
+
 .fake-feed {
-	background-color: black;
+	background-image: url(https://media.good-loop.com/uploads/standard/snap_food_bear.jpg);
+	background-size: 100%;
+
+	.snap-img {
+		width: 100%;
+		position: absolute;
+		background-color: black;
+		transition: left (@feed-delay / 2) ease;
+		&.delay1 { transition-delay: @feed-delay; }
+		&.delay2 { transition-delay: (@feed-delay * 2); }
+		&.delay3 { transition-delay: (@feed-delay * 3); }
+		&:not(.first) {
+			left: 100%;
+		}
+	}
+	&.visible .snap-img {
+		left: 0;
+	}
 }
 
 // Off-set ad to slide it in when mounted.
 .social-ad {
-	background-color: black;
-	transform: translateY(100%);
-	transition-delay: 100ms;
-	transition: transform 0.4s ease-in;
+	background-color: white;
+	top: 100%;
+	transition: top 0.4s ease-in;
+	&.show {
+		top: 0;
+	}
 }
 
-.social-ad.show {
-	transform: translateY(0);
-}

@@ -4,6 +4,8 @@ import GoodLoopAd from "../../GoodLoopAd";
 
 import { Row, Col } from 'reactstrap';
 
+let fakeVisCheck;
+
 const detectEnvironment = () => {
 	const host = window.location.hostname;
 	if (host.includes('test')) return 'test';
@@ -51,7 +53,7 @@ const DemoWidget = ({ format, device, production, ...props }) => {
 	return (
 		<Row className="half-bg">
 			<Col xs="12" className="text-center">
-				<div className={`device-container ${device}`}>
+				<div className={`device-container ${device} ${format === 'social' ? 'social' : ''}`}>
 					<div className="device-shadow"/>
 					<div className="device-screen-bg" />
 					<div className="ad-container">{ad}</div>
@@ -66,6 +68,8 @@ const DemoWidget = ({ format, device, production, ...props }) => {
 
 const SocialAd = ({vertId, nonce}) => {
 	const [showAd, setShowAd] = useState(0);
+	const [visible, setVisible] = useState(false);
+
 	const size = 'portrait';
 	// Hardcoded TOMS Josh EN Male advert. We will show this only on the DemoPage.
 	vertId = '0PVrD1kX';
@@ -79,26 +83,35 @@ const SocialAd = ({vertId, nonce}) => {
 		document.body.style.overflow = 'auto';
 	};
 
+	if (!fakeVisCheck) {
+		fakeVisCheck = window.setTimeout(() => {
+			setVisible(true);
+		}, 100);
+	}
+
+	let feedClass = 'fake-feed' + (visible ? ' visible' : '');
+
+	// TODO When gl.delivery === 'app', gl.after should probably default to "persist"
+	const unitProps = { vertId, size, nonce, glParams: {'gl.delivery': 'app', 'gl.after': 'persist'}, production: true };
+
 	return (
 		<div className="ad-sizer portrait" >
 			<div className="aspectifier" />
-			<div className="fake-feed" >
-				<video
-					onMouseDown={ () => setShowAd(true) }
-					onTouchStart={ lockScreen }
-					onTouchEnd={ unlockScreen }
-					onTouchMove={ e => e.preventDefault() }
-					width="100%"
-					autoPlay	//
-					muted		// 'muted' required for browsers to allow autoplay.
-					playsInline // This one required to allow autoplay in Safari.
-					loop
-					src="https://media.good-loop.com/uploads/standard/toms_snapchat_ad.mp4" 
+			<div className={feedClass} >
+				<img src="https://media.good-loop.com/uploads/standard/snap_ferry_view.jpg" className="snap-img first" />
+				<img src="https://media.good-loop.com/uploads/standard/snap_makeup_tutorial.jpg" className="snap-img delay1" />
+				<img src="https://media.good-loop.com/uploads/standard/snap_food_bear.jpg" className="snap-img delay2" />
+				<video src="https://media.good-loop.com/uploads/standard/toms_snapchat_ad.mp4" className="snap-img delay3"
+					autoPlay loop muted playsInline
+					onMouseDown={() => setShowAd(true)}
+					onTouchStart={lockScreen}
+					onTouchEnd={unlockScreen}
+					onTouchMove={e => e.preventDefault()}
 				/>
-				<div className="show-ad" onClick={() => setShowAd(true)}>trigger ad</div>
+				<div className="show-ad" onClick={() => setShowAd(true)} />
 			</div>
 			<div className={`social-ad ${showAd ? 'show' : ''}`}>
-				{ showAd ? <GoodLoopAd vertId={vertId} size={size} nonce={nonce} production social /> : '' }
+				{ showAd ? <GoodLoopAd {...unitProps} /> : '' }
 			</div>
 		</div>
 	);

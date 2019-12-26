@@ -7,7 +7,7 @@ class GoodLoopAd extends Component {
 		return nextProps.nonce !== this.props.nonce;
 	}
 
-	render({size, vertId, nonce, production, bare}) {
+	render({size, vertId, nonce, production, bare, glParams = {}}) {
 		const host = window.location.hostname;
 
 		let prefix = '';
@@ -16,12 +16,15 @@ class GoodLoopAd extends Component {
 			else if (host.match(/^test/)) prefix = 'test';
 		}
 		
-		const glUnitUrl = `//${prefix}as.good-loop.com/unit.js`;
-		const fullUnitUrl = glUnitUrl + (vertId ? `?gl.vert=${vertId}` : '');
+		const glUnitUrl = new URL(`https://${prefix}as.good-loop.com/unit.js`);
+		if (vertId) glUnitUrl.searchParams.set('gl.vert', vertId);
+		Object.entries(glParams).forEach(([key, value]) => {
+			glUnitUrl.searchParams.set(key, value);
+		})
 
 		const bareElements = <>
 			<div className="goodloopad" data-format={size} data-mobile-format={size} key={nonce + '-container'}/>
-			<script src={fullUnitUrl} key={nonce + '-script'}/>
+			<script src={glUnitUrl.toString()} key={nonce + '-script'}/>
 		</>;
 
 		// Aspectifier isn't always wanted - eg in fullscreen mode where making the
