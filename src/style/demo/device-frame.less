@@ -37,7 +37,8 @@
 	}
 
 	&.landscape {
-		width: 100%;// Take width of BS container
+		width: 66%;// Make it smaller so it looks closer in size to portrait device frame in size.
+		@media (max-width: 767px) { width: 100%; } // But make it occupy the total width of the container in smaller devices.
 		.device-screen-bg {
 			left: 3%;
 			top: 6%;

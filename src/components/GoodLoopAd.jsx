@@ -16,7 +16,8 @@ class GoodLoopAd extends Component {
 			else if (host.match(/^test/)) prefix = 'test';
 		}
 		
-		const glUnitUrl = new URL(`https://${prefix}as.good-loop.com/unit.js`);
+		const isHttps = !host.match(/^local/);
+		const glUnitUrl = new URL(`http${isHttps ? 's' : ''}://${prefix}as.good-loop.com/unit.js`);
 		if (vertId) glUnitUrl.searchParams.set('gl.vert', vertId);
 		Object.entries(glParams).forEach(([key, value]) => {
 			glUnitUrl.searchParams.set(key, value);

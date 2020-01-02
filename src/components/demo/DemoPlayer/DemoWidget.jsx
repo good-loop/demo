@@ -4,8 +4,6 @@ import GoodLoopAd from "../../GoodLoopAd";
 
 import { Row, Col } from 'reactstrap';
 
-let fakeVisCheck;
-
 const detectEnvironment = () => {
 	const host = window.location.hostname;
 	if (host.includes('test')) return 'test';
@@ -70,11 +68,13 @@ const SocialAd = ({vertId, nonce}) => {
 	const [showAd, setShowAd] = useState(0);
 	const [visible, setVisible] = useState(false);
 
+	let fakeVisCheck;
+
 	const size = 'portrait';
-	// Hardcoded TOMS Josh EN Male advert. We will show this only on the DemoPage.
+	// Hardcoded TOMS Josh EN Male advert.
 	vertId = '0PVrD1kX';
 
-	// Prevents scrolling on mobile when user attempts to swipe the social ad. Trick does not work on Safari, cause that browser's poop.
+	// Prevents scrolling on mobile when user attempts to swipe the social ad.
 	const lockScreen = () => { 
 		document.body.style.overflow = 'hidden';
 		setShowAd(true);
@@ -98,10 +98,11 @@ const SocialAd = ({vertId, nonce}) => {
 		<div className="ad-sizer portrait" >
 			<div className="aspectifier" />
 			<div className={feedClass} >
-				<img src="https://media.good-loop.com/uploads/standard/snap_ferry_view.jpg" className="snap-img first" />
-				<img src="https://media.good-loop.com/uploads/standard/snap_makeup_tutorial.jpg" className="snap-img delay1" />
-				<img src="https://media.good-loop.com/uploads/standard/snap_food_bear.jpg" className="snap-img delay2" />
-				<video src="https://media.good-loop.com/uploads/standard/toms_snapchat_ad.mp4" className="snap-img delay3"
+				<img src="https://media.good-loop.com/uploads/standard/snap_logo_background.jpg" className="snap-img first" />
+				<img src="https://media.good-loop.com/uploads/standard/snap_ferry_view.jpg" className="snap-img delay1" />
+				<img src="https://media.good-loop.com/uploads/standard/snap_makeup_tutorial.jpg" className="snap-img delay2" />
+				<img src="https://media.good-loop.com/uploads/standard/snap_food_bear.jpg" className="snap-img delay3" />
+				<video src="https://media.good-loop.com/uploads/standard/toms_snapchat_ad.mp4" className="snap-img delay4"
 					autoPlay loop muted playsInline
 					onMouseDown={() => setShowAd(true)}
 					onTouchStart={lockScreen}
