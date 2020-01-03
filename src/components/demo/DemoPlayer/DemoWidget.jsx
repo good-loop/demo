@@ -48,7 +48,15 @@ const DemoWidget = ({ format, device, production, ...props }) => {
 
 	const styleFrame = (frameDevice) => ({ height: frameDevice === device ? 'inherit' : '0'});
 
+	const socialTextPresentation = (
+		<div className="pb-2 d-flex justify-content-center">
+			<p>Here's an example of a Good-Loop campaign, as seen on Snapchat:</p>
+		</div>
+	)
+
 	return (
+		<>
+		{ format === 'social' ? socialTextPresentation : '' }
 		<Row className="half-bg">
 			<Col xs="12" className="text-center">
 				<div className={`device-container ${device} ${format === 'social' ? 'social' : ''}`}>
@@ -61,6 +69,7 @@ const DemoWidget = ({ format, device, production, ...props }) => {
 				</div>
 			</Col>
 		</Row>
+		</>
 	);
 }
 
