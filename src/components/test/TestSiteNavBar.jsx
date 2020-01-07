@@ -19,7 +19,7 @@ const banners = {
 	'mpu2': 'Double MPU',
 	'leaderboard': 'Leaderboard',
 	'billboard': 'Billboard',
-	'footer': 'Sticky footer',
+	'stickyfooter': 'Sticky footer',
 	'vbnr': 'Vertical banner'
 };
 
