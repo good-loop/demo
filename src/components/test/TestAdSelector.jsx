@@ -10,6 +10,19 @@ const TestAdSelector = ({ vertId, size, format }) => {
 		return `/${format}/${size}/${id}?`;
 	}
 
+	const adIdList = [
+		'test_wide_multiple',
+		'test_wide_single',
+		'test_tall_multiple',
+		'test_tall_single',
+		'test_lesstall_multiple',
+		'test_lesstall_single',
+	];
+
+	const generateDropdownItems = () => {
+		return adIdList.map(id => <a href={generateUrl(id)}><DropdownItem>{id}</DropdownItem></a> );
+	}
+
 	return (
 		<Row className="test-ad-selector">
 
@@ -20,12 +33,7 @@ const TestAdSelector = ({ vertId, size, format }) => {
 					Select advert
 				</DropdownToggle>
 				<DropdownMenu>
-					<a href={generateUrl('test_wide_multiple')}><DropdownItem>test_wide_multiple</DropdownItem></a>
-					<a href={generateUrl('test_wide_single')}><DropdownItem>test_wide_single</DropdownItem></a>
-					<a href={generateUrl('test_tall_multiple')}><DropdownItem>test_tall_multiple</DropdownItem></a>
-					<a href={generateUrl('test_tall_single')}><DropdownItem>test_tall_single</DropdownItem></a>
-					<a href={generateUrl('test_lesstall_multiple')}><DropdownItem>test_lesstall_multiple</DropdownItem></a>
-					<a href={generateUrl('test_lesstall_single')}><DropdownItem>test_lesstall_single</DropdownItem></a>
+					{ generateDropdownItems() }
 				</DropdownMenu>
 			</Dropdown>
 		</Row>
