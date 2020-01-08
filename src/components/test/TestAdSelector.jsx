@@ -2,12 +2,12 @@ import { h, Fragment } from 'preact';
 import { useState } from 'preact/hooks';
 import { Row, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
-const TestAdSelector = ({ vertId, size, format }) => {
+const TestAdSelector = ({ vertId, size, format, social }) => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggle = () => setDropdownOpen(prevState => !prevState);
 
 	const generateUrl = id => {
-		return `/${format}/${size}/${id}?`;
+		return `/${format}${!social? '/' + size : ''}/${id}?`;
 	}
 
 	const adIdList = [
