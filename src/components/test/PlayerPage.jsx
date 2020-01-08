@@ -15,7 +15,7 @@ const PlayerPage = ({ vpaid, size, vertId, 'gl.vert': vertParam, ...params}) => 
 	return <>
 			<TestSiteNavBar vertId={vertId || vertParam } {...params} />
 			<Container>
-				<TestAdSelector vertId={vertId}/>
+				<TestAdSelector vertId={vertId} size={size} />
 				<Row>
 					<Col xs="12">
 						{vpaid ? <VpaidAd vertId={vertId} size={size} nonce={size} /> : <GoodLoopAd vertId={vertId} size={size} nonce={size + vertId} />}
@@ -26,26 +26,30 @@ const PlayerPage = ({ vpaid, size, vertId, 'gl.vert': vertParam, ...params}) => 
 }
 
 
-const TestAdSelector = ({ vertId }) => {
+const TestAdSelector = ({ vertId, size }) => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggle = () => setDropdownOpen(prevState => !prevState);
+
+	const generateUrl = id => {
+		return `/player/${size}/${id}?`;
+	}
 
 	return (
 		<Row className="test-ad-selector">
 
-			<div className="selector-info">{ `Currently showing player for ${vertId}` }</div>
+			<div className="selector-info">{ `Currently showing ${size} player for ${vertId}` }</div>
 
 			<Dropdown isOpen={dropdownOpen} toggle={toggle}>
 				<DropdownToggle caret>
 					Select advert
 				</DropdownToggle>
 				<DropdownMenu>
-					<a href="/player/landscape/test_wide_multiple?"><DropdownItem>test_wide_multiple</DropdownItem></a>
-					<a href="/player/landscape/test_wide_single?"><DropdownItem>test_wide_single</DropdownItem></a>
-					<a href="/player/landscape/test_tall_multiple?"><DropdownItem>test_tall_multiple</DropdownItem></a>
-					<a href="/player/landscape/test_tall_single?"><DropdownItem>test_tall_single</DropdownItem></a>
-					<a href="/player/landscape/test_lesstall_multiple?"><DropdownItem>test_lesstall_multiple</DropdownItem></a>
-					<a href="/player/landscape/test_lesstall_single?"><DropdownItem>test_lesstall_single</DropdownItem></a>
+					<a href={generateUrl('test_wide_multiple')}><DropdownItem>test_wide_multiple</DropdownItem></a>
+					<a href={generateUrl('test_wide_single')}><DropdownItem>test_wide_single</DropdownItem></a>
+					<a href={generateUrl('test_tall_multiple')}><DropdownItem>test_tall_multiple</DropdownItem></a>
+					<a href={generateUrl('test_tall_single')}><DropdownItem>test_tall_single</DropdownItem></a>
+					<a href={generateUrl('test_lesstall_multiple')}><DropdownItem>test_lesstall_multiple</DropdownItem></a>
+					<a href={generateUrl('test_lesstall_single')}><DropdownItem>test_lesstall_single</DropdownItem></a>
 				</DropdownMenu>
 			</Dropdown>
 		</Row>
