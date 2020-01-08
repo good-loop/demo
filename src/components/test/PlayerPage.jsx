@@ -1,11 +1,11 @@
 /* @jsx h */
 import { h, Fragment } from 'preact';
-import { useState } from 'preact/hooks';
-import { Container, Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 import TestSiteNavBar from './TestSiteNavBar';
 import GoodLoopAd from '../GoodLoopAd';
 import VpaidAd from '../VpaidAd';
+import TestAdSelector from './TestAdSelector';
 
 const PlayerPage = ({ vpaid, size, vertId, 'gl.vert': vertParam, ...params}) => {
 
@@ -15,7 +15,7 @@ const PlayerPage = ({ vpaid, size, vertId, 'gl.vert': vertParam, ...params}) => 
 	return <>
 			<TestSiteNavBar vertId={vertId || vertParam } {...params} />
 			<Container>
-				<TestAdSelector vertId={vertId} size={size} />
+				<TestAdSelector vertId={vertId} size={size} format={'player'} />
 				<Row>
 					<Col xs="12">
 						{vpaid ? <VpaidAd vertId={vertId} size={size} nonce={size} /> : <GoodLoopAd vertId={vertId} size={size} nonce={size + vertId} />}
@@ -23,37 +23,6 @@ const PlayerPage = ({ vpaid, size, vertId, 'gl.vert': vertParam, ...params}) => 
 				</Row>
 			</Container>
 		</>
-}
-
-
-const TestAdSelector = ({ vertId, size }) => {
-	const [dropdownOpen, setDropdownOpen] = useState(false);
-	const toggle = () => setDropdownOpen(prevState => !prevState);
-
-	const generateUrl = id => {
-		return `/player/${size}/${id}?`;
-	}
-
-	return (
-		<Row className="test-ad-selector">
-
-			<div className="selector-info">{ `Currently showing ${size} player for ${vertId}` }</div>
-
-			<Dropdown isOpen={dropdownOpen} toggle={toggle}>
-				<DropdownToggle caret>
-					Select advert
-				</DropdownToggle>
-				<DropdownMenu>
-					<a href={generateUrl('test_wide_multiple')}><DropdownItem>test_wide_multiple</DropdownItem></a>
-					<a href={generateUrl('test_wide_single')}><DropdownItem>test_wide_single</DropdownItem></a>
-					<a href={generateUrl('test_tall_multiple')}><DropdownItem>test_tall_multiple</DropdownItem></a>
-					<a href={generateUrl('test_tall_single')}><DropdownItem>test_tall_single</DropdownItem></a>
-					<a href={generateUrl('test_lesstall_multiple')}><DropdownItem>test_lesstall_multiple</DropdownItem></a>
-					<a href={generateUrl('test_lesstall_single')}><DropdownItem>test_lesstall_single</DropdownItem></a>
-				</DropdownMenu>
-			</Dropdown>
-		</Row>
-	);
 }
 
 export default PlayerPage;
