@@ -5,10 +5,11 @@ import { Row, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'react
 const TestAdSelector = ({ vertId, size, format, social }) => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const toggle = () => setDropdownOpen(prevState => !prevState);
+	const params = new URLSearchParams(window.location.search);
 
 	const generateUrl = id => {
-		return `/${format}${!social? '/' + size : ''}/${id}?`;
-	}
+		return `/${format}${!social? '/' + size : ''}/${id}?${params.toString()}`;
+	};
 
 	const adIdList = [
 		'test_wide_multiple',
@@ -21,7 +22,7 @@ const TestAdSelector = ({ vertId, size, format, social }) => {
 
 	const generateDropdownItems = () => {
 		return adIdList.map(id => <a href={generateUrl(id)}><DropdownItem>{id}</DropdownItem></a> );
-	}
+	};
 
 	return (
 		<Row className="test-ad-selector">
@@ -38,6 +39,6 @@ const TestAdSelector = ({ vertId, size, format, social }) => {
 			</Dropdown>
 		</Row>
 	);
-}
+};
 
 export default TestAdSelector;

@@ -5,6 +5,7 @@ import { Router } from 'preact-router';
 import PlayerPage from './PlayerPage';
 import BannerPage from './BannerPage';
 import SocialPage from './SocialPage';
+import AppNexusAdPage from "./AppNexusAdPage";
 
 const TestMain = () => <>
 	<Router>
@@ -18,6 +19,7 @@ const TestMain = () => <>
 		<SocialPage path="/social/:vertId" />
 		<SocialPage path="/social/full" noVideo />
 		<SocialPage path="/social/half" halfHeight novideo />
+		<AppNexusAdPage path="/appnexus"/>
 	</Router>
 </>;
 

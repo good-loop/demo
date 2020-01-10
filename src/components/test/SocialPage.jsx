@@ -32,31 +32,50 @@ const controlUrl = ({replaceParam = {}, toggleInParam = {}}) => {
 	return 
 };
 
+const ratios = {
+	'16_9': 'sixteennine',
+	'18_9': 'nineteennine',
+	'4_3': 'fourthree'
+};
+
 /**
  * 
  */
-const PhoneWidget = ({vertId, halfHeight, noVideo, noAddressBar, noNavBar, socialAspect = 'r16_9', ...params}) => {
+const PhoneWidget = ({halfHeight, noVideo, noAddressBar, noNavBar, socialAspect = 'r16_9', ...params}) => {
+	const urlParams = new URLSearchParams(window.location.search);
+
+	const statusBar = urlParams.get('statusBar');
+	const addressBar = urlParams.get('addrBar');
+	const navBar = urlParams.get('navBar');
+	const ratio = urlParams.get('aspectRatio') || '18_9';
+	const vertId = urlParams.get('gl.vertId');
 
 	return (
-		<div id="frame-sizer" className="eighteennine">
+		<div id="frame-sizer" className={ratios[ratio]}>
 			<div id="phone-frame">
 				<div id="phone-speaker"></div>
 				<div id="phone-screen">
+					{ statusBar ?
 					<div id="status-bar" class="bar">
 						<span class="content">status bar</span>
-					</div>
-					{ noAddressBar ? '' :<div id="address-bar" class="bar">
+					</div> : '' }
+
+					{ addressBar ?
+					<div id="address-bar" class="bar">
 						<span class="content">address bar</span>
-					</div> }
+					</div> : '' }
+
 					<div id="screen-content">
 						<div id="external-video" style="display: none;">
 							<video src="triangle-loop.mp4" loop autoplay muted />
 						</div>
 						<GoodLoopAd vertId={vertId} size="portrait" glParams={{'gl.delivery': 'app', 'gl.after': 'persist'}} nonce={vertId}/>
 					</div>
-					{ noNavBar ? '' : <div id="navigation-bar" class="bar" style="display: none;">
+
+					{ navBar ?
+					<div id="navigation-bar" class="bar" style="display: none;">
 						<span class="content"><span>&#9664;</span><span>&#9679;</span><span>&#9632;</span></span>
-					</div> }
+					</div> : '' }
 				</div>
 				<div id="phone-button"></div>
 			</div>
@@ -67,17 +86,33 @@ const PhoneWidget = ({vertId, halfHeight, noVideo, noAddressBar, noNavBar, socia
 const PhoneControls = () => {
 	let urlParams = new URLSearchParams(window.location.search);
 	const [params, setParams] = useState(urlParams);
+	const defaultVertId = 'test_wide_multiple';
 
 	const toggleBooleanParam = e => {
 		const param = e.target.value;
 		if (urlParams.has(param)) {
 			urlParams.delete(param);
 		} else { urlParams.append(param, true) }
-
 		setParams(urlParams);
 
+		updatePath();
+	};
+
+	const updateParam = e => {
+		const param = JSON.parse(e.target.value);
+		if (urlParams.has(param.key)) { urlParams.set(param.key, param.value) }
+		else { urlParams.append(param.key, param.value) }
+		updatePath();
+	};
+
+	const updatePath = () => {
 		const currentPath = window.location.pathname;
-		route(currentPath + '?' + urlParams.toString())
+		route(currentPath + '?' + urlParams.toString());
+	};
+
+	if (!urlParams.has('gl.vertId')) {
+		urlParams.append('gl.vertId', defaultVertId);
+		updatePath();
 	}
 	
 	return (
@@ -85,9 +120,18 @@ const PhoneControls = () => {
 			<div className="d-flex flex-column">
 			<Label>Phone Aspect Ratio</Label>
 				<ButtonGroup style={{maxWidth: '200px'}}>
-					<Button>4:3</Button>
-					<Button>16:9</Button>
-					<Button>18:9</Button>
+					<Button
+						value={'{"key": "aspectRatio", "value": "4_3"}'}
+						onClick={updateParam}
+					>4:3</Button>
+					<Button
+						value={'{"key": "aspectRatio", "value": "16_9"}'}
+						onClick={updateParam}
+					>16:9</Button>
+					<Button
+						value={'{"key": "aspectRatio", "value": "18_9"}'}
+						onClick={updateParam}
+					>18:9</Button>
 				</ButtonGroup>
 			</div>
 			<div className="d-flex flex-column">
@@ -125,16 +169,11 @@ const PhoneControls = () => {
 			</div>
 		</Col>
 	)
-}
-
-const ratios = {
-	r4_3: '4:3 Legacy',
-	r16_9: '16:9 Standard',
-	r18_9: '18:9 Ultra-Tall'
 };
 
 const SocialPage = ({halfHeight, noVideo, vertId, 'gl.vert': vertParam, size, format, ...params}) => {
-	console.log(vertId);
+	const urlParams = new URLSearchParams(window.location.search);
+	if (urlParams.has('gl.vertId'))
 
 	return (
 		<>
