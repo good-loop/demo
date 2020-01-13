@@ -35,14 +35,9 @@ const sizes = {
 
 
 const DemoWidget = ({ format, device, production, ...props }) => {
-	// const vertId = props['gl.vert'] || 'ojRZHHd48s';
 	const vertId = props['gl.vert'] || defaultVertId;
 
-	console.log(`about to access sizes[${format}][${device}]`);
-
-	const ad = format === 'social' ? (
-		<SocialAd />
-	) : (
+	const ad = format === 'social' ? <SocialAd /> : (
 		<GoodLoopAd vertId={vertId} size={sizes[format][device]} nonce={`${format}${device}${vertId}`} production={production} />
 	);
 
@@ -52,7 +47,7 @@ const DemoWidget = ({ format, device, production, ...props }) => {
 		<div className="pb-2 d-flex justify-content-center">
 			<p>Here's an example of a Good-Loop campaign, as seen on Snapchat:</p>
 		</div>
-	)
+	);
 
 	return (
 		<>
@@ -92,6 +87,7 @@ const SocialAd = ({vertId, nonce}) => {
 		document.body.style.overflow = 'auto';
 	};
 
+	/* TODO Turn this into an actual visibility check */
 	if (!fakeVisCheck) {
 		fakeVisCheck = window.setTimeout(() => {
 			setVisible(true);

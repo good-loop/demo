@@ -9,7 +9,7 @@ const dropDownItems = [
 	{ text: 'Blog', link: 'https://medium.com/@GoodLoopHQ' }
 ]
 
-const DropDownMenu = () => {
+const AboutUsMenu = () => {
 	return dropDownItems.map(item => <DropdownItem href={item.link}>{item.text}</DropdownItem>)
 }
 
@@ -19,24 +19,20 @@ const DemoPageNavBar = () => {
 	const toggle = () => setIsOpen(!isOpen);
 
 	return (
-		<Navbar expand="md" color="faded" light style={{backgroundColor: '#fff'}}> {/* css inStyle */}
+		<Navbar expand="md" color="faded" light>
 			<NavbarBrand className="gl-icon-centred">
 				<div className="shadowcaster"></div>
 				<img className="navbar-gl-icon" src="/img/favicon-60x60.png" alt=""/>
 			</NavbarBrand>
 			<NavbarToggler onClick={toggle} />
 			<Collapse isOpen={isOpen} navbar className="gl-bootstrap-navbar" id="navbar">
-				<Nav navbar className="navbar-dark" style={{marginTop: '0', alignItems: 'center'}}> {/* css inStyle */}
+				<Nav navbar className="navbar-dark">
 					<NavItem>
 						<NavLink href="https://www.good-loop.com/">Home</NavLink>
 					</NavItem>
 					<UncontrolledDropdown nav inNavbar> 
-						<DropdownToggle nav caret>
-							About Us
-						</DropdownToggle>
-						<DropdownMenu right>
-							<DropDownMenu />
-						</DropdownMenu>
+						<DropdownToggle nav caret>About Us</DropdownToggle>
+						<DropdownMenu right><AboutUsMenu /></DropdownMenu>
 					</UncontrolledDropdown>
 					<NavItem>
 						<NavLink href="https://www.good-loop.com/contact-us">Contact Us</NavLink>

@@ -30,7 +30,7 @@ const DemoPlayer = ({ format, device, vertId, ...props}) => {
 };
 
 const AdBlockAlert = () => {
-	{/* 
+	{/*
 		For this adblocker to work inject a dummy ad.js generating a div with the id below in the page head
 		Check the Demo Page index.html for an example.
 	*/}
