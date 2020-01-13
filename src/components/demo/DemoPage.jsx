@@ -11,16 +11,21 @@ import DemoPlayer from './DemoPlayer/DemoPlayer';
 
 
 /** We don't do anything with {matches, path, url} here, but we want to pull them out and only leave search params */
-const DemoPage = ({device, format, matches, path, url, ...props}) => <>
-	<DemoSiteNavBar />
-	<Container>
-		<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
-		<DemoPlayer format={format} device={device} />
-		<RedMiddleSection format={format} device={device} {...props} />
-		<HowItWorksSection />
-		<FooterSection />
-	</Container>
-</>;
+const DemoPage = ({device, format, matches, path, url, ...props}) => {
+	const urlParams = new URLSearchParams(window.location.search);
+	const vertId = urlParams.has('gl.vertId') ? urlParams.get('gl.vertId') : '';
+
+	return (<>
+		<DemoSiteNavBar/>
+		<Container>
+			<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
+			<DemoPlayer format={format} device={device} vertId={vertId}/>
+			<RedMiddleSection format={format} device={device} {...props} />
+			<HowItWorksSection/>
+			<FooterSection/>
+		</Container>
+	</>);
+};
 
 const deviceToSize = {
 	landscape: 'landscape',

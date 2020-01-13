@@ -22,7 +22,7 @@ const DemoPlayer = ({ format, device, vertId, ...props}) => {
 			</Col>
 		</Row>
 		<AdBlockAlert />
-		<DemoWidget device={device} format={format} {...props} />
+		<DemoWidget device={device} format={format} vertId={vertId} {...props} />
 		<Row className="red-bg justify-content-center pt-1">
 			<FullscreenButton format={format} device={device} vertId={vertId} />
 		</Row>
@@ -53,13 +53,13 @@ const deviceToSize = {
 };
 
 const FullscreenButton = ({ format, device, vertId }) => {
-	const fullscreenURL = `//${window.location.host}/fullscreen/${deviceToSize[device]}?gl.vert=${vertId}`
+	const fullscreenURL = `//${window.location.host}/fullscreen/${deviceToSize[device]}?gl.vert=${vertId}`;
 	if (format !== 'social') {
 		return <a href={fullscreenURL} target="_blank" className="fullscreen-button w-button">Full Screen Demo</a>
 	} else {
 		return '';
 	}
-}
+};
 //////////////////////////
 
 export default DemoPlayer;
