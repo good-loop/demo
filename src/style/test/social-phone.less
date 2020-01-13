@@ -1,0 +1,138 @@
+#frame-sizer, #controls {
+	display: inline-block;
+	vertical-align: top;
+	margin: 2vh;
+}
+
+#controls {
+	width: 25em;
+}
+
+#frame-sizer.fourthree {
+	font-size: 1.15vh;
+}
+
+#frame-sizer.sixteennine {
+	font-size: 0.9vh;
+}
+
+#frame-sizer.eighteennine {
+	font-size: 0.85vh;
+}
+
+#phone-frame {
+	background-color: silver;
+	padding: 0;
+	border-radius: 2em;
+	display: inline-block;
+	text-align: center;
+}
+
+#phone-speaker, #phone-button {
+	background-color: white;
+	display: block;
+}
+
+#phone-speaker {
+	margin: 4em auto;
+	width: 20em;
+	height: 2em;
+	border-radius: 1em;
+}
+
+#phone-button {
+	margin: 2em auto;
+	width: 8em;
+	height: 8em;
+	border-radius: 4em;
+}
+
+#phone-screen {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	border: 1px solid black;
+	margin: 0 2em;
+	width: 45em;
+	background-color: white;
+}
+
+#frame-sizer.fourthree #phone-screen {
+	height: 60em;
+}
+
+#frame-sizer.sixteennine #phone-screen {
+	height: 80em;
+}
+
+#frame-sizer.eighteennine #phone-screen{
+	height: 90em;
+}
+
+#screen-content {
+	width: 100%;
+}
+
+#external-video, #frame.half {
+	height: 50%;
+}
+
+#external-video video {
+	height: 100%;
+	width: 100%;
+	background-color: black;
+}
+
+#frame {
+	border: none;
+	width: 100%;
+	height: 100%;
+}
+
+#phone-screen .bar {
+	width: 100%;
+}
+
+#phone-screen .bar .content {
+	font-family: sans-serif;
+}
+
+#status-bar {
+	background-color: black;
+	color: white;
+	height: 2.8em;
+	text-align: left;
+}
+
+#status-bar .content {
+	font-size: 200%;
+}
+
+#address-bar {
+	background-color: silver;
+	border-bottom: 1px solid black;
+	height: 6.4em;
+}
+
+#address-bar .content {
+	font-size: 300%;
+	border-radius: 0.5em;
+	background-color: white;
+	display: inline-block;
+	width: 90%;
+	text-align: left;
+	padding-left: 1em;
+	margin: 0.5em auto;
+}
+
+#navigation-bar {
+	background-color: black;
+	color: white;
+	height: 6.4em;
+}
+
+#navigation-bar .content{
+	font-size: 450%;
+	display: flex;
+	justify-content: space-evenly;
+}

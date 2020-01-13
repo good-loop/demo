@@ -1,9 +1,12 @@
 /* @jsx h */
 import { h, Fragment } from 'preact';
-import { Container, Row, Col } from 'reactstrap';
+import { route } from 'preact-router';
+import { useState } from 'preact/hooks';
+import { Container, Row, Col, ButtonGroup, Button, FormGroup, Label, Input } from 'reactstrap';
 
 import TestSiteNavBar from './TestSiteNavBar';
 import GoodLoopAd from '../GoodLoopAd';
+import TestAdSelector from './TestAdSelector';
 
 const controlUrl = ({replaceParam = {}, toggleInParam = {}}) => {
 	const url = new URL(window.location.href);
@@ -29,102 +32,162 @@ const controlUrl = ({replaceParam = {}, toggleInParam = {}}) => {
 	return 
 };
 
+const ratios = {
+	'16_9': 'sixteennine',
+	'18_9': 'nineteennine',
+	'4_3': 'fourthree'
+};
+
 /**
  * 
  */
-const PhoneWidget = ({vertId, halfHeight, noVideo, socialBars = '', socialAspect = 'r16_9', ...params}) => {
-	const addressBar = socialBars.contains('addr');
-	const navBar = socialBars.contains('nav');
+const PhoneWidget = ({halfHeight, noVideo, noAddressBar, noNavBar, socialAspect = 'r16_9', ...params}) => {
+	const urlParams = new URLSearchParams(window.location.search);
+
+	const statusBar = urlParams.get('statusBar');
+	const addressBar = urlParams.get('addrBar');
+	const navBar = urlParams.get('navBar');
+	const ratio = urlParams.get('aspectRatio') || '18_9';
+	const vertId = urlParams.get('gl.vertId');
 
 	return (
-		<div id="phone" className={socialAspect}>
-			<div className="speaker"></div>
-			<div className="screen">
-				<div className="bar status-bar">
-					<span className="content">status bar</span>
-				</div>
-				{addressBar ? (
-					<div className="bar address-bar">
-						<span className="content">address bar</span>
-					</div>
-				) : ''}
-				<div className="screen-content">
-					{noVideo ? (
-						<div className="external-video">
-							<video src="/img/triangle-loop.mp4" loop autoplay muted />
+		<div id="frame-sizer" className={ratios[ratio]}>
+			<div id="phone-frame">
+				<div id="phone-speaker"></div>
+				<div id="phone-screen">
+					{ statusBar ?
+					<div id="status-bar" class="bar">
+						<span class="content">status bar</span>
+					</div> : '' }
+
+					{ addressBar ?
+					<div id="address-bar" class="bar">
+						<span class="content">address bar</span>
+					</div> : '' }
+
+					<div id="screen-content">
+						<div id="external-video" style="display: none;">
+							<video src="triangle-loop.mp4" loop autoplay muted />
 						</div>
-					) : ''}
-					<div className={halfHeight ? 'half-height' : 'full-height'}>
-						<GoodLoopAd size="social" />
+						<GoodLoopAd vertId={vertId} size="portrait" glParams={{'gl.delivery': 'app', 'gl.after': 'persist'}} nonce={vertId}/>
 					</div>
+
+					{ navBar ?
+					<div id="navigation-bar" class="bar" style="display: none;">
+						<span class="content"><span>&#9664;</span><span>&#9679;</span><span>&#9632;</span></span>
+					</div> : '' }
 				</div>
-				{navBar ? (
-					<div className="bar navigation-bar">
-						<span className="content"><span>&#9664;</span><span>&#9679;</span><span>&#9632;</span></span>
-					</div>
-				) : ''}
+				<div id="phone-button"></div>
 			</div>
-			<div className="phone-button"></div>
 		</div>
 	);
 }
 
-const ratios = {
-	r4_3: '4:3 Legacy',
-	r16_9: '16:9 Standard',
-	r18_9: '18:9 Ultra-Tall'
+const PhoneControls = () => {
+	let urlParams = new URLSearchParams(window.location.search);
+	const [params, setParams] = useState(urlParams);
+	const defaultVertId = 'test_wide_multiple';
+
+	const toggleBooleanParam = e => {
+		const param = e.target.value;
+		if (urlParams.has(param)) {
+			urlParams.delete(param);
+		} else { urlParams.append(param, true) }
+		setParams(urlParams);
+
+		updatePath();
+	};
+
+	const updateParam = e => {
+		const param = JSON.parse(e.target.value);
+		if (urlParams.has(param.key)) { urlParams.set(param.key, param.value) }
+		else { urlParams.append(param.key, param.value) }
+		updatePath();
+	};
+
+	const updatePath = () => {
+		const currentPath = window.location.pathname;
+		route(currentPath + '?' + urlParams.toString());
+	};
+
+	if (!urlParams.has('gl.vertId')) {
+		urlParams.append('gl.vertId', defaultVertId);
+		updatePath();
+	}
+	
+	return (
+		<Col>
+			<div className="d-flex flex-column">
+			<Label>Phone Aspect Ratio</Label>
+				<ButtonGroup style={{maxWidth: '200px'}}>
+					<Button
+						value={'{"key": "aspectRatio", "value": "4_3"}'}
+						onClick={updateParam}
+					>4:3</Button>
+					<Button
+						value={'{"key": "aspectRatio", "value": "16_9"}'}
+						onClick={updateParam}
+					>16:9</Button>
+					<Button
+						value={'{"key": "aspectRatio", "value": "18_9"}'}
+						onClick={updateParam}
+					>18:9</Button>
+				</ButtonGroup>
+			</div>
+			<div className="d-flex flex-column">
+				<Label>Bars</Label>
+				<p>Depending on the phone OS and context, we might have to deal with address and anvigation taking up vertical space.</p>
+				<FormGroup className="d-flex flex-column">
+					<Label>
+						<Input 
+							value="statusBar"
+							type="checkbox"
+							onClick={toggleBooleanParam}
+							defaultChecked={ urlParams.has('statusBar') }
+						/>
+						{' '} Status Bar
+					</Label>
+					<Label>
+						<Input
+							value="addrBar"
+							type="checkbox"
+							onClick={toggleBooleanParam}
+							defaultChecked={ urlParams.has('addrBar') }
+						/>
+						{' '} Address bar
+					</Label>
+					<Label>
+						<Input
+							value="navBar"
+							type="checkbox"
+							onClick={toggleBooleanParam}
+							defaultChecked={ urlParams.has('navBar') }
+						/>
+						{' '} Navigation bar
+					</Label>
+				</FormGroup>
+			</div>
+		</Col>
+	)
 };
 
-const ControlsWidget = ({socialBars, socialAspect, vertId}) => {
-	const addressBar = socialBars.contains('address');
-	const navBar = socialBars.contains('nav');
+const SocialPage = ({halfHeight, noVideo, vertId, 'gl.vert': vertParam, size, format, ...params}) => {
+	const urlParams = new URLSearchParams(window.location.search);
+	if (urlParams.has('gl.vertId'))
 
-	const ratioControls = Object.entries(ratios).map(([key, desc]) => {
-		socialAspect === key ? <span>desc</span> : (
-			<a href={controlUrl({replaceParam: {socialAspect: key}})}>{desc}</a>
-		);
-	})
-
-
-	return <>
-		{/*
-		<div>
-			<h2>Advert ID</h2>
-			<p>If this is left empty, the advert will be taken from this window's gl.vert parameter or selected randomly.</p>
-			<input id="advert-id" name="advert-id" /> <input type="button" value="Reload" onclick="loadFrame()" /><br/>
-			<h3>Iframe URL</h3>
-			<p>Use this URL where your ad platform of choice asks for a landing page</p>
-			<code id="iframe-url"></code>
-		</div>
-		<div>
-			<h2>Phone Aspect ratio</h2>
-			{ratioControls}
-		</div>
-		<div>
-			<h2>Bars</h2>
-			<p>Depending on the phone OS and context, we might have to deal with address and navigation bars taking up vertical space.</p>
-			<a href={controlUrl({toggleInParam: socialBars: 'address'})}/>{addressBar ? 'Hide ' : 'Show '}Address bar</a>
-			<br/>
-			<a href={controlUrl({toggleInParam: socialBars: 'nav'})}/>{addressBar ? 'Hide ' : 'Show '}Nav bar</a>
-			<br/>
-		</div>
-		*/}
-	</>;
-}
-
-const SocialPage = ({halfHeight, noVideo, vertId, 'gl.vert': vertParam, ...params}) => <>
-	<TestSiteNavBar vertId={vertId || vertParam} {...params} />
-	<Container>
-		<Row>You're on the social page.</Row>
-		<Row>
-			<Col xs="12" md="6">
-				<PhoneWidget vertId={vertId || vertParam} />
-			</Col>
-			<Col xs="12" md="6">
-				<ControlsWidget vertId={vertId || vertParam} />
-			</Col>
-		</Row>
-	</Container>
-</>;
+	return (
+		<>
+			<TestSiteNavBar vertId={vertId || vertParam} {...params} />
+			<Container>
+				<TestAdSelector vertId={vertId} size={size} format="social" social/>
+				<Row>You're on the social page.</Row>
+				<Row>
+					<PhoneWidget vertId={vertId} />
+					<PhoneControls />
+				</Row>
+			</Container>
+		</>
+	)
+};
 
 export default SocialPage;

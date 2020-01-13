@@ -10,6 +10,107 @@
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 		<script src="https://cdn.jsdelivr.net/npm/vast-player@latest/dist/vast-player.js"></script>
 		<link href="/style/main.css" rel="stylesheet" />
+		<script type="text/javascript" src="//acdn.adnxs.com/prebid/not-for-prod/1/prebid.js" async></script>
+		<script type="text/javascript" src="//acdn.adnxs.com/ast/ast.js" async></script>
+		<!-- Prebid Config Section START -->
+		<!-- Make sure this is inserted before your AST tag -->
+		<script>
+			var div_1_sizes = [
+				[300, 250],
+				[300, 600]
+			];
+			var div_2_sizes = [
+				[728, 500],
+				[970, 600],
+				[640, 480],
+			];
+			var PREBID_TIMEOUT = 1000;
+
+			var pbjs = pbjs || {};
+			pbjs.que = pbjs.que || [];
+
+			var adUnits = [
+				{
+					code: 'div-1',
+					mediaTypes: {
+						banner: {
+							sizes: div_1_sizes
+						}
+					},
+					bids: [{
+						bidder: 'appnexus',
+						params: {
+							placementId: 18181583
+						}
+					}]
+				},
+				{
+					code: 'div-2',
+					mediaTypes: {
+						video: {
+							context: 'outstream',
+							sizes: div_2_sizes
+						}
+					},
+					bids: [{
+						bidder: 'appnexus',
+						params: {
+							placementId: 18182382,
+							allowSmallerSizes: true,
+							usePaymentRule: true,
+						}
+					}]
+				}
+			];
+
+			pbjs.que.push(function() {
+				pbjs.addAdUnits(adUnits);
+				pbjs.requestBids({
+					bidsBackHandler: function(bidResponses) {
+						initAdserver();
+					},
+					timeout: PREBID_TIMEOUT
+				});
+
+			});
+
+		</script>
+		<!-- Prebid Config Section END -->
+
+		<script type="text/javascript">
+			var apntag = apntag || {};
+			apntag.anq = apntag.anq || [];
+			apntag.anq.push(function() {
+				apntag.setPageOpts({
+					member: 1543
+				});
+				apntag.defineTag({
+					tagId: 10885450,
+					sizes: div_1_sizes,
+					targetId: 'div-1'
+				});
+				apntag.defineTag({
+					tagId: 18182382,
+					sizes: div_2_sizes,
+					targetId: 'div-2'
+				});
+			});
+
+			//start loading tags
+			function initAdserver() {
+				if (pbjs.requestSent) {
+					return;
+				}
+				pbjs.requestSent = true;
+				pbjs.que.push(function() {
+					apntag.anq.push(function() {
+						pbjs.setTargetingForAst();
+						apntag.loadTags();
+					});
+				});
+			}
+
+		</script>
 	</head>
 	<body>
 
@@ -31,28 +132,27 @@
 			document.write('<script src="/' + filename + '"/><\/script>');
 		</script>
 
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script>
-		/*!
-		* IE10 viewport hack for Surface/desktop Windows 8 bug
-		* Copyright 2014-2015 Twitter, Inc.
-		* Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-		*/
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script>
+			/*!
+			* IE10 viewport hack for Surface/desktop Windows 8 bug
+			* Copyright 2014-2015 Twitter, Inc.
+			* Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+			*/
 
-		// See the Getting Started docs for more information:
-		// http://getbootstrap.com/getting-started/#support-ie10-width
+			// See the Getting Started docs for more information:
+			// http://getbootstrap.com/getting-started/#support-ie10-width
 
-		(function () {
-			'use strict';
-			if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
-				var msViewportStyle = document.createElement('style')
-				msViewportStyle.appendChild(
-					document.createTextNode('@-ms-viewport{width:auto!important}')
-				)
-				document.querySelector('head').appendChild(msViewportStyle)
-			}
-		})();
-	</script>
-
+			(function () {
+				'use strict';
+				if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+					var msViewportStyle = document.createElement('style')
+					msViewportStyle.appendChild(
+						document.createTextNode('@-ms-viewport{width:auto!important}')
+					)
+					document.querySelector('head').appendChild(msViewportStyle)
+				}
+			})();
+		</script>
 	</body>
 </html>

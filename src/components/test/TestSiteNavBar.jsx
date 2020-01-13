@@ -1,6 +1,6 @@
 /* @jsx h */
 import { h, Fragment } from 'preact';
-import { Container, Navbar, NavbarToggler, NavbarBrand, Nav, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Container, Navbar, NavbarToggler, NavbarBrand, Nav, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink } from 'reactstrap';
 
 const players = {
 	'landscape': 'Landscape',
@@ -71,6 +71,9 @@ const TestSiteNavBar = ({ vertId = '', matches, path, url, ...params }) => (
 			<Nav navbar>
 				<NavbarBrand><img src="/img/gl-test-pages-logo-light.svg" /></NavbarBrand>
 					<LinkBlock vertId={vertId} {...params} />
+					<NavItem>
+						<NavLink href="/appnexus">AppNexus Stuff</NavLink>
+					</NavItem>
 				<NavbarToggler />
 			</Nav>
 		</Container>
