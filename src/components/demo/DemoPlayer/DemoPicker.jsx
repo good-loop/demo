@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap';
 import { landscapeSvg, desktopSvg, portraitSvg } from '../DemoSvg';
 
 
-const DemoPicker = ({ format, device, hrefs, onClicks}) => {
+const DemoPicker = ({ format, device, vertId, hrefs, onClicks}) => {
 	const deviceClasses = newDevice => {
 		let classes = `picker-button ${newDevice}`
 		if (format === 'social' && newDevice !== 'portrait') classes += ' disabled';
@@ -15,7 +15,8 @@ const DemoPicker = ({ format, device, hrefs, onClicks}) => {
 		`picker-button ${newFormat}${(newFormat === format) ? ' current' : ''}`
 	);
 
-	const hrefUrl = ({newFormat, newDevice}) => `/${newDevice || device}/${newFormat || format}`;
+	const vertIdParam = vertId ? `?gl.vertId=${vertId}` : '';
+	const hrefUrl = ({newFormat, newDevice}) => `/${newDevice || device}/${newFormat || format}` + vertIdParam;
 
 	return <>
 		<Row className="format-picker text-center justify-content-center">

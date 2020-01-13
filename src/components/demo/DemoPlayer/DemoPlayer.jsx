@@ -15,7 +15,7 @@ const adBlockDetected = !document.getElementById('aiPai9th');
 
 const DemoPlayer = ({ format, device, vertId, ...props}) => {
 	return <>
-		<DemoPicker format={format} device={device} />
+		<DemoPicker format={format} device={device} vertId={vertId} />
 		<Row className="justify-content-center pb-4">
 			<Col cs="12" md="6" className="text-center">
 				{descriptions[format]}
