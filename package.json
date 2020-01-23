@@ -5,17 +5,15 @@
   "repository": "",
   "author": "Roscoe McInerney <roscoe@winterwell.com>",
   "license": "",
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
-  },
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.2",
     "babel-loader": "^8.0.5",
+    "jest": "^25.1.0",
+    "jest-puppeteer": "^4.4.0",
+    "puppeteer": "^2.0.0",
     "reactstrap": "^8.1.1",
     "webpack": "^4.41.2",
     "webpack-bundle-size-analyzer": "^3.1.0",
@@ -33,6 +31,13 @@
     "build": "webpack --config ./webpack.config.js --progress",
     "watch": "webpack --config ./webpack.config.js --progress --watch",
     "watch-fast": "NO_PROD=true webpack --config ./webpack.config.js --progress --watch",
-    "size:imports": "webpack -p --config ./webpack.config.js --progress --colors --json | webpack-bundle-size-analyzer"
+    "size:imports": "webpack -p --config ./webpack.config.js --progress --colors --json | webpack-bundle-size-analyzer",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-puppeteer",
+    "globals": {
+      "window": {}
+    }
   }
 }
