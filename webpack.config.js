@@ -25,11 +25,10 @@ const baseConfig = {
 				loader: 'babel-loader',
 				options: {
 					presets: [
-						['@babel/preset-env', { targets: { ie: "11" }, loose: true, useBuiltIns: "usage" }]
+						['@babel/preset-env', { targets: { ie: "11" }, loose: true }]
 					],
 					plugins: [
 						['@babel/plugin-transform-react-jsx', { pragma: 'h', pragmaFrag: 'Fragment' }],
-						"@babel/plugin-transform-runtime"
 					]
 				}
 			}
