@@ -5,21 +5,19 @@ import { Router } from 'preact-router';
 import PlayerPage from './PlayerPage';
 import BannerPage from './BannerPage';
 import SocialPage from './SocialPage';
-import AppNexusAdPage from "./AppNexusAdPage";
 
 const TestMain = () => <>
 	<Router>
-		<PlayerPage path="/:vertId?" size="landscape" />
-		<PlayerPage path="/player/:vertId?" size="landscape" />
-		<PlayerPage path="/player/:size/:vertId?" />
-		<PlayerPage path="/vpaid/:vertId?" size="landscape" vpaid/>
-		<PlayerPage path="/vpaid/:size/:vertId?" vpaid />
-		<BannerPage path="/banner/:vertId?" size="mpu" />
-		<BannerPage path="/banner/:size/:vertId?" />
-		<SocialPage path="/social/:vertId" />
+		<PlayerPage path="/" size="landscape" />
+		<PlayerPage path="/player/" size="landscape" />
+		<PlayerPage path="/player/:size/" />
+		<PlayerPage path="/vpaid/" size="landscape" vpaid/>
+		<PlayerPage path="/vpaid/:size/" vpaid />
+		<BannerPage path="/banner/" size="mpu" />
+		<BannerPage path="/banner/:size/" />
+		<SocialPage path="/social/" />
 		<SocialPage path="/social/full" noVideo />
 		<SocialPage path="/social/half" halfHeight novideo />
-		<AppNexusAdPage path="/appnexus"/>
 	</Router>
 </>;
 

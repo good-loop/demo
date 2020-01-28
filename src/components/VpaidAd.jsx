@@ -1,31 +1,26 @@
 /* @jsx h */
 import { h, Component } from 'preact';
 import { useRef, useEffect } from 'preact/hooks';
-
-// Decide which adserver to use and record it here - it's used in multiple places.
-// This page can be accessed via localtest.gl.com, test.gl.com, or prodtest.gl.com
-let prefix = 'test';
-if (window.location.hostname.match(/^local/)) { prefix = 'local'; }
-else if (window.location.hostname.match(/^prod/)) { prefix = ''; }
-const glVastUrl = `${window.location.protocol}//${prefix}as.good-loop.com/vast.xml`;
+import { getNonce, getVastUrl } from '../utils';
 
 let vastplayer;
 
 class VpaidAd extends Component {
 	shouldComponentUpdate(nextProps) {
-		return nextProps.nonce !== this.props.nonce;
+		return getNonce(nextProps) !== getNonce(this.props);
 	}
 
-	render({size, vertId, nonce}) {
+	render({size}) {
 		const container = useRef(null);
+
+		// Changes if size or ad ID changes - breaks identity on script & container so they get removed on next render
+		const nonce = getNonce(this.props);
 
 		// run whenever container changes
 		useEffect(() => {
 			if (container.current) {
-				const fullVastUrl = glVastUrl + (vertId ? `?gl.vert=${vertId}` : '');
-				console.log('container', container);
 				vastplayer = new VASTPlayer(container.current);
-				vastplayer.load(fullVastUrl).then(function() { vastplayer.startAd(); });
+				vastplayer.load(getVastUrl()).then(function() { vastplayer.startAd(); });
 			} else {
 				vastplayer && vastplayer.stopAd();
 			}
@@ -36,7 +31,7 @@ class VpaidAd extends Component {
 		// Don't put the VPAID ad directly into the sizer! It seems to clone the element and break identity
 		// - so Preact loses control of it, and can't remove it from the DOM when the component unmounts.
 		return (
-			<div className={`ad-sizer ${size}`} key={nonce + '-vpaid'} >
+			<div className={`ad-sizer ${size}`} key={nonce + '-vpaid'}>
 				<div className="vpaid-container" ref={container} />
 				<div className="aspectifier" />
 			</div>

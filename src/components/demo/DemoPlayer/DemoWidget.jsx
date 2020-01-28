@@ -1,9 +1,9 @@
 import { h, Fragment } from 'preact';
+import { route } from "preact-router";
 import { useState } from 'preact/hooks';
+import { Row, Col } from 'reactstrap';
 import GoodLoopAd from "../../GoodLoopAd";
 
-import { Row, Col } from 'reactstrap';
-import {route} from "preact-router";
 
 const detectEnvironment = () => {
 	const host = window.location.hostname;
@@ -39,14 +39,8 @@ const DemoWidget = ({ format, device, production, vertId, ...props }) => {
 	vertId = vertId || defaultVertId;
 
 	const ad = format === 'social' ? <SocialAd /> : (
-		<GoodLoopAd vertId={vertId} size={sizes[format][device]} nonce={`${format}${device}${vertId}`} production={production} />
+		<GoodLoopAd size={sizes[format][device]} extraNonce={`${format}${device}${vertId}`} production={production} />
 	);
-
-	const urlParams = new URLSearchParams(window.location.search);
-	if (!urlParams.has('gl.vertId')) {
-		urlParams.append('gl.vertId', vertId);
-		route(window.location.pathname + '?' + urlParams.toString());
-	}
 
 	const styleFrame = (frameDevice) => ({ height: frameDevice === device ? 'inherit' : '0'});
 

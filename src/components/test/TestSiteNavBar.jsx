@@ -43,14 +43,14 @@ const stringParams = params => {
 /**
  * Iterates through pageGroups and creates a drop-down set of links for each top-level entry.
  */
-const LinkBlock = ({vertId, ...params}) => (
+const LinkBlock = ({...params}) => (
 	Object.entries(pageGroups).map(([path1, {links, title}]) => (
 		<UncontrolledDropdown nav inNavBar>
 			<DropdownToggle nav caret>{title}</DropdownToggle>
 			<DropdownMenu>
 				{Object.entries(links).map(([path2, text]) => {
 					// append auxiliary "VPAID" links onto the player entries
-					const pathEnding = `${path2}/${vertId}${stringParams(params)}`;
+					const pathEnding = `${path2}/${stringParams(params)}`;
 					let vpaid = '';
 					if (path1 === 'player') vpaid = <> (<a href={`/vpaid/${pathEnding}`}>VPAID</a>)</>;
 					return (
@@ -65,15 +65,12 @@ const LinkBlock = ({vertId, ...params}) => (
 );
 
 
-const TestSiteNavBar = ({ vertId = '', matches, path, url, ...params }) => (
+const TestSiteNavBar = ({ matches, path, url, ...params }) => (
 	<Navbar color="dark" dark expand>
 		<Container>
 			<Nav navbar>
 				<NavbarBrand><img src="/img/gl-test-pages-logo-light.svg" /></NavbarBrand>
-					<LinkBlock vertId={vertId} {...params} />
-					<NavItem>
-						<NavLink href="/appnexus">AppNexus Stuff</NavLink>
-					</NavItem>
+					<LinkBlock {...params} />
 				<NavbarToggler />
 			</Nav>
 		</Container>

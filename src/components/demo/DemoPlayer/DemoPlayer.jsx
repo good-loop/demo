@@ -29,20 +29,15 @@ const DemoPlayer = ({ format, device, vertId, ...props}) => {
 	</>;
 };
 
-const AdBlockAlert = () => {
-	{/*
-		For this adblocker to work inject a dummy ad.js generating a div with the id below in the page head
-		Check the Demo Page index.html for an example.
-	*/}
-	return <>
-			{adBlockDetected ? (
-				<UncontrolledAlert color="warning" role="alert">
-					Adblocker detected. Some of our adverts might not play properly!
-				</UncontrolledAlert>)
-				: ''
-			}
-		</>
-}
+/*
+	For this adblocker to work inject a dummy ad.js generating a div with the id below in the page head
+	Check the Demo Page index.html for an example.
+*/
+const AdBlockAlert = () => !adBlockDetected ? '' : (
+	<UncontrolledAlert color="warning" role="alert">
+		Adblocker detected. Some of our adverts might not play properly!
+	</UncontrolledAlert>
+);
 
 //// Fullscreen Button ////
 
