@@ -6,7 +6,7 @@ import { Container, Row, Col, ButtonGroup, Button, FormGroup, Label, Input } fro
 
 import TestSiteNavBar from './TestSiteNavBar';
 import GoodLoopAd from '../GoodLoopAd';
-import TestAdSelector from './TestAdSelector';
+import TestControls from './TestControls';
 
 const controlUrl = ({replaceParam = {}, toggleInParam = {}}) => {
 	const url = new URL(window.location.href);
@@ -81,113 +81,68 @@ const PhoneWidget = ({halfHeight, noVideo, noAddressBar, noNavBar, socialAspect 
 			</div>
 		</div>
 	);
-}
-
-const PhoneControls = () => {
-	let urlParams = new URLSearchParams(window.location.search);
-	const [params, setParams] = useState(urlParams);
-	const defaultVertId = 'test_wide_multiple';
-
-	const toggleBooleanParam = e => {
-		const param = e.target.value;
-		if (urlParams.has(param)) {
-			urlParams.delete(param);
-		} else { urlParams.append(param, true) }
-		setParams(urlParams);
-
-		updatePath();
-	};
-
-	const updateParam = e => {
-		const param = JSON.parse(e.target.value);
-		if (urlParams.has(param.key)) { urlParams.set(param.key, param.value) }
-		else { urlParams.append(param.key, param.value) }
-		updatePath();
-	};
-
-	const updatePath = () => {
-		const currentPath = window.location.pathname;
-		route(currentPath + '?' + urlParams.toString());
-	};
-
-	if (!urlParams.has('gl.vertId')) {
-		urlParams.append('gl.vertId', defaultVertId);
-		updatePath();
-	}
-	
-	return (
-		<Col>
-			<div className="d-flex flex-column">
-			<Label>Phone Aspect Ratio</Label>
-				<ButtonGroup style={{maxWidth: '200px'}}>
-					<Button
-						value={'{"key": "aspectRatio", "value": "4_3"}'}
-						onClick={updateParam}
-					>4:3</Button>
-					<Button
-						value={'{"key": "aspectRatio", "value": "16_9"}'}
-						onClick={updateParam}
-					>16:9</Button>
-					<Button
-						value={'{"key": "aspectRatio", "value": "18_9"}'}
-						onClick={updateParam}
-					>18:9</Button>
-				</ButtonGroup>
-			</div>
-			<div className="d-flex flex-column">
-				<Label>Bars</Label>
-				<p>Depending on the phone OS and context, we might have to deal with address and anvigation taking up vertical space.</p>
-				<FormGroup className="d-flex flex-column">
-					<Label>
-						<Input 
-							value="statusBar"
-							type="checkbox"
-							onClick={toggleBooleanParam}
-							defaultChecked={ urlParams.has('statusBar') }
-						/>
-						{' '} Status Bar
-					</Label>
-					<Label>
-						<Input
-							value="addrBar"
-							type="checkbox"
-							onClick={toggleBooleanParam}
-							defaultChecked={ urlParams.has('addrBar') }
-						/>
-						{' '} Address bar
-					</Label>
-					<Label>
-						<Input
-							value="navBar"
-							type="checkbox"
-							onClick={toggleBooleanParam}
-							defaultChecked={ urlParams.has('navBar') }
-						/>
-						{' '} Navigation bar
-					</Label>
-				</FormGroup>
-			</div>
-		</Col>
-	)
 };
 
-const SocialPage = ({halfHeight, noVideo, vertId, 'gl.vert': vertParam, size, format, ...params}) => {
-	const urlParams = new URLSearchParams(window.location.search);
-	if (urlParams.has('gl.vertId'))
 
-	return (
-		<>
-			<TestSiteNavBar vertId={vertId || vertParam} {...params} />
-			<Container>
-				<TestAdSelector vertId={vertId} size={size} format="social" social/>
-				<Row>You're on the social page.</Row>
-				<Row>
-					<PhoneWidget vertId={vertId} />
-					<PhoneControls />
-				</Row>
-			</Container>
-		</>
-	)
+const setParams = (newParams) => {
+		const newUrl = new URL(window.location);
+		Object.entries(newParams).forEach(([key, value]) => {
+			if (value) {
+				newUrl.searchParams.set(key, value);
+			} else {
+				newUrl.searchParams.delete(key);
+			}
+		});
+
+		route(`${newUrl.pathname}${newUrl.search}`);
+	};
+
+
+const PhoneControls = ({statusBar, addrBar, navBar}) => (
+	<Col>
+		<div className="d-flex flex-column">
+		<Label>Phone Aspect Ratio</Label>
+			<ButtonGroup style={{maxWidth: '200px'}}>
+				<Button onClick={() => setParams({aspectRatio: '4_3'})}>4:3</Button>
+				<Button onClick={() => setParams({aspectRatio: '16_9'})}>16:9</Button>
+				<Button onClick={() => setParams({aspectRatio: '18_9'})}>18:9</Button>
+			</ButtonGroup>
+		</div>
+		<div className="d-flex flex-column">
+			<Label>Bars</Label>
+			<p>Depending on the phone OS and context, we might have to deal with address and navigation taking up vertical space.</p>
+			<FormGroup check className="d-flex flex-column">
+				<Label check>
+					<Input type="checkbox" onClick={() => setParams({statusBar: !statusBar})} value={statusBar} />
+					{' '} Status Bar
+				</Label>
+				<Label check>
+					<Input type="checkbox" onClick={() => setParams({addrBar: !addrBar})} value={addrBar} />
+					{' '} Address bar
+				</Label>
+				<Label check>
+					<Input type="checkbox" onClick={() => setParams({navBar: !navBar})} value={navBar}/>
+					{' '} Navigation bar
+				</Label>
+			</FormGroup>
+		</div>
+	</Col>
+);
+
+const SocialPage = ({halfHeight, noVideo, size, format, ...params}) => {
+	const vertId = params['gl.vert'];
+
+	return <>
+		<TestSiteNavBar {...params} />
+		<Container>
+			<p>Type: <code>social</code>, Size: <code>{size}</code></p>
+			<TestControls {...params}/>
+			<Row>
+				<PhoneWidget {...params} />
+				<PhoneControls {...params} />
+			</Row>
+		</Container>
+	</>;
 };
 
 export default SocialPage;

@@ -5,21 +5,19 @@ import { Container, Row, Col } from 'reactstrap';
 import TestSiteNavBar from './TestSiteNavBar';
 import GoodLoopAd from '../GoodLoopAd';
 import VpaidAd from '../VpaidAd';
-import TestAdSelector from './TestAdSelector';
+import TestControls from './TestControls';
 
-const PlayerPage = ({ vpaid, size, vertId, 'gl.vert': vertParam, ...params}) => {
-
-	const defaultAd = 'test_wide_multiple';
-	if (vertId.length === 0 && !vertParam) vertId = defaultAd;
+const PlayerPage = ({ vpaid, size, ...params}) => {
+	const adProps = {size, ...params};
+	const ad = vpaid ? <VpaidAd {...adProps} /> : <GoodLoopAd {...adProps} />;
 
 	return <>
-			<TestSiteNavBar vertId={vertId || vertParam } {...params} />
+			<TestSiteNavBar {...params} />
 			<Container>
-				<TestAdSelector vertId={vertId} size={size} format={'player'} />
+				<p>Type: <code>player</code>, Size: <code>{size}</code></p>
+				<TestControls {...params} />
 				<Row>
-					<Col xs="12">
-						{vpaid ? <VpaidAd vertId={vertId} size={size} nonce={size} /> : <GoodLoopAd vertId={vertId} size={size} nonce={size + vertId} />}
-					</Col>
+					<Col xs="12">{ad}</Col>
 				</Row>
 			</Container>
 		</>
