@@ -39,8 +39,14 @@ const DemoWidget = ({ format, device, production, vertId, ...props }) => {
 	vertId = vertId || defaultVertId;
 
 	const ad = format === 'social' ? <SocialAd /> : (
-		<GoodLoopAd size={sizes[format][device]} extraNonce={`${format}${device}${vertId}`} production={production} />
+		<GoodLoopAd vertId={vertId} size={sizes[format][device]} extraNonce={`${format}${device}${vertId}`} production={production} />
 	);
+
+	const urlParams = new URLSearchParams(window.location.search);
+	if (!urlParams.has('gl.vertId')) {
+		urlParams.append('gl.vertId', vertId);
+		route(window.location.pathname + '?' + urlParams.toString());
+	}
 
 	const styleFrame = (frameDevice) => ({ height: frameDevice === device ? 'inherit' : '0'});
 
@@ -61,7 +67,7 @@ const DemoWidget = ({ format, device, production, vertId, ...props }) => {
 					<div className="ad-container">{ad}</div>
 					<img className="frame-img" src={frameImages['landscape']} style={styleFrame('landscape')} alt="Framing image for device"/>
 					<img className="frame-img" src={frameImages['portrait']} style={styleFrame('portrait')} alt="Framing image for device"/>
-					<img className="frame-img" src={frameImages['desktop']} style={styleFrame('desktop')} alt="Framing image for device"/>
+					<img className="frame-img desktop-frame" src={frameImages['desktop']} style={styleFrame('desktop')} alt="Framing image for device"/>
 				</div>
 			</Col>
 		</Row>

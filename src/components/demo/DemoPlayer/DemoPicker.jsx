@@ -16,7 +16,11 @@ const DemoPicker = ({ format, device, vertId, hrefs, onClicks}) => {
 	);
 
 	const vertIdParam = vertId ? `?gl.vertId=${vertId}` : '';
-	const hrefUrl = ({newFormat, newDevice}) => `/${newDevice || device}/${newFormat || format}` + vertIdParam;
+
+	const hrefUrl = ({newFormat, newDevice}) => {
+		console.log(vertIdParam);
+		return `/${newDevice || device}/${newFormat || format}` + vertIdParam;
+	};
 
 	return <>
 		<Row className="format-picker text-center justify-content-center">
