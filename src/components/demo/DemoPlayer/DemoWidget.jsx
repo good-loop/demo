@@ -43,8 +43,8 @@ const DemoWidget = ({ format, device, production, vertId, ...props }) => {
 	);
 
 	const urlParams = new URLSearchParams(window.location.search);
-	if (!urlParams.has('gl.vertId')) {
-		urlParams.append('gl.vertId', vertId);
+	if (!urlParams.has('gl.vert')) {
+		urlParams.append('gl.vert', vertId);
 		route(window.location.pathname + '?' + urlParams.toString());
 	}
 
@@ -56,8 +56,7 @@ const DemoWidget = ({ format, device, production, vertId, ...props }) => {
 		</div>
 	);
 
-	return (
-		<>
+	return <>
 		{ format === 'social' ? socialTextPresentation : '' }
 		<Row className="half-bg">
 			<Col xs="12" className="text-center">
@@ -71,8 +70,7 @@ const DemoWidget = ({ format, device, production, vertId, ...props }) => {
 				</div>
 			</Col>
 		</Row>
-		</>
-	);
+	</>;
 }
 
 const SocialAd = ({vertId, nonce}) => {

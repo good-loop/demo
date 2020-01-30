@@ -48,7 +48,7 @@ const PhoneWidget = ({halfHeight, noVideo, noAddressBar, noNavBar, socialAspect 
 	const addressBar = urlParams.get('addrBar');
 	const navBar = urlParams.get('navBar');
 	const ratio = urlParams.get('aspectRatio') || '18_9';
-	const vertId = urlParams.get('gl.vertId');
+	const vertId = urlParams.get('gl.vert');
 
 	return (
 		<div id="frame-sizer" className={ratios[ratio]}>

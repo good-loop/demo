@@ -8,24 +8,26 @@ import DemoSiteNavBar from "./DemoSiteNavBar";
 import DemoPlayer from './DemoPlayer/DemoPlayer';
 
 
-
-
-/** We don't do anything with {matches, path, url} here, but we want to pull them out and only leave search params */
-const DemoPage = ({device, format, matches, path, url, ...props}) => {
+/**
+ * We don't do anything with {matches, path, url} here - we just don't want them in ...props
+ * We pull both capitalisations of "nosocial" so we can type the wrong one and still have it work
+ */
+const DemoPage = ({device, format, matches, path, url, noSocial, nosocial, ...props}) => {
 	const urlParams = new URLSearchParams(window.location.search);
-	const vertId = urlParams.has('gl.vertId') ? urlParams.get('gl.vertId') : '';
+	const vertId = urlParams.has('gl.vert') ? urlParams.get('gl.vert') : '';
 
-	return (<>
-		<DemoSiteNavBar/>
+	return <>
+		<DemoSiteNavBar />
 		<Container>
 			<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
-			<DemoPlayer format={format} device={device} vertId={vertId}/>
+			<DemoPlayer format={format} device={device} vertId={vertId} noSocial={noSocial || nosocial}/>
 			<RedMiddleSection format={format} device={device} {...props} />
-			<HowItWorksSection/>
-			<FooterSection/>
+			<HowItWorksSection />
+			<FooterSection />
 		</Container>
-	</>);
+	</>;
 };
+
 
 const deviceToSize = {
 	landscape: 'landscape',

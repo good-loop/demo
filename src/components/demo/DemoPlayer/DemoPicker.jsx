@@ -15,7 +15,7 @@ const DemoPicker = ({ format, device, vertId, hrefs, onClicks}) => {
 		`picker-button ${newFormat}${(newFormat === format) ? ' current' : ''}`
 	);
 
-	const vertIdParam = vertId ? `?gl.vertId=${vertId}` : '';
+	const vertIdParam = vertId ? `?gl.vert=${vertId}` : '';
 
 	const hrefUrl = ({newFormat, newDevice}) => {
 		console.log(vertIdParam);
