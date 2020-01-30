@@ -16,11 +16,14 @@ const DemoPage = ({device, format, matches, path, url, noSocial, nosocial, ...pr
 	const urlParams = new URLSearchParams(window.location.search);
 	const vertId = urlParams.has('gl.vert') ? urlParams.get('gl.vert') : '';
 
+	// Allow any noSocial param at all, even an empty one, to work (unless value is "false")
+	const noSocialMerged = (noSocial !== 'false' && noSocial !== undefined) || (nosocial !== 'false' && nosocial !== undefined);
+
 	return <>
 		<DemoSiteNavBar />
 		<Container>
 			<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
-			<DemoPlayer format={format} device={device} vertId={vertId} noSocial={noSocial || nosocial}/>
+			<DemoPlayer format={format} device={device} vertId={vertId} noSocial={noSocialMerged}/>
 			<RedMiddleSection format={format} device={device} {...props} />
 			<HowItWorksSection />
 			<FooterSection />

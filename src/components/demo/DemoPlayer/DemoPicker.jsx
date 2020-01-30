@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap';
 import { landscapeSvg, desktopSvg, portraitSvg } from '../DemoSvg';
 
 
-const DemoPicker = ({ format, device, vertId, hrefs, onClicks}) => {
+const DemoPicker = ({ format, device, vertId, noSocial}) => {
 	const deviceClasses = newDevice => {
 		let classes = `picker-button ${newDevice}`
 		if (format === 'social' && newDevice !== 'portrait') classes += ' disabled';
@@ -22,7 +22,8 @@ const DemoPicker = ({ format, device, vertId, hrefs, onClicks}) => {
 		return `/${newDevice || device}/${newFormat || format}` + vertIdParam;
 	};
 
-	return <>
+	// Don't allow format change if the noSocial URL param is set
+	const formatPicker = noSocial ? '' : (
 		<Row className="format-picker text-center justify-content-center">
 			<a className={formatClasses('social')} href={hrefUrl({newFormat: 'social', newDevice: 'portrait'})}>
 				Social
@@ -31,6 +32,10 @@ const DemoPicker = ({ format, device, vertId, hrefs, onClicks}) => {
 				Video
 			</a>
 		</Row>
+	);
+
+	return <>
+		{formatPicker}
 		<Row className="device-picker justify-content-center pb-4 flex-row">
 			<Col xs="auto" md="auto" className="text-center flex-row">
 				<a href={hrefUrl({newDevice: 'landscape'})} className={`button ${deviceClasses('landscape')}`} >
@@ -46,5 +51,6 @@ const DemoPicker = ({ format, device, vertId, hrefs, onClicks}) => {
 		</Row>
 	</>;
 };
+
 
 export default DemoPicker;
