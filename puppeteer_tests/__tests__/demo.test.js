@@ -59,7 +59,7 @@ describe('Demo page video tests', () => {
 		const fsButtonId =  fsButtonUrl.split('=').pop();
 
 		////// JEST'S EXPECT ALONG PUPPETEER ///////////////
-		// Just testifying stuff exists is not alway enough, and in some cases
+		// Just testifying stuff exists is not always enough, and in some cases
 		// might lead you to false positives. Sometimes it's safer to use actual comparisons.
 		// For instance that an array of html elements have a particular length, and one of them has
 		// a particular attribute.
