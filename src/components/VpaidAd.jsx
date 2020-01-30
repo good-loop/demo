@@ -10,7 +10,7 @@ class VpaidAd extends Component {
 		return getNonce(nextProps) !== getNonce(this.props);
 	}
 
-	render({size}) {
+	render({size, vertId}) {
 		const container = useRef(null);
 
 		// Changes if size or ad ID changes - breaks identity on script & container so they get removed on next render
@@ -20,7 +20,7 @@ class VpaidAd extends Component {
 		useEffect(() => {
 			if (container.current) {
 				vastplayer = new VASTPlayer(container.current);
-				vastplayer.load(getVastUrl()).then(function() { vastplayer.startAd(); });
+				vastplayer.load(getVastUrl({vertId})).then(function() { vastplayer.startAd(); });
 			} else {
 				vastplayer && vastplayer.stopAd();
 			}

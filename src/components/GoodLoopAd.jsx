@@ -7,13 +7,13 @@ class GoodLoopAd extends Component {
 		return getNonce(nextProps) !== getNonce(this.props);
 	}
 
-	render({size, production, bare, extraNonce, ...params}) {
+	render({size, vertId, production, bare, extraNonce, ...params}) {
 		// Changes if size or ad ID changes - breaks identity on script & container so they get removed on next render
-		const nonce = getNonce(this.props) + extraNonce;
+		const nonce = getNonce(this.props);
 
 		const bareElements = <>
 			<div className="goodloopad" data-format={size} data-mobile-format={size} key={nonce + '-container'}/>
-			<script src={getUnitUrl({production})} key={nonce + '-script'}/>
+			<script src={getUnitUrl({vertId, production})} key={nonce + '-script'}/>
 		</>;
 
 		// Aspectifier isn't always wanted - eg in fullscreen mode where making the
