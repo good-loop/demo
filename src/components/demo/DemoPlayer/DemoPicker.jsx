@@ -1,25 +1,27 @@
+/* @jsx h */
 import { h, Fragment } from 'preact';
 import { Row, Col } from 'reactstrap';
 import { landscapeSvg, desktopSvg, portraitSvg } from '../DemoSvg';
 
 
-const DemoPicker = ({ format, device, vertId, noSocial}) => {
+/** Generates links to change the format (social/video) and simulated device (landscape/portrait phone, desktop) */
+const DemoPicker = ({ format, device, noSocial }) => {
 	const deviceClasses = newDevice => {
-		let classes = `picker-button ${newDevice}`
+		let classes = `button picker-button ${newDevice}`
 		if (format === 'social' && newDevice !== 'portrait') classes += ' disabled';
 		if (newDevice === device) classes += ' current'
 		return classes;
 	}
 
-	const formatClasses = newFormat => (
-		`picker-button ${newFormat}${(newFormat === format) ? ' current' : ''}`
-	);
+	const formatClasses = newFormat => {
+		let classes = `picker-button ${newFormat}`;
+		if (newFormat === format) classes += ' current';
+		return classes
+	};
 
-	const vertIdParam = vertId ? `?gl.vert=${vertId}` : '';
-
-	const hrefUrl = ({newFormat, newDevice}) => {
-		console.log(vertIdParam);
-		return `/${newDevice || device}/${newFormat || format}` + vertIdParam;
+	const hrefUrl = ({newFormat = format, newDevice = device}) => {
+		const {search, hash} = window.location;
+		return `/${newDevice}/${newFormat}${search}#${hash}`
 	};
 
 	// Don't allow format change if the noSocial URL param is set
@@ -38,19 +40,18 @@ const DemoPicker = ({ format, device, vertId, noSocial}) => {
 		{formatPicker}
 		<Row className="device-picker justify-content-center pb-4 flex-row">
 			<Col xs="auto" md="auto" className="text-center flex-row">
-				<a href={hrefUrl({newDevice: 'landscape'})} className={`button ${deviceClasses('landscape')}`} >
+				<a href={hrefUrl({newDevice: 'landscape'})} className={deviceClasses('landscape')} >
 					{landscapeSvg}
 				</a>
-				<a href={hrefUrl({newDevice: 'desktop'})} className={`button ${deviceClasses('desktop')}`} >
+				<a href={hrefUrl({newDevice: 'desktop'})} className={deviceClasses('desktop')} >
 					{desktopSvg}
 				</a>
-				<a href={hrefUrl({newDevice: 'portrait'})} className={`button ${deviceClasses('portrait')}`} >
+				<a href={hrefUrl({newDevice: 'portrait'})} className={deviceClasses('portrait')} >
 					{portraitSvg}
 				</a>
 			</Col>
 		</Row>
 	</>;
 };
-
 
 export default DemoPicker;
