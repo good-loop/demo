@@ -1,8 +1,9 @@
 
 const config = JSON.parse(process.env.__CONFIGURATION);
-const { demoServers, customVertIds } = require('../utils/testConfig');
+const { testServers, customVertIds } = require('../utils/testConfig');
 
-const baseSite = demoServers[config.site];
+const baseSite = testServers[config.site];
+const dfltAdId = customVertIds[config.site]
 
 // What's with this stuff above?
 // In order to bypass Jest's restriction on non pre-defined argvs we'll execute our tests through a node runner,
@@ -14,15 +15,23 @@ const baseSite = demoServers[config.site];
 // The tests below are quite simple and illustrate how to use Puppeteer alogng with Jest.
 // And here's a happy clown: o<| : o ) --|--<
 
-describe('Demo page video tests', () => {
-	it('should default to format: video, display: desktop', async () => {
-		await page.goto(baseSite);
-		await expect(page).toMatch('Want to see our products in action?');
+describe('Ad unit tests', () => {
+	it('should display the ad unit', async () => {
+		// TODO Abstract out the initial "load page, wait for adunit, get iframe contents" step into a utility function
+		await page.goto(`${baseSite}?gl.vert=${dfltAdId}`);
 
-		await page.waitForSelector('.picker-button.video.current');
-		await page.waitForSelector('.button.picker-button.desktop.current');
+		// .goodloopad gets given class .populated by unit.js
+		await page.waitForSelector('.goodloopad.populated');
+
+		// Get the iframe contents
+		const glFrame = await page.$('iframe.goodloopframe');
+
+		// Confirm that we get the countdown message
+		// TODO This doesn't match! Figure out which element to use as search root (we may need to traverse further in)
+		await expect(glFrame).toMatch('Your donation will be unlocked');
 	});
 
+/*
 	it('should default to laptop frame', async () => {
 		///////// TEST THAT SOMETHING EXISTS //////////////
 		// Very simple but with loads of potential. Upon page load waitForSelector will
@@ -54,7 +63,6 @@ describe('Demo page video tests', () => {
 		const fsButtonUrl = await page.$eval('.fullscreen-button', e => e.href);
 		////////////////////////////////////////////////////
 
-		// TODO this is a fragile way to pull out the gl.vert param - if there's another param after gl.vert it will fail incorrectly
 		const fsButtonId =  fsButtonUrl.split('=').pop();
 
 		////// JEST'S EXPECT ALONG PUPPETEER ///////////////
@@ -98,47 +106,5 @@ describe('Demo page video tests', () => {
 		await page.waitForSelector('.goodloopad.populated.landscape'); // Make sure our goodloopad div (containing the player) gets the landscape class
 		/////////////////////////////////////////////////////
 	});
+*/
 });
-
-// Tests can be organised in blocks by defining them inside decribe() functions
-// These are useful not only to separate and organise the results, but also to
-// include setup functions that would affect all tests within the block, such as
-// beforeEach(), afterAll(), etc.
-describe('Demo page social tests', () => {
-
-	beforeEach( async () => {
-		// This would apply only to the tests below.
-		// You can use it to tweak puppeteer config
-		// or to work with mockups. Refer to docs.
-	});
-
-	it('should disable picker options when selecting SOCIAL', async () => {
-		await page.goto(baseSite);
-		await page.waitForSelector('.picker-button.social');
-
-		await page.click('.picker-button.social');
-		await page.waitFor(500);
-		const disabledButtons = await page.$$('.disabled');
-		
-		await expect(disabledButtons.length).toBe(2);
-	});
-
-	it('should display appropriate description', async () => {
-		// The string 'snapchat' is only used in the description,
-		// so we can look through the entired rendered page
-		await page.waitFor(2000);
-		await expect(page).toMatch('Snapchat');
-	});
-
-	it('should load multiple "slides" to simulate the snapchat feed', async () => {
-		const slides = await page.$$('.snap-img');
-		await expect(slides.length > 2).toBe(true);
-	});
-
-	it('should slide into our advert on video click', async () => {
-		await page.click('video.snap-img');
-		await page.waitFor(1000);
-
-		await page.waitForSelector('.social-ad.show');
-	});
-})
