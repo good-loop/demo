@@ -5,7 +5,7 @@ const yargv = require('yargs').argv;
 let config = {
 	site: 'test',
 	unsafe: false,
-	flag: false,
+	vert: '',
 	head: true
 };
 let argv = process.argv.slice(0, 2);
@@ -32,4 +32,4 @@ process.env.__CONFIGURATION = JSON.stringify(config);
 process.argv = argv;
 
 // Execute Jest. Specific target optional.
-shell.exec(`npm run test${' ' + testPath + runInBand}`);
+shell.exec(`npm run test${' ' + testPath} ${runInBand}`);
