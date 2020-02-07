@@ -8,7 +8,7 @@ const demoServers = {
 
 const testServers = {
 	local: 'http://localtest.good-loop.com',
-	test: 'https://test.good-loop.com',
+	test: 'test.good-loop.com',
 	prod: 'https://prodtest.good-loop.com'
 };
 

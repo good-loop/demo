@@ -1,66 +1,93 @@
-
 const config = JSON.parse(process.env.__CONFIGURATION);
 const { testServers, customVertIds } = require('../utils/testConfig');
 
 const baseSite = testServers[config.site];
-const dfltAdId = customVertIds[config.site];
+const adId = config.vert || customVertIds[config.site];
+const protocol = config.site === 'local' ? 'http://' : 'https://';
 
-const customVert = config.vert;
+let url = `${protocol}${baseSite}?gl.vert=${adId}`;
 
+// Variables that will be defined from the adunit json once fetched.
+let videoLength, isSingleCharity, singleOrMultiple, skippable, clickToPlay;
+
+// Get adunit json from our servers. Node does not allow fetch() natively,
+// so we execute it inside the puppeteer browser.
+const getUnitJson = async (id) => {
+	const data = await page.evaluate(async  id => {
+		const res = await fetch(`https://testas.good-loop.com/unit.json?gl.vert=${id}`);
+		return await res.json();
+	}, id)
+	return await data;
+}
+
+let unitJson;
+
+// The iframe context on which we will call out puppeteer methods, as opposed to 'page'
+// which doesn't have access to inner iframes.
 let adunit;
-let countdown;
-let searchParams;
 
 describe('Adunit tests', () => {
-
+	// Before running any tests, we set up things here.
 	beforeAll(async () => {
-		await page.goto(baseSite + `${'/?gl.vert=' + customVert}`);
-		await page.waitForSelector('iframe');
+		unitJson = await getUnitJson(adId);
 
-		const adUnitHandle = await page.$('iframe.goodloopframe');
-		adunit = await adUnitHandle.contentFrame();
-	});
+		videoLength = unitJson.variant.adsecs;
+		isSingleCharity = unitJson.charities.length === 1;
+		singleOrMultiple = isSingleCharity ? 'Single' : 'Multiple';
+		skippable = unitJson.variant.skippable;
+		clickToPlay = unitJson.variant.play === 'onclick';
 
-	it('should load and render adunit', async () => {
-		await page.waitForSelector('.goodloopad');
-		await adunit.waitForSelector('#player');
-	});
+		await page.goto(url);
+		const adunitHandle = await page.$('iframe');
+		adunit = await adunitHandle.contentFrame();
+	})
 
-	it('should display unlock text with countdown', async () => {
-		// The section actually exists with the current 
-		await expect(adunit).toMatch('Your donation will be unlocked in');
-		await adunit.waitForSelector('.rollover.current');
-
-		// Grab the actual countdown. It should start somewhere between 10 and 15 seconds
-		// depending on advert
-		let countdown = await adunit.$eval('span.current', e => e.textContent);
-		countdown = parseInt(countdown);
-		await expect(countdown > 9 && countdown < 16).toBe(true);
-	});
-
-	it('should start with charity buttons locked', async () => {
-		await adunit.waitForSelector('.chooser-list.locked');
-	});
-
-	it('should unlock charity buttons when countdown reaches zero', async () => {
-		// If autoplay flag is no present we click on play to start the ad.
-		const playIcon = await adunit.$('.play-icon');
-		if (playIcon) {
+	it('should start video on click if clickToPlay', async () => {
+		if(clickToPlay) {
+			await adunit.waitForSelector('.play-icon');
 			await adunit.click('.play-icon');
 		}
-		// Wait for countdown in miliseconds, plus an extra one to make sure things are unlocked.
-		await adunit.waitFor(countdown * 1000 + 10000);
+	});
 
-		// Charity buttons should now be unlocked and clickable.
-		await adunit.waitForSelector('.chooser-list.ready');
-	}, 30000);
+	it('should have donations locked at start', async () => {
+		if (isSingleCharity) {
+			await adunit.waitForSelector('.single-charity.locked')
+		} else {
+			await adunit.waitForSelector('.chooser-list.locked');
+		}
+	});
 
-	it('should allow to click on one of the charity buttons', async () => {
-		await adunit.waitForSelector('a.charity');
+	// In order to check if the countdown is working we compare the innerHTML of the locked message
+	// against itself after 2 seconds. SHould have a different value, since the seconds have been updated.
+	it('should display unlock message and counter', async () => {
+		const counterSelector = isSingleCharity ? '.countdown-number .current' : '.chooser-message';
+		await adunit.waitForSelector(counterSelector);
+		const initialLockedMessage = await adunit.$eval(counterSelector, e => e.innerHTML);
+		await page.waitFor(2000);
+		const secondLockedMessage = await adunit.$eval(counterSelector, e => e.innerHTML);
 
-		await adunit.click('a.charity');
+		await expect(initialLockedMessage).not.toBe(secondLockedMessage);
+	});
 
-		await adunit.waitForSelector('.chooser-list.complete');
-		await adunit.waitForSelector('.charity-selected');
+	it('unlock donations after watching half the video', async () => {
+		// Wait for the duration of the video, minus 2 secs from the previous test
+		await adunit.waitFor(videoLength * 1000 / 2 - 2000);
+		const unlockedSelector = isSingleCharity ? '.single-charity complete' : '.chooser-list.ready';
+		await adunit.waitForSelector(unlockedSelector);
+	}, 15000);
+
+	it('should allow to pick charity if multiple', async () => {
+		if (!isSingleCharity) {
+			await adunit.click('a.charity');
+			await adunit.waitForSelector('.charity.selected');
+		}
+	}, 15000);
+
+	it('should be able to skip if skippable', async () => {
+		if (skippable) {
+			await adunit.hover('video');
+			await adunit.waitFor(100);
+			await adunit.click('.skip-now');
+		}
 	});
 });

@@ -1,12 +1,14 @@
 'use strict';
+
 const shell = require('shelljs');
 const yargv = require('yargs').argv;
 
 let config = {
 	site: 'test',
 	unsafe: false,
-	vert: '',
-	head: true
+	vert: null,
+	head: true,
+	chrome: false,
 };
 let argv = process.argv.slice(0, 2);
 
