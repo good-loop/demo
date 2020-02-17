@@ -14,9 +14,9 @@ const descriptions = {
 
 /** Simulated device screen images */
 const frameImages = {
-	landscape: '/img/iphone-frame-16-9-padded-notch.svg',
+	landscape: '/img/iphone-mockup-landscape.svg',
 	desktop: '/img/laptop-websiteholder-text.svg',
-	portrait: '/img/iphone-frame-16-9-padded-notch-portrait.svg'
+	portrait: '/img/iphone-mockup-portrait.svg'
 };
 
 /** Advert sizes for different devices */
