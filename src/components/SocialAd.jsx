@@ -1,6 +1,7 @@
 import { h, Fragment } from 'preact';
 import { useState } from 'preact/hooks';
-import GoodLoopAd from "../../GoodLoopAd";
+
+import GoodLoopAd from "./GoodLoopAd";
 
 
 let fakeVisCheck; // Declared outside SocialAd so it persists across renders
