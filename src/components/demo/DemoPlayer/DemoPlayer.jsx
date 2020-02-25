@@ -4,6 +4,7 @@ import { Row, Col, UncontrolledAlert } from 'reactstrap';
 
 import DemoPicker from './DemoPicker';
 import GoodLoopAd from '../../GoodLoopAd';
+import SocialAd from '../../SocialAd';
 
 
 /** Description of the Good-Loop formats */

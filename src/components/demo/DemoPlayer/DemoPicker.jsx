@@ -16,12 +16,13 @@ const DemoPicker = ({ format, device, noSocial }) => {
 	const formatClasses = newFormat => {
 		let classes = `picker-button ${newFormat}`;
 		if (newFormat === format) classes += ' current';
-		return classes
+		return classes;
 	};
 
 	const hrefUrl = ({newFormat = format, newDevice = device}) => {
-		const {search, hash} = window.location;
-		return `/${newDevice}/${newFormat}${search}#${hash}`
+		let {search, hash} = window.location;
+		if (hash) hash = '#' + hash;
+		return `/${newDevice}/${newFormat}/${search}${hash}`;
 	};
 
 	// Don't allow format change if the noSocial URL param is set
