@@ -38,7 +38,7 @@ const DemoPlayer = ({ format, device, vertId = defaultVertId, noSocial }) => {
 	const social = (format === 'social');
 
 	const ad = social ? <SocialAd /> : (
-		<GoodLoopAd size={sizes[device]} extraNonce={`${format}${device}`} />
+		<GoodLoopAd vertId={vertId} size={sizes[device]} extraNonce={`${format}${device}`} />
 	);
 
 	// TODO Is this second description extraneous?
