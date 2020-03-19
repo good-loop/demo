@@ -2,7 +2,7 @@ server {
 	listen 80;
 	listen [::]:80;
 	server_name localdemo.good-loop.com;
-	root /home/irina/winterwell/demo/web-demo;
+	root /home/team/winterwell/demo/web-demo;
 	index index.html;
 
 	location / {
