@@ -44,8 +44,8 @@ const SocialAd = ({vertId = socialVertId}) => {
 	// TODO When gl.delivery === 'app', gl.after should probably default to "persist"
 	const unitProps = { vertId, ...socialUnitProps };
 	// const videoUrl = adHasSocialPreview(vertId) ? getSocialPreview(vertId) : defaultPreviewUrl;
-	
-	setPreviewVideoIfAvailavle(getAdVideos(vertId));
+
+	setPreviewVideoIfAvailable(getAdVideos(vertId));
 
 	return (
 		<div className="ad-sizer portrait">
