@@ -16,6 +16,18 @@ const socialUnitProps = {
 const SocialAd = ({vertId = socialVertId}) => {
 	const [showAd, setShowAd] = useState(0); // User has swiped to show the ad
 	const [visClass, setVisClass] = useState(''); // 'visible' if the fake feed is on-screen and should start animating
+	const [previewUrl, setPreviewUrl] = useState(vertId);
+
+	const getAdVideos = vertId => {
+		return fetch('https://testportal.good-loop.com/advert/test_wide_multiple.json')
+			.then(res => res.json())
+			.then(data => console.log(data.cargo.videos))
+	};
+
+	const setPreviewVideoIfAvailable = videoArray => {
+		const filteredVideos = videoArray.filter(e => e.aspect === "9:16");
+		if (filteredVideos.length > 0) setPreviewUrl(filteredVideos.pop().url);
+	}
 
 	// Prevents scrolling on mobile when user attempts to swipe the social ad.
 	const lockScreen = () => { 
@@ -31,6 +43,9 @@ const SocialAd = ({vertId = socialVertId}) => {
 
 	// TODO When gl.delivery === 'app', gl.after should probably default to "persist"
 	const unitProps = { vertId, ...socialUnitProps };
+	// const videoUrl = adHasSocialPreview(vertId) ? getSocialPreview(vertId) : defaultPreviewUrl;
+	
+	setPreviewVideoIfAvailavle(getAdVideos(vertId));
 
 	return (
 		<div className="ad-sizer portrait">
