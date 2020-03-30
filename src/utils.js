@@ -15,7 +15,7 @@ export const getNonce = (props) => {
 };
 
 let prefix = ''; // Default to production adserver (ie running on demo or prodtest.good-loop.com)
-if (window.location.hostname.match(/^local/)) { prefix = 'local'; } // Running on localtest or localdemo.good-loop.com --> talk to localas
+if (window.location.hostname.match(/^local/)) { prefix = 'test'; } // Running on localtest or localdemo.good-loop.com --> talk to localas
 else if (window.location.hostname.match(/(^test)/)) { prefix = 'test'; } // Running on test or testdemo.good-loop.com --> talk to testas
 const glBaseUrl = `${window.location.protocol}//${prefix}as.good-loop.com/`
 const glProdBaseUrl = `https://as.good-loop.com/`;
