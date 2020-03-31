@@ -5,7 +5,6 @@ import GoodLoopAd from "./GoodLoopAd";
 import { getUnitUrl } from '../utils';
 
 
-let fakeVisCheck; // Declared outside SocialAd so it persists across renders
 const socialVertId = '0PVrD1kX' // 'PL4bGYSW' //  Default to TOMS Josh EN Male advert. ;
 const socialUnitProps = {
 	size: 'portrait',
@@ -40,21 +39,26 @@ const SocialAd = ({vertId = socialVertId, prod}) => {
 	useEffect(() => {
 		let delayInterval; // Put this in outer scope so the cleanup return function can access it
 		const startLooping = () => {
-			delayInterval = window.setInterval(loopVideo, 8000);
+			loopVideo();
+			delayInterval = window.setInterval(loopVideo, 7000);
 		};
 		// The slideshow animation takes about 4.7s to complete before the video starts,
 		// so wait that long before setting up the timer
 		const loopTimeout = window.setTimeout(startLooping, 4700);
+
+		// Adds class `visible` to fake-feed element after 100ms.
+		const visibility = window.setTimeout(() => setVisClass('visible'), 100);
 		// Cancel any timers that are still active on unmount
 		return () => {
 			window.clearTimeout(delayInterval);
 			window.clearInterval(loopTimeout)
+			window.clearTimeout(visibility);
 		};
 	}, []);
 
 	// If vertical vid available, use it for the preview
 	const trySetPreviewVideo = videos => {
-		const video = video.find(e => e.aspect === '9:16');
+		const video = videos.find(e => e.aspect === '9:16');
 		if (!video) return;
 		setPreviewUrl(video.url);
 		setIsMockup(true);
@@ -66,11 +70,6 @@ const SocialAd = ({vertId = socialVertId, prod}) => {
 		setShowAd(true);
 	};
 	const unlockScreen = () => document.body.style.overflow = 'auto';
-
-	/* TODO Turn this into an actual visibility check */
-	if (!fakeVisCheck) {
-		fakeVisCheck = window.setTimeout(() => setVisClass('visible'), 100);
-	}
 
 	// TODO When gl.delivery === 'app', gl.after should probably default to "persist"
 	const unitProps = { 
