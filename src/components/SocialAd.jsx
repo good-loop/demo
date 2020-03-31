@@ -13,6 +13,8 @@ const socialUnitProps = {
 };
 const hostPrefix = window.location.hostname.match(/^(test|local)/) ? 'test' : '';
 
+
+/** If the preview video is running, restart it. */
 const loopVideo = () => {
 	const video = document.querySelector('#preview-video');
 	if (!video) return;
@@ -20,6 +22,13 @@ const loopVideo = () => {
 	video.currentTime = 0;
 	video.play();
 }
+
+
+/** Fetch an advert from the portal by ID and return a Promise which will resolve to the video list */
+const getAdVideos = vertId => fetch(`https://${hostPrefix}portal.good-loop.com/advert/${vertId}.json`)
+	.then(res => res.json())
+	.then(({ cargo }) => cargo.videos);
+
 
 const SocialAd = ({vertId = socialVertId, prod}) => {
 	if (vertId === 'test_wide_multiple') vertId = socialVertId;
@@ -36,36 +45,20 @@ const SocialAd = ({vertId = socialVertId, prod}) => {
 		// The slideshow animation takes about 4.7s to complete before the video starts,
 		// so wait that long before setting up the timer
 		const loopTimeout = window.setTimeout(startLooping, 4700);
-		// Cancel any timers that are still active
+		// Cancel any timers that are still active on unmount
 		return () => {
 			window.clearTimeout(delayInterval);
 			window.clearInterval(loopTimeout)
 		};
 	}, []);
 
-	// Call fetch on portal to get ad json, return videos in form of a promise
-	const getAdVideos = vertId => {
-		return fetch(`https://${hostPrefix}portal.good-loop.com/advert/${vertId}.json`)
-			.then(res => res.json())
-			.then(data => {
-				return data.cargo.videos
-			})
-	};
-
-	// Resolve recieved videos promise from AdServer.
 	// If vertical vid available, use it for the preview
-	const setPreviewVideoIfAvailable = videoArrayPromise => {
-		videoArrayPromise
-			.then(res => res.filter(e => e.aspect === '9:16'))
-			.then(videos => {
-				if (videos.length > 0) {
-					setPreviewUrl(videos.pop().url);
-					setIsMockup(true);
-				} 
-			})
+	const trySetPreviewVideo = videos => {
+		const video = video.find(e => e.aspect === '9:16');
+		if (!video) return;
+		setPreviewUrl(video.url);
+		setIsMockup(true);
 	};
-
-
 
 	// Prevents scrolling on mobile when user attempts to swipe the social ad.
 	const lockScreen = () => { 
@@ -87,7 +80,7 @@ const SocialAd = ({vertId = socialVertId, prod}) => {
 	};
 
 	// Get videos from ad, if vertical available use it for preview
-	setPreviewVideoIfAvailable(getAdVideos(vertId));
+	getAdVideos(vertId).then(trySetPreviewVideo);
 
 	return (
 		<div className="ad-sizer portrait">
