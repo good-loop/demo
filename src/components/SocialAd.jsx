@@ -13,6 +13,14 @@ const socialUnitProps = {
 };
 const hostPrefix = window.location.hostname.match(/^(test|local)/) ? 'test' : '';
 
+const loopVideo = ()) => {
+	const video = document.querySelector('#preview-video');
+	if (!video) return;
+	video.pause();
+	video.currentTime = 0;
+	video.play();
+}
+
 const SocialAd = ({vertId = socialVertId, prod}) => {
 	if (vertId === 'test_wide_multiple') vertId = socialVertId;
 	const [showAd, setShowAd] = useState(0); // User has swiped to show the ad
@@ -21,9 +29,18 @@ const SocialAd = ({vertId = socialVertId, prod}) => {
 	const [isMockup, setIsMockup] = useState(false);
 
 	useEffect(() => {
-		// Once the component mounts we start a timer based on the length of our slides animation
-		// Then we start a recursive function to loop the video after a certain amount of miliseconds
-		setTimeout(() => loopVideoAfterMiliseconds(8000), 4700);
+		let delayInterval; // Put this in outer scope so the cleanup return function can access it
+		const startLooping = () => {
+			delayInterval = window.setInterval(loopVideo, 8000);
+		};
+		// The slideshow animation takes about 4.7s to complete before the video starts,
+		// so wait that long before setting up the timer
+		const loopTimeout = window.setTimeout(startLooping, 4700);
+		// Cancel any timers that are still active
+		return () => {
+			window.clearTimeout(delayInterval);
+			window.clearInterval(loopTimeout)
+		};
 	}, []);
 
 	// Call fetch on portal to get ad json, return videos in form of a promise
@@ -48,17 +65,7 @@ const SocialAd = ({vertId = socialVertId, prod}) => {
 			})
 	};
 
-	const loopVideoAfterMiliseconds = ms => {
-		const video = document.querySelector('#preview-video');
-		if (video) {
-			video.pause();
-			video.currentTime = 0;
-			video.play();
-			setTimeout(() => {
-				loopVideoAfterMiliseconds(ms);
-			}, ms);
-		}
-	}
+
 
 	// Prevents scrolling on mobile when user attempts to swipe the social ad.
 	const lockScreen = () => { 
