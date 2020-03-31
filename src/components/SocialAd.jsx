@@ -1,24 +1,30 @@
 import { h, Fragment } from 'preact';
-import { useState, useCallback } from 'preact/hooks';
+import { useState, useCallback, useEffect } from 'preact/hooks';
 
 import GoodLoopAd from "./GoodLoopAd";
+import { getUnitUrl } from '../utils';
 
 
 let fakeVisCheck; // Declared outside SocialAd so it persists across renders
-const socialVertId = 'PL4bGYSW' //'0PVrD1kX' //  Default to TOMS Josh EN Male advert. ;
+const socialVertId = '0PVrD1kX' // 'PL4bGYSW' //  Default to TOMS Josh EN Male advert. ;
 const socialUnitProps = {
 	size: 'portrait',
 	glParams: {'gl.delivery': 'app', 'gl.after': 'persist'},
-	production: false
 };
 const hostPrefix = window.location.hostname.match(/^(test|local)/) ? 'test' : '';
 
-const SocialAd = ({vertId = socialVertId}) => {
+const SocialAd = ({vertId = socialVertId, prod}) => {
 	if (vertId === 'test_wide_multiple') vertId = socialVertId;
 	const [showAd, setShowAd] = useState(0); // User has swiped to show the ad
 	const [visClass, setVisClass] = useState(''); // 'visible' if the fake feed is on-screen and should start animating
 	const [previewUrl, setPreviewUrl] = useState('https://media.good-loop.com/uploads/standard/toms_snapchat_ad.mp4');
 	const [isMockup, setIsMockup] = useState(false);
+
+	useEffect(() => {
+		// Once the component mounts we start a timer based on the length of our slides animation
+		// Then we start a recursive function to loop the video after a certain amount of miliseconds
+		setTimeout(() => loopVideoAfterMiliseconds(8000), 4700);
+	}, []);
 
 	// Call fetch on portal to get ad json, return videos in form of a promise
 	const getAdVideos = vertId => {
@@ -42,6 +48,18 @@ const SocialAd = ({vertId = socialVertId}) => {
 			})
 	};
 
+	const loopVideoAfterMiliseconds = ms => {
+		const video = document.querySelector('#preview-video');
+		if (video) {
+			video.pause();
+			video.currentTime = 0;
+			video.play();
+			setTimeout(() => {
+				loopVideoAfterMiliseconds(ms);
+			}, ms);
+		}
+	}
+
 	// Prevents scrolling on mobile when user attempts to swipe the social ad.
 	const lockScreen = () => { 
 		document.body.style.overflow = 'hidden';
@@ -55,8 +73,11 @@ const SocialAd = ({vertId = socialVertId}) => {
 	}
 
 	// TODO When gl.delivery === 'app', gl.after should probably default to "persist"
-	const unitProps = { vertId, ...socialUnitProps };
-	// const videoUrl = adHasSocialPreview(vertId) ? getSocialPreview(vertId) : defaultPreviewUrl;
+	const unitProps = { 
+		vertId: vertId,
+		production: vertId === socialVertId, // If we are using default ad we want to access it regardless of site's server
+		...socialUnitProps 
+	};
 
 	// Get videos from ad, if vertical available use it for preview
 	setPreviewVideoIfAvailable(getAdVideos(vertId));
@@ -69,13 +90,14 @@ const SocialAd = ({vertId = socialVertId}) => {
 				<img src="https://media.good-loop.com/uploads/standard/snap_ferry_view.jpg" className="snap-img delay1" />
 				<img src="https://media.good-loop.com/uploads/standard/snap_makeup_tutorial.jpg" className="snap-img delay2" />
 				<img src="https://media.good-loop.com/uploads/standard/snap_food_bear.jpg" className="snap-img delay3" />
-				<video src={previewUrl} className={`snap-img delay4${isMockup ? ' social-overlay' : ''}`}
-					autoPlay loop muted playsInline
+				<video className="snap-img delay4" id="preview-video" src={previewUrl} //className={`snap-img delay4${isMockup ? ' social-overlay' : ''}`}
+					loop muted playsInline
 					onMouseDown={() => setShowAd(true)}
 					onTouchStart={lockScreen}
 					onTouchEnd={unlockScreen}
 					onTouchMove={e => e.preventDefault()}
 				/>
+				{ unitProps.production ? '' : <img className="snap-img delay4 overlay" src="/img/swipe-overlay.png" /> }
 				<div className="show-ad" onClick={() => setShowAd(true)} />
 			</div>
 			<div className={`social-ad ${showAd ? 'show' : ''}`}>

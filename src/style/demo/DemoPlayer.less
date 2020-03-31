@@ -197,6 +197,13 @@
 		&:not(.first) {
 			left: 100%;
 		}
+
+		// Transparent overlay for mockup preview video
+		&.overlay {
+			background-color: transparent;
+			position: absolute;
+			pointer-events: none; // Makes content click-through
+		}
 	}
 	&.visible .snap-img {
 		left: 0;
