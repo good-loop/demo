@@ -13,7 +13,7 @@ const socialUnitProps = {
 };
 const hostPrefix = window.location.hostname.match(/^(test|local)/) ? 'test' : '';
 
-const loopVideo = ()) => {
+const loopVideo = () => {
 	const video = document.querySelector('#preview-video');
 	if (!video) return;
 	video.pause();
