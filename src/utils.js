@@ -21,7 +21,7 @@ const glBaseUrl = `${window.location.protocol}//${prefix}as.good-loop.com/`
 const glProdBaseUrl = `https://as.good-loop.com/`;
 
 const getUrlGeneric = ({production, vertId, file}) => (
-	(production ? glProdBaseUrl : glBaseUrl) + file + (vertId ? '?gl.vert=' + vertId : '')
+	(production ? glProdBaseUrl : glBaseUrl) + file + (vertId ? '?gl.vert=' + vertId : '') + '&gl.site=https://demo.good-loop.com/'
 );
 
 export const getUnitUrl = ({...props} = {}) => getUrlGeneric({...props, file: 'unit.js'});

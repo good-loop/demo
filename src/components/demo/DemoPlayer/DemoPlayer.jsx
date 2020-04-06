@@ -37,7 +37,7 @@ const adBlockDetected = !document.getElementById('aiPai9th');
 const DemoPlayer = ({ format, device, vertId = defaultVertId, noSocial }) => {
 	const social = (format === 'social');
 
-	const ad = social ? <SocialAd vertId={vertId} /> : (
+	const ad = social ? <SocialAd vertId={vertId} adBlocker={adBlockDetected} /> : (
 		<GoodLoopAd vertId={vertId} size={sizes[device]} extraNonce={`${format}${device}`} />
 	);
 
