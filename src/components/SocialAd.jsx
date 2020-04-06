@@ -1,5 +1,7 @@
 import { h, Fragment } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
+import { route } from 'preact-router';
+import { Alert } from 'reactstrap';
 
 import GoodLoopAd from "./GoodLoopAd";
 import { getUnitUrl } from '../utils';
@@ -10,7 +12,9 @@ const socialUnitProps = {
 	size: 'portrait',
 	glParams: {'gl.delivery': 'app', 'gl.after': 'persist'},
 };
-const hostPrefix = window.location.hostname.match(/^(test|local)/) ? 'test' : '';
+let hostPrefix = '';
+if (window.location.hostname.match(/^(test)/)) hostPrefix = 'test';
+if (window.location.hostname.match(/^(local)/)) hostPrefix = 'local';
 
 
 /** If the preview video is running, restart it. */
@@ -24,7 +28,8 @@ const loopVideo = () => {
 
 
 /** Fetch an advert from the portal by ID and return a Promise which will resolve to the video list */
-const getAdVideos = (vertId, production) => fetch(`https://${production ? '' : hostPrefix}portal.good-loop.com/vert/${vertId}.json`)
+// TODO currently overriding localportal calls with testportal to easily share mockups for testing. Change this when ready
+const getAdVideos = (vertId, production) => fetch(`https://${hostPrefix === 'local' ? 'test' : hostPrefix}portal.good-loop.com/vert/${vertId}.json`)
 	.then(res => res.json())
 	.then(({ cargo }) => cargo.videos);
 
@@ -47,7 +52,6 @@ const SocialAd = ({vertId = socialVertId, adBlocker }) => {
 				console.log(data, 'ran')
 				setDefaultAdvertJson(data)
 			})
-				//
 	}
 
 	useEffect(() => {
@@ -96,25 +100,21 @@ const SocialAd = ({vertId = socialVertId, adBlocker }) => {
 		vertId: vertId,
 		production: vertId === socialVertId, // If we are using default ad we want to access it regardless of site's server
 		...socialUnitProps,
-		refPolicy: 'no-referrer'
 	};
 
 	// Get videos from ad, if vertical available use it for preview
-	if (!adBlocker) getAdVideos(vertId).then(trySetPreviewVideo);
+	if (!adBlocker && vertId !== socialVertId) getAdVideos(vertId).then(trySetPreviewVideo);
 
-	// const vertUrlParam = removeUrlVertAndReturnId();
-
+	// If no videos available for preview, or adblockers detected, display alert to the user.
+	// Otherwise, display the social advert.
 	return (
 		<>
-			{ noVideoAvailable ? <div>no video</div>
+			{ noVideoAvailable || adBlocker ? 
+				<> 
+					{ noVideoAvailable ? noVideoAlert : '' }
+					{ adBlocker ? adBlockerAlert : '' }
+				</>
 			:	<div className="ad-sizer portrait">
-					{ defaultAdvertJson ? 
-						<div
-							id="preloaded-unit-json"
-							dangerouslySetInnerHtml={{__html: JSON.stringify(defaultAdvertJson) }}
-							style={{display: 'none'}}
-						/>
-					: ''}
 					<div className="aspectifier" />
 					<div className={`fake-feed ${visClass}`}>
 						<img src="https://media.good-loop.com/uploads/standard/snap_logo_background.jpg" className="snap-img first" />
@@ -139,6 +139,19 @@ const SocialAd = ({vertId = socialVertId, adBlocker }) => {
 		</>
 	);
 };
+
+// The weird anchor is to force a reload with no params against `preact-router` behaviour
+const noVideoAlert = (
+	<Alert color="warning" className="no-video-alert">
+		No social media video available for this advert. To see our default demo click <a href="#" onClick={() => location.replace(location.pathname)}>here</a>!
+	</Alert>
+)
+
+const adBlockerAlert = (
+	<Alert color="warning" className="social-adblocker-alert">
+		Please temporarily disable your adblocker to see our ads in action!
+	</Alert>
+)
 
 
 export default SocialAd;
