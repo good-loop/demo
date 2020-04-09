@@ -27,7 +27,8 @@ const sizes = {
 	portrait: 'portrait',
 };
 
-const defaultVertId = window.location.hostname.match(/^(test|local)/) ? 'test_wide_multiple' : 'ojRZHHd48s';
+// Updating default advert from H&M to Love, Beauty & Planet
+const defaultVertId = window.location.hostname.match(/^(test|local)/) ? 'test_wide_multiple' : 'Of0Vpbg2Ct'; // 'ojRZHHd48s';
 
 /* index.html loads the script "ads.js", which we know adblockers will catch.
 It inserts a div with ID "aiPai9th" - if that isn't present, we know adblock is active. */
