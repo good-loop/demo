@@ -12,15 +12,15 @@ const PlayerPage = ({ vpaid, size, ...params}) => {
 	const ad = vpaid ? <VpaidAd {...adProps} /> : <GoodLoopAd {...adProps} />;
 
 	return <>
-			<TestSiteNavBar {...params} />
-			<Container>
-				<p>Type: <code>player</code>, Size: <code>{size}</code></p>
-				<TestControls {...params} />
-				<Row>
-					<Col xs="12">{ad}</Col>
-				</Row>
-			</Container>
-		</>
+		<TestSiteNavBar {...params} />
+		<Container fluid={size === 'fabric'}>
+			<p>Type: <code>player</code>, Size: <code>{size}</code></p>
+			<TestControls {...params} />
+			<Row>
+				<Col>{ad}</Col>
+			</Row>
+		</Container>
+	</>;
 }
 
 export default PlayerPage;
