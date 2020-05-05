@@ -24,8 +24,12 @@
 		margin-top: 100%
 	}
 
-	&.fabric .aspectifier {
-		margin-top: 250px;
+	&.fabric {
+		margin: auto -16px; // undo column padding & extend to screen edges
+		border: 1px solid transparent; // extra -1px margin is to hide this
+		.aspectifier {
+			margin-top: 250px;
+		}
 	}
 
 	// Variable-size, fixed-aspect containers: prevent margin collapse between ad-sizer and aspectifier
