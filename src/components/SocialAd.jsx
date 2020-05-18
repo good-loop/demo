@@ -6,7 +6,7 @@ import { Alert } from 'reactstrap';
 import GoodLoopAd from "./GoodLoopAd";
 import { getUnitUrl } from '../utils';
 
-
+const tomsDemoPreview = 'https://media.good-loop.com/uploads/standard/toms_snapchat_ad.mp4';
 const socialVertId = '0PVrD1kX' // 'PL4bGYSW' //  Default to TOMS Josh EN Male advert. ;
 const socialUnitProps = {
 	size: 'portrait',
@@ -41,7 +41,10 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	const getAdvertFromPortal = () =>{
 		const advertId = vertId;
 		const protocol = hostPrefix === 'local' ? 'http' : 'https';
-		return fetch(`${protocol}://${hostPrefix}portal.good-loop.com/vert/${advertId}.json`)//('https://as.good-loop.com/unit.json?gl.vert=0PVrD1kX')
+		// if default grab TOMS advert from prod server
+		const adUrl = vertId === socialVertId ? 'https://portal.good-loop.com/vert/0PVrD1kX.json'
+			: `${protocol}://${hostPrefix}portal.good-loop.com/vert/${advertId}.json`;
+		return fetch(adUrl)//('https://as.good-loop.com/unit.json?gl.vert=0PVrD1kX')
 			.then(res => res.json())
 			.then(json => json.cargo)
 			.then(data => {
@@ -87,10 +90,27 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	if (!adBlocker && vertId !== socialVertId && advert) (trySetPreviewVideo(advert));
 
 	const mockSocialImage = advert ? advert.mockSocialImage : '';
-	console.log(advert);
 
-	// If no videos available for preview, or adblockers detected, display alert to the user.
-	// Otherwise, display the social advert.
+	const teaserImageOrVideo = vertId === socialVertId ? (
+		<video className="snap-img delay1" id="preview-video" src={tomsDemoPreview} //className={`snap-img delay4${isMockup ? ' social-overlay' : ''}`}
+			loop muted playsInline autoplay
+			onMouseDown={() => setShowAd(true)}
+			onTouchStart={lockScreen}
+			onTouchEnd={unlockScreen}
+			onTouchMove={e => e.preventDefault()}
+		/>
+	) : (
+		<img src={mockSocialImage}
+			className="snap-img delay1"
+			id="preview-video"
+			onMouseDown={() => setShowAd(true)}
+			onTouchStart={lockScreen}
+			onTouchEnd={unlockScreen}
+			onTouchMove={e => e.preventDefault()}
+			draggable={false}
+		/>
+	);
+
 	return (
 		<>
 			{ adBlocker ? 
@@ -102,24 +122,10 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 					<div className="aspectifier" />
 					<div className={`fake-feed ${visClass}`}>
 						<img src={socialAppLogos[social]} className="first" />
-						{/* <video className="snap-img delay1" id="preview-video" src={previewUrl} //className={`snap-img delay4${isMockup ? ' social-overlay' : ''}`}
-							loop muted playsInline autoplay
-							onMouseDown={() => setShowAd(true)}
-							onTouchStart={lockScreen}
-							onTouchEnd={unlockScreen}
-							onTouchMove={e => e.preventDefault()}
-						/> */}
-						<img src={mockSocialImage}
-							className="snap-img delay1"
-							id="preview-video"
-							onMouseDown={() => setShowAd(true)}
-							onTouchStart={lockScreen}
-							onTouchEnd={unlockScreen}
-							onTouchMove={e => e.preventDefault()}
-							draggable={false}
-						/>
-						<img className="snap-img delay1 overlay" src={appOverlays[social]} />
+						{ teaserImageOrVideo }
+						{ vertId === socialVertId ? '' : <img className="snap-img delay1 overlay" src={appOverlays[social]} /> }
 						<div className="show-ad" onClick={() => setShowAd(true)} />
+						<div className="social-text-bg"></div>
 					</div>
 					<div className={`social-ad ${showAd ? 'show' : ''}`}>
 						{ showAd && advert ? <GoodLoopAd {...unitProps} /> : '' }

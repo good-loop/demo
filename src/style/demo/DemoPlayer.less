@@ -207,10 +207,20 @@
 			background-color: transparent;
 			position: absolute;
 			pointer-events: none; // Makes content click-through
+			z-index: 2; // ensures text is above .social-text-bg
 		}
 	}
 	&.visible .snap-img {
 		left: 0;
+	}
+
+	.social-text-bg {
+		position: absolute;
+		width: 100%; // as wide as the phone
+		height: 22%; // arbitrary value
+		background-color: transparent; // default transparent, overid by player bg colour if set in portal
+		bottom: 0; // fixed to the bottom of the phone
+		pointer-events: none; // makes clicks fall-through
 	}
 }
 
