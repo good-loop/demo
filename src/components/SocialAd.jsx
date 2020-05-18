@@ -101,7 +101,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 			:	<div className="ad-sizer portrait">
 					<div className="aspectifier" />
 					<div className={`fake-feed ${visClass}`}>
-						<img src={socialAppLogos[social]} className="snap-img first" />
+						<img src={socialAppLogos[social]} className="first" />
 						{/* <video className="snap-img delay1" id="preview-video" src={previewUrl} //className={`snap-img delay4${isMockup ? ' social-overlay' : ''}`}
 							loop muted playsInline autoplay
 							onMouseDown={() => setShowAd(true)}
