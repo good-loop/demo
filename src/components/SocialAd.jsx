@@ -133,7 +133,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 // The weird anchor is to force a reload with no params against `preact-router` behaviour
 const noVideoAlert = (
 	<Alert color="warning" className="no-video-alert">
-		No social media video available for this advert. To see our default demo click <a href="#" onClick={() => location.replace(location.pathname)}>here</a>!
+		No social media video available for this advert. To see our default demo click <a href="https://demo.good-loop.com/portrait/social/?gl.vert=0PVrD1kX" onClick={() => location.replace(location.pathname)}>here</a>!
 	</Alert>
 )
 
