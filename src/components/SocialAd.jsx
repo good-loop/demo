@@ -16,68 +16,49 @@ let hostPrefix = '';
 if (window.location.hostname.match(/^(test)/)) hostPrefix = 'test';
 if (window.location.hostname.match(/^(local)/)) hostPrefix = 'local';
 
-
-/** If the preview video is running, restart it. */
-const loopVideo = () => {
-	const video = document.querySelector('#preview-video');
-	if (!video) return;
-	video.pause();
-	video.currentTime = 0;
-	video.play();
+// Format displayed is the same accross social apps, but specific elements of the overlay might be different.
+const appOverlays = {
+	snapchat: '/img/swipe-overlay.png',
+	instagram: '/img/swipe-overlay.png',
+	twitter: '/img/swipe-overlay.png'
 }
 
+const socialAppLogos = {
+	snapchat: 'https://media.good-loop.com/uploads/standard/snap_logo_background.jpg',
+	instagram: '/img/instagram-logo.jpg'
+}
 
-/** Fetch an advert from the portal by ID and return a Promise which will resolve to the video list */
-// TODO currently overriding localportal calls with testportal to easily share mockups for testing. Change this when ready
-const getAdVideos = (vertId, production) => fetch(`https://${hostPrefix === 'local' ? 'test' : hostPrefix}portal.good-loop.com/vert/${vertId}.json`)
-	.then(res => res.json())
-	.then(({ cargo }) => cargo.videos);
-
-
-const SocialAd = ({vertId = socialVertId, adBlocker }) => {
+const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
+	console.log('social i sheeeere', social)
 	if (vertId === 'test_wide_multiple') vertId = socialVertId;
 	// If adblocker's in use fetch calls to portal might break, so we use the default advert/preview.
 	if (adBlocker) vertId = socialVertId;
 	const [showAd, setShowAd] = useState(0); // User has swiped to show the ad
 	const [visClass, setVisClass] = useState(''); // 'visible' if the fake feed is on-screen and should start animating
-	const [previewUrl, setPreviewUrl] = useState('https://media.good-loop.com/uploads/standard/toms_snapchat_ad.mp4');
 	const [noVideoAvailable, setNoVideoAvailable] = useState(false);
-	const [defaultAdvertJson, setDefaultAdvertJson] = useState(null);
+	const [advert, setAdvert] = useState(null);
 
-	const getDefaultAdvertFromPortal = () =>{
-		return fetch('https://portal.good-loop.com/vert/0PVrD1kX.json')//('https://as.good-loop.com/unit.json?gl.vert=0PVrD1kX')
+	const getAdvertFromPortal = () =>{
+		const advertId = vertId;
+		const protocol = hostPrefix === 'local' ? 'http' : 'https';
+		return fetch(`${protocol}://${hostPrefix}portal.good-loop.com/vert/${advertId}.json`)//('https://as.good-loop.com/unit.json?gl.vert=0PVrD1kX')
 			.then(res => res.json())
 			.then(json => json.cargo)
 			.then(data => {
-				console.log(data, 'ran')
-				setDefaultAdvertJson(data)
+				setAdvert(data)
 			})
 	}
 
 	useEffect(() => {
-		getDefaultAdvertFromPortal();
-		let delayInterval; // Put this in outer scope so the cleanup return function can access it
-		const startLooping = () => {
-			loopVideo();
-			delayInterval = window.setInterval(loopVideo, 7000);
-		};
-		// The slideshow animation takes about 4.7s to complete before the video starts,
-		// so wait that long before setting up the timer
-		const loopTimeout = window.setTimeout(startLooping, 4700);
-
+		getAdvertFromPortal();
 		// Adds class `visible` to fake-feed element after 100ms.
 		const visibility = window.setTimeout(() => setVisClass('visible'), 100);
-		// Cancel any timers that are still active on unmount
-		return () => {
-			window.clearTimeout(delayInterval);
-			window.clearInterval(loopTimeout)
-			window.clearTimeout(visibility);
-		};
 	}, []);
 
 	// If vertical vid available, use it for the preview
-	const trySetPreviewVideo = videos => {
-		const video = videos.find(e => e.aspect === '9:16');
+	const trySetPreviewVideo = data => {
+		if (!advert) return;
+		const video = advert.videos.find(e => e.aspect === '9:16');
 		// If no portrait video available we'll use default ad/preview
 		if (!video) {
 			// unitProps.production = true;
@@ -103,13 +84,16 @@ const SocialAd = ({vertId = socialVertId, adBlocker }) => {
 	};
 
 	// Get videos from ad, if vertical available use it for preview
-	if (!adBlocker && vertId !== socialVertId) getAdVideos(vertId).then(trySetPreviewVideo);
+	if (!adBlocker && vertId !== socialVertId && advert) (trySetPreviewVideo(advert));
+
+	const mockSocialImage = advert ? advert.mockSocialImage : '';
+	console.log(advert);
 
 	// If no videos available for preview, or adblockers detected, display alert to the user.
 	// Otherwise, display the social advert.
 	return (
 		<>
-			{ noVideoAvailable || adBlocker ? 
+			{ adBlocker ? 
 				<> 
 					{ noVideoAvailable ? noVideoAlert : '' }
 					{ adBlocker ? adBlockerAlert : '' }
@@ -117,22 +101,28 @@ const SocialAd = ({vertId = socialVertId, adBlocker }) => {
 			:	<div className="ad-sizer portrait">
 					<div className="aspectifier" />
 					<div className={`fake-feed ${visClass}`}>
-						<img src="https://media.good-loop.com/uploads/standard/snap_logo_background.jpg" className="snap-img first" />
-						<img src="https://media.good-loop.com/uploads/standard/snap_ferry_view.jpg" className="snap-img delay1" />
-						<img src="https://media.good-loop.com/uploads/standard/snap_makeup_tutorial.jpg" className="snap-img delay2" />
-						<img src="https://media.good-loop.com/uploads/standard/snap_food_bear.jpg" className="snap-img delay3" />
-						<video className="snap-img delay4" id="preview-video" src={previewUrl} //className={`snap-img delay4${isMockup ? ' social-overlay' : ''}`}
-							loop muted playsInline
+						<img src={socialAppLogos[social]} className="snap-img first" />
+						{/* <video className="snap-img delay1" id="preview-video" src={previewUrl} //className={`snap-img delay4${isMockup ? ' social-overlay' : ''}`}
+							loop muted playsInline autoplay
 							onMouseDown={() => setShowAd(true)}
 							onTouchStart={lockScreen}
 							onTouchEnd={unlockScreen}
 							onTouchMove={e => e.preventDefault()}
+						/> */}
+						<img src={mockSocialImage}
+							className="snap-img delay1"
+							id="preview-video"
+							onMouseDown={() => setShowAd(true)}
+							onTouchStart={lockScreen}
+							onTouchEnd={unlockScreen}
+							onTouchMove={e => e.preventDefault()}
+							draggable={false}
 						/>
-						{ unitProps.production ? '' : <img className="snap-img delay4 overlay" src="/img/swipe-overlay.png" /> }
+						<img className="snap-img delay1 overlay" src={appOverlays[social]} />
 						<div className="show-ad" onClick={() => setShowAd(true)} />
 					</div>
 					<div className={`social-ad ${showAd ? 'show' : ''}`}>
-						{ showAd && defaultAdvertJson ? <GoodLoopAd {...unitProps} /> : '' }
+						{ showAd && advert ? <GoodLoopAd {...unitProps} /> : '' }
 					</div>
 				</div>
 			}

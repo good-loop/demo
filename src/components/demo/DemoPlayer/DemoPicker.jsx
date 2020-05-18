@@ -5,7 +5,7 @@ import { landscapeSvg, desktopSvg, portraitSvg } from '../DemoSvg';
 
 
 /** Generates links to change the format (social/video) and simulated device (landscape/portrait phone, desktop) */
-const DemoPicker = ({ format, device, noSocial }) => {
+const DemoPicker = ({ format, device, social, noSocial }) => {
 	const deviceClasses = newDevice => {
 		let classes = `button picker-button ${newDevice}`
 		if (format === 'social' && newDevice !== 'portrait') classes += ' disabled';
@@ -19,10 +19,17 @@ const DemoPicker = ({ format, device, noSocial }) => {
 		return classes;
 	};
 
-	const hrefUrl = ({newFormat = format, newDevice = device}) => {
+	const socialClasses = newSocial => {
+		let classes = `picker-button ${newSocial}`;
+		if (newSocial === social) classes += ' current';
+		return classes;
+	};
+
+	const hrefUrl = ({newFormat = format, newDevice = device, newSocial = 'snapchat'}) => {
 		let {search, hash} = window.location;
 		if (hash) hash = '#' + hash;
-		return `/${newDevice}/${newFormat}/${search}${hash}`;
+		let social = format === 'social' ? newSocial + '/' : '';
+		return `/${newDevice}/${newFormat}/${social}${search}${hash}`;
 	};
 
 	// Don't allow format change if the noSocial URL param is set
@@ -33,6 +40,17 @@ const DemoPicker = ({ format, device, noSocial }) => {
 			</a>
 			<a className={formatClasses('video')} href={hrefUrl({newFormat: 'video'})}>
 				Video
+			</a>
+		</Row>
+	);
+
+	const socialPicker = format !== 'social' ? '' : (
+		<Row className="format-picker text-center justify-content-center">
+			<a className={socialClasses('snapchat')} href={hrefUrl({newSocial: 'snapchat'})}>
+				Snapchat
+			</a>
+			<a className={socialClasses('instagram')} href={hrefUrl({newSocial: 'instagram'})}>
+				Instagram
 			</a>
 		</Row>
 	);
@@ -52,6 +70,7 @@ const DemoPicker = ({ format, device, noSocial }) => {
 				</a>
 			</Col>
 		</Row>
+		{socialPicker}
 	</>;
 };
 

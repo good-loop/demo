@@ -8,6 +8,7 @@ import FullscreenPage from './FullscreenPage';
 const TestMain = () => <>
 	<Router>
 		<DemoPage path="/" format="video" device="desktop" />
+		<DemoPage path="/:device/:format/:social?" />
 		<DemoPage path="/:device/:format?" />
 		<FullscreenPage path="/fullscreen/:size?" />
 	</Router>

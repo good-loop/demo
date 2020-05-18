@@ -12,7 +12,7 @@ import DemoPlayer from './DemoPlayer/DemoPlayer';
  * We don't do anything with {matches, path, url} here - we just don't want them in ...props
  * We pull both capitalisations of "nosocial" so we can type the wrong one and still have it work
  */
-const DemoPage = ({device, format, matches, path, url, noSocial, nosocial, 'gl.vert': vertId, ...props}) => {
+const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocial, 'gl.vert': vertId, ...props}) => {
 	// Allow any noSocial param at all, even an empty one, to work (unless value is "false")
 	const noSocialMerged = (noSocial !== 'false' && noSocial !== undefined) || (nosocial !== 'false' && nosocial !== undefined);
 
@@ -20,7 +20,7 @@ const DemoPage = ({device, format, matches, path, url, noSocial, nosocial, 'gl.v
 		<DemoSiteNavBar />
 		<Container>
 			<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
-			<DemoPlayer format={format} device={device} vertId={vertId} noSocial={noSocialMerged} />
+			<DemoPlayer format={format} device={device} social={social} vertId={vertId} noSocial={noSocialMerged} />
 			<RedMiddleSection />
 			<HowItWorksSection />
 			<FooterSection />

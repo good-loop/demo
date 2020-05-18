@@ -35,21 +35,21 @@ It inserts a div with ID "aiPai9th" - if that isn't present, we know adblock is 
 const adBlockDetected = !document.getElementById('aiPai9th');
 
 
-const DemoPlayer = ({ format, device, vertId = defaultVertId, noSocial }) => {
-	const social = (format === 'social');
+const DemoPlayer = ({ format, device, social, vertId = defaultVertId, noSocial }) => {
+	const isSocial = (format === 'social');
 
-	const ad = social ? <SocialAd vertId={vertId} adBlocker={adBlockDetected} /> : (
+	const ad = isSocial ? <SocialAd vertId={vertId} adBlocker={adBlockDetected} social={social} /> : (
 		<GoodLoopAd vertId={vertId} size={sizes[device]} extraNonce={`${format}${device}`} />
 	);
 
 	// TODO Is this second description extraneous?
-	const socialDesc = social ? (
+	const socialDesc = isSocial ? (
 		<div className="pb-2 d-flex justify-content-center">
 			<p>Here's an example of a Good-Loop campaign, as seen on Snapchat:</p>
 		</div>
 	) : '';
 
-	const fullscreenButton = social ? '' : (
+	const fullscreenButton = isSocial ? '' : (
 		<Row className="red-bg justify-content-center pt-1">
 			<a href={`/fullscreen/${sizes[device]}?gl.vert=${vertId}`} target="_blank" className="fullscreen-button w-button">
 				Full Screen Demo
