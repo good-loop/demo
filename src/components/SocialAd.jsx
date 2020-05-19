@@ -29,8 +29,9 @@ const socialAppLogos = {
 }
 
 const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
-	console.log('social i sheeeere', social)
 	if (vertId === 'test_wide_multiple') vertId = socialVertId;
+	// If no social app specified redirect to snapchat version
+	if (!social) route('/portrait/social/snapchat' + `?gl.vert=${vertId}`);
 	// If adblocker's in use fetch calls to portal might break, so we use the default advert/preview.
 	if (adBlocker) vertId = socialVertId;
 	const [showAd, setShowAd] = useState(0); // User has swiped to show the ad
@@ -79,18 +80,21 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	};
 	const unlockScreen = () => document.body.style.overflow = 'auto';
 
+	// Get videos from ad, if vertical available use it for preview
+	// if (!adBlocker && vertId !== socialVertId && advert) (trySetPreviewVideo(advert));
+
+	const mockSocialImage = advert && advert.mockSocialImage ? advert.mockSocialImage : null;
+	const mockOverlay = appOverlays[social];
+
+	if ( advert && ! mockSocialImage && vertId !== socialVertId ) route('/portrait/social/' + `?gl.vert=${socialVertId}`); // if no teaser image available show default advert instead
+
 	// TODO When gl.delivery === 'app', gl.after should probably default to "persist"
 	const unitProps = { 
 		vertId: vertId,
 		production: vertId === socialVertId, // If we are using default ad we want to access it regardless of site's server
 		...socialUnitProps,
 	};
-
-	// Get videos from ad, if vertical available use it for preview
-	if (!adBlocker && vertId !== socialVertId && advert) (trySetPreviewVideo(advert));
-
-	const mockSocialImage = advert ? advert.mockSocialImage : '';
-
+	
 	const teaserImageOrVideo = vertId === socialVertId ? (
 		<video className="snap-img delay1" id="preview-video" src={tomsDemoPreview} //className={`snap-img delay4${isMockup ? ' social-overlay' : ''}`}
 			loop muted playsInline autoplay
@@ -111,6 +115,8 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 		/>
 	);
 
+	console.log('advert id :::::: ', vertId)
+
 	return (
 		<>
 			{ adBlocker ? 
@@ -123,7 +129,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 					<div className={`fake-feed ${visClass}`}>
 						<img src={socialAppLogos[social]} className="first" />
 						{ teaserImageOrVideo }
-						{ vertId === socialVertId ? '' : <img className="snap-img delay1 overlay" src={appOverlays[social]} /> }
+						{ vertId === socialVertId ? '' : <img className="snap-img delay1 overlay" src={mockOverlay} /> }
 						<div className="show-ad" onClick={() => setShowAd(true)} />
 						<div className="social-text-bg"></div>
 					</div>
