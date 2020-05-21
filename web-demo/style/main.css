@@ -1,0 +1,657 @@
+.ad-sizer {
+  position: relative;
+}
+.ad-sizer .goodloopad,
+.ad-sizer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.ad-sizer .vpaid-container {
+  width: 100%;
+  height: 100%;
+}
+.ad-sizer.landscape .aspectifier {
+  margin-top: 56.25%;
+}
+.ad-sizer.portrait .aspectifier {
+  margin-top: 177.77%;
+}
+.ad-sizer.square .aspectifier {
+  margin-top: 100%;
+}
+.ad-sizer.fabric {
+  margin: auto -16px;
+  border: 1px solid transparent;
+}
+.ad-sizer.fabric .aspectifier {
+  margin-top: 250px;
+}
+.ad-sizer.portrait,
+.ad-sizer.landscape,
+.ad-sizer.square {
+  overflow: hidden;
+}
+.navbar {
+  position: fixed;
+  width: 100%;
+  background: white;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+  z-index: 1200;
+}
+@media (max-width: 767px) {
+  .navbar {
+    width: auto;
+  }
+}
+@media (max-width: 767px) {
+  .navbar {
+    box-shadow: none;
+    background-color: transparent;
+  }
+  .navbar #navbar {
+    background: white;
+    border: 1px solid #888;
+    margin-top: 0.5em;
+  }
+}
+.navbar .navbar-toggler {
+  background: white;
+  border: 1px solid #888;
+}
+.navbar .navbar-nav {
+  margin-top: 0;
+  align-items: center;
+}
+.nav-link:hover {
+  color: #32343a;
+}
+@media (max-width: 767px) {
+  .nav-item {
+    width: 100%;
+  }
+  .nav-item a {
+    font-size: 100% !important;
+  }
+}
+.nav-link {
+  font-family: 'Open Sans', sans-serif;
+  color: #678;
+  line-height: 1.45;
+  text-decoration: none;
+  font-size: 1vw !important;
+  padding: 20px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+.gl-bootstrap-navbar {
+  justify-content: center;
+}
+@media (max-width: 767px) {
+  .navbar-nav {
+    max-width: 70vw;
+  }
+}
+.navbar-light .navbar-nav .nav-link {
+  color: #678;
+  line-height: 1.45;
+  outline-width: 1px;
+  padding: 20px;
+  text-decoration-line: none;
+  text-size-adjust: 100%;
+  font-size: 2vw;
+}
+@media (min-width: 960px) {
+  .navbar-light .navbar-nav .nav-link {
+    font-size: 19.2px;
+  }
+}
+.navbar-collapse {
+  width: max-content;
+}
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus,
+.nav-link {
+  text-transform: uppercase;
+}
+.dropdown-item {
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  font-size: 1.2em;
+}
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #790000;
+}
+.navbar-brand.gl-icon-centred {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  margin: 0 0 -25px -25px;
+  padding: 0;
+  z-index: 1;
+}
+@media (max-width: 767px) {
+  .navbar-brand.gl-icon-centred {
+    display: none;
+  }
+}
+.navbar-gl-icon {
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.shadowcaster {
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+  width: 50px;
+  height: 25px;
+  margin-top: 25px;
+}
+.fixed-navbar {
+  position: fixed;
+  width: 100%;
+  margin-bottom: 15vh;
+  top: 0;
+  z-index: 999;
+}
+.gl-mobile-nav-btn {
+  background-color: inherit;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  line-height: 1.45;
+}
+.mr-auto {
+  background-color: white;
+  box-shadow: 0.05em 0.05em 0.1em rgba(1, 1, 1, 0.5);
+}
+.navbar-nav .nav-link {
+  font-size: 2em;
+}
+#mobileNavbar {
+  right: 10px;
+}
+.device-container {
+  display: inline-block;
+  position: relative;
+}
+.device-container .device-screen-bg {
+  position: absolute;
+  z-index: 0;
+  background-color: #fff;
+}
+.device-container .ad-container {
+  position: absolute;
+  z-index: 1;
+}
+.device-container .social-mockup {
+  width: 101%;
+  margin-left: -1%;
+}
+.device-container .frame-img {
+  position: relative;
+  pointer-events: none;
+  z-index: 2;
+  /* We render the not-in-use frame images with height:0
+		 * so that the image files load preemptively - but <img>
+		 * elements are inline-block and will occupy an extra line
+		 * of vertical space even with height: 0. So we make them
+		 * display: block, so they occupy only as much vertical
+		 * space as their height.
+		 */
+  display: block;
+}
+.device-container.landscape {
+  width: 66%;
+}
+@media (max-width: 767px) {
+  .device-container.landscape {
+    width: 100%;
+  }
+}
+.device-container.landscape .device-screen-bg {
+  left: 3%;
+  top: 6%;
+  width: 94%;
+  height: 87%;
+}
+.device-container.landscape .ad-container {
+  left: 7.1%;
+  top: 6.8%;
+  width: 85.4%;
+}
+.device-container.landscape .frame-img {
+  width: 100%;
+}
+.device-container.desktop {
+  width: 100%;
+}
+.device-container.desktop .device-screen-bg {
+  display: none;
+}
+.device-container.desktop .ad-container {
+  width: 64%;
+  left: 19%;
+  top: 18%;
+}
+.device-container.desktop .frame-img {
+  width: 100%;
+  z-index: 0;
+}
+.device-container.portrait {
+  height: 80vh;
+}
+.device-container.portrait .device-screen-bg {
+  left: 6%;
+  top: 3%;
+  width: 88%;
+  height: 94%;
+  border-radius: 5vh;
+}
+.device-container.portrait .ad-container {
+  left: 6.7%;
+  top: 7%;
+  width: 86.6%;
+}
+.device-container.portrait .frame-img {
+  height: 100%;
+}
+.device-container.social .device-screen-bg {
+  background-color: #000;
+}
+.device-container.social .no-video-alert,
+.device-container.social .social-adblocker-alert {
+  margin-top: 1em;
+}
+.device-container .device-shadow {
+  position: absolute;
+  width: 95%;
+  left: 2.5%;
+  height: 1em;
+  bottom: 2em;
+  box-shadow: 0 2em 1em rgba(0, 0, 0, 0.6);
+  border-radius: 3em;
+}
+.format-picker .picker-button {
+  margin: 1em 1em;
+  font-size: 1.2em;
+}
+@media (max-width: 400px) {
+  .format-picker.row {
+    margin: 0!important;
+  }
+}
+.device-picker .flex-row {
+  display: flex;
+  align-items: center;
+}
+.device-picker .picker-button {
+  padding: 0 1em;
+  max-width: 8em;
+  min-width: 6em;
+  height: 5em;
+  display: inline-flex;
+  align-items: center;
+}
+.device-picker .picker-button * {
+  vertical-align: middle;
+  pointer-events: none;
+}
+.device-picker .picker-button.desktop * {
+  max-width: 90px;
+}
+@media (max-width: 350px) {
+  .device-picker .picker-button {
+    padding: 0;
+    min-width: 3em;
+  }
+  .device-picker .picker-button svg {
+    max-height: 3.5em;
+  }
+}
+.device-picker svg {
+  max-width: 60px;
+  max-height: 3.5em;
+  margin: 0 auto;
+  width: 100%;
+}
+.device-picker svg.desktop {
+  max-width: 6em;
+}
+.picker-button {
+  color: #000;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.15em;
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  display: inline-block;
+  position: relative;
+  outline: none!important;
+  background-color: #fff;
+}
+.picker-button.device-picker {
+  height: 5em;
+}
+.picker-button.disabled {
+  color: lightgray!important;
+  pointer-events: none!important;
+}
+.picker-button:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #830000;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.picker-button:hover {
+  background-color: transparent!important;
+}
+.picker-button:hover:not(.current) {
+  color: #000 !important;
+}
+.picker-button:hover:after {
+  width: 100%;
+  left: 0;
+}
+.picker-button.current {
+  color: #830000;
+  font-weight: 800;
+}
+.picker-button.current:after {
+  width: 100%;
+  left: 0;
+}
+.picker-button:not(.disabled) svg {
+  filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.4));
+}
+.alert {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+.demo-div-container {
+  width: 100%!important;
+}
+.fake-feed,
+.social-ad {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.fake-feed {
+  background-color: black;
+  background-size: 100%;
+}
+.fake-feed .first {
+  width: 100%;
+}
+.fake-feed .snap-img {
+  width: 100%;
+  position: absolute;
+  background-color: black;
+  transition: left 0.6s ease;
+}
+.fake-feed .snap-img.delay1 {
+  transition-delay: 1.2s;
+}
+.fake-feed .snap-img.delay2 {
+  transition-delay: 2.4s;
+}
+.fake-feed .snap-img.delay3 {
+  transition-delay: 3.6s;
+}
+.fake-feed .snap-img.delay4 {
+  transition-delay: 4.8s;
+}
+.fake-feed .snap-img:not(.first) {
+  left: 100%;
+}
+.fake-feed .snap-img.overlay {
+  background-color: transparent;
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+.fake-feed .snap-img.overlay-insta {
+  background-color: transparent;
+  pointer-events: none;
+}
+.fake-feed .snap-img.overlay-insta.top {
+  top: 0;
+  height: 15%;
+  background-image: url('/img/overlay-insta-top.png');
+  background-position-x: center;
+}
+.fake-feed .snap-img.overlay-insta.top .row {
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+  position: absolute;
+  margin: auto!important;
+}
+.fake-feed .snap-img.overlay-insta.top .row .col {
+  height: 100%;
+  max-width: 40%;
+}
+.fake-feed .snap-img.overlay-insta.top .row .col .overlay-logo-div {
+  height: 100%;
+  display: flex;
+}
+.fake-feed .snap-img.overlay-insta.top .row .col .overlay-logo-div img {
+  max-height: 100%;
+  max-width: 100%;
+  margin: auto;
+}
+.fake-feed .snap-img.overlay-insta.bot {
+  bottom: 0;
+}
+.fake-feed.visible .snap-img {
+  left: 0;
+}
+.fake-feed .social-text-bg {
+  position: absolute;
+  width: 100%;
+  height: 22%;
+  background-color: transparent;
+  bottom: 0;
+  pointer-events: none;
+}
+.social-ad {
+  background-color: white;
+  top: 100%;
+  transition: top 0.4s ease-in;
+}
+.social-ad.show {
+  top: 0;
+}
+.footer .col {
+  color: #50555c;
+}
+@media (max-width: 767px) {
+  .footer .col {
+    font-size: 0.8em;
+  }
+}
+.footer a {
+  color: black !important;
+  text-decoration: underline !important;
+}
+.fa-svg {
+  margin: 0 0.2em;
+}
+.fa-svg svg {
+  width: 30px!important;
+  height: 30px;
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v14/JTUSjIg1_i6t8kCHKm459Wlhzg.ttf) format('truetype');
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+}
+body {
+  overflow-x: hidden;
+}
+a,
+a:hover,
+a:focus {
+  text-decoration: none!important;
+}
+video {
+  width: 100%;
+}
+.container {
+  padding-top: 10em;
+}
+@media (max-width: 767px) {
+  .container {
+    padding-top: 4em;
+  }
+}
+.red-bg,
+.half-bg {
+  position: relative;
+}
+.red-bg:before,
+.half-bg:before,
+.red-bg:after,
+.half-bg:after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 50vw;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+.red-bg:before,
+.half-bg:before {
+  right: 50%;
+}
+.red-bg:after,
+.half-bg:after {
+  left: 50%;
+}
+.red-bg:before,
+.red-bg:after {
+  background-color: #830000;
+}
+.half-bg:before,
+.half-bg:after {
+  background-image: linear-gradient(to bottom, white 50%, #830000 50%);
+}
+.red-bg {
+  color: #fff;
+  padding: 2em;
+}
+@media (max-width: 767px) {
+  .red-bg {
+    padding: 2em 0;
+  }
+  .red-bg .playermiddleheader {
+    padding: 2em 0;
+  }
+}
+.red-middle-col {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.fullscreen-button,
+.get-in-touch-button {
+  border: 1px solid white;
+  padding: 1em 2em;
+  border-radius: 50px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  margin: 2em 0;
+  text-transform: uppercase;
+}
+.fullscreen-button:hover,
+.get-in-touch-button:hover {
+  text-decoration: none;
+  color: #fff;
+  background-color: #a30000;
+}
+@media (max-width: 767px) {
+  .fullscreen-button {
+    margin-top: 1em;
+  }
+  .device-container-portrait {
+    height: 90vh;
+  }
+}
+.playermiddleheader {
+  padding: 2em;
+}
+.how-it-works-row img {
+  width: 8em;
+  height: 10em;
+  object-fit: contain;
+}
+.how-it-works-row img.coins-img {
+  width: 7em;
+}
+#fullscreen {
+  height: 100em;
+  width: 100vw;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-aspect-ratio: 16/9) {
+  #fullscreen.landscape .fullscreen-inner {
+    width: 177.77em;
+    height: 100%;
+  }
+}
+@media (max-aspect-ratio: 16/9) {
+  #fullscreen.landscape .fullscreen-inner {
+    width: 100%;
+    height: 56.25vw;
+  }
+}
+@media (min-aspect-ratio: 9/16) {
+  #fullscreen.portrait .fullscreen-inner {
+    width: 56.25em;
+    height: 100%;
+  }
+}
+@media (max-aspect-ratio: 9/16) {
+  #fullscreen.portrait .fullscreen-inner {
+    width: 100%;
+    height: 177.77vw;
+  }
+}

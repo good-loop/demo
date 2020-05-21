@@ -42,10 +42,10 @@ const DemoPlayer = ({ format, device, social, vertId = defaultVertId, noSocial }
 		<GoodLoopAd vertId={vertId} size={sizes[device]} extraNonce={`${format}${device}`} />
 	);
 
-	// TODO Is this second description extraneous?
+	// TODO we can add an extra block of description here, if needed.
 	const socialDesc = isSocial ? (
 		<div className="pb-2 d-flex justify-content-center">
-			<p>Here's an example of a Good-Loop campaign, as seen on Snapchat:</p>
+			<p>Here's an example of a Good-Loop campaign, as seen on Instagram:</p>
 		</div>
 	) : '';
 
@@ -74,7 +74,6 @@ const DemoPlayer = ({ format, device, social, vertId = defaultVertId, noSocial }
 				Adblocker detected. Some of our adverts might not play properly!
 			</UncontrolledAlert>
 		) : '' }
-		{ socialDesc }
 		<Row className="half-bg">
 			<Col xs="12" className="text-center">
 				<div className={`device-container ${device} ${format}`}>

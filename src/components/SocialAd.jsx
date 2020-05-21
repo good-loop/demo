@@ -14,7 +14,7 @@ const socialUnitProps = {
 };
 let hostPrefix = '';
 if (window.location.hostname.match(/^(test)/)) hostPrefix = 'test';
-if (window.location.hostname.match(/^(local)/)) hostPrefix = 'local';
+if (window.location.hostname.match(/^(local)/)) hostPrefix = 'local'; // TODO change this back to local
 
 // Format displayed is the same accross social apps, but specific elements of the overlay might be different.
 const appOverlays = {
@@ -39,7 +39,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 
 	const getAdvertFromPortal = () =>{
 		const advertId = vertId;
-		const protocol = hostPrefix === 'local' ? 'http' : 'https';
+		const protocol = hostPrefix === 'local' ? 'http' : 'https'; // TODO change this back to support local
 		// if default grab TOMS advert from prod server
 		const adUrl = vertId === socialVertId ? 'https://portal.good-loop.com/vert/0PVrD1kX.json'
 			: `${protocol}://${hostPrefix}portal.good-loop.com/vert/${advertId}.json`;
@@ -82,7 +82,10 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	// if (!adBlocker && vertId !== socialVertId && advert) (trySetPreviewVideo(advert));
 
 	const mockSocialImage = advert && advert.mockSocialImage ? advert.mockSocialImage : null;
-	// const mockOverlay = appOverlays[social];
+	
+	// Charity and client logos
+	const clientLogo = advert && advert.branding ? advert.branding.logo : '';
+	const charityLogo = advert && advert.charities ? advert.charities.list[0].logo : '';
 
 	if ( advert && ! mockSocialImage && vertId !== socialVertId ) route('/portrait/social/' + `?gl.vert=${socialVertId}`); // if no teaser image available show default advert instead
 
@@ -121,10 +124,14 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 				{/* <div className="overlay-logo"></div> */}
 				<Row>
 					<Col>
-						<div className="overlay-logo"></div>
+						<div className="overlay-logo-div">
+							<img src={clientLogo} />
+						</div>
 					</Col>
 					<Col>
-						<div className="overlay-logo2"></div>
+						<div className="overlay-logo-div">
+							<img src={charityLogo} />
+						</div>
 					</Col>
 				</Row>
 			</div>		
