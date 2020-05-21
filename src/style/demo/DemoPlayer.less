@@ -209,6 +209,25 @@
 			pointer-events: none; // Makes content click-through
 			z-index: 2; // ensures text is above .social-text-bg
 		}
+
+		// Using overlay assets from BOSE instagram campaign
+		// 2 sections, one on top, other bottom.
+		&.overlay-insta {
+			background-color: transparent;
+			pointer-events: none;
+			&.top {
+				top: 0;
+				max-height: 15%;
+				background-image: url('/img/overlay-insta-top.png');
+				.overlay-logo {
+					height: 100%;
+					left: 0;
+				}
+			}
+			&.bot {
+				bottom: 0;
+			}
+		}
 	}
 	&.visible .snap-img {
 		left: 0;

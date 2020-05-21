@@ -44,17 +44,6 @@ const DemoPicker = ({ format, device, social, noSocial }) => {
 		</Row>
 	);
 
-	const socialPicker = format !== 'social' ? '' : (
-		<Row className="format-picker text-center justify-content-center">
-			<a className={socialClasses('snapchat')} href={hrefUrl({newSocial: 'snapchat'})}>
-				Snapchat
-			</a>
-			<a className={socialClasses('instagram')} href={hrefUrl({newSocial: 'instagram'})}>
-				Instagram
-			</a>
-		</Row>
-	);
-
 	return <>
 		{formatPicker}
 		<Row className="device-picker justify-content-center pb-4 flex-row">
@@ -70,7 +59,6 @@ const DemoPicker = ({ format, device, social, noSocial }) => {
 				</a>
 			</Col>
 		</Row>
-		{socialPicker}
 	</>;
 };
 

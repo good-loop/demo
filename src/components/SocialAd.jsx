@@ -1,7 +1,7 @@
 import { h, Fragment } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import { route } from 'preact-router';
-import { Alert } from 'reactstrap';
+import { Alert, Row, Col } from 'reactstrap';
 
 import GoodLoopAd from "./GoodLoopAd";
 import { getUnitUrl } from '../utils';
@@ -18,20 +18,18 @@ if (window.location.hostname.match(/^(local)/)) hostPrefix = 'local';
 
 // Format displayed is the same accross social apps, but specific elements of the overlay might be different.
 const appOverlays = {
-	snapchat: '/img/swipe-overlay.png',
 	instagram: '/img/swipe-overlay.png',
 	twitter: '/img/swipe-overlay.png'
 }
 
 const socialAppLogos = {
-	snapchat: 'https://media.good-loop.com/uploads/standard/snap_logo_background.jpg',
 	instagram: '/img/instagram-logo.jpg'
 }
 
 const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	if (vertId === 'test_wide_multiple') vertId = socialVertId;
-	// If no social app specified redirect to snapchat version
-	if (!social) route('/portrait/social/snapchat' + `?gl.vert=${vertId}`);
+	// If no social app specified redirect to instagram version
+	if (!social) route('/portrait/social/instagram' + `?gl.vert=${vertId}`);
 	// If adblocker's in use fetch calls to portal might break, so we use the default advert/preview.
 	if (adBlocker) vertId = socialVertId;
 	const [showAd, setShowAd] = useState(0); // User has swiped to show the ad
@@ -84,7 +82,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	// if (!adBlocker && vertId !== socialVertId && advert) (trySetPreviewVideo(advert));
 
 	const mockSocialImage = advert && advert.mockSocialImage ? advert.mockSocialImage : null;
-	const mockOverlay = appOverlays[social];
+	// const mockOverlay = appOverlays[social];
 
 	if ( advert && ! mockSocialImage && vertId !== socialVertId ) route('/portrait/social/' + `?gl.vert=${socialVertId}`); // if no teaser image available show default advert instead
 
@@ -115,7 +113,24 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 		/>
 	);
 
-	console.log('advert id :::::: ', vertId)
+	// <img className="overlay-logo" src={ advert ? advert.branding.logo : '' } />
+	const mockOverlay = (
+		<>
+			<div className="snap-img delay1 overlay-insta top">
+				{/* <img src={'/img/overlay-insta-top.png'} /> */}
+				{/* <div className="overlay-logo"></div> */}
+				<Row>
+					<Col>
+						<div className="overlay-logo"></div>
+					</Col>
+					<Col>
+						<div className="overlay-logo2"></div>
+					</Col>
+				</Row>
+			</div>		
+			<img className="snap-img delay1 overlay-insta bot" src={'/img/overlay-insta-bot.png'} />
+		</>
+	);
 
 	return (
 		<>
@@ -129,7 +144,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 					<div className={`fake-feed ${visClass}`}>
 						<img src={socialAppLogos[social]} className="first" />
 						{ teaserImageOrVideo }
-						{ vertId === socialVertId ? '' : <img className="snap-img delay1 overlay" src={mockOverlay} /> }
+						{ vertId === socialVertId ? '' : mockOverlay }
 						<div className="show-ad" onClick={() => setShowAd(true)} />
 						<div className="social-text-bg"></div>
 					</div>
