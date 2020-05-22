@@ -14,7 +14,7 @@ const socialUnitProps = {
 };
 let hostPrefix = '';
 if (window.location.hostname.match(/^(test)/)) hostPrefix = 'test';
-if (window.location.hostname.match(/^(local)/)) hostPrefix = 'local'; // TODO change this back to local
+if (window.location.hostname.match(/^(local)/)) hostPrefix = 'local';
 
 // Format displayed is the same accross social apps, but specific elements of the overlay might be different.
 const appOverlays = {
@@ -39,7 +39,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 
 	const getAdvertFromPortal = () =>{
 		const advertId = vertId;
-		const protocol = hostPrefix === 'local' ? 'http' : 'https'; // TODO change this back to support local
+		const protocol = hostPrefix === 'local' ? 'http' : 'https';
 		// if default grab TOMS advert from prod server
 		const adUrl = vertId === socialVertId ? 'https://portal.good-loop.com/vert/0PVrD1kX.json'
 			: `${protocol}://${hostPrefix}portal.good-loop.com/vert/${advertId}.json`;
@@ -58,6 +58,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	}, []);
 
 	// If vertical vid available, use it for the preview
+	// This is disabled for now, but can be incorporated if requested.
 	const trySetPreviewVideo = data => {
 		if (!advert) return;
 		const video = advert.videos.find(e => e.aspect === '9:16');
@@ -87,7 +88,8 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	const clientLogo = advert && advert.branding ? advert.branding.logo : '';
 	const charityLogo = advert && advert.charities ? advert.charities.list[0].logo : '';
 
-	if ( advert && ! mockSocialImage && vertId !== socialVertId ) route('/portrait/social/' + `?gl.vert=${socialVertId}`); // if no teaser image available show default advert instead
+	// We can auto redirect to default advert with the line below, but I think an alert is more useful to users.
+	// if ( advert && ! mockSocialImage && vertId !== socialVertId ) route('/portrait/social/' + `?gl.vert=${socialVertId}`); // if no teaser image available show default advert instead
 
 	// TODO When gl.delivery === 'app', gl.after should probably default to "persist"
 	const unitProps = { 
@@ -139,11 +141,13 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 		</>
 	);
 
+	console.log(mockSocialImage)
+
 	return (
 		<>
-			{ adBlocker ? 
+			{ adBlocker || ! mockSocialImage ? 
 				<> 
-					{ noVideoAvailable ? noVideoAlert : '' }
+					{ ! mockSocialImage ? noMockupAlert : '' }
 					{ adBlocker ? adBlockerAlert : '' }
 				</>
 			:	<div className="ad-sizer portrait">
@@ -165,9 +169,9 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 };
 
 // The weird anchor is to force a reload with no params against `preact-router` behaviour
-const noVideoAlert = (
+const noMockupAlert = (
 	<Alert color="warning" className="no-video-alert">
-		No social media video available for this advert. To see our default demo click <a href="https://demo.good-loop.com/portrait/social/?gl.vert=0PVrD1kX" onClick={() => location.replace(location.pathname)}>here</a>!
+		No social media mockup available for this advert. Please add the necessary assets in the editor's <n>Videos</n> section. To see our default demo click <a href="https://demo.good-loop.com/portrait/social/?gl.vert=0PVrD1kX" onClick={() => location.replace(location.pathname)}>here</a>!
 	</Alert>
 )
 
