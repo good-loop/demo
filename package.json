@@ -11,8 +11,11 @@
     "@babel/polyfill": "^7.6.0",
     "@babel/preset-env": "^7.6.2",
     "babel-loader": "^8.0.5",
+    "css-loader": "^3.5.3",
     "jest": "^25.1.0",
     "jest-puppeteer": "^4.4.0",
+    "less-loader": "^6.1.0",
+    "mini-css-extract-plugin": "^0.9.0",
     "puppeteer": "^2.0.0",
     "reactstrap": "^8.1.1",
     "regenerator-runtime": "^0.13.3",
@@ -32,9 +35,9 @@
     "yargs": "^15.1.0"
   },
   "scripts": {
-    "build": "webpack --config ./webpack.config.js --progress",
-    "watch": "webpack --config ./webpack.config.js --progress --watch",
-    "watch-fast": "NO_PROD=true webpack --config ./webpack.config.js --progress --watch",
+    "compile": "webpack --config ./webpack.config.js --progress",
+    "compile-watch": "webpack --config ./webpack.config.js --progress --watch",
+    "compile-watch-fast": "NO_PROD=true webpack --config ./webpack.config.js --progress --watch",
     "size:imports": "webpack -p --config ./webpack.config.js --progress --colors --json | webpack-bundle-size-analyzer",
     "test": "jest"
   },

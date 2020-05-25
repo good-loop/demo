@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 /**
  * Skeleton object with elements common to every configuration.
@@ -31,10 +32,14 @@ const baseConfig = {
 						['@babel/plugin-transform-react-jsx', { pragma: 'h', pragmaFrag: 'Fragment' }],
 					]
 				}
+			}, {
+				test: /\.less$/,
+				use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
 			}
 		]
 	},
 	devtool: 'source-map',
+	plugins: [new MiniCssExtractPlugin({ filename: 'style/main.css' })]
 };
 
 /**
@@ -62,7 +67,6 @@ const makeConfig = ({ entryFile, pathname, filename, mode }) => {
 		filename,
 	};
 	config.output = Object.assign({}, config.output, newOutput);
-	console.log(config.output);
 
 	return config;
 };
