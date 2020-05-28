@@ -193,6 +193,13 @@
 		object-fit: cover;
 	}
 
+	// The background image for social mockups taken from portal
+	.preview-image {
+		// This two rules make sure the image covers the phone, even if sides have to be slightly cropped.
+		height: 100%; 
+		object-fit: cover;
+	}
+
 	// slides animated into place after delay
 	// supports multiple, but we're likely only going to use one
 	.snap-img { 
@@ -225,7 +232,7 @@
 				top: 0;
 				height: 15%;
 				background-image: url('/img/overlay-insta-top2.png');
-				background-position-x: center;
+				background-position: center;
 
 				//// This block is used to position the client/char logos in the top overlay
 				.row {
@@ -280,3 +287,8 @@
 	}
 }
 
+.adBanner {
+    background-color: transparent;
+    height: 1px;
+    width: 1px;
+}

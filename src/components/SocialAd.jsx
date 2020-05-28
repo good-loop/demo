@@ -109,7 +109,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	) : (
 		<img src={mockSocialImage}
 			className="snap-img delay1"
-			id="preview-video"
+			id="preview-image"
 			onMouseDown={() => setShowAd(true)}
 			onTouchStart={lockScreen}
 			onTouchEnd={unlockScreen}
