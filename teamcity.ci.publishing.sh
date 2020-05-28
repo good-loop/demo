@@ -16,8 +16,8 @@ IMAGE_OPTIMISE='yes'
 IMAGEDIRECTORY="$PROJECT_LOCATION/webroot/img"
 CONVERT_LESS='yes'
 LESS_FILES_LOCATION="$PROJECT_LOCATION/src/style"
-MINIFY_CSS='yes'
-CSS_OUTPUT_LOCATION="$PROJECT_LOCATION/webroot/style"
+#MINIFY_CSS='yes'
+#CSS_OUTPUT_LOCATION="$PROJECT_LOCATION/webroot/style"
 WEBPACK='yes'
 TEST_JAVASCRIPT='no'
 JAVASCRIPT_FILES_TO_TEST=""
@@ -252,7 +252,7 @@ function webpack {
 		printf "\nGetting NPM Dependencies ..."
 		$PSSH "cd $TARGET_DIRECTORY && npm i"
 		printf "\nWebpacking ..."
-    	$PSSH "cd $TARGET_DIRECTORY && npm run build"
+		$PSSH "cd $TARGET_DIRECTORY && npm run compile"
 	fi
 }
 
