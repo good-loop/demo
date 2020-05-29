@@ -20,8 +20,8 @@ else if (window.location.hostname.match(/(^test)/)) { prefix = 'test'; } // Runn
 const glBaseUrl = `${window.location.protocol}//${prefix}as.good-loop.com/`
 const glProdBaseUrl = `https://as.good-loop.com/`;
 
-const getUrlGeneric = ({production, vertId, file}) => (
-	(production ? glProdBaseUrl : glBaseUrl) + file + (vertId ? '?gl.vert=' + vertId : '')
+const getUrlGeneric = ({production, vertId, file, delivery = 'direct'}) => (
+	(production ? glProdBaseUrl : glBaseUrl) + file + (vertId ? '?gl.vert=' + vertId : '') + ('&gl.delivery=' + delivery)
 );
 
 export const getUnitUrl = ({...props} = {}) => getUrlGeneric({...props, file: 'unit.js'});

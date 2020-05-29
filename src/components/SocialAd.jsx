@@ -94,6 +94,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	// TODO When gl.delivery === 'app', gl.after should probably default to "persist"
 	const unitProps = { 
 		vertId: vertId,
+		delivery: 'app',
 		production: vertId === socialVertId, // If we are using default ad we want to access it regardless of site's server
 		...socialUnitProps,
 	};
