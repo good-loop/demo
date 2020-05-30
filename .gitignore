@@ -1,6 +1,7 @@
 # no generated node stuff
 **/node_modules
 **/package-lock.json
+**/*.css
 
 # no compiled output
 **/bundle*.js*
@@ -13,3 +14,4 @@ puppeteer-tests/test-results/Logs(failure)/*
 puppeteer-tests/test-results/Screenshots(success)/*
 node_modules
 .idea
+
