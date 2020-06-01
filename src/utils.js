@@ -14,15 +14,21 @@ export const getNonce = (props) => {
 	return props.size + glParamString + props.extraNonce;
 };
 
+
 let prefix = ''; // Default to production adserver (ie running on demo or prodtest.good-loop.com)
 if (window.location.hostname.match(/^local/)) { prefix = 'local'; } // Running on localtest or localdemo.good-loop.com --> talk to localas
 else if (window.location.hostname.match(/(^test)/)) { prefix = 'test'; } // Running on test or testdemo.good-loop.com --> talk to testas
 const glBaseUrl = `${window.location.protocol}//${prefix}as.good-loop.com/`
 const glProdBaseUrl = `https://as.good-loop.com/`;
 
-const getUrlGeneric = ({production, vertId, file, delivery = 'direct'}) => (
-	(production ? glProdBaseUrl : glBaseUrl) + file + (vertId ? '?gl.vert=' + vertId : '') + ('&gl.delivery=' + delivery)
-);
+const getUrlGeneric = ({production, file, params}) => {
+	const url = new URL((production ? glProdBaseUrl : glBaseUrl) + file);
+	Object.entries(params).forEach(([name, value]) => {
+		if (value) url.searchParams.append(name, value);
+	});
+	
+	return url.toString();
+};
 
 export const getUnitUrl = ({...props} = {}) => getUrlGeneric({...props, file: 'unit.js'});
 export const getVastUrl = ({...props} = {}) => getUrlGeneric({...props, file: 'vast.xml'});

@@ -10,10 +10,19 @@ class GoodLoopAd extends Component {
 	render({size, vertId, production, bare, extraNonce, delivery, refPolicy = 'no-referrer-when-downgrade', ...params}) {
 		// Changes if size or ad ID changes - breaks identity on script & container so they get removed on next render
 		const nonce = getNonce(this.props);
-		console.log(vertId)
+
+		const unitUrl = getUnitUrl({
+			production,
+			delivery,
+			params: {
+				'gl.vert': vertId,
+				'gl.delivery': delivery,
+			}
+		});
+
 		const bareElements = <>
 			<div className="goodloopad" data-format={size} data-mobile-format={size} key={nonce + '-container'}/>
-			<script src={getUnitUrl({vertId, production, delivery})} key={nonce + '-script'} referrerPolicy={refPolicy} />
+			<script src={unitUrl} key={nonce + '-script'} referrerPolicy={refPolicy} />
 		</>;
 
 		// Aspectifier isn't always wanted - eg in fullscreen mode where making the

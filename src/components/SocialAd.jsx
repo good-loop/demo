@@ -4,7 +4,6 @@ import { route } from 'preact-router';
 import { Alert, Row, Col } from 'reactstrap';
 
 import GoodLoopAd from "./GoodLoopAd";
-import { getUnitUrl } from '../utils';
 
 const tomsDemoPreview = 'https://media.good-loop.com/uploads/standard/toms_snapchat_ad.mp4';
 const socialVertId = '0PVrD1kX' // 'PL4bGYSW' //  Default to TOMS Josh EN Male advert. ;
