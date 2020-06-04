@@ -6,7 +6,7 @@ import { Alert, Row, Col } from 'reactstrap';
 import GoodLoopAd from "./GoodLoopAd";
 
 const tomsDemoPreview = 'https://media.good-loop.com/uploads/standard/toms_snapchat_ad.mp4';
-const socialVertId = '0PVrD1kX' // 'PL4bGYSW' //  Default to TOMS Josh EN Male advert. ;
+const socialVertId = 'Of0Vpbg2Ct' // '0PVrD1kX' // 'PL4bGYSW' //  Defaults to Love & Beauty Planet ;
 const socialUnitProps = {
 	size: 'portrait',
 	glParams: {'gl.delivery': 'app', 'gl.after': 'persist'},
@@ -30,7 +30,6 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	// If no social app specified redirect to instagram version
 	if (!social) route('/portrait/social/instagram' + `?gl.vert=${vertId}`);
 	// If adblocker's in use fetch calls to portal might break, so we use the default advert/preview.
-	if (adBlocker) vertId = socialVertId;
 	const [showAd, setShowAd] = useState(0); // User has swiped to show the ad
 	const [visClass, setVisClass] = useState(''); // 'visible' if the fake feed is on-screen and should start animating
 	const [noVideoAvailable, setNoVideoAvailable] = useState(false);
@@ -40,7 +39,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 		const advertId = vertId;
 		const protocol = hostPrefix === 'local' ? 'http' : 'https';
 		// if default grab TOMS advert from prod server
-		const adUrl = vertId === socialVertId ? 'https://portal.good-loop.com/vert/0PVrD1kX.json'
+		const adUrl = vertId === socialVertId ? 'https://portal.good-loop.com/vert/Of0Vpbg2Ct.json'
 			: `${protocol}://${hostPrefix}portal.good-loop.com/vert/${advertId}.json`;
 		return fetch(adUrl)//('https://as.good-loop.com/unit.json?gl.vert=0PVrD1kX')
 			.then(res => res.json())
@@ -87,6 +86,13 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	const clientLogo = advert && advert.branding ? advert.branding.logo : '';
 	const charityLogo = advert && advert.charities ? advert.charities.list[0].logo : '';
 
+	const mockIsVideo = () => {
+		if (!mockSocialImage) return false;
+
+		const fileType = mockSocialImage.split('.').pop();
+		return fileType === 'mp4' ? true : false;
+	}
+
 	// We can auto redirect to default advert with the line below, but I think an alert is more useful to users.
 	// if ( advert && ! mockSocialImage && vertId !== socialVertId ) route('/portrait/social/' + `?gl.vert=${socialVertId}`); // if no teaser image available show default advert instead
 
@@ -98,15 +104,17 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 		...socialUnitProps,
 	};
 	
-	const teaserImageOrVideo = vertId === socialVertId ? (
-		<video className="snap-img delay1" id="preview-video" src={tomsDemoPreview} //className={`snap-img delay4${isMockup ? ' social-overlay' : ''}`}
+	const teaserImageOrVideo = mockIsVideo ? (
+		<video src={mockSocialImage}
+			className="snap-img delay1"
+			id="preview-video"
 			loop muted playsInline autoplay
 			onMouseDown={() => setShowAd(true)}
 			onTouchStart={lockScreen}
 			onTouchEnd={unlockScreen}
 			onTouchMove={e => e.preventDefault()}
-		/>
-	) : (
+		/>)
+	: (
 		<img src={mockSocialImage}
 			className="snap-img delay1"
 			id="preview-image"
@@ -155,7 +163,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 					<div className={`fake-feed ${visClass}`}>
 						<img src={socialAppLogos[social]} className="first" />
 						{ teaserImageOrVideo }
-						{ vertId === socialVertId ? '' : mockOverlay }
+						{ mockOverlay }
 						<div className="show-ad" onClick={() => setShowAd(true)} />
 						<div className="social-text-bg"></div>
 					</div>
