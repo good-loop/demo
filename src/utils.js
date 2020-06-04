@@ -23,9 +23,12 @@ const glProdBaseUrl = `https://as.good-loop.com/`;
 
 const getUrlGeneric = ({production, file, params}) => {
 	const url = new URL((production ? glProdBaseUrl : glBaseUrl) + file);
-	Object.entries(params).forEach(([name, value]) => {
-		if (value) url.searchParams.append(name, value);
-	});
+	
+	if (params) {
+		Object.entries(params).forEach(([name, value]) => {
+			if (value) url.searchParams.append(name, value);
+		});
+	}
 	
 	return url.toString();
 };
