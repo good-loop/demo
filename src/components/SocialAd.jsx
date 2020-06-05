@@ -5,7 +5,6 @@ import { Alert, Row, Col } from 'reactstrap';
 
 import GoodLoopAd from "./GoodLoopAd";
 
-const tomsDemoPreview = 'https://media.good-loop.com/uploads/standard/toms_snapchat_ad.mp4';
 const socialVertId = 'Of0Vpbg2Ct' // '0PVrD1kX' // 'PL4bGYSW' //  Defaults to Love & Beauty Planet ;
 const socialUnitProps = {
 	size: 'portrait',
@@ -55,21 +54,6 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 		const visibility = window.setTimeout(() => setVisClass('visible'), 100);
 	}, []);
 
-	// If vertical vid available, use it for the preview
-	// This is disabled for now, but can be incorporated if requested.
-	const trySetPreviewVideo = data => {
-		if (!advert) return;
-		const video = advert.videos.find(e => e.aspect === '9:16');
-		// If no portrait video available we'll use default ad/preview
-		if (!video) {
-			// unitProps.production = true;
-			// vertId = socialVertId;
-			setNoVideoAvailable(true)
-			return;
-		}
-		setPreviewUrl(video.url);
-	};
-
 	// Prevents scrolling on mobile when user attempts to swipe the social ad.
 	const lockScreen = () => { 
 		document.body.style.overflow = 'hidden';
@@ -84,7 +68,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	
 	// Charity and client logos
 	const clientLogo = advert && advert.branding ? advert.branding.logo : '';
-	const charityLogo = advert && advert.charities ? advert.charities.list[0].logo : '';
+	const charityLogos = advert && advert.charities ? advert.charities.list.map(charity => charity.logo) : '';
 
 	const mockIsVideo = () => {
 		if (!mockSocialImage) return false;
@@ -126,6 +110,15 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 		/>
 	);
 
+	// Parse charity logo urls returning arr of `img` elements.
+	// Indexed classNames to use in less animation 
+	const charUrlsIntoElements = () => {
+		if (!charityLogos) return <div></div>;
+		return charityLogos.map( (src, i) => {
+			return <img src={src} className={`charity-logo logo-${i}`} />
+		});
+	};
+
 	// <img className="overlay-logo" src={ advert ? advert.branding.logo : '' } />
 	const mockOverlay = (
 		<>
@@ -139,8 +132,8 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 						</div>
 					</Col>
 					<Col>
-						<div className="overlay-logo-div">
-							<img src={charityLogo} />
+						<div className="overlay-logo-div" id="charity-logo-div">
+							{ charUrlsIntoElements() }
 						</div>
 					</Col>
 				</Row>

@@ -138,40 +138,6 @@
 	width: 100%!important;
 }
 
-// .red-bg, .half-bg {
-// 	width: 100%;
-// 	position: relative;
-// 	&:before, &:after {
-// 		content: '';
-// 		display: block;
-// 		height: 100%;
-// 		width: 50vw;
-// 		position: absolute;
-// 		top: 0;
-// 		z-index: -1;
-// 	}
-
-// 	&:before {
-// 		right: 50%;
-// 	}
-
-// 	&:after {
-// 		left: 50%;
-// 	}
-// }
-
-// .red-bg {
-// 	&:before, &:after {
-// 		background-color: @gl-red;
-// 	}
-// }
-
-// .half-bg {
-// 	&:before, &:after {
-// 		background-image: linear-gradient(to bottom, white 50%, @gl-red 50%);
-// 	}
-// }
-
 .fake-feed, .social-ad {
 	position: absolute;
 	top: 0;
@@ -180,6 +146,30 @@
 }
 
 @feed-delay: 1.2s;
+
+//////////////////////////////
+///// Logo Animation ////////
+////////////////////////////
+@keyframes logoFadeInOut {
+	0% { opacity: 1; }
+	17% { opacity: 1; }
+	25% { opacity: 0; }
+	92% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+.charity-logo {
+	transition: opacity 1s ease-in-out;
+	animation-name: logoFadeInOut;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	&.logo-0 { animation-delay: 4s; }
+	&.logo-1 { animation-delay: 2s; }
+	&.logo-2 { animation-delay: 0s; }
+}
+//////////////////////////
+/////////////////////////
 
 .fake-feed {
 	background-color: black;
@@ -233,6 +223,7 @@
 				height: 15%;
 				background-image: url('/img/overlay-insta-top2.png');
 				background-position: center;
+				background-size: cover;
 
 				//// This block is used to position the client/char logos in the top overlay
 				.row {
@@ -257,6 +248,11 @@
 					}
 				}
 				//////
+				.charity-logo {
+					position: absolute;
+					left: 0;
+					right: 0;
+				}
 			}
 			&.bot {
 				bottom: 0;
@@ -288,7 +284,7 @@
 }
 
 .adBanner {
-    background-color: transparent;
-    height: 1px;
-    width: 1px;
+	background-color: transparent;
+	height: 1px;
+	width: 1px;
 }
