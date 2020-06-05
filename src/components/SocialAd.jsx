@@ -91,15 +91,26 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	};
 	
 	const teaserImageOrVideo = mockIsVideo ? (
-		<video src={mockSocialImage}
-			className="snap-img delay1"
-			id="preview-video"
-			loop muted playsInline autoplay
-			onMouseDown={() => setShowAd(true)}
-			onTouchStart={lockScreen}
-			onTouchEnd={unlockScreen}
-			onTouchMove={e => e.preventDefault()}
-		/>)
+		<>
+			<video src={mockSocialImage}
+				className="snap-img delay1 background-video"
+				id="preview-video"
+				loop muted playsInline autoplay
+				onMouseDown={() => setShowAd(true)}
+				onTouchStart={lockScreen}
+				onTouchEnd={unlockScreen}
+				onTouchMove={e => e.preventDefault()}
+			/>
+			<video src={mockSocialImage}
+				className="snap-img delay1"
+				id="preview-video"
+				loop muted playsInline autoplay
+				onMouseDown={() => setShowAd(true)}
+				onTouchStart={lockScreen}
+				onTouchEnd={unlockScreen}
+				onTouchMove={e => e.preventDefault()}
+			/>
+		</>)
 	: (
 		<img src={mockSocialImage}
 			className="snap-img delay1"
