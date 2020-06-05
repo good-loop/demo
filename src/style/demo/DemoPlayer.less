@@ -150,24 +150,44 @@
 //////////////////////////////
 ///// Logo Animation ////////
 ////////////////////////////
-@keyframes logoFadeInOut {
+
+// The percentages vary depending on number of logos being displayed
+@keyframes logoFade2a {
 	0% { opacity: 1; }
-	17% { opacity: 1; }
-	25% { opacity: 0; }
-	92% { opacity: 0; }
+	50% { opacity: 0; }
 	100% { opacity: 1; }
 }
-
-.charity-logo {
-	transition: opacity 1s ease-in-out;
-	animation-name: logoFadeInOut;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
-	&.logo-0 { animation-delay: 4s; }
-	&.logo-1 { animation-delay: 2s; }
-	&.logo-2 { animation-delay: 0s; }
+@keyframes logoFade2b {
+	0% { opacity: 0; }
+	50% { opacity: 1; }
+	100% { opacity: 0; }
 }
+@keyframes logoFade3a {
+	0%   {opacity:1}
+	33.333% { opacity: 0}
+	66.666% { opacity: 0}
+	100% { opacity: 1}
+}
+@keyframes logoFade3b {
+	0%   {opacity:0}
+	33.333% { opacity: 1}
+	66.666% { opacity: 0 }
+	100% { opacity: 0}
+}
+@keyframes logoFade3c {
+	0%   {opacity:0}
+	33.333% { opacity: 0}
+	66.666% { opacity: 1}
+	100% { opacity: 0}
+}
+
+.charcount-3 img:nth-child(1) { animation: logoFade3a 8s infinite; }
+.charcount-3 img:nth-child(2) { animation: logoFade3b 8s infinite; }
+.charcount-3 img:nth-child(3) { animation: logoFade3c 8s infinite; }
+
+.charcount-2 img:nth-child(1) { animation: logoFade2a 8s infinite; }
+.charcount-2 img:nth-child(2) { animation: logoFade2b 8s infinite; }
+
 //////////////////////////
 /////////////////////////
 

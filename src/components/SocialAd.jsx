@@ -110,13 +110,19 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 		/>
 	);
 
-	// Parse charity logo urls returning arr of `img` elements.
-	// Indexed classNames to use in less animation 
+	// Parse charity logo urls returning div with 1 to 3 logo images.
+	// charcount and logo- classes used for the fade in css animation
 	const charUrlsIntoElements = () => {
 		if (!charityLogos) return <div></div>;
-		return charityLogos.map( (src, i) => {
+		const charcount = charityLogos.length;
+		const logos = charityLogos.map( (src, i) => {
 			return <img src={src} className={`charity-logo logo-${i}`} />
 		});
+		return (
+			<div className={`overlay-logo-div charcount-${charcount}`} id="charity-logo-div">
+				{ logos }
+			</div>
+		)
 	};
 
 	// <img className="overlay-logo" src={ advert ? advert.branding.logo : '' } />
@@ -132,9 +138,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 						</div>
 					</Col>
 					<Col>
-						<div className="overlay-logo-div" id="charity-logo-div">
-							{ charUrlsIntoElements() }
-						</div>
+						{ charUrlsIntoElements() }
 					</Col>
 				</Row>
 			</div>		
