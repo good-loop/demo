@@ -67,7 +67,9 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	const mockSocialImage = advert && advert.mockSocialImage ? advert.mockSocialImage : null;
 	
 	// Charity and client logos
-	const clientLogo = advert && advert.branding ? advert.branding.logo : '';
+	let clientLogo = advert && advert.branding ? advert.branding.logo : '';
+	// default love, beuaty and planet logo is way too wide, so we'll use an alternative one.
+	if (vertId === socialVertId) clientLogo = '/img/default-logo.jpg';
 	const charityLogos = advert && advert.charities ? advert.charities.list.map(charity => charity.logo) : '';
 
 	const mockIsVideo = () => {
