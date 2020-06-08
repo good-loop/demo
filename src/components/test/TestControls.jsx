@@ -37,7 +37,11 @@ const TestControls = (params) => {
 	const toggleEndCardUrl = urlWithParams({'gl.variant': (endCardPreview ? null : 'tq')});
 	const toggleEndCardLabel = endCardPreview ? 'View the whole advert' : 'Jump directly to the end card';
 
-	const dropdownItems = testVerts.map(id => <a href={urlWithParams({'gl.vert': id})}><DropdownItem>{id}</DropdownItem></a> );
+	const dropdownItems = testVerts.map(id => (
+		<a href={urlWithParams({'gl.vert': id})} onClick={() => setNewVertId(id)}>
+			<DropdownItem>{id}</DropdownItem>
+		</a>
+	));
 
 	const submitForm = (event) => {
 		event.preventDefault();
@@ -52,7 +56,7 @@ const TestControls = (params) => {
 				<Form inline onSubmit={submitForm}>
 					<FormGroup>
 						<Label inline for="new-vert-id">Advert ID:</Label>&nbsp;
-						<Input inline type="text" name="new-vert-id" value={newVertId} onChange={e => setNewVertId(e.target.value)}></Input>&nbsp;
+						<Input inline type="text" placeholder="(adserver's choice)" name="new-vert-id" value={newVertId} onChange={e => setNewVertId(e.target.value)}></Input>&nbsp;
 						<Button type="submit">Load</Button>&nbsp;
 						<UncontrolledDropdown>
 							<DropdownToggle caret>Test ads</DropdownToggle>
