@@ -16,8 +16,8 @@ const TestMain = () => <>
 		<BannerPage path="/banner/" size="mpu" />
 		<BannerPage path="/banner/:size/" />
 		<SocialPage path="/social/" />
-		<SocialPage path="/social/full" noVideo />
-		<SocialPage path="/social/half" halfHeight novideo />
+		<SocialPage path="/social/generic/" />
+		<SocialPage path="/social/wrapper/" wrapper />
 	</Router>
 </>;
 

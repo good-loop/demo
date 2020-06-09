@@ -6,12 +6,13 @@ const players = {
 	'landscape': 'Landscape',
 	'portrait': 'Portrait',
 	// 'square': 'Square'
+	'fabric': 'Fabric (Guardian header)',
+
 };
 
 const social = {
-	'video': 'Our video',
-	'full': 'No Video',
-	'half': 'Host Video'
+	'generic': 'Engage-to-donate landing page',
+	'wrapper': 'Brand.com wrapper'
 };
 
 const banners = {
@@ -20,13 +21,13 @@ const banners = {
 	'leaderboard': 'Leaderboard',
 	'billboard': 'Billboard',
 	'stickyfooter': 'Sticky footer',
-	'vbnr': 'Vertical banner'
+	'vbnr': 'Vertical banner',
 };
 
 const pageGroups = {
 	player: { title: 'Player', links: players },
 	social: { title: 'Social', links: social },
-	banner: { title: 'Banners', links: banners}
+	banner: { title: 'Banners', links: banners},
 };
 
 const stringParams = params => {

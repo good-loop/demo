@@ -1,130 +1,105 @@
 /* @jsx h */
 import { h, Fragment } from 'preact';
 import { route } from 'preact-router';
-import { useState } from 'preact/hooks';
 import { Container, Row, Col, ButtonGroup, Button, FormGroup, Label, Input } from 'reactstrap';
 
 import TestSiteNavBar from './TestSiteNavBar';
 import GoodLoopAd from '../GoodLoopAd';
 import TestControls from './TestControls';
 
-const controlUrl = ({replaceParam = {}, toggleInParam = {}}) => {
-	const url = new URL(window.location.href);
-	const params = url.searchParams;
 
-	Object.entries(replaceParam).forEach(([key, value]) => {
-		params.set(key, value);
-	});
 
-	Object.entries(toggleInParam).forEach(([key, value]) => {
-		if (!params.has(key)) {
-			params.set(key, '');
-		}
-		const param = params.get(key).split(',');
-		if (param.contains(value)) {
-			params.set(key, param.splice(param.indexOf(value), 1));
+const setParams = (newParams) => {
+	const newUrl = new URL(window.location);
+	Object.entries(newParams).forEach(([key, value]) => {
+		if (value) {
+			newUrl.searchParams.set(key, value);
 		} else {
-			param.push(value)
-			params.set(key, params.join(','));
+			newUrl.searchParams.delete(key);
 		}
 	});
 
-	return 
+	route(`${newUrl.pathname}${newUrl.search}`);
 };
 
-const ratios = {
-	'16_9': 'sixteennine',
-	'18_9': 'nineteennine',
-	'4_3': 'fourthree'
-};
 
 /**
  * 
  */
-const PhoneWidget = ({halfHeight, noVideo, noAddressBar, noNavBar, socialAspect = 'r16_9', ...params}) => {
-	const urlParams = new URLSearchParams(window.location.search);
+const PhoneWidget = ({halfHeight, extVideo, aspectRatio = '18_9', addrBar, navBar, vertId}) => {
+	const addrBarEl = addrBar ? (
+		<div id="address-bar" class="bar">
+			<span class="content">address bar</span>
+		</div>
+	) : null;
 
-	const statusBar = urlParams.get('statusBar');
-	const addressBar = urlParams.get('addrBar');
-	const navBar = urlParams.get('navBar');
-	const ratio = urlParams.get('aspectRatio') || '18_9';
-	const vertId = urlParams.get('gl.vert');
+	const navBarEl = navBar ? (
+		<div id="navigation-bar" class="bar">
+			<span class="content">Nav bar</span>
+		</div>
+	) : null;
+
+	const extVideoEl = extVideo ? (
+		<div id="external-video">
+			<video src="triangle-loop.mp4" loop autoplay muted />
+		</div>
+	) : null;
 
 	return (
-		<div id="frame-sizer" className={ratios[ratio]}>
+		<div id="frame-sizer" className={`aspect-${aspectRatio}`}>
 			<div id="phone-frame">
-				<div id="phone-speaker"></div>
+				<div className="phone-speaker"></div>
 				<div id="phone-screen">
-					{ statusBar ?
-					<div id="status-bar" class="bar">
-						<span class="content">status bar</span>
-					</div> : '' }
-
-					{ addressBar ?
-					<div id="address-bar" class="bar">
-						<span class="content">address bar</span>
-					</div> : '' }
-
-					<div id="screen-content">
-						<div id="external-video" style="display: none;">
-							<video src="triangle-loop.mp4" loop autoplay muted />
-						</div>
-						<GoodLoopAd vertId={vertId} size="portrait" glParams={{'gl.delivery': 'app', 'gl.after': 'persist'}} nonce={vertId}/>
+					<div id="status-bar" class="bar"><span class="content">status bar</span></div>
+					{addrBarEl}
+					<div id="screen-content" className={extVideo ? 'extVideo' : ''}>
+						{extVideoEl}
+						<GoodLoopAd bare size="portrait" glParams={{'gl.delivery': 'app', 'gl.after': 'persist'}} nonce={vertId}/>
 					</div>
-
-					{ navBar ?
-					<div id="navigation-bar" class="bar" style="display: none;">
-						<span class="content"><span>&#9664;</span><span>&#9679;</span><span>&#9632;</span></span>
-					</div> : '' }
+					{navBarEl}
 				</div>
-				<div id="phone-button"></div>
+				<div className="phone-speaker"></div>
 			</div>
 		</div>
 	);
 };
 
 
-const setParams = (newParams) => {
-		const newUrl = new URL(window.location);
-		Object.entries(newParams).forEach(([key, value]) => {
-			if (value) {
-				newUrl.searchParams.set(key, value);
-			} else {
-				newUrl.searchParams.delete(key);
-			}
-		});
-
-		route(`${newUrl.pathname}${newUrl.search}`);
-	};
 
 
-const PhoneControls = ({statusBar, addrBar, navBar}) => (
+const PhoneControls = ({aspectRatio = '18_9', addrBar, navBar, extVideo}) => (
 	<Col>
-		<div className="d-flex flex-column">
-		<Label>Phone Aspect Ratio</Label>
+		<div>
+			<Label>Phone Aspect Ratio</Label>
+			<p>
+				4:3 phones are mostly extinct, but you should check your design on both 16:9 and 18:9 screens.
+			</p>
 			<ButtonGroup style={{maxWidth: '200px'}}>
-				<Button onClick={() => setParams({aspectRatio: '4_3'})}>4:3</Button>
-				<Button onClick={() => setParams({aspectRatio: '16_9'})}>16:9</Button>
-				<Button onClick={() => setParams({aspectRatio: '18_9'})}>18:9</Button>
+				<Button active={aspectRatio === '4_3'} onClick={() => setParams({aspectRatio: '4_3'})}>4:3</Button>
+				<Button active={aspectRatio === '16_9'} onClick={() => setParams({aspectRatio: '16_9'})}>16:9</Button>
+				<Button active={aspectRatio === '18_9'} onClick={() => setParams({aspectRatio: '18_9'})}>18:9</Button>
 			</ButtonGroup>
 		</div>
-		<div className="d-flex flex-column">
+		<div>
 			<Label>Bars</Label>
-			<p>Depending on the phone OS and context, we might have to deal with address and navigation taking up vertical space.</p>
+			<p>
+				Depending on the phone OS and context, we might have to deal
+				with address and navigation bars taking up vertical space.
+				Check and make sure your design fits on the screen with and without both.
+			</p>
 			<FormGroup check className="d-flex flex-column">
 				<Label check>
-					<Input type="checkbox" onClick={() => setParams({statusBar: !statusBar})} value={statusBar} />
-					{' '} Status Bar
+					<Input type="checkbox" onChange={e => setParams({addrBar: e.target.checked})} checked={addrBar} />
+					{' '}Address bar
 				</Label>
 				<Label check>
-					<Input type="checkbox" onClick={() => setParams({addrBar: !addrBar})} value={addrBar} />
-					{' '} Address bar
-				</Label>
-				<Label check>
-					<Input type="checkbox" onClick={() => setParams({navBar: !navBar})} value={navBar}/>
-					{' '} Navigation bar
+					<Input type="checkbox" onChange={e => setParams({navBar: e.target.checked})} checked={navBar}/>
+					{' '}Navigation bar
 				</Label>
 			</FormGroup>
+		</div>
+		<div>
+			
 		</div>
 	</Col>
 );
