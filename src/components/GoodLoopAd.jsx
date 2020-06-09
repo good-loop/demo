@@ -7,7 +7,7 @@ class GoodLoopAd extends Component {
 		return getNonce(nextProps) !== getNonce(this.props);
 	}
 
-	render({size, vertId, production, bare, extraNonce, delivery, refPolicy = 'no-referrer-when-downgrade', ...params}) {
+	render({size, vertId, production, bare, extraNonce, delivery, refPolicy = 'no-referrer-when-downgrade', glParams, ...params}) {
 		// Changes if size or ad ID changes - breaks identity on script & container so they get removed on next render
 		const nonce = getNonce(this.props);
 
@@ -17,6 +17,7 @@ class GoodLoopAd extends Component {
 			params: {
 				'gl.vert': vertId,
 				'gl.delivery': delivery,
+				...glParams,
 			}
 		});
 
