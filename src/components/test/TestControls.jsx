@@ -50,7 +50,7 @@ const TestControls = (params) => {
 	}
 
 	return (
-		<Row className="test-controls">
+		<Row className="test-controls mb-4">
 			<Col sm={6}><p><a href={toggleEndCardUrl}>{toggleEndCardLabel}</a></p></Col>
 			<Col sm={6}>
 				<Form inline onSubmit={submitForm}>

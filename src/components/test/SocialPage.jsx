@@ -69,8 +69,8 @@ const PhoneWidget = ({halfHeight, extVideo, aspectRatio = '18_9', addrBar, navBa
 
 const PhoneControls = ({aspectRatio = '18_9', addrBar, navBar, extVideo}) => (
 	<Col>
-		<div>
-			<Label>Phone Aspect Ratio</Label>
+		<div className="mb-4">
+			<h4>Phone Aspect Ratio</h4>
 			<p>
 				4:3 phones are mostly extinct, but you should check your design on both 16:9 and 18:9 screens.
 			</p>
@@ -80,26 +80,38 @@ const PhoneControls = ({aspectRatio = '18_9', addrBar, navBar, extVideo}) => (
 				<Button active={aspectRatio === '18_9'} onClick={() => setParams({aspectRatio: '18_9'})}>18:9</Button>
 			</ButtonGroup>
 		</div>
-		<div>
-			<Label>Bars</Label>
+		<div className="mb-4">
+			<h4>Bars</h4>
 			<p>
 				Depending on the phone OS and context, we might have to deal
 				with address and navigation bars taking up vertical space.
 				Check and make sure your design fits on the screen with and without both.
 			</p>
-			<FormGroup check className="d-flex flex-column">
+			<FormGroup check>
 				<Label check>
 					<Input type="checkbox" onChange={e => setParams({addrBar: e.target.checked})} checked={addrBar} />
 					{' '}Address bar
 				</Label>
+			</FormGroup>
+			<FormGroup check>
 				<Label check>
 					<Input type="checkbox" onChange={e => setParams({navBar: e.target.checked})} checked={navBar}/>
 					{' '}Navigation bar
 				</Label>
 			</FormGroup>
 		</div>
-		<div>
-			
+		<div className="mb-4">
+			<h4>External Video</h4>
+			<p>
+				When we run engage-to-donate ads on Twitter, they host and run the video, taking up half the screen height, and place our ad-unit below it.
+				Use this setting to simulate that.
+			</p>
+			<FormGroup check>
+				<Label check>
+					<Input type="checkbox" onChange={e => setParams({extVideo: e.target.checked})} checked={extVideo} />
+					{' '}External video
+				</Label>
+			</FormGroup>
 		</div>
 	</Col>
 );
