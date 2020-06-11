@@ -5,6 +5,7 @@ import { Alert, Row, Col } from 'reactstrap';
 
 import GoodLoopAd from "./GoodLoopAd";
 
+/** Yuck: hard-coded magic string which flips various switches below. Refactor. */
 const socialVertId = 'Of0Vpbg2Ct' // '0PVrD1kX' // 'PL4bGYSW' //  Defaults to Love & Beauty Planet ;
 const socialUnitProps = {
 	size: 'portrait',
@@ -24,6 +25,8 @@ const socialAppLogos = {
 	instagram: '/img/instagram-logo.jpg'
 }
 
+// TODO refactor this to break the sub functions out, and so avoid a 200-line function
+// and to avoid useState() for what app-state
 const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	if (vertId === 'test_wide_multiple') vertId = socialVertId;
 	// If no social app specified redirect to instagram version
@@ -64,7 +67,7 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	// Get videos from ad, if vertical available use it for preview
 	// if (!adBlocker && vertId !== socialVertId && advert) (trySetPreviewVideo(advert));
 
-	const mockSocialImage = advert && advert.mockSocialImage ? advert.mockSocialImage : null;
+	const mockSocialImage = advert && advert.mockSocialImage;
 	
 	// Charity and client logos
 	let clientLogo = advert && advert.branding ? advert.branding.logo : '';
@@ -72,11 +75,10 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	if (vertId === socialVertId) clientLogo = '/img/default-logo.jpg';
 	const charityLogos = advert && advert.charities ? advert.charities.list.map(charity => charity.logo) : '';
 
-	const mockIsVideo = () => {
-		if (!mockSocialImage) return false;
-
+	let mockIsVideo; // false includes 
+	if (mockSocialImage) {
 		const fileType = mockSocialImage.split('.').pop();
-		return fileType === 'mp4' ? true : false;
+		mockIsVideo = ['mp4','avi'].includes(fileType);
 	}
 
 	// We can auto redirect to default advert with the line below, but I think an alert is more useful to users.
