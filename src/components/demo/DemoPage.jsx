@@ -58,15 +58,15 @@ const RedMiddleSection = () => (
 const HowItWorksSection = () => <>
 	<h4 className="playerheadingbottom text-center p-5">How It Works</h4>
 	<Row className="how-it-works-row text-center pb-5 justify-content-center">
-		<Col md='3'>
+		<Col md="3">
 			<img src="/img/icon-heart.png" alt=""/>
 			<p>People can opt in to watch an ad in exchange for a free donation.</p>
 		</Col>
-		<Col md='3'>
+		<Col md="3">
 			<img src="/img/icon-eye.png" alt=""/>
 			<p>They give the advertiser 100% of their attention for at least 15 seconds.</p>
 		</Col>
-		<Col md='3'>
+		<Col md="3">
 			<img className="coins-img" src="/img/icon-coins.png" alt=""/>
 			<p>Then they get to donate half of the payment to a charity of their choice.</p>
 		</Col>
