@@ -6,7 +6,7 @@ import { Alert, Row, Col } from 'reactstrap';
 import GoodLoopAd from "./GoodLoopAd";
 
 /** Yuck: hard-coded magic string which flips various switches below. Refactor. */
-const socialVertId = 'Of0Vpbg2Ct' // '0PVrD1kX' // 'PL4bGYSW' //  Defaults to Love & Beauty Planet ;
+const socialVertId = 'Of0Vpbg2Ct' // '0PVrD1kX' // 'PL4bGYSW' //  Defaults to Love Beauty & Planet
 const socialUnitProps = {
 	size: 'portrait',
 	glParams: {'gl.delivery': 'app', 'gl.after': 'persist'},
@@ -34,13 +34,12 @@ const SocialAd = ({vertId = socialVertId, adBlocker, social }) => {
 	// If adblocker's in use fetch calls to portal might break, so we use the default advert/preview.
 	const [showAd, setShowAd] = useState(0); // User has swiped to show the ad
 	const [visClass, setVisClass] = useState(''); // 'visible' if the fake feed is on-screen and should start animating
-	const [noVideoAvailable, setNoVideoAvailable] = useState(false);
 	const [advert, setAdvert] = useState(null);
 
 	const getAdvertFromPortal = () =>{
 		const advertId = vertId;
 		const protocol = hostPrefix === 'local' ? 'http' : 'https';
-		// if default grab TOMS advert from prod server
+		// if default grab LBP advert from prod server
 		const adUrl = vertId === socialVertId ? 'https://portal.good-loop.com/vert/Of0Vpbg2Ct.json'
 			: `${protocol}://${hostPrefix}portal.good-loop.com/vert/${advertId}.json`;
 		return fetch(adUrl)//('https://as.good-loop.com/unit.json?gl.vert=0PVrD1kX')

@@ -25,20 +25,20 @@ const DemoPicker = ({ format, device, social, noSocial }) => {
 		return classes;
 	};
 
-	const hrefUrl = ({newFormat = format, newDevice = device, newSocial = 'snapchat'}) => {
+	const hrefUrl = ({newFormat = format, newDevice = device, newSocial = (social || 'instagram')}) => {
 		let {search, hash} = window.location;
 		if (hash) hash = '#' + hash;
-		let social = format === 'social' ? newSocial + '/' : '';
+		let social = (newFormat === 'social') ? (newSocial + '/') : '';
 		return `/${newDevice}/${newFormat}/${social}${search}${hash}`;
 	};
 
 	// Don't allow format change if the noSocial URL param is set
 	const formatPicker = noSocial ? '' : (
 		<Row className="format-picker text-center justify-content-center">
-			<a className={formatClasses('social')} href={hrefUrl({newFormat: 'social', newDevice: 'portrait'})}>
+			<a href={hrefUrl({newFormat: 'social', newDevice: 'portrait'})} className={formatClasses('social')}>
 				Social
 			</a>
-			<a className={formatClasses('video')} href={hrefUrl({newFormat: 'video'})}>
+			<a href={hrefUrl({newFormat: 'video'})} className={formatClasses('video')}>
 				Video
 			</a>
 		</Row>
