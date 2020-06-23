@@ -1,133 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import (css) url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import (css) url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
-.format-picker .picker-button {
-	margin: 1em 1em;
-	font-size: 1.2em;
-}
-
-.format-picker.row {
-	@media (max-width: 400px) {
-		margin: 0!important;
-	}
-}
-
-// .row {
-// 	margin: 0!important;
-// }
-
-.device-picker .flex-row {
-	display: flex;
-	align-items: center;
-}
-
-.device-picker .picker-button {
-	padding: 0 1em;
-	max-width: 8em;
-	min-width: 6em;
-	height: 5em;
-
-	display: inline-flex;
-	align-items: center;
-
-	// Make button's image vertically align.
-	& * {
-		vertical-align: middle;
-		pointer-events: none;
-	}
-
-	&.desktop * {
-		max-width: 90px;
-	}
-
-	@media (max-width: 350px) {
-		padding: 0;
-		min-width: 3em;
-		svg {
-			max-height: 3.5em;
-		}
-	}
-}
-
-.device-picker svg {
-	max-width: 60px;
-	max-height: 3.5em;
-	margin: 0 auto;
-	width: 100%;
-	&.desktop {
-		max-width: 6em; // Desktop (laptop) svg is slightly larger that the others
-	}
-}
-
-.picker-button {
-	color: #000;
-	text-transform: uppercase;
-	text-decoration: none;
-	letter-spacing: 0.15em;
-	font-family: 'Montserrat', sans-serif;
-
-	border: none;
-	display: inline-block;
-	position: relative;
-	outline: none!important;
-	background-color: #fff;
-
-	// Standardises device picker buttons' height (SVG ones)
-	&.device-picker {
-		height: 5em;
-	}
-
-	// Make it clear this won't do anything useful
-	&.disabled {
-		color: lightgray!important;
-		pointer-events: none!important;
-	}
-
-	// This creates the red underline under each button. It's got width of zero
-	// and will grow to width 100% when hovered.
-	&:after {
-		background: none repeat scroll 0 0 transparent;
-		bottom: 0;
-		content: "";
-		display: block;
-		height: 2px;
-		left: 50%;
-		position: absolute;
-		background: #830000;
-		transition: width 0.3s ease 0s, left 0.3s ease 0s;
-		width: 0;
-	}
-
-	&:hover {
-		// Override boostrap bt hover styles
-		background-color: transparent!important;
-		&:not(.current) { // 
-			color: #000!important;
-		}
-	}
-
-	&:hover:after { 
-		width: 100%; 
-		left: 0; 
-	}
-
-	&.current {
-		color: #830000;
-		font-weight: 800;
-		&:after {
-			width: 100%;
-			left: 0;
-		}
-	}
-
-	// Shadow to pop out available svg buttons
-	&:not(.disabled) {
-		svg {
-			filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.4));
-		}
-	}
-}
-
+// "Couldn't load ad" or "You have adblock enabled" warnings
 .alert {
 	max-width: 600px;
 	margin: 0 auto;
@@ -135,23 +9,24 @@
 }
 
 .demo-div-container {
-	width: 100%!important;
+	width: 100% !important;
 }
 
-.fake-feed, .social-ad {
+
+// Common display class for various stacked-up elements in the simulated social display:
+// fill the container and take position: absolute to stay out of flow.
+.fill-abs {
 	position: absolute;
 	top: 0;
-	width: 100%;
+	left: 0;
 	height: 100%;
+	width: 100%;
 }
 
+// Time to hold on each slide of the fake feed
 @feed-delay: 1.2s;
 
-//////////////////////////////
-///// Logo Animation ////////
-////////////////////////////
-
-// The percentages vary depending on number of logos being displayed
+/** Charity carousel animations */
 @keyframes logoFade2a {
 	0% { opacity: 1; }
 	50% { opacity: 0; }
@@ -163,142 +38,142 @@
 	100% { opacity: 0; }
 }
 @keyframes logoFade3a {
-	0%   {opacity:1}
-	33.333% { opacity: 0}
-	66.666% { opacity: 0}
+	0% { opacity: 1 }
+	33.3% { opacity: 0}
+	66.6% { opacity: 0}
 	100% { opacity: 1}
 }
 @keyframes logoFade3b {
-	0%   {opacity:0}
-	33.333% { opacity: 1}
-	66.666% { opacity: 0 }
-	100% { opacity: 0}
+	0% { opacity: 0 }
+	33.3% { opacity: 1 }
+	66.6% { opacity: 0 }
+	100% { opacity: 0 }
 }
 @keyframes logoFade3c {
-	0%   {opacity:0}
-	33.333% { opacity: 0}
-	66.666% { opacity: 1}
-	100% { opacity: 0}
+	0% { opacity: 0 }
+	33.3% { opacity: 0 }
+	66.6% { opacity: 1 }
+	100% { opacity: 0 }
 }
 
-.charcount-3 img:nth-child(1) { animation: logoFade3a 8s infinite; }
-.charcount-3 img:nth-child(2) { animation: logoFade3b 8s infinite; }
-.charcount-3 img:nth-child(3) { animation: logoFade3c 8s infinite; }
+// Animate the two- or three-charity carousel fade
+.charity-carousel {
+	.charity-logo {
+		animation-iteration-count: infinite;
+	}
+	&.count2 {
+		.charity-logo { animation-duration: 6s; }
+		:nth-child(1) { animation-name: logoFade2a; }
+		:nth-child(2) { animation-name: logoFade2b; }
+	}
+	&.count3 {
+		.charity-logo { animation-duration: 9s; }
+		:nth-child(1) { animation-name: logoFade3a; }
+		:nth-child(2) { animation-name: logoFade3b; }
+		:nth-child(3) { animation-name: logoFade3c; }
+	}
+}
 
-.charcount-2 img:nth-child(1) { animation: logoFade2a 8s infinite; }
-.charcount-2 img:nth-child(2) { animation: logoFade2b 8s infinite; }
+/** Fade- or slide-in animations for fake-feed elements */
+@keyframes fade-in {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
 
-//////////////////////////
-/////////////////////////
+@keyframes slide-in {
+	0% { left: 100%; }
+	100% { left: 0; }
+}
 
 .fake-feed {
 	background-color: black;
 	background-size: 100%;
 
-	.first { // first slide, not animated
-		// code below centres social app logo and clips excess.
-		width: 100%;
-		display: inline-block;
-		height: 100%;
+	// Slightly hacky but convenient - apply this class to animate-in elements
+	// and they'll show in the same order they appear in the HTML.
+	.animate-in-sequence {
+		&:nth-child(2) { animation-delay: @feed-delay * 1; }
+		&:nth-child(3) { animation-delay: @feed-delay * 2; }
+		&:nth-child(4) { animation-delay: @feed-delay * 3; }
+		&:nth-child(5) { animation-delay: @feed-delay * 4; }
+		&:nth-child(6) { animation-delay: @feed-delay * 5; }
+	}
+	.fade-in, .slide-in {
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: both;
+		animation-iteration-count: 1;
+		animation-duration: @feed-delay / 3; // TODO this is just a guesswork "should look okay" value
+	}
+	.slide-in {
+		animation-name: slide-in;
+	}
+	.fade-in {
+		animation-name: fade-in;
+	}
+
+	// The initial slide/screen of the "fake social" display - doesn't animate in.
+	.social-splash {
 		object-fit: cover;
 	}
 
-	// The background image for social mockups taken from portal
-	#preview-image, #preview-video {
-		// preserve aspect ratio
+	// The mock video or banner image - ie the "this is what you'd click on Instagram/Snap/etc" part of the social demo
+	// Show the whole image/video in the foreground - the blurred background copy will fill the rest of the screen.
+	.mock-ad {
 		object-fit: contain;
-		// centre vertically:
-		top: 50%;
-		transform: translateY(-50%);
-		&.background-video {
-			// This two rules make sure the image covers the phone, even if sides have to be slightly cropped.
-			height: 100%; 
+		object-position: center;
+		// The blurred full-screen background copy
+		&.bg {
 			object-fit: cover;
-			position: absolute;
-			filter: blur(10px)
+			filter: blur(10px);
 		}
 	}
 
-	// slides animated into place after delay
-	// supports multiple, but we're likely only going to use one
-	.snap-img { 
-		width: 100%;
+	// Overlay components for the mock banner - eg the "BRAND and CHARITY" and "Swipe to donate" elements
+	.mock-overlay {
+		background-color: transparent;
+		z-index: 2;
+	}
+
+	// The ([brand] AND [charities]) and (SWIPE UP TO DONATE) graphics
+	.overlay-top, .overlay-bottom {
 		position: absolute;
-		background-color: black;
-		transition: left (@feed-delay / 2) ease;
-		&.delay1 { transition-delay: @feed-delay; }
-		&.delay2 { transition-delay: (@feed-delay * 2); }
-		&.delay3 { transition-delay: (@feed-delay * 3); }
-		&.delay4 { transition-delay: (@feed-delay * 4); }
-		&:not(.first) {
-			left: 100%;
-		}
-
-		// Transparent overlay for mockup preview video
-		&.overlay {
-			background-color: transparent;
-			position: absolute;
-			pointer-events: none; // Makes content click-through
-			z-index: 2; // ensures text is above .social-text-bg
-		}
-
-		// Using overlay assets from BOSE instagram campaign
-		// 2 sections, one on top, other bottom.
-		&.overlay-insta {
-			background-color: transparent;
-			pointer-events: none;
-			&.top {
-				top: 0;
-				height: 15%;
-				background-image: url('/img/overlay-insta-top2.png');
-				background-position: center;
-				background-size: cover;
-
-				//// This block is used to position the client/char logos in the top overlay
-				.row {
-					height: 100%;
-					width: 100%;
-					justify-content: space-between;
-					position: absolute;
-					margin: auto!important; // overrides BS margin behaviour for rows to properly centre div
-					.col {
-						height: 100%;
-						max-width: 40%; // arbitrary max size of the logo in realtion to top overlay
-						.overlay-logo-div {
-							height: 100%;
-							display: flex; // to centre image
-							img { // client or charity logo
-								// centre imgage maintaining aspect ratio
-								max-height: 100%;
-								max-width: 100%;
-								margin: auto;
-							}
-						}
-					}
-				}
-				//////
-				.charity-logo {
-					position: absolute;
-					left: 0;
-					right: 0;
-				}
-			}
-			&.bot {
-				bottom: 0;
-			}
-		}
-	}
-	&.visible .snap-img {
 		left: 0;
+		width: 100%;
+		background-position: center;
+		background-size: cover;
 	}
 
-	.social-text-bg {
-		position: absolute;
-		width: 100%; // as wide as the phone
-		height: 22%; // arbitrary value
-		background-color: transparent; // default transparent, overid by player bg colour if set in portal
-		bottom: 0; // fixed to the bottom of the phone
-		pointer-events: none; // makes clicks fall-through
+	.overlay-top {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+
+		top: 0;
+		height: 15%;
+		background-image: url('/img/overlay-insta-top.png');
+		// Keep aspect ratio on all logos
+		img {
+			object-fit: contain;
+		}
+		.charity-carousel {
+			position: relative; // needs to be size/position reference for children
+			.charity-logo {
+				position: absolute;
+				height: 100%;
+				width: 100%;
+			}
+		}
+		// Brand logo and charity carousel sizing
+		> * {
+			height: 100%;
+			width: 33%;
+		}
+	}
+	
+	.overlay-bottom {
+		bottom: 0;
+		height: 22%;
+		background-image: url('/img/overlay-insta-bottom.png');
 	}
 }
 

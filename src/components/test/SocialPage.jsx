@@ -26,7 +26,7 @@ const setParams = (newParams) => {
 /**
  * 
  */
-const PhoneWidget = ({extVideo, aspectRatio = '18_9', addrBar, navBar, vertId, wrapper}) => {
+const PhoneWidget = ({extVideo, aspectRatio = '18_9', addrBar, navBar, vertId, children}) => {
 	const addrBarEl = addrBar ? (
 		<div id="address-bar" class="bar">
 			<span class="content">address bar</span>
@@ -45,12 +45,6 @@ const PhoneWidget = ({extVideo, aspectRatio = '18_9', addrBar, navBar, vertId, w
 		</div>
 	) : null;
 
-	const glParams = {
-		'gl.delivery': 'app',
-		'gl.after': 'persist'
-	};
-	if (wrapper) glParams['gl.unitType'] = 'wrapper';
-
 	return (
 		<div id="frame-sizer" className={`aspect-${aspectRatio}`}>
 			<div id="phone-frame">
@@ -60,7 +54,7 @@ const PhoneWidget = ({extVideo, aspectRatio = '18_9', addrBar, navBar, vertId, w
 					{addrBarEl}
 					<div id="screen-content" className={extVideo ? 'extVideo' : ''}>
 						{extVideoEl}
-						<GoodLoopAd bare size="portrait" glParams={glParams} nonce={vertId}/>
+						{children}
 					</div>
 					{navBarEl}
 				</div>
@@ -122,16 +116,25 @@ const PhoneControls = ({aspectRatio = '18_9', addrBar, navBar, extVideo}) => (
 	</Col>
 );
 
-const SocialPage = ({halfHeight, size, format, ...params}) => {
-	const vertId = params['gl.vert'];
+const SocialPage = ({halfHeight, size, format, wrapper, ...params}) => {
+	const subtype = wrapper ? 'Brand.com wrapper' : 'Engage to donate';
+
+	const glParams = {
+		'gl.delivery': 'app',
+		'gl.after': 'persist',
+		...params
+	};
+	if (wrapper) glParams['gl.unitType'] = 'wrapper';
 
 	return <>
 		<TestSiteNavBar {...params} />
 		<Container>
-			<p>Type: <code>social</code>, Size: <code>{size}</code></p>
+			<p>Type: <code>social</code>, Subtype: {subtype}</p>
 			<TestControls {...params}/>
 			<Row>
-				<PhoneWidget {...params} />
+				<PhoneWidget {...params}>
+					<GoodLoopAd bare size="portrait" {...glParams} />
+				</PhoneWidget>
 				<PhoneControls {...params} />
 			</Row>
 		</Container>

@@ -33,5 +33,40 @@ const getUrlGeneric = ({production, file, params}) => {
 	return url.toString();
 };
 
+/** Copy-paste from adunit... Examines the given element & returns how much of its area is in the viewport (if not behind another element) */
+export const visibleElement = (element) => {
+	try {
+		// element may be in a different context from us - get the relevant document
+		const doc = element.ownerDocument;
+
+		if (element.offsetWidth === 0 || element.offsetHeight === 0) return false;
+		const height = doc.documentElement.clientHeight;
+		const width = doc.documentElement.clientWidth;
+		const rects = element.getClientRects();
+
+		const on_top = function(rect) {
+			const x = (rect.left + rect.right) / 2;
+			const y = (rect.top + rect.bottom) / 2;
+			return element.contains(doc.elementFromPoint(x, y));
+		};
+
+		for (let i = 0, length = rects.length; i < length; i++) {
+			const rect = rects[i];
+			const rectHeight = rect.bottom - rect.top;
+			const rectWidth = rect.right - rect.left;
+			const visibleHeight = Math.min(height, rect.bottom) - Math.max(0, rect.top);
+			const visibleWidth = Math.min(width, rect.right) - Math.max(0, rect.left);
+			const visibleFraction = (visibleHeight / rectHeight) * (visibleWidth / rectWidth);
+			if (visibleFraction <= 0 ) return false;
+			if ( ! on_top(rect)) return false;
+			return visibleFraction;
+		}
+		return true;
+	} catch(err) {
+		console.warn(err); // WTF?
+		return false;
+	}
+}; // ./visibleElement
+
 export const getUnitUrl = ({...props} = {}) => getUrlGeneric({...props, file: 'unit.js'});
 export const getVastUrl = ({...props} = {}) => getUrlGeneric({...props, file: 'vast.xml'});
