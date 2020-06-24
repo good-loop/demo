@@ -1,7 +1,7 @@
 /* @jsx h */
 import { h, Fragment } from 'preact';
 import { Row, Col } from 'reactstrap';
-import { landscapeSvg, desktopSvg, portraitSvg } from '../DemoSvg';
+import { landscapeSvg, desktopSvg, portraitSvg } from './DemoSvg';
 
 
 /** Generates links to change the format (social/video) and simulated device (landscape/portrait phone, desktop) */
@@ -19,12 +19,8 @@ const DemoPicker = ({ format, device, social, noSocial }) => {
 		return classes;
 	};
 
-	const socialClasses = newSocial => {
-		let classes = `picker-button ${newSocial}`;
-		if (newSocial === social) classes += ' current';
-		return classes;
-	};
-
+	// Construct a new URL which will demo the chosen format + device + optional social network combo.
+	// Format/device/social values not supplied will be left as current
 	const hrefUrl = ({newFormat = format, newDevice = device, newSocial = (social || 'instagram')}) => {
 		let {search, hash} = window.location;
 		if (hash) hash = '#' + hash;

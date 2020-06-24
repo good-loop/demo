@@ -2,9 +2,11 @@
 import { h, Fragment } from 'preact';
 import { Row, Col, UncontrolledAlert } from 'reactstrap';
 
-import DemoPicker from './DemoPicker';
 import GoodLoopAd from '../../GoodLoopAd';
-import SocialAd from '../../SocialAd';
+import DemoPicker from '../DemoPicker';
+
+import SocialDemo from './SocialDemo';
+import { DEFAULT_TEST_AD, DEFAULT_PROD_AD } from '../constants';
 
 
 /** Description of the Good-Loop formats */
@@ -27,18 +29,19 @@ const sizes = {
 	portrait: 'portrait',
 };
 
-// Updating default advert from H&M to Love, Beauty & Planet
-const defaultVertId = window.location.hostname.match(/^(test|local)/) ? 'test_wide_multiple' : 'Of0Vpbg2Ct'; // 'ojRZHHd48s';
+const defaultVertId = window.location.hostname.match(/^(test|local)/) ? DEFAULT_TEST_AD : DEFAULT_PROD_AD;
 
 /* index.html loads the script "ads.js", which we know adblockers will catch.
 It inserts a div with ID "aiPai9th" - if that isn't present, we know adblock is active. */
 const adBlockDetected = !document.getElementById('aiPai9th');
 
 
-const DemoPlayer = ({ format, device, social, vertId = defaultVertId, noSocial }) => {
+const DemoPlayer = ({ format, device, social, vertId = defaultVertId }) => {
 	const isSocial = (format === 'social');
 
-	const ad = isSocial ? <SocialAd vertId={vertId} adBlocker={adBlockDetected} social={social} /> : (
+	const ad = isSocial ? (
+		<SocialDemo vertId={vertId} adBlocker={adBlockDetected} social={social} />
+	) : (
 		<GoodLoopAd vertId={vertId} size={sizes[device]} extraNonce={`${format}${device}`} />
 	);
 
@@ -63,7 +66,6 @@ const DemoPlayer = ({ format, device, social, vertId = defaultVertId, noSocial }
 	));
 
 	return <>
-		<DemoPicker format={format} device={device} noSocial={noSocial} />
 		<Row className="justify-content-center pb-4">
 			<Col cs="12" md="6" className="text-center">
 				{descriptions[format]}

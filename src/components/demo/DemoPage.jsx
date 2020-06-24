@@ -4,8 +4,9 @@ import { Container, Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitterSquare, faFacebookSquare, faYoutubeSquare, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
-import DemoSiteNavBar from "./DemoSiteNavBar";
+import DemoSiteNavBar from './DemoSiteNavBar';
 import DemoPlayer from './DemoPlayer/DemoPlayer';
+import DemoPicker from './DemoPicker';
 
 
 /**
@@ -20,6 +21,7 @@ const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocia
 		<DemoSiteNavBar />
 		<Container>
 			<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
+			<DemoPicker format={format} device={device} noSocial={noSocialMerged} />
 			<DemoPlayer format={format} device={device} social={social} vertId={vertId} noSocial={noSocialMerged} />
 			<RedMiddleSection />
 			<HowItWorksSection />

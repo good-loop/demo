@@ -1,0 +1,123 @@
+
+.format-picker .picker-button {
+	margin: 1em 1em;
+	font-size: 1.2em;
+}
+
+.format-picker.row {
+	@media (max-width: 400px) {
+		margin: 0!important;
+	}
+}
+
+.device-picker .flex-row {
+	display: flex;
+	align-items: center;
+}
+
+.device-picker .picker-button {
+	padding: 0 1em;
+	max-width: 8em;
+	min-width: 6em;
+	height: 5em;
+
+	display: inline-flex;
+	align-items: center;
+
+	// Make button's image vertically align.
+	& * {
+		vertical-align: middle;
+		pointer-events: none;
+	}
+
+	&.desktop * {
+		max-width: 90px;
+	}
+
+	@media (max-width: 350px) {
+		padding: 0;
+		min-width: 3em;
+		svg {
+			max-height: 3.5em;
+		}
+	}
+}
+
+.device-picker svg {
+	max-width: 60px;
+	max-height: 3.5em;
+	margin: 0 auto;
+	width: 100%;
+	&.desktop {
+		max-width: 6em; // Desktop (laptop) svg is slightly larger that the others
+	}
+}
+
+.picker-button {
+	color: #000;
+	text-transform: uppercase;
+	text-decoration: none;
+	letter-spacing: 0.15em;
+	font-family: 'Montserrat', sans-serif;
+
+	border: none;
+	display: inline-block;
+	position: relative;
+	outline: none!important;
+	background-color: #fff;
+
+	// Standardises device picker buttons' height (SVG ones)
+	&.device-picker {
+		height: 5em;
+	}
+
+	// Make it clear this won't do anything useful
+	&.disabled {
+		color: lightgray!important;
+		pointer-events: none!important;
+	}
+
+	// This creates the red underline under each button. It's got width of zero
+	// and will grow to width 100% when hovered.
+	&:after {
+		background: none repeat scroll 0 0 transparent;
+		bottom: 0;
+		content: "";
+		display: block;
+		height: 2px;
+		left: 50%;
+		position: absolute;
+		background: #830000;
+		transition: width 0.3s ease 0s, left 0.3s ease 0s;
+		width: 0;
+	}
+
+	&:hover {
+		// Override boostrap bt hover styles
+		background-color: transparent!important;
+		&:not(.current) { // 
+			color: #000!important;
+		}
+	}
+
+	&:hover:after { 
+		width: 100%; 
+		left: 0; 
+	}
+
+	&.current {
+		color: #830000;
+		font-weight: 800;
+		&:after {
+			width: 100%;
+			left: 0;
+		}
+	}
+
+	// Shadow to pop out available svg buttons
+	&:not(.disabled) {
+		svg {
+			filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.4));
+		}
+	}
+}
