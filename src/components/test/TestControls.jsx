@@ -37,6 +37,11 @@ const TestControls = (params) => {
 	const toggleEndCardUrl = urlWithParams({'gl.variant': (endCardPreview ? null : 'tq')});
 	const toggleEndCardLabel = endCardPreview ? 'View the whole advert' : 'Jump directly to the end card';
 
+	// A link to toggle "View as PUBLISHED/DRAFT"
+	const adStatusPub = params['gl.status'] === 'PUBLISHED';
+	const toggleAdStatusUrl = urlWithParams({'gl.status': (adStatusPub ? null : 'PUBLISHED')});
+	const toggleAdStatusLabel = adStatusPub ? 'Show DRAFT version' : 'Show PUBLISHED version'
+
 	const dropdownItems = testVerts.map(id => (
 		<a href={urlWithParams({'gl.vert': id})} onClick={() => setNewVertId(id)}>
 			<DropdownItem>{id}</DropdownItem>
@@ -51,7 +56,12 @@ const TestControls = (params) => {
 
 	return (
 		<Row className="test-controls mb-4">
-			<Col sm={6}><p><a href={toggleEndCardUrl}>{toggleEndCardLabel}</a></p></Col>
+			<Col sm={6}>
+				<p>
+					<a href={toggleEndCardUrl}>{toggleEndCardLabel}</a><br/>
+					<a href={toggleAdStatusUrl}>{toggleAdStatusLabel}</a>
+				</p>
+			</Col>
 			<Col sm={6}>
 				<Form inline onSubmit={submitForm}>
 					<FormGroup>

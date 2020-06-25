@@ -119,12 +119,13 @@ const PhoneControls = ({aspectRatio = '18_9', addrBar, navBar, extVideo}) => (
 const SocialPage = ({halfHeight, size, format, wrapper, ...params}) => {
 	const subtype = wrapper ? 'Brand.com wrapper' : 'Engage to donate';
 
-	const glParams = {
+	const adProps = {
+		'gl.status': 'DRAFT',
 		'gl.delivery': 'app',
 		'gl.after': 'persist',
 		...params
 	};
-	if (wrapper) glParams['gl.unitType'] = 'wrapper';
+	if (wrapper) adProps['gl.unitType'] = 'wrapper';
 
 	return <>
 		<TestSiteNavBar {...params} />
@@ -133,7 +134,7 @@ const SocialPage = ({halfHeight, size, format, wrapper, ...params}) => {
 			<TestControls {...params}/>
 			<Row>
 				<PhoneWidget {...params}>
-					<GoodLoopAd bare size="portrait" {...glParams} />
+					<GoodLoopAd bare size="portrait" {...adProps} />
 				</PhoneWidget>
 				<PhoneControls {...params} />
 			</Row>

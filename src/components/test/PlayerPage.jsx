@@ -10,7 +10,7 @@ import TestControls from './TestControls';
 
 
 const PlayerPage = ({ vpaid, size, ...params}) => {
-	const adProps = {size, ...params};
+	const adProps = {'gl.status': 'DRAFT', size, ...params};
 	const ad = vpaid ? <VpaidAd {...adProps} /> : <GoodLoopAd {...adProps} />;
 
 	const [restrictWidth, setRestrictWidth] = useState(false);
