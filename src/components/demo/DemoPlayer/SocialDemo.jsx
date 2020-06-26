@@ -24,7 +24,7 @@ const getAdvertFromPortal = ({id, callback}) => {
 	const adUrl = (id === DEFAULT_PROD_AD) ? (
 		`https://portal.good-loop.com/vert/${id}.json`
 	) : (
-		`${protocol}://${portalHost}.good-loop.com/vert/${id}.json`
+		`${protocol}//${portalHost}.good-loop.com/vert/${id}.json`
 	);
 	// Fetch the portal data, extract its json (json() returns a Promise) and execute the supplied callback
 	return fetch(adUrl)
