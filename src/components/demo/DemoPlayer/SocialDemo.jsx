@@ -13,15 +13,6 @@ import { DEFAULT_PROD_AD, DEFAULT_TEST_AD } from '../constants';
  * by advert ID being === DEFAULT_PROD_AD... There must be a better way.
  */
 
-const socialUnitProps = {
-	size: 'portrait',
-	glParams: {
-		'gl.delivery': 'app',
-		'gl.after': 'persist'
-	},
-};
-
-
 let portalHost = '';
 if (window.location.hostname.match(/^(test)/)) portalHost = 'testportal';
 if (window.location.hostname.match(/^(local)/)) portalHost = 'localportal';
@@ -76,12 +67,12 @@ const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social }) => {
 	// We can auto redirect to default advert with the line below, but I think an alert is more useful to users.
 	// if ( advert && ! mockSocialImage && vertId !== DEFAULT_PROD_AD ) route('/portrait/social/' + `?gl.vert=${DEFAULT_PROD_AD}`); // if no teaser image available show default advert instead
 
-	// TODO When gl.delivery === 'app', gl.after should probably default to "persist"
 	const unitProps = {
 		vertId: vertId,
+		production: vertId === DEFAULT_PROD_AD, // Default (production) ad always comes from the prod server
+		size: 'portrait',
 		delivery: 'app',
-		production: vertId === DEFAULT_PROD_AD, // If we are using default ad we want to access it regardless of site's server
-		...socialUnitProps,
+		'gl.after': 'persist'
 	};
 
 	return (
