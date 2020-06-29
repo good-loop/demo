@@ -1,8 +1,8 @@
 server {
 	listen 80;
 	listen [::]:80;
-	server_name localdemo.good-loop.com;
-	root /home/team/winterwell/demo/web-demo;
+	server_name localtest.good-loop.com;
+	root /home/team/winterwell/demo/web-test;
 	index index.html;
 
 	# If there's no static file matching the URI, route it to $index and let preact-router handle it
