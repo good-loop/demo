@@ -125,6 +125,14 @@
 		&.bg {
 			object-fit: cover;
 			filter: blur(10px);
+			// Object-fit: cover doesn't work on videos in Edge - this fixes it by allowing it to stretch wider than 100%.
+			min-width: 100%;
+			min-height: 100%;
+			width: unset;
+			height: unset;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50% -50%);
 		}
 	}
 
