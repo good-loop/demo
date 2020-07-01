@@ -80,10 +80,20 @@
 	height: 100%;
 	#external-video {
 		height: 50%;
+		position: relative; // position ref for label
 		video {
 			height: 100%;
 			width: 100%;
 			background-color: black;
+		}
+		.ext-video-label {
+			position: absolute;
+			height: 10%;
+			width: 100%;
+			color: white;
+			top: 45%;
+			font-size: 250%;
+			font-weight: bold;
 		}
 	}
 	&.extVideo {

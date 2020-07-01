@@ -24,6 +24,7 @@ class VpaidAd extends Component {
 		Object.entries(props).forEach(([key, value]) => {
 			if (key.match(/gl\./)) params[key] = value;
 		});
+		params['gl.size'] = size;
 
 		// run whenever container changes
 		useEffect(() => {

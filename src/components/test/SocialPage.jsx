@@ -41,7 +41,8 @@ const PhoneWidget = ({extVideo, aspectRatio = '18_9', addrBar, navBar, vertId, c
 
 	const extVideoEl = extVideo ? (
 		<div id="external-video">
-			<video src="triangle-loop.mp4" loop autoplay muted />
+			<div className="ext-video-label">Externally hosted video</div>
+			<video src="/triangle-loop.mp4" loop autoplay muted />
 		</div>
 	) : null;
 
