@@ -108,7 +108,7 @@ const PhoneControls = ({aspectRatio = '18_9', addrBar, navBar, extVideo}) => (
 			</p>
 			<FormGroup check>
 				<Label check>
-					<Input type="checkbox" onChange={e => setParams({extVideo: e.target.checked})} checked={extVideo} />
+					<Input type="checkbox" onChange={e => setParams({extVideo: e.target.checked, 'gl.novideo': e.target.checked})} checked={extVideo} />
 					{' '}External video
 				</Label>
 			</FormGroup>
