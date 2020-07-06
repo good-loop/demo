@@ -13,9 +13,9 @@ import { DEFAULT_PROD_AD, DEFAULT_TEST_AD } from '../constants';
  * by advert ID being === DEFAULT_PROD_AD... There must be a better way.
  */
 
-let portalHost = '';
-if (window.location.hostname.match(/^(test)/)) portalHost = 'testportal';
-if (window.location.hostname.match(/^(local)/)) portalHost = 'localportal';
+let portalPrefix = '';
+if (window.location.hostname.match(/^(test)/)) portalPrefix = 'test';
+if (window.location.hostname.match(/^(local)/)) portalPrefix = 'local';
 let protocol = window.location.protocol;
 
 
@@ -24,7 +24,7 @@ const getAdvertFromPortal = ({id, callback}) => {
 	const adUrl = (id === DEFAULT_PROD_AD) ? (
 		`https://portal.good-loop.com/vert/${id}.json`
 	) : (
-		`${protocol}//${portalHost}.good-loop.com/vert/${id}.json`
+		`${protocol}//${portalPrefix}portal.good-loop.com/vert/${id}.json`
 	);
 	// Fetch the portal data, extract its json (json() returns a Promise) and execute the supplied callback
 	return fetch(adUrl)
