@@ -26,7 +26,7 @@ const getUrlGeneric = ({production, file, params}) => {
 	
 	if (params) {
 		Object.entries(params).forEach(([name, value]) => {
-			if (value) url.searchParams.append(name, value);
+			if (name.match(/^gl\./) && value) url.searchParams.append(name, value);
 		});
 	}
 	

@@ -22,7 +22,7 @@ const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocia
 		<Container>
 			<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
 			<DemoPicker format={format} device={device} noSocial={noSocialMerged} />
-			<DemoPlayer format={format} device={device} social={social} vertId={vertId} noSocial={noSocialMerged} />
+			<DemoPlayer format={format} device={device} social={social} vertId={vertId} noSocial={noSocialMerged} {...props} />
 			<RedMiddleSection />
 			<HowItWorksSection />
 			<FooterSection />

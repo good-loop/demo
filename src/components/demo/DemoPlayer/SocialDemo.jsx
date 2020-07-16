@@ -19,13 +19,15 @@ if (window.location.hostname.match(/^(local)/)) portalPrefix = 'local';
 let protocol = window.location.protocol;
 
 
-const getAdvertFromPortal = ({id, callback}) => {
+const getAdvertFromPortal = ({id, callback, status}) => {
 	// The default social ad should always be fetched from the production server.
-	const adUrl = (id === DEFAULT_PROD_AD) ? (
+	let adUrl = (id === DEFAULT_PROD_AD) ? (
 		`https://portal.good-loop.com/vert/${id}.json`
 	) : (
 		`${protocol}//${portalPrefix}portal.good-loop.com/vert/${id}.json`
 	);
+
+	if (status) adUrl += `?status=${status}`
 	// Fetch the portal data, extract its json (json() returns a Promise) and execute the supplied callback
 	return fetch(adUrl)
 		.then(res => res.json())
@@ -33,7 +35,7 @@ const getAdvertFromPortal = ({id, callback}) => {
 };
 
 
-const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social }) => {
+const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social, ...params}) => {
 	// Adblock active? Show a warning.
 	if (adBlocker) return adBlockerAlert;
 
@@ -60,7 +62,7 @@ const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social }) => {
 
 	// On mounting the SocialDemo element or changing advert ID, fetch the advert from the portal.
 	useEffect(() => {
-		getAdvertFromPortal({id: vertId, callback: setAdvert});
+		getAdvertFromPortal({id: vertId, callback: setAdvert, status: params['gl.status']});
 	}, [vertId]);
 
 
@@ -72,7 +74,8 @@ const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social }) => {
 		production: vertId === DEFAULT_PROD_AD, // Default (production) ad always comes from the prod server
 		size: 'portrait',
 		delivery: 'app',
-		'gl.after': 'persist'
+		'gl.after': 'persist',
+		...params
 	};
 
 	return (
