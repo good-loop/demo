@@ -6,6 +6,7 @@ import { Container, Row, Col, ButtonGroup, Button, FormGroup, Label, Input } fro
 import TestSiteNavBar from './TestSiteNavBar';
 import GoodLoopAd from '../GoodLoopAd';
 import TestControls from './TestControls';
+import SampleTag from './SampleTag';
 
 
 
@@ -68,7 +69,7 @@ const PhoneWidget = ({extVideo, aspectRatio = '18_9', addrBar, navBar, vertId, c
 
 
 
-const PhoneControls = ({aspectRatio = '18_9', addrBar, navBar, extVideo}) => (
+const PhoneControls = ({aspectRatio = '18_9', addrBar, navBar, extVideo, 'gl.novideo': noVideo, 'gl.dynamiclayout': dynamicLayout}) => (
 	<Col>
 		<div className="mb-4">
 			<h4>Phone Aspect Ratio</h4>
@@ -90,13 +91,13 @@ const PhoneControls = ({aspectRatio = '18_9', addrBar, navBar, extVideo}) => (
 			</p>
 			<FormGroup check>
 				<Label check>
-					<Input type="checkbox" onChange={e => setParams({addrBar: e.target.checked})} checked={addrBar} />
+					<Input type="checkbox" onChange={e => setParams({addrBar: e.target.checked})} checked={!!addrBar} />
 					{' '}Address bar
 				</Label>
 			</FormGroup>
 			<FormGroup check>
 				<Label check>
-					<Input type="checkbox" onChange={e => setParams({navBar: e.target.checked})} checked={navBar}/>
+					<Input type="checkbox" onChange={e => setParams({navBar: e.target.checked})} checked={!!navBar}/>
 					{' '}Navigation bar
 				</Label>
 			</FormGroup>
@@ -109,11 +110,32 @@ const PhoneControls = ({aspectRatio = '18_9', addrBar, navBar, extVideo}) => (
 			</p>
 			<FormGroup check>
 				<Label check>
-					<Input type="checkbox" onChange={e => setParams({extVideo: e.target.checked, 'gl.novideo': e.target.checked})} checked={extVideo} />
+					<Input type="checkbox" onChange={e => setParams({extVideo: e.target.checked, 'gl.novideo': e.target.checked, 'gl.halfheight': e.target.checked})} checked={!!extVideo} />
 					{' '}External video
 				</Label>
 			</FormGroup>
 		</div>
+		<div className="mb-4">
+			<h4>No Video</h4>
+			<p>Does the advertiser just want to run a branded banner with a charity chooser and no video?</p>
+			<FormGroup check>
+				<Label check>
+					<Input type="checkbox" onChange={e => setParams({'gl.novideo': e.target.checked})} checked={!!noVideo} />
+					{' '}No video
+				</Label>
+			</FormGroup>
+		</div>
+		<div className="mb-4">
+			<h4>Dynamic Layout</h4>
+			<p>Experimental feature! Define a custom-text string with the ID <code>socialLayout</code> in the portal and use this checkbox to view it.</p>
+			<FormGroup check>
+				<Label check>
+					<Input type="checkbox" onChange={e => setParams({'gl.dynamiclayout': e.target.checked})} checked={!!dynamicLayout} />
+					{' '}Dynamic layout
+				</Label>
+			</FormGroup>
+		</div>
+		
 	</Col>
 );
 
@@ -133,6 +155,7 @@ const SocialPage = ({halfHeight, size, format, wrapper, ...params}) => {
 		<Container>
 			<p>Type: <code>social</code>, Subtype: {subtype}</p>
 			<TestControls {...params}/>
+			<SampleTag />
 			<Row>
 				<PhoneWidget {...params}>
 					<GoodLoopAd bare size="portrait" {...adProps} />
