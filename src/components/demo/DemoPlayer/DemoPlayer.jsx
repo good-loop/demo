@@ -35,14 +35,14 @@ const defaultVertId = window.location.hostname.match(/^(test|local)/) ? DEFAULT_
 It inserts a div with ID "aiPai9th" - if that isn't present, we know adblock is active. */
 const adBlockDetected = !document.getElementById('aiPai9th');
 
-
-const DemoPlayer = ({ format, device, social, vertId = defaultVertId }) => {
+/* We don't do anything with url, matches, path - we just don't want them in ...params */
+const DemoPlayer = ({ format, device, social, vertId = defaultVertId, url, matches, path, ...params}) => {
 	const isSocial = (format === 'social');
 
 	const ad = isSocial ? (
-		<SocialDemo vertId={vertId} adBlocker={adBlockDetected} social={social} />
+		<SocialDemo vertId={vertId} adBlocker={adBlockDetected} social={social} {...params} />
 	) : (
-		<GoodLoopAd vertId={vertId} size={sizes[device]} extraNonce={`${format}${device}`} />
+		<GoodLoopAd vertId={vertId} size={sizes[device]} extraNonce={`${format}${device}`} {...params} />
 	);
 
 	// TODO we can add an extra block of description here, if needed.
