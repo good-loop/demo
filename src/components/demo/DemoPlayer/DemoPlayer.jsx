@@ -52,11 +52,12 @@ const DemoPlayer = ({ format, device, social, vertId = defaultVertId, url, match
 		</div>
 	) : '';
 
+	const fullscreenUrl = new URL(window.location.href);
+	fullscreenUrl.pathname = `/fullscreen/${sizes[device]}`;
+
 	const fullscreenButton = isSocial ? '' : (
 		<Row className="red-bg justify-content-center pt-1">
-			<a href={`/fullscreen/${sizes[device]}?gl.vert=${vertId}`} target="_blank" className="fullscreen-button w-button">
-				Full Screen Demo
-			</a>
+			<a href={fullscreenUrl.toString()} target="_blank" className="fullscreen-button">Full Screen Demo</a>
 		</Row>
 	);
 
