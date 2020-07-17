@@ -7,13 +7,14 @@ import { faTwitterSquare, faFacebookSquare, faYoutubeSquare, faInstagram, faLink
 import DemoSiteNavBar from './DemoSiteNavBar';
 import DemoPlayer from './DemoPlayer/DemoPlayer';
 import DemoPicker from './DemoPicker';
+import { DEFAULT_AD } from "./constants";
 
 
 /**
  * We don't do anything with {matches, path, url} here - we just don't want them in ...props
  * We pull both capitalisations of "nosocial" so we can type the wrong one and still have it work
  */
-const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocial, 'gl.vert': vertId, ...props}) => {
+const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocial, 'gl.vert': vertId = DEFAULT_AD, ...props}) => {
 	// Allow any noSocial param at all, even an empty one, to work (unless value is "false")
 	const noSocialMerged = (noSocial !== 'false' && noSocial !== undefined) || (nosocial !== 'false' && nosocial !== undefined);
 
