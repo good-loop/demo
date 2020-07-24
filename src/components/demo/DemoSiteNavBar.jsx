@@ -34,7 +34,9 @@ const DemoPageNavBar = () => {
 			<NavbarBrand href="https://www.good-loop.com/">
 				<img className="logo" src="/img/good-loop-logo-text.png" alt=""/>
 			</NavbarBrand>
-			<NavbarToggler onClick={toggle} />
+			<NavbarToggler onClick={toggle}>
+				<img src="/img/Icon_Hamburger.png" className="navbar-toggler-icon"/>
+			</NavbarToggler>
 			<Collapse isOpen={isOpen} navbar className="gl-bootstrap-navbar" id="navItemsDiv">
 				<Nav navbar className="navbar-nav">
 					<NavItem>

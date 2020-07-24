@@ -85,8 +85,13 @@ nav {
 	}
 }
 
+.navbar-toggler-icon {
+    background: none !important;
+}
+
 // Hamburger/cross icon transition
 .navbar-toggler {
+    border: none !important;
 	#nav-toggle-icon-hamburger {
 		opacity: 0%;
 		transition: 0.3s;
@@ -162,136 +167,17 @@ nav {
             color: black !important;
             padding-left: 0.5rem !important;
             padding-right: 0.5rem !important;
+            margin-top: 1.5rem !important;
+            margin-bottom: 1.5rem !important;
             text-align: left;
         }
-        .btn:hover,.btn:active,.btn:focus {
+        .nav-link.btn:hover, .nav-link.btn:active, .nav-link.btn:focus {
             background: none !important;
             color: black !important;
         }
-    }
-}
-
-// Make navbar transparent on the homepage
-body.page-index {
-	.navbar {
-        background: rgba(255,255,255,0);
-        a {
-            color: white;
-        }
-		box-shadow: none;
-		transition: 0.3s;
-    }
-    // Force-white exception case
-    .navbar.force-white {
-        background: white;
-        a {
-            color: black;
-        }
-		box-shadow: 0 0 4px #000;
-		transition: 0.3s;
-    }
-}
-
-// Make navbar white on scroll
-body.page-index.scrolled {
-	.navbar {
-        background: white;
-        a {
-            color: black;
-        }
-		box-shadow: 0 0 4px #000;
-		transition: 0.3s;
-	}
-}
-
-// Page selections
-// Use page file minus .html for class and ID names
-// If page is in a dropdown, highlight the category with .selected as well
-
-.selected {
-    background-color: @gl-light-grey;
-    transition: 0.3s;
-}
-
-body.page-what-we-do {
-    #nav-what-we-do {
-        .selected();
-    }
-}
-
-body.page-products {
-    #nav-products {
-        .selected();
-    }
-}
-
-body.page-case-study-index {
-    #nav-case-study {
-        .selected();
-    }
-}
-
-// About pages
-
-body.page-our-story {
-    #nav-about, #nav-our-story {
-        .selected();
-    }
-}
-
-body.page-donations-report {
-    #nav-about, #nav-donations-report {
-        .selected();
-    }
-}
-
-body.page-press-and-awards {
-    #nav-about, #nav-press-and-awards {
-        .selected();
-    }
-}
-
-// / About pages
-
-body.page-good-news-index {
-    #nav-good-news {
-        .selected();
-    }
-}
-
-// Who we work with pages
-
-body.page-brands {
-    #nav-who-we-work-with, #nav-brands-and-agencies {
-        .selected();
-    }
-}
-
-body.page-the-public {
-    #nav-who-we-work-with, #nav-the-public {
-        .selected();
-    }
-}
-
-body.page-publishers {
-    #nav-who-we-work-with, #nav-publishers {
-        .selected();
-    }
-}
-
-body.page-charities {
-    #nav-who-we-work-with, #nav-charities {
-        .selected();
-    }
-}
-
-// / What we do pages
-
-// Contact is a button on desktop so only highlight on mobile
-@media @md-max {
-    body.page-contact {
-        #nav-contact {
-            .selected();
+        .nav-link {
+            margin-top: 1.5rem !important;
+            padding-left: 0.5rem !important;
         }
     }
 }
