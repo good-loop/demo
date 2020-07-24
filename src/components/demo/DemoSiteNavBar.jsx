@@ -1,6 +1,7 @@
 import { h, Fragment } from 'preact';
-import React, { useState } from 'react';
+import { useState } from 'preact/hooks';
 import { Container, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+
 
 const dropDownItems = [
 	{ text: 'Our Mission', link: 'https://good-loop.com/our-mission' },
