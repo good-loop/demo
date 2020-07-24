@@ -1,0 +1,57 @@
+
+// Button LESS
+
+.btn {
+	border-radius: 100px;
+	vertical-align: middle;
+	padding: 20px 50px;
+	border: none !important;
+	box-shadow: none !important;
+	font-weight: bold;
+	font-family: 'Montserrat';
+    p {
+		margin: 0 !important;
+	}
+}
+
+.btn.disabled {
+    cursor: default;
+}
+
+.btn-primary {
+	background-color: @gl-orange !important;
+	color:white !important;
+}
+
+.btn-primary:hover:not(.disabled) {
+	background-color: @gl-btn-hover !important;
+	box-shadow: none !important;
+	border: none !important;
+}
+
+.btn-primary:active:not(.disabled),
+.btn-primary:focus:not(.disabled) {
+	background-color: @gl-red !important;
+	box-shadow: none !important;
+	border: none !important;
+}
+
+.btn-secondary {
+	background-color: white;
+	color:black !important;
+	mix-blend-mode: screen;
+}
+
+.btn-secondary:hover:not(.disabled) {
+	background-color: @gl-btn-hover !important;
+	box-shadow: none !important;
+	border: none !important;
+}
+
+// TODO: btn-secondary:focus not working??
+.btn-secondary:active:not(.disabled),
+.btn-secondary:focus:not(.disabled) {
+	background-color: @gl-red !important;
+	box-shadow: none !important;
+	border: none !important;
+}

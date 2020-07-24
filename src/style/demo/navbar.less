@@ -1,4 +1,4 @@
-
+/*
 .white-shadowed() {
 	background: white;
 	box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
@@ -171,4 +171,303 @@
 
 #mobileNavbar {
 	right: 10px;
+}
+*/
+
+@import "../../components/base/style/colours.less";
+@import "./website-colours.less";
+@import "./navbar-fonts.less";
+@import "./buttons.less";
+
+@md-min: ~"(min-width: 768px)";
+@md-max: ~"(max-width: 768px)";
+@lg-min: ~"(min-width: 992px)";
+@lg-max: ~"(max-width: 992px)";
+
+.navbar {
+    background: white;
+    color: black;
+	box-shadow: 0 0 4px #000;
+	padding-top: 0;
+	padding-bottom: 0;
+
+    // Disable Bootstrap margins
+    .flex-column>* {
+        margin: 0;
+    }
+
+    // Scale font so navbar items never take up more than 1 line
+    // (breakpoints found through trial and error)
+    @media (max-width: 1500px) {
+        font-size: 0.7rem !important;
+    }
+    @media (max-width: 1142px) {
+        font-size: 0.6rem !important;
+    }
+    @media (max-width: 1034px) {
+        font-size: 0.5rem !important;
+    }
+    @media @lg-max {
+        font-size: 1rem !important;
+	}
+	// .btn still somehow overrided !important, so making sure it sticks
+	.btn {
+		@media (max-width: 1500px) {
+			font-size: 0.7rem !important;
+		}
+		@media (max-width: 1142px) {
+			font-size: 0.6rem !important;
+		}
+		@media (max-width: 1034px) {
+			font-size: 0.5rem !important;
+		}
+		@media @lg-max {
+			font-size: 1rem !important;
+		}
+	}
+}
+
+// nav link styling
+nav {
+	a {
+		color: black !important;
+	}
+	a:hover {
+		color: black !important;
+    }
+    text-align: center;
+    @media @lg-max {
+        text-align: left;
+    }
+    .btn {
+        padding: 5px 50px !important;
+    }
+	font-family: 'Montserrat';
+	font-weight: 700;
+	text-transform: uppercase;
+	justify-content: space-between !important;
+	align-items: stretch !important;
+}
+
+// PORTED from main-base.less, only need this bit and dont want to import entire main base less
+// BS default has too much padding on the navbar logo
+.navbar-brand {
+	padding: 2px;
+	// We set our own navbar height and it might change...
+	// ...so constrain image height to a safe proportion of that
+	img { 
+		min-height: 50%;
+		max-height: 48px; // don't allow a giant image
+	}
+}
+
+// Hamburger/cross icon transition
+.navbar-toggler {
+	#nav-toggle-icon-hamburger {
+		opacity: 0%;
+		transition: 0.3s;
+	}
+	#nav-toggle-icon-cross {
+		opacity: 100%;
+		transition: 0.3s;
+	}
+}
+
+.navbar-toggler.collapsed {
+	#nav-toggle-icon-hamburger {
+		opacity: 100%;
+		transition: 0.3s;
+	}
+	#nav-toggle-icon-cross {
+		opacity: 0%;
+		transition: 0.3s;
+	}
+}
+
+// Make sure items take up a suitable portion of the screen on desktop
+#navItemsDiv {
+    flex-basis: 60%;
+    flex-grow: 0.35;
+    @media @lg-max {
+        flex-basis: 100%;
+	}
+	align-items: stretch !important;
+}
+
+.navbar-nav {
+	width: 100%;
+	justify-content: space-between !important;
+}
+
+.nav-item {
+	display: flex;
+	align-items: center;
+}
+
+.logo {
+	width: 10em !important;
+	height: 4rem !important;
+	object-fit: contain;
+}
+
+// Dropdown styling
+.dropdown.show {
+    background: white;
+    a {
+        color: black !important;
+    }
+}
+
+.dropdown-menu {
+    background: white;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+// Make contact button look like normal nav item on collapsable menu
+@media @lg-max {
+    nav {
+        .btn {
+            background: none !important;
+            color: black !important;
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+            text-align: left;
+        }
+        .btn:hover,.btn:active,.btn:focus {
+            background: none !important;
+            color: black !important;
+        }
+    }
+}
+
+// Make navbar transparent on the homepage
+body.page-index {
+	.navbar {
+        background: rgba(255,255,255,0);
+        a {
+            color: white;
+        }
+		box-shadow: none;
+		transition: 0.3s;
+    }
+    // Force-white exception case
+    .navbar.force-white {
+        background: white;
+        a {
+            color: black;
+        }
+		box-shadow: 0 0 4px #000;
+		transition: 0.3s;
+    }
+}
+
+// Make navbar white on scroll
+body.page-index.scrolled {
+	.navbar {
+        background: white;
+        a {
+            color: black;
+        }
+		box-shadow: 0 0 4px #000;
+		transition: 0.3s;
+	}
+}
+
+// Page selections
+// Use page file minus .html for class and ID names
+// If page is in a dropdown, highlight the category with .selected as well
+
+.selected {
+    background-color: @gl-light-grey;
+    transition: 0.3s;
+}
+
+body.page-what-we-do {
+    #nav-what-we-do {
+        .selected();
+    }
+}
+
+body.page-products {
+    #nav-products {
+        .selected();
+    }
+}
+
+body.page-case-study-index {
+    #nav-case-study {
+        .selected();
+    }
+}
+
+// About pages
+
+body.page-our-story {
+    #nav-about, #nav-our-story {
+        .selected();
+    }
+}
+
+body.page-donations-report {
+    #nav-about, #nav-donations-report {
+        .selected();
+    }
+}
+
+body.page-press-and-awards {
+    #nav-about, #nav-press-and-awards {
+        .selected();
+    }
+}
+
+// / About pages
+
+body.page-good-news-index {
+    #nav-good-news {
+        .selected();
+    }
+}
+
+// Who we work with pages
+
+body.page-brands {
+    #nav-who-we-work-with, #nav-brands-and-agencies {
+        .selected();
+    }
+}
+
+body.page-the-public {
+    #nav-who-we-work-with, #nav-the-public {
+        .selected();
+    }
+}
+
+body.page-publishers {
+    #nav-who-we-work-with, #nav-publishers {
+        .selected();
+    }
+}
+
+body.page-charities {
+    #nav-who-we-work-with, #nav-charities {
+        .selected();
+    }
+}
+
+// / What we do pages
+
+// Contact is a button on desktop so only highlight on mobile
+@media @md-max {
+    body.page-contact {
+        #nav-contact {
+            .selected();
+        }
+    }
 }
