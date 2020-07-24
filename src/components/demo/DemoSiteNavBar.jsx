@@ -32,7 +32,7 @@ const DemoPageNavBar = () => {
 	return (
 		<Navbar expand="lg" color="faded" light>
 			<NavbarBrand href="https://www.good-loop.com/">
-				<img className="logo" src="https://testwebsite.good-loop.com/img/logo/good-loop-logo-text.png" alt=""/>
+				<img className="logo" src="/img/good-loop-logo-text.png" alt=""/>
 			</NavbarBrand>
 			<NavbarToggler onClick={toggle} />
 			<Collapse isOpen={isOpen} navbar className="gl-bootstrap-navbar" id="navItemsDiv">
