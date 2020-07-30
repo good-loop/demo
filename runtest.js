@@ -8,7 +8,7 @@ let config = {
 	unsafe: false,
 	vert: null,
 	head: false,
-	chrome: false,
+	chrome: true,
 };
 let argv = process.argv.slice(0, 2);
 
