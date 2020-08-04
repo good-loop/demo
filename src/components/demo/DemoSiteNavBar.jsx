@@ -32,7 +32,9 @@ const DemoPageNavBar = () => {
 	return (
 		<Navbar expand="lg" color="faded" light>
 			<NavbarBrand href="https://www.good-loop.com/">
-				<img className="logo" src="/img/good-loop-logo-text.png" alt=""/>
+				<svg class="logo noaos normal-logo" alt="logo">       
+					<image xlinkHref="/img/good-loop-logo-text.svg" src="yourfallback.png" width="100%" height="100%"/>    
+				</svg>
 			</NavbarBrand>
 			<NavbarToggler onClick={toggle}>
 				<img src="/img/Icon_Hamburger.png" className="navbar-toggler-icon"/>
