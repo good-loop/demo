@@ -17,10 +17,6 @@ h1, h2, h3, h4, h5 {
 	font-family: 'Montserrat', sans-serif;
 }
 
-body {
-	overflow-x: hidden;
-}
-
 a, a:hover, a:focus {
 	text-decoration: none!important;
 }
@@ -31,49 +27,16 @@ video {
 }
 
 //// Main Container ////
-.container {
-	padding-top: 10em;
+.navbar {
+	margin-bottom: 6em;
 	@media (max-width: 767px) {
 		padding-top: 4em;
 	}
 }
 
-.red-bg, .half-bg {
-	position: relative;
-	&:before, &:after {
-		content: '';
-		display: block;
-		height: 100%;
-		width: 50vw;
-		position: absolute;
-		top: 0;
-		z-index: -1;
-	}
-
-	&:before {
-		right: 50%;
-	}
-
-	&:after {
-		left: 50%;
-	}
-}
-
-.red-bg {
-	&:before, &:after {
-		background-color: @gl-red;
-	}
-}
-
-.half-bg {
-	&:before, &:after {
-		background-image: linear-gradient(to bottom, white 50%, @gl-red 50%);
-	}
-}
-
 //// Red BG Section ////
-
-.red-bg { 
+.red-bg {
+	background-color: @gl-red;
 	color: #fff;
 	padding: 2em;
 	@media (max-width: 767px) { // Small chages in layout on smaller screen
@@ -82,6 +45,11 @@ video {
 			padding: 2em 0;
 		}
 	}
+}
+
+// Half-white, half-red BG behind player
+.half-bg {
+	background-image: linear-gradient(to bottom, white 50%, @gl-red 50%);
 }
 
 .red-middle-col {

@@ -30,7 +30,7 @@ const DemoPageNavBar = () => {
 	const toggle = () => setIsOpen(!isOpen);
 	// id="current-nav-link" to show selected nav link
 	return (
-		<Navbar expand="lg" color="faded" light>
+		<Navbar sticky="top" expand="lg" color="faded" light>
 			<NavbarBrand href="https://www.good-loop.com/">
 				<svg class="logo noaos normal-logo" alt="logo">       
 					<image xlinkHref="/img/good-loop-logo-text.svg" src="yourfallback.png" width="100%" height="100%"/>    

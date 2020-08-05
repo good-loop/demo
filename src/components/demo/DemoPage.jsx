@@ -23,11 +23,22 @@ const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocia
 		<Container>
 			<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
 			<DemoPicker format={format} device={device} noSocial={noSocialMerged} />
-			<DemoPlayer format={format} device={device} social={social} vertId={vertId} noSocial={noSocialMerged} {...props} />
-			<RedMiddleSection />
+		</Container>
+		<div className="half-bg">
+			<Container>
+				<DemoPlayer format={format} device={device} social={social} vertId={vertId} noSocial={noSocialMerged} {...props} />
+			</Container>
+		</div>
+		<div className="red-bg">
+			<Container>
+				<RedMiddleSection />
+			</Container>
+		</div>
+		<Container>
 			<HowItWorksSection />
 			<FooterSection />
 		</Container>
+		
 	</>;
 };
 
@@ -39,7 +50,7 @@ const deviceToSize = {
 };
 
 const RedMiddleSection = () => (
-	<Row className="red-bg pt-0">
+	<Row className="pt-0">
 		<Col className="justify-content-md-center text-center red-middle-col">
 			<h4 className="playermiddleheader pt-0">if you&#x27;re running an ad online then why not work with us?</h4>
 			<p>
