@@ -10,7 +10,7 @@ const socialAppLogos = {
 
 
 /** Currently just Instagram. Mocks up the advert as it would be seen on a social network. */
-const MockFeed = ({advert, showAd, socialType}) => {
+const MockFeed = ({advert, showAd, socialType, muted}) => {
 	const [visClass, setVisClass] = useState(''); // 'visible' if the fake feed is on-screen and should start animating
 
 	// For mobile: Lock window scrolling on swipe start & release on swipe end (so the demo unit can be swiped)
@@ -66,7 +66,7 @@ const MockFeed = ({advert, showAd, socialType}) => {
 			<img src={socialAppLogos[socialType]} className="fill-abs social-splash" />
 			<div className="fill-abs fade-in animate-in-sequence">
 				<MockTag className="fill-abs mock-ad bg" src={mockSrc} loop muted playsInline autoplay />
-				<MockTag className="fill-abs mock-ad" src={mockSrc} loop muted playsInline autoplay />
+				<MockTag className="fill-abs mock-ad" src={mockSrc} loop muted={muted} playsInline autoplay />
 				<div className="fill-abs overlay">
 					<div className="overlay-top">
 						<img className="brand-logo" src={brandLogo} />
