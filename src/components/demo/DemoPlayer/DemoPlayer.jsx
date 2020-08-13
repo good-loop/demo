@@ -74,7 +74,7 @@ const DemoPlayer = ({ format, device, social, vertId, url, matches, path, ...par
 				Adblocker detected. Some of our adverts might not play properly!
 			</UncontrolledAlert>
 		) : '' }
-		<Row className="half-bg">
+		<Row>
 			<Col xs="12" className="text-center">
 				<div className={`device-container ${device} ${format}`}>
 					<div className="device-shadow"/>

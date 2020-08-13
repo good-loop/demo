@@ -67,7 +67,7 @@ const LinkBlock = ({...params}) => (
 
 
 const TestSiteNavBar = ({ matches, path, url, ...params }) => (
-	<Navbar color="dark" dark expand>
+	<Navbar sticky="top" color="dark" dark expand>
 		<Container>
 			<Nav navbar>
 				<NavbarBrand><img src="/img/gl-test-pages-logo-light.svg" /></NavbarBrand>

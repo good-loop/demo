@@ -1,174 +1,183 @@
+@import "../../components/base/style/colours.less";
+@import "./website-colours.less";
+@import "./navbar-fonts.less";
+@import "./buttons.less";
 
-.white-shadowed() {
-	background: white;
-	box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
-}
-
-.white-outlined() {
-	background: white;
-	border: 1px solid #888;
-}
+@md-min: ~"(min-width: 768px)";
+@md-max: ~"(max-width: 768px)";
+@lg-min: ~"(min-width: 992px)";
+@lg-max: ~"(max-width: 992px)";
 
 .navbar {
-	position: fixed;
-	width: 100%;
-	@media (max-width: 767px) { 
-		width: auto; // Reduces navbar to toggle button on the top left corner
+    background: white;
+    color: black;
+	box-shadow: 0 0 4px #000;
+	padding-top: 0;
+	padding-bottom: 0;
+
+    // Disable Bootstrap margins
+    .flex-column>* {
+        margin: 0;
+    }
+
+    // Scale font so navbar items never take up more than 1 line
+    // (breakpoints found through trial and error)
+    @media (max-width: 1500px) {
+        font-size: 0.7rem !important;
+    }
+    @media (max-width: 1142px) {
+        font-size: 0.6rem !important;
+    }
+    @media (max-width: 1034px) {
+        font-size: 0.5rem !important;
+    }
+    @media @lg-max {
+        font-size: 1rem !important;
 	}
-
-	.white-shadowed();
-	z-index: 1200; // Necessary because of the z-index manipulation in the DemoWidget rules
-
-	@media (max-width: 767px) {
-		box-shadow: none;
-		background-color: transparent; // Don't put a white box around the toggle button on mobile
-		#navbar {
-			.white-outlined();
-			margin-top: 0.5em;
+	// .btn still somehow overrided !important, so making sure it sticks
+	.btn {
+		@media (max-width: 1500px) {
+			font-size: 0.7rem !important;
+		}
+		@media (max-width: 1142px) {
+			font-size: 0.6rem !important;
+		}
+		@media (max-width: 1034px) {
+			font-size: 0.5rem !important;
+		}
+		@media @lg-max {
+			font-size: 1rem !important;
 		}
 	}
+}
 
-	.navbar-toggler {
-		.white-outlined();
+// nav link styling
+nav {
+	a {
+		color: black !important;
 	}
+	a:hover {
+		color: black !important;
+    }
+    text-align: center;
+    @media @lg-max {
+        text-align: left;
+    }
+    .btn {
+        padding: 5px 50px !important;
+    }
+	font-family: 'Montserrat';
+	font-weight: 700;
+	text-transform: uppercase;
+	justify-content: space-between !important;
+	align-items: stretch !important;
+}
 
-	.navbar-nav {
-		margin-top: 0;
-		align-items: center;
+// PORTED from main-base.less, only need this bit and dont want to import entire main base less
+// BS default has too much padding on the navbar logo
+.navbar-brand {
+	padding: 2px;
+	// We set our own navbar height and it might change...
+	// ...so constrain image height to a safe proportion of that
+	.logo { 
+		min-height: 50%;
+		max-height: 48px; // don't allow a giant image
 	}
 }
 
-.nav-link:hover {
-	color: #32343a
+.navbar-toggler-icon {
+    background: none !important;
 }
 
-.nav-item { 
-	@media (max-width: 767px) { // On smaller screens expand dropdown buttons horizontally (pushing to the left), make text larger
-		width: 100%;
-		a {
-			font-size: 100% !important;
-		}
+// Hamburger/cross icon transition
+.navbar-toggler {
+    border: none !important;
+	#nav-toggle-icon-hamburger {
+		opacity: 0%;
+		transition: 0.3s;
+	}
+	#nav-toggle-icon-cross {
+		opacity: 100%;
+		transition: 0.3s;
 	}
 }
 
-
-.nav-link {
-	font-family: 'Open Sans', sans-serif;
-	color: #678;
-	line-height: 1.45;
-	text-decoration: none;
-	font-size: 1vw !important; // Replicates webflow site behaviour. Not beautiful, but consistent with other sections.
-	padding: 20px !important;
-	margin-left: auto;
-	margin-right: auto;
+.navbar-toggler.collapsed {
+	#nav-toggle-icon-hamburger {
+		opacity: 100%;
+		transition: 0.3s;
+	}
+	#nav-toggle-icon-cross {
+		opacity: 0%;
+		transition: 0.3s;
+	}
 }
 
-.gl-bootstrap-navbar {
-	justify-content: center;
+// Make sure items take up a suitable portion of the screen on desktop
+#navItemsDiv {
+    flex-basis: 60%;
+    flex-grow: 0.35;
+    @media @lg-max {
+        flex-basis: 100%;
+	}
+	align-items: stretch !important;
 }
 
 .navbar-nav {
-	@media (max-width: 767px) {
-		max-width: 70vw;
-	}
-}
-
-.navbar-light .navbar-nav .nav-link {
-	color: #678;
-	line-height: 1.45;
-	outline-width: 1px;
-	padding: 20px;
-	text-decoration-line: none;
-	text-size-adjust: 100%;
-	font-size: 2vw;
-}
-
-
-@media (min-width: 960px) {
-	.navbar-light .navbar-nav .nav-link {
-		font-size: 19.2px;
-	}
-}
-
-.navbar-collapse {
-	width: max-content;
-}
-
-.navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus, .nav-link {
-	// color: #000;
-	text-transform: uppercase;
-}
-
-.dropdown-item {
-	font-family: 'Open Sans', sans-serif;
-	text-transform: uppercase;
-	font-size: 1.2em;
-}
-
-.dropdown-item.active, .dropdown-item:active {
-	background-color: #790000;
-}
-
-// Round GL logo that hangs from the middle of the navbar
-// Extra specificity on container to override BS default .navbar-brand rules
-.navbar-brand.gl-icon-centred {
-	position: absolute;
-	left: 50%;
-	bottom: 0;
-	margin: 0 0 -25px -25px;
-	padding: 0;
-	z-index: 1;
-	@media (max-width: 767px) {
-		display: none;
-	}
-}
-// The logo itself
-.navbar-gl-icon {
-	width: 50px;
-	height: 50px;
-	padding: 5px;
-	background-color: white;
-	border-radius: 50%;
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-// Invisible div which casts a shadow behind the GL logo
-.shadowcaster {
-	border-bottom-left-radius: 25px;
-	border-bottom-right-radius: 25px;
-	box-shadow: 0 1px 3px 1px rgba(0,0,0,0.4);
-	width: 50px;
-	height: 25px;
-	margin-top: 25px;
-}
-
-.fixed-navbar {
-	position: fixed;
 	width: 100%;
-	margin-bottom: 15vh;
-	top: 0;
-	z-index: 999;
+	justify-content: space-between !important;
 }
 
-.gl-mobile-nav-btn {
-	background-color: inherit;
-	padding-top: 10px;
-	padding-right: 10px;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	line-height: 1.45;
+.nav-item {
+	display: flex;
+	align-items: center;
 }
 
-.mr-auto {
-	background-color: white;
-	box-shadow: 0.05em 0.05em 0.1em rgba(1,1,1,0.5);
+.logo {
+	width: 10em !important;
+	height: 4rem !important;
+	object-fit: contain;
 }
 
-.navbar-nav .nav-link {
-	font-size: 2em;
+// Dropdown styling
+.dropdown.show {
+    background: white;
+    a {
+        color: black !important;
+    }
 }
 
-#mobileNavbar {
-	right: 10px;
+.dropdown-menu {
+    background: white;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+// Make contact button look like normal nav item on collapsable menu
+@media @lg-max {
+    nav {
+        .btn {
+            background: none !important;
+            color: black !important;
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+            margin-top: 1.5rem !important;
+            margin-bottom: 1.5rem !important;
+            text-align: left;
+        }
+        .nav-link.btn:hover, .nav-link.btn:active, .nav-link.btn:focus {
+            background: none !important;
+            color: black !important;
+        }
+        .nav-link {
+            margin-top: 1.5rem !important;
+            padding-left: 0.5rem !important;
+        }
+    }
 }
