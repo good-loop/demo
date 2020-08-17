@@ -81,7 +81,7 @@ const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social, ...params}) =>
 	return (
 		<div className="ad-sizer portrait">
 			<div className="aspectifier" />
-			<MockFeed advert={advert} showAd={() => setShowAd(true)} socialType={social} />
+			<MockFeed advert={advert} showAd={() => setShowAd(true)} socialType={social} muted={!params.unmuteSocial}/>
 			<div className={`social-ad fill-abs ${showAd ? 'show' : ''}`}>
 				{ showAd && advert ? <GoodLoopAd {...unitProps} /> : '' }
 			</div>

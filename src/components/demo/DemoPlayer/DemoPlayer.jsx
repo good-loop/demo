@@ -6,7 +6,6 @@ import GoodLoopAd from '../../GoodLoopAd';
 
 import SocialDemo from './SocialDemo';
 
-
 /** Description of the Good-Loop formats */
 const descriptions = {
 	social: "The Good-Loop social swipe-to-donate player is shown in social media apps: SnapChat, Instagram, Facebook, or Twitter.",
