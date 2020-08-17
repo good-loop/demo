@@ -147,16 +147,14 @@
 		position: absolute;
 		left: 0;
 		width: 100%;
-		background-position: center;
+		background-position: center bottom;
 		background-size: cover;
 	}
 
-	.overlay-top {
+.overlay-top {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
-
-		top: 0;
 		height: 15%;
 		background-image: url('/img/overlay-insta-top.png');
 		// Keep aspect ratio on all logos
@@ -179,9 +177,16 @@
 	}
 	
 	.overlay-bottom {
-		bottom: 0;
 		height: 22%;
 		background-image: url('/img/overlay-insta-bottom.png');
+		bottom: 0;
+	}
+	.gl-logo {
+		position: absolute;
+		display: block;
+		height: 4%;
+		right: 0;
+		bottom: 1%;
 	}
 }
 
