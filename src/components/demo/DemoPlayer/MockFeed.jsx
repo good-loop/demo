@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import { visibleElement } from '../../../utils';
 import { DEFAULT_PROD_AD } from '../constants';
@@ -54,6 +54,7 @@ const socialAppLogos = {
 /** Currently just Instagram. Mocks up the advert as it would be seen on a social network. */
 const MockFeed = ({advert, showAd, socialType, muted}) => {
 	const [visClass, setVisClass] = useState(''); // 'visible' if the fake feed is on-screen and should start animating
+	const [showVideo, setShowVideo] = useState(true); // We'll hide the video after the user swipes to the Good-Loop ad
 
 	// If the URL says the splash video should be unmuted, check and see if we need a click-to-play button
 	const [canAutoplay, setCanAutoplay] = useState(muted);
@@ -61,16 +62,23 @@ const MockFeed = ({advert, showAd, socialType, muted}) => {
 		if (!muted) probeAutoplay(setCanAutoplay);
 	}, []);
 
+	// When the user swipes to the advert, also set state in this component
+	// to remove the splash video so it doesn't keep playing in the background
+	const showAd2 = () => {
+		showAd();
+		window.setTimeout(() => setShowVideo(false), 750);
+	};
+
 	// For mobile: Lock window scrolling on swipe start & release on swipe end (so the demo unit can be swiped)
 	const setScrollLock = (lock) => { 
 		document.body.style.overflow = lock ? 'hidden' : 'auto';
-		if (lock) showAd();
+		if (lock) showAd2();
 	};
-	
+
 	// Handle clicks and touches on the mock phone screen
 	const interactionProps = {
-		onClick: showAd,
-		onMouseDown: showAd,
+		onClick: showAd2,
+		onMouseDown: showAd2,
 		onTouchStart: () => setScrollLock(true),
 		onTouchEnd: () => setScrollLock(false),
 		onTouchMove: e => e.preventDefault()
@@ -121,8 +129,10 @@ const MockFeed = ({advert, showAd, socialType, muted}) => {
 		<div className={`fake-feed fill-abs ${visClass}`}>
 			<img src={socialAppLogos[socialType]} className="fill-abs social-splash" />
 			<div className="fill-abs fade-in animate-in-sequence">
-				<MockTag className="fill-abs mock-ad bg" src={mockSrc} loop muted playsInline autoplay={canAutoplay} />
-				<MockTag className="fill-abs mock-ad" src={mockSrc} loop muted={muted} playsInline autoplay={canAutoplay} />
+				{ showVideo ? <>
+					<MockTag className="fill-abs mock-ad bg" src={mockSrc} loop muted playsInline autoplay={canAutoplay} />
+					<MockTag className="fill-abs mock-ad" src={mockSrc} loop muted={muted} playsInline autoplay={canAutoplay} />
+				</> : null }
 				<div className="fill-abs overlay">
 					<div className="overlay-top">
 						<img className="brand-logo" src={brandLogo} />
