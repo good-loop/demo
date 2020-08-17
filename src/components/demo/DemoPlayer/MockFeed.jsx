@@ -109,6 +109,14 @@ const MockFeed = ({advert, showAd, socialType, muted}) => {
 	// the front one is unblurred and has size:contain so it's fully visible.
 	const MockTag = mockIsVideo ? 'video' : 'img'
 
+	const clickToPlay = (
+		<div className="fill-abs click-to-play" onClick={() => setCanAutoplay(true)}>
+			<h3>Click to start</h3>
+			<div><small>Your browser settings don't allow this demo to play automatically.</small></div>
+		</div>
+	);
+
+
 	return (
 		<div className={`fake-feed fill-abs ${visClass}`}>
 			<img src={socialAppLogos[socialType]} className="fill-abs social-splash" />
@@ -125,7 +133,7 @@ const MockFeed = ({advert, showAd, socialType, muted}) => {
 				</div>
 			</div>
 			<div className="fill-abs interaction-catcher" {...interactionProps} />
-			{ !canAutoplay && <div className="fill-abs" style={{backgroundColor: 'rgba(255, 0, 255, 0.5)', color: 'white'}} onClick={() => setCanAutoplay(true)}>Click to play</div> }
+			{ !canAutoplay && clickToPlay }
 		</div>
 	);
 };
