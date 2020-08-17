@@ -57,7 +57,7 @@ const DemoPageNavBar = () => {
 						<DropdownMenu><WhoWeWorkWithMenu /></DropdownMenu>
 					</UncontrolledDropdown>
 					<NavItem>
-						<NavLink className="btn btn-primary" href="https://www.good-loop.com/good-news/contact.html">Contact</NavLink>
+						<NavLink className="btn btn-primary" href="https://www.good-loop.com/contact.html">Contact</NavLink>
 					</NavItem>
 				</Nav>
 			</Collapse>
