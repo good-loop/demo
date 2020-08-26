@@ -13,7 +13,7 @@
 		position: absolute; // Height won't apply otherwise!
 	}
 
-	&.landscape .aspectifier {
+	&.landscape .aspectifier, &.engage .aspectifier {
 		margin-top: 56.25%
 	}
 
@@ -34,7 +34,7 @@
 	}
 
 	// Variable-size, fixed-aspect containers: prevent margin collapse between ad-sizer and aspectifier
-	&.portrait, &.landscape, &.square {
+	&.portrait, &.landscape, &.square, &.engage {
 		overflow: hidden;
 	}
 }
