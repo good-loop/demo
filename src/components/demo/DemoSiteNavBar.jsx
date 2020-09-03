@@ -46,7 +46,7 @@ const DemoPageNavBar = () => {
 						<NavLink href="https://www.good-loop.com/products.html">Products</NavLink>
 					</NavItem>
 					<NavItem>
-						<NavLink href="https://www.good-loop.com/case-studies/index.html">Case Studies</NavLink>
+						<NavLink href="https://www.good-loop.com/case-study/index.html">Case Studies</NavLink>
 					</NavItem>
 					<UncontrolledDropdown nav inNavbar> 
 						<DropdownToggle nav caret>About</DropdownToggle>
