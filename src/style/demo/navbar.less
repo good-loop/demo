@@ -76,7 +76,7 @@ nav {
 // PORTED from main-base.less, only need this bit and dont want to import entire main base less
 // BS default has too much padding on the navbar logo
 .navbar-brand {
-	padding: 2px;
+	padding: 10px 2px;
 	// We set our own navbar height and it might change...
 	// ...so constrain image height to a safe proportion of that
 	.logo { 
@@ -175,6 +175,9 @@ nav {
         .nav-link.btn:hover, .nav-link.btn:active, .nav-link.btn:focus {
             background: none !important;
             color: black !important;
+        }
+        .dropdown-item:active {
+            background-color: @gl-light-blue;
         }
         .nav-link {
             margin-top: 1.5rem !important;
