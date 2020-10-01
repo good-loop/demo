@@ -50,6 +50,7 @@
   "jest-puppeteer": {
     "launch": {
       "headless": false
-    }
+    },
+    "testTimeout":10000
   }
 }

@@ -17,6 +17,7 @@ const baseSite = demoServers[config.site];
 describe('Demo page video tests', () => {
 	it('should default to format: video, display: desktop', async () => {
 		await page.goto(baseSite);
+		await page.waitFor(500);
 		await expect(page).toMatch('Want to see our products in action?');
 
 		await page.waitForSelector('.picker-button.video.current');
@@ -46,7 +47,7 @@ describe('Demo page video tests', () => {
 		const url = await page.evaluate(() => { return window.location });
 		////////////////////////////////////////////////////
 		const searchParams = new URLSearchParams(url.search);
-		const vertId = searchParams.get('gl.vertId');
+		const vertId = searchParams.get('gl.vert');
 
 		////// CUSTOM JS ON SELECTED NODE //////////////////
 		// Like page.evaluate above, but this one takes a selector and allows you to pass the
@@ -75,11 +76,8 @@ describe('Demo page video tests', () => {
 		// Make sure the device container (where the demo iframe lives) has the class desktop.
 		await page.waitForSelector('.device-container.desktop'); 
 
-		// Check that a link with the class 'landscape' exists, and that it is possible to click on it.
-		// Then, click on it. The first line is not strictly necessary (if the device container already exist,
-		// so must the buttons), but it would provide a more precise error message if things fail around here
-		await expect(page).toClick('a', { class: 'landscape' });
-		await page.click('a.landscape');
+		// Do the navigation
+		await Promise.all([page.waitForNavigation({waitUntil:'networkidle2'}), page.click('a.landscape')]);
 
 		// Use page.evaluate() to execute a line of js inside the browser, in this case grabbing the url
 		const url = await page.evaluate(() => { return window.location.href });
@@ -114,6 +112,7 @@ describe('Demo page social tests', () => {
 
 	it('should disable picker options when selecting SOCIAL', async () => {
 		await page.goto(baseSite);
+		await page.waitFor(1000);
 		await page.waitForSelector('.picker-button.social');
 
 		await page.click('.picker-button.social');
@@ -127,18 +126,18 @@ describe('Demo page social tests', () => {
 		// The string 'snapchat' is only used in the description,
 		// so we can look through the entired rendered page
 		await page.waitFor(2000);
-		await expect(page).toMatch('Snapchat');
+		await expect(page).toMatch('SnapChat');
 	});
 
-	it('should load multiple "slides" to simulate the snapchat feed', async () => {
-		const slides = await page.$$('.snap-img');
-		await expect(slides.length > 2).toBe(true);
+	it('should load fake feed', async () => {
+		const ad = await page.$$('.fake-feed.fill-abs');
+		await expect(ad.length).toBe(1);
 	});
 
 	it('should slide into our advert on video click', async () => {
-		await page.click('video.snap-img');
+		await page.click('video.fill-abs.mock-ad');
 		await page.waitFor(1000);
 
-		await page.waitForSelector('.social-ad.show');
+		await page.waitForSelector('.goodloopad.populated.portrait');
 	});
 })
