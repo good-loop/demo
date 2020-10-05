@@ -52,28 +52,28 @@ describe('Adunit tests', () => {
 
 	it('should have donations locked at start', async () => {
 		if (isSingleCharity) {
-			await adunit.waitForSelector('.single-charity.locked')
+			await adunit.waitForSelector('.single-charity.locked');
 		} else {
 			await adunit.waitForSelector('.chooser-list.locked');
 		}
 	});
 
 	// In order to check if the countdown is working we compare the innerHTML of the locked message
-	// against itself after 2 seconds. SHould have a different value, since the seconds have been updated.
+	// against itself after 2 seconds. Should have a different value, since the seconds have been updated.
 	it('should display unlock message and counter', async () => {
 		
 		const counterSelector = isSingleCharity ? '.chooser-message' : '.countdown-number .current';
 		await adunit.waitForSelector(counterSelector);
 		const initialLockedMessage = await adunit.$eval(counterSelector, e => e.innerHTML);
-		await page.waitFor(2000);
+		await page.waitFor(3000);
 		const secondLockedMessage = await adunit.$eval(counterSelector, e => e.innerHTML);
 
 		await expect(initialLockedMessage).not.toBe(secondLockedMessage);
 	}, 20000); // Takes longer as it waits for seconds
 
 	it('unlock donations after watching half the video', async () => {
-		// Wait for the duration of the video, minus 2 secs from the previous test
-		await adunit.waitFor(videoLength * 1000 / 2 - 2000);
+		// Wait for the duration of the video, minus 3 secs from the previous test
+		await adunit.waitFor(videoLength * 1000 / 2 - 3000);
 		const unlockedSelector = isSingleCharity ? '.single-charity complete' : '.chooser-list.ready';
 		await adunit.waitForSelector(unlockedSelector);
 	}, 15000);
@@ -81,14 +81,14 @@ describe('Adunit tests', () => {
 	it('should allow to pick charity if multiple', async () => {
 		if (!isSingleCharity) {
 			await adunit.click('a.charity');
-			//await adunit.waitForSelector('.charity.selected');
+			await adunit.waitForSelector('.charity.selected');
 		}
 	}, 15000);
 
 	it('should be able to skip if skippable', async () => {
 		if (skippable) {
 			await adunit.hover('video');
-			//await adunit.waitFor(100);
+			await adunit.waitFor(100);
 			await adunit.click('.skip-now');
 		}
 	});
