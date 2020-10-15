@@ -1,5 +1,6 @@
 /* @jsx h */
 import { h, Fragment, Component } from 'preact';
+import { useState } from 'preact/hooks';
 import { getNonce, getUnitUrl } from '../utils';
 
 class GoodLoopAd extends Component {
