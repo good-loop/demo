@@ -19,10 +19,23 @@ let prefix = ''; // Default to production adserver (ie running on demo or prodte
 if (window.location.hostname.match(/^local/)) { prefix = 'local'; } // Running on localtest or localdemo.good-loop.com --> talk to localas
 else if (window.location.hostname.match(/(^test)/)) { prefix = 'test'; } // Running on test or testdemo.good-loop.com --> talk to testas
 const glBaseUrl = `${window.location.protocol}//${prefix}as.good-loop.com/`
+const glTestUrl = `https://testas.good-loop.com/`
 const glProdBaseUrl = `https://as.good-loop.com/`;
 
+const getPrefixProtocol = (pre) => {
+	if (pre === 'local')
+		return 'http:'
+	else
+		return 'https:'
+}
+
 const getUrlGeneric = ({production, file, params}) => {
-	const url = new URL((production ? glProdBaseUrl : glBaseUrl) + file);
+	const forceServerType = params.forceServerType;
+	const url = new URL(
+		(forceServerType ?
+		getPrefixProtocol(forceServerType) + "//" + (forceServerType === 'prod' ? '' : forceServerType) + "as.good-loop.com/"
+		: (production ? glProdBaseUrl : glBaseUrl))
+	+ file);
 	
 	if (params) {
 		Object.entries(params).forEach(([name, value]) => {
