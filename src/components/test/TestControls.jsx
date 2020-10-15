@@ -29,8 +29,10 @@ const urlWithParams = (newParams = {}) => {
 
 const TestControls = (params) => {
 	const vertId = params['gl.vert'];
+	const forceServerType = params.forceServerType;
 
 	const [newVertId, setNewVertId] = useState(vertId);
+	const [newServerType, setNewServerType] = useState(forceServerType);
 
 	// A link to toggle "jump directly to the end card"
 	const endCardPreview = params['gl.variant'] === 'tq';
@@ -47,10 +49,23 @@ const TestControls = (params) => {
 			<DropdownItem>{id}</DropdownItem>
 		</a>
 	));
+	
+	const serverTypes = [
+		'auto', 'local', 'test', 'prod'
+	];
+	const serverDropdownItems = serverTypes.map(serverType => {
+		let serverParam = serverType === 'auto' ? '' : serverType;
+		// TODO: get good-loop ad to reload once the server type changes
+		return (
+			<a href={urlWithParams({forceServerType: serverParam})} onClick={() => setNewServerType(serverParam)}>
+				<DropdownItem>{serverType}</DropdownItem>
+			</a>
+		);
+	});
 
 	const submitForm = (event) => {
 		event.preventDefault();
-		route(urlWithParams({'gl.vert': newVertId}))
+		route(urlWithParams({'gl.vert': newVertId, forceServerType:newServerType}))
 		return false;
 	}
 
@@ -71,6 +86,10 @@ const TestControls = (params) => {
 						<UncontrolledDropdown>
 							<DropdownToggle caret>Test ads</DropdownToggle>
 							<DropdownMenu>{ dropdownItems }</DropdownMenu>
+						</UncontrolledDropdown>&nbsp;
+						<UncontrolledDropdown>
+							<DropdownToggle caret>{newServerType ? newServerType : "auto"}</DropdownToggle>
+							<DropdownMenu>{serverDropdownItems}</DropdownMenu>
 						</UncontrolledDropdown>
 					</FormGroup>
 				</Form>
