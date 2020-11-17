@@ -23,6 +23,7 @@ class VpaidAd extends Component {
 		const params = {};
 		Object.entries(props).forEach(([key, value]) => {
 			if (key.match(/gl\./)) params[key] = value;
+			if (key === 'forceServerType') params[key] = value; // Hack: getVastUrl should be told if we want to override e.g. test to prod
 		});
 		params['gl.size'] = size;
 
