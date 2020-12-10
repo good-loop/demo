@@ -5,7 +5,7 @@ import { landscapeSvg, desktopSvg, portraitSvg } from './DemoSvg';
 
 
 /** Generates links to change the format (social/video) and simulated device (landscape/portrait phone, desktop) */
-const DemoPicker = ({ format, device, social, noSocial, hide }) => {
+const DemoPicker = ({ format, device, social, noSocial, hides }) => {
 
 	const deviceClasses = newDevice => {
 		let classes = `button picker-button ${newDevice}`
@@ -29,12 +29,12 @@ const DemoPicker = ({ format, device, social, noSocial, hide }) => {
 		return `/${newDevice}/${newFormat}/${social}${search}${hash}`;
 	};
 
-	const hideVideo = hide.includes("desktop") && hide.includes("mobile-landscape") && hide.includes("mobile-portrait");
+	const hideVideo = hides.includes("desktop") && hides.includes("mobile-landscape") && hides.includes("mobile-portrait");
 
 	// Don't allow format change if the noSocial URL param is set
 	const formatPicker = noSocial ? '' : (
 		<Row className="format-picker text-center justify-content-center">
-			{hide.includes("social") ? '' : 
+			{hides.includes("social") ? '' : 
 				<a href={hrefUrl({newFormat: 'social', newDevice: 'portrait'})} className={formatClasses('social')}>
 					Social
 				</a>}
@@ -49,15 +49,15 @@ const DemoPicker = ({ format, device, social, noSocial, hide }) => {
 		{formatPicker}
 		<Row className="device-picker justify-content-center pb-4 flex-row">
 			<Col xs="auto" md="auto" className="text-center flex-row">
-				{hide.includes("mobile-landscape") ? '' :
+				{hides.includes("mobile-landscape") ? '' :
 					<a href={hrefUrl({newDevice: 'landscape'})} className={deviceClasses('landscape')} >
 						{landscapeSvg}
 					</a>}
-				{hide.includes("desktop") ? '' :
+				{hides.includes("desktop") ? '' :
 					<a href={hrefUrl({newDevice: 'desktop'})} className={deviceClasses('desktop')} >
 						{desktopSvg}
 					</a>}
-				{hide.includes("mobile-portrait") ? '' :
+				{hides.includes("mobile-portrait") ? '' :
 					<a href={hrefUrl({newDevice: 'portrait'})} className={deviceClasses('portrait')} >
 						{portraitSvg}
 					</a>}
