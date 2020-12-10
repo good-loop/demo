@@ -5,7 +5,8 @@ import { landscapeSvg, desktopSvg, portraitSvg } from './DemoSvg';
 
 
 /** Generates links to change the format (social/video) and simulated device (landscape/portrait phone, desktop) */
-const DemoPicker = ({ format, device, social, noSocial }) => {
+const DemoPicker = ({ format, device, social, noSocial, hides }) => {
+
 	const deviceClasses = newDevice => {
 		let classes = `button picker-button ${newDevice}`
 		if (format === 'social' && newDevice !== 'portrait') classes += ' disabled';
@@ -28,15 +29,19 @@ const DemoPicker = ({ format, device, social, noSocial }) => {
 		return `/${newDevice}/${newFormat}/${social}${search}${hash}`;
 	};
 
+	const hideVideo = hides.includes("desktop") && hides.includes("mobile-landscape") && hides.includes("mobile-portrait");
+
 	// Don't allow format change if the noSocial URL param is set
 	const formatPicker = noSocial ? '' : (
 		<Row className="format-picker text-center justify-content-center">
-			<a href={hrefUrl({newFormat: 'social', newDevice: 'portrait'})} className={formatClasses('social')}>
-				Social
-			</a>
-			<a href={hrefUrl({newFormat: 'video'})} className={formatClasses('video')}>
-				Video
-			</a>
+			{hides.includes("social") ? '' : 
+				<a href={hrefUrl({newFormat: 'social', newDevice: 'portrait'})} className={formatClasses('social')}>
+					Social
+				</a>}
+			{hideVideo ? '' :
+				<a href={hrefUrl({newFormat: 'video'})} className={formatClasses('video')}>
+					Video
+				</a>}
 		</Row>
 	);
 
@@ -44,15 +49,18 @@ const DemoPicker = ({ format, device, social, noSocial }) => {
 		{formatPicker}
 		<Row className="device-picker justify-content-center pb-4 flex-row">
 			<Col xs="auto" md="auto" className="text-center flex-row">
-				<a href={hrefUrl({newDevice: 'landscape'})} className={deviceClasses('landscape')} >
-					{landscapeSvg}
-				</a>
-				<a href={hrefUrl({newDevice: 'desktop'})} className={deviceClasses('desktop')} >
-					{desktopSvg}
-				</a>
-				<a href={hrefUrl({newDevice: 'portrait'})} className={deviceClasses('portrait')} >
-					{portraitSvg}
-				</a>
+				{hides.includes("mobile-landscape") ? '' :
+					<a href={hrefUrl({newDevice: 'landscape'})} className={deviceClasses('landscape')} >
+						{landscapeSvg}
+					</a>}
+				{hides.includes("desktop") ? '' :
+					<a href={hrefUrl({newDevice: 'desktop'})} className={deviceClasses('desktop')} >
+						{desktopSvg}
+					</a>}
+				{hides.includes("mobile-portrait") ? '' :
+					<a href={hrefUrl({newDevice: 'portrait'})} className={deviceClasses('portrait')} >
+						{portraitSvg}
+					</a>}
 			</Col>
 		</Row>
 	</>;

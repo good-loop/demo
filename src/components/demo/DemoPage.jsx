@@ -13,16 +13,24 @@ import { DEFAULT_AD } from "./constants";
 /**
  * We don't do anything with {matches, path, url} here - we just don't want them in ...props
  * We pull both capitalisations of "nosocial" so we can type the wrong one and still have it work
+ * 
+ * Hide values represent the 4 demo formats available:
+ * - social
+ * - desktop
+ * - mobile-landscape
+ * - mobile-portrait
+ * Given as a comma separated string as served by PropControl
  */
-const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocial, 'gl.vert': vertId = DEFAULT_AD, ...props}) => {
+const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocial, hide, 'gl.vert': vertId = DEFAULT_AD, ...props}) => {
 	// Allow any noSocial param at all, even an empty one, to work (unless value is "false")
 	const noSocialMerged = (noSocial !== 'false' && noSocial !== undefined) || (nosocial !== 'false' && nosocial !== undefined);
+	const hides = hide ? hide.split(",") : [];
 
 	return <>
 		<DemoSiteNavBar />
 		<Container>
 			<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
-			<DemoPicker format={format} device={device} noSocial={noSocialMerged} />
+			<DemoPicker format={format} device={device} noSocial={noSocialMerged} hides={hides} />
 		</Container>
 		<div className="half-bg">
 			<Container>
