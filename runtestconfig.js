@@ -9,7 +9,7 @@ const runtestConfig = {
 	vert: '', // ??
 	// Used by jest-puppeteer.config.js to launch an actual browser for debugging
 	head: false, 
-    chrome: false
+    chrome: true
 };
 
 const sitePrefixes = {
