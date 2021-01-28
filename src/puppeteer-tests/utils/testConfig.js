@@ -16,7 +16,7 @@ const testServers = {
 const customVertIds = {
 	test: 'FKXON7w1oZ',
 	prod: '0PVrD1kX',
-	local: 'test_wide_multiple'
+	local: 'FKXON7w1oZ'//test_wide_multiple'
 };
 
 module.exports = {

@@ -3,9 +3,8 @@ const { testServers, customVertIds } = require('../utils/testConfig');
 
 const baseSite = testServers[config.site];
 const adId = config.vert || customVertIds[config.site];
-const protocol = config.site === 'local' ? 'http://' : 'https://';
 
-let url = `${protocol}${baseSite}?gl.vert=${adId}`;
+let url = `${baseSite}?gl.vert=${adId}&forceServerType=test`;
 
 // Variables that will be defined from the adunit json once fetched.
 let videoLength, isSingleCharity, singleOrMultiple, skippable, clickToPlay;
@@ -47,6 +46,9 @@ describe('Adunit tests', () => {
 		if(clickToPlay) {
 			await adunit.waitForSelector('.play-icon');
 			await adunit.click('.play-icon');
+			console.log("Click to play!");
+		} else {
+			console.log("Not click to play!");
 		}
 	});
 

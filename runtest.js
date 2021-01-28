@@ -76,7 +76,13 @@ const runTest = () => {
 	shell.exec(`npm run test ${testPath} ${runInBand}`);
 };
 
-if (!yargv.skipProdTest) {
+let skipProdTest = yargv.skipProdTest;
+if (!config.gitlogPath) {
+	skipProdTest = true;
+	console.log("No gitlog path provided, skipping test");
+}
+
+if (!skipProdTest) {
 	// Check tests are not running on production
 	// Assumes that gitlog.txt has been built by npm run compile
 	// Assumes anything other than test or local hostname is production
