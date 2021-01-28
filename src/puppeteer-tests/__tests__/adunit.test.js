@@ -37,6 +37,7 @@ describe('Adunit tests', () => {
 		clickToPlay = unitJson.variant.play === 'onclick';
 		
 		console.log("Testing on " + adId);
+		console.log("URL: " + url);
 		await page.goto(url);
 		const adunitHandle = await page.$('iframe');
 		adunit = await adunitHandle.contentFrame();
