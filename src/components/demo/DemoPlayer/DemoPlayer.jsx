@@ -34,6 +34,8 @@ const adBlockDetected = !document.getElementById('aiPai9th');
 /* We don't do anything with url, matches, path - we just don't want them in ...params */
 const DemoPlayer = ({ format, device, social, vertId, url, matches, path, ...params}) => {
 	const isSocial = (format === 'social');
+	// Add "autoplay on load" to params
+	params['gl.play'] = 'onload';
 
 	const ad = isSocial ? (
 		<SocialDemo vertId={vertId} adBlocker={adBlockDetected} social={social} {...params} />
