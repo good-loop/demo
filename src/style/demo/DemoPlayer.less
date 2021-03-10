@@ -60,6 +60,7 @@
 .charity-carousel {
 	.charity-logo {
 		animation-iteration-count: infinite;
+		object-fit: contain;
 	}
 	&.count2 {
 		.charity-logo { animation-duration: 6s; }
@@ -88,6 +89,9 @@
 .fake-feed {
 	background-color: black;
 	background-size: 100%;
+	// Watch out! This is tuned to make elements show at the right size
+	// when the phone frame is 80vh tall - see device-frame.less
+	font-size: 1.75vh;
 
 	// Slightly hacky but convenient - apply this class to animate-in elements
 	// and they'll show in the same order they appear in the HTML.
@@ -141,53 +145,6 @@
 		background-color: transparent;
 		z-index: 2;
 	}
-
-	// The ([brand] AND [charities]) and (SWIPE UP TO DONATE) graphics
-	.overlay-top, .overlay-bottom {
-		position: absolute;
-		left: 0;
-		width: 100%;
-		background-position: center bottom;
-		background-size: cover;
-	}
-
-.overlay-top {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-		height: 15%;
-		background-image: url('/img/overlay-insta-top.png');
-		// Keep aspect ratio on all logos
-		img {
-			object-fit: contain;
-		}
-		.charity-carousel {
-			position: relative; // needs to be size/position reference for children
-			.charity-logo {
-				position: absolute;
-				height: 100%;
-				width: 100%;
-			}
-		}
-		// Brand logo and charity carousel sizing
-		> * {
-			height: 100%;
-			width: 33%;
-		}
-	}
-	
-	.overlay-bottom {
-		height: 22%;
-		background-image: url('/img/overlay-insta-bottom.png');
-		bottom: 0;
-	}
-	.gl-logo {
-		position: absolute;
-		display: block;
-		height: 4%;
-		right: 0;
-		bottom: 1%;
-	}
 }
 
 .click-to-play {
@@ -213,4 +170,126 @@
 	background-color: transparent;
 	height: 1px;
 	width: 1px;
+}
+
+
+.fake-feed {
+	.overlay {
+		color: white;
+		> * {
+			display: block;
+			position: absolute;
+			width: 100%;
+		}
+	}
+
+	.overlay-top-gradient {
+		height: 25%;
+		background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0));
+	}
+	.overlay-top {
+		top: 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 1.25em 0.5em;
+
+		.progress-bar {
+			position: absolute;
+			top: 10px;
+			left: 1.5%;
+			height: 2px;
+			width: 97%;
+			background-color: rgba(255, 255, 255, 0.3);
+			.progress-bar-filled {
+				background-color: white;
+				height: 100%;
+				width: 0;
+					animation-timing-function: linear;
+					animation-fill-mode: both;
+				&.animate1 {
+					animation-name: progressBar1;
+				}
+				&.animate2 {
+					animation-name: progressBar2;
+				}
+
+			}
+		}
+		.brand-id {
+			display: flex;
+			.brand-logo, .brand-id-text {
+				display: inline-block;
+				text-align: left;
+			}
+			.brand-logo {
+				height: 2em;
+				width: 2em;
+				border-radius: 50%;
+			}
+			.brand-id-text {
+				margin-left: 1em;
+				font-size: 80%;
+				line-height: 1.25;
+				.sponsored-marker {
+					font-size: 90%;
+				}
+			}
+			.brand-name {
+				font-weight: bold;
+			}
+		}
+
+	}
+
+	.overlay-middle {
+		height: 25%;
+		bottom: 5%;
+		background-image: url("/img/splash-wave.svg");
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		color: black;
+		font-family: 'Montserrat';
+		font-weight: 600;
+		font-size: 80%;
+		line-height: 1.25; // for vertical balance of the middle text
+
+		.gl-logo, .charity-carousel {
+			width: 5em;
+			height: 5em;
+			position: relative; // make carousel position/size reference for charities
+		}
+	}
+	.overlay-bottom {
+		height: 10%;
+		bottom: 0;
+		.bottom-arrow {
+			width: 1.5em;
+			height: 1.5em;
+		}
+		.interface-bits {
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			padding: 0.5em;
+		}
+	}
+
+	.interface-bits {
+		font-size: 120%;
+	}
+}
+
+@keyframes progressBar1 {
+	from { width: 0%; }
+	to { width: 100%; }
+}
+
+@keyframes progressBar2 {
+	from { width: 0%; }
+	to { width: 100%; }
 }

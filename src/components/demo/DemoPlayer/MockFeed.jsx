@@ -62,6 +62,24 @@ const MockFeed = ({advert, showAd, socialType, muted}) => {
 		if (!muted) probeAutoplay(setCanAutoplay);
 	}, []);
 
+	// Determine how long the progress bar's animation should be
+	const [videoDuration, setVideoDuration] = useState(30);
+	const videoRef = (element) => {
+		console.log('ref fired');
+		if (!element || !element.duration || element.duration === videoDuration) return;
+		setVideoDuration(element.duration);
+	}
+
+	// Start animating progress bar when video runs
+	const [progressClass, setProgressClass] = useState('');
+	const onPlay = () => setProgressClass('animate1');
+	const onSeeked = () => {
+		// Seek event fires on loop - change the "animate" class on the progress bar to reset animation
+		setProgressClass(progressClass === 'animate1' ? 'animate2' : 'animate1');
+	}
+
+
+
 	// When the user swipes to the advert, also set state in this component
 	// to remove the splash video so it doesn't keep playing in the background
 	const showAd2 = () => {
@@ -104,6 +122,10 @@ const MockFeed = ({advert, showAd, socialType, muted}) => {
 	// default love, beauty and planet logo is way too wide, so we'll use an alternative one.
 	if (advert && advert.id === DEFAULT_PROD_AD) brandLogo = '/img/default-logo.jpg';
 
+	// TODO Set brand handle?
+	let brandName = advert && advert.name;
+	if (brandName) brandName = brandName.toLocaleLowerCase().replaceAll(/\s/g, '');
+
 	// Construct the charity-logo carousel element
 	const charityLogos = advert && advert.charities && advert.charities.list.map(({logo}) => logo);
 	const charityCarousel = charityLogos ? (
@@ -131,15 +153,35 @@ const MockFeed = ({advert, showAd, socialType, muted}) => {
 			<div className="fill-abs fade-in animate-in-sequence">
 				{ showVideo ? <>
 					<MockTag className="fill-abs mock-ad bg" src={mockSrc} loop muted playsInline autoplay={canAutoplay} />
-					<MockTag className="fill-abs mock-ad" src={mockSrc} loop muted={muted} playsInline autoplay={canAutoplay} />
+					<MockTag className="fill-abs mock-ad" src={mockSrc} loop muted={muted} playsInline autoplay={canAutoplay} onPlay={onPlay} onSeeked={onSeeked} ref={videoRef} />
 				</> : null }
 				<div className="fill-abs overlay">
+					<div className="overlay-top-gradient" />
 					<div className="overlay-top">
-						<img className="brand-logo" src={brandLogo} />
+						<div className="progress-bar">
+							<div className={`progress-bar-filled ${progressClass}`} style={`animation-duration: ${videoDuration}s`}/>
+						</div>
+						<div className="brand-id">
+							<img className="brand-logo" src={brandLogo} />
+							<div className="brand-id-text">
+								<div className="brand-name">{brandName}</div>
+								<div className="sponsored-marker">Sponsored</div>
+							</div>
+						</div>
+						<div className="interface-bits">⨉</div>
+					</div>
+
+					<div className="overlay-middle">
+						<img className="gl-logo" src="/img/logo-colour-roundel.svg" />
+						<div className="unlock-text">UNLOCK A FREE<br/>DONATION</div>
 						{charityCarousel}
 					</div>
-					<div className="overlay-bottom" />
-					<img className="gl-logo" src="/img/logo-social-splash.png" />
+
+					<div className="overlay-bottom">
+						<img className="bottom-arrow" src="/img/instagram-chevron-circle.svg" />
+						<div className="bottom-cta">Learn More</div>
+						<div className="interface-bits">⋯</div>
+					</div>
 				</div>
 			</div>
 			<div className="fill-abs interaction-catcher" {...interactionProps} />
