@@ -149,3 +149,50 @@ video {
 		height: 177.77vw;
 	}
 }
+
+.fake-pointer {
+	position: absolute;
+	width: 5em;
+	top: 100%;
+	left: 50%;
+	transition: all 1s ease;
+	> * {
+		position: absolute;
+	}
+	.click-effect {
+		height: 0.1em;
+		width: 0.1em;
+		border-radius: 50%;
+		border-style: solid;
+		border-width: 0.5em;
+		border-color: rgba(255, 255, 255, 0);
+		transform: translate(-50%, -50%); // centre on tip of pointer
+	}
+	&.click {
+		img {
+			animation: pointer-pulse 0.25s linear 1;
+		}
+		.click-effect {
+			animation: click-wave 0.75s linear 1;
+		}
+	}
+}
+
+@keyframes pointer-pulse {
+	0% { transform: scale(1); }
+	15% { transform: scale(0.75); }
+	100% { transform: scale(1); }
+}
+
+@keyframes click-wave {
+	from {
+		height: 0.1em;
+		width: 0.1em;
+		border-color: rgba(127, 127, 127, 1);
+	}
+	to {
+		height: 10em;
+		width: 10em;
+		border-color: rgba(127, 127, 127, 0);
+	}
+}
