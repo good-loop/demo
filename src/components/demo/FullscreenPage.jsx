@@ -15,24 +15,22 @@ const sizeElements = (event) => {
 	document.getElementById('fullscreen').style.fontSize = (window.innerHeight / 100) + 'px';
 };
 
-const pointerAway = () => {
-	const pointer = document.querySelector('.fake-pointer');
-	pointer.style.opacity = '0';
-}
-
+// Click the charity button, animate the pointer to emphasise interaction, then hide the pointer
 const showClick = (charity) => {
 	const pointer = document.querySelector('.fake-pointer');
 	pointer.className += ' click';
 	window.setTimeout(() => charity.click(), 250);
-	window.setTimeout(pointerAway, 1000);
+	// 
+	window.setTimeout(() => pointer.style.opacity = '0', 1250);
 };
 
-const prepareToClick = () => {
+// Select a charity, move the pointer to its button, hold a moment and then click it
+const clickCharity = () => {
 	const frame = document.querySelector('.goodloopframe');
 	const frameBounds = frame.getBoundingClientRect();
 	const charities = frame.contentDocument.querySelectorAll('.charity');
 	if (charities.length < 2) return;
-	const charity = charities[Math.floor(Math.random() * charities.length)];
+	const charity = charities[charities.length - 1]; // Click middle of 3 charities, or first of 2
 	const bounds = charity.getBoundingClientRect();
 	// click a little towards the bottom-right to keep logo more visible
 	const xMiddle = bounds.left + (bounds.width * 0.66) + frameBounds.left;
@@ -43,24 +41,19 @@ const prepareToClick = () => {
 	pointer.style.top = yMiddle + 'px';
 	pointer.style.left = xMiddle + 'px';
 
-	window.setTimeout(() => showClick(charity), 1000);
+	window.setTimeout(() => showClick(charity), 2000);
 }
+
+// Hook for the ad recorder to trigger the fake mouse pointer & charity click
+window.goodloop = window.goodloop || {};
+window.goodloop.clickCharity = clickCharity;
 
 const FullscreenPage = ({size = 'landscape', 'gl.vert': vertId = DEFAULT_AD}) => {
 	useEffect(() => {
-		// Show the fake click effect? Wait how long?
-
-		const clickDelay = new URL(window.location).searchParams.get('clickDelay');
-		if (clickDelay) {
-			window.setTimeout(prepareToClick, Number.parseFloat(clickDelay));
-		}
-		
 		sizeElements(); // set sizing once
 		window.addEventListener('resize', sizeElements); // and update on resize/rotate
 		return () => window.removeEventListener('resize', sizeElements); // and clean up on unmount
 	}, []);
-
-	const pointerStyle = true ? {} : {display: 'none'};
 
 	return <>
 		<div id="fullscreen" className={size}>
