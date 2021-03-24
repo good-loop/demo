@@ -5,7 +5,7 @@ import { Alert } from 'reactstrap';
 
 import GoodLoopAd from "../../GoodLoopAd";
 import MockFeed from './MockFeed';
-import { DEFAULT_PROD_AD, DEFAULT_TEST_AD } from '../constants';
+import { DEFAULT_PROD_AD, DEFAULT_PROD_ADVERTISER, DEFAULT_TEST_AD, DEFAULT_TEST_ADVERTISER } from '../constants';
 
 
 /**
@@ -17,6 +17,22 @@ let portalPrefix = '';
 if (window.location.hostname.match(/^(test)/)) portalPrefix = 'test';
 if (window.location.hostname.match(/^(local)/)) portalPrefix = 'local';
 let protocol = window.location.protocol;
+
+const prodIds = { vert: DEFAULT_PROD_AD, vertiser: DEFAULT_PROD_ADVERTISER };
+
+const getFromPortal = ({ type, id, callback, status }) => {
+	// default ad / advertiser should come from production
+	const serverBase = (prodIds[type] === id) ? (
+		'https://portal.good-loop.com'
+	) : (
+		`${protocol}//${portalPrefix}portal.good-loop.com`
+	)
+	const url = `${serverBase}/${type}/${id}.json${status ? `?status=${status}` : ''}`;
+
+	fetch(url)
+	.then(res => res.json())
+	.then(({cargo}) => callback && callback(cargo));
+};
 
 
 const getAdvertFromPortal = ({id, callback, status}) => {
@@ -30,6 +46,20 @@ const getAdvertFromPortal = ({id, callback, status}) => {
 	if (status) adUrl += `?status=${status}`
 	// Fetch the portal data, extract its json (json() returns a Promise) and execute the supplied callback
 	return fetch(adUrl)
+		.then(res => res.json())
+		.then(({cargo}) => callback && callback(cargo));
+};
+
+const getVertiserFromPortal = ({id, callback, status}) => {
+	// as above - default ad's advertiser should come from production
+	let url = (id === 'UzzQ3V22') ? (
+		`https://portal.good-loop.com/vert/${id}.json`
+	) : (
+		`${protocol}//${portalPrefix}portal.good-loop.com/vert/${id}.json`
+	);
+
+	if (status) url += `?status=${status}`
+		fetch(url)
 		.then(res => res.json())
 		.then(({cargo}) => callback && callback(cargo));
 };
@@ -59,11 +89,16 @@ const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social, ...params}) =>
 
 	const [showAd, setShowAd] = useState(false); // User has swiped/clicked to show the ad
 	const [advert, setAdvert] = useState(null); // Advert object as retrieved from portal
+	const [advertiser, setAdvertiser] = useState(null); // Advert's advertiser
 
 	// On mounting the SocialDemo element or changing advert ID, fetch the advert from the portal.
 	useEffect(() => {
-		getAdvertFromPortal({id: vertId, callback: setAdvert, status: params['gl.status']});
+		getFromPortal({type: 'vert', id: vertId, callback: setAdvert, status: params['gl.status']});
 	}, [vertId]);
+
+	useEffect(() => {
+		getFromPortal({type: 'vertiser', id: advert.vertiser, callback: setAdvertiser});
+	}, [advert])
 
 
 	// We can auto redirect to default advert with the line below, but I think an alert is more useful to users.
@@ -81,7 +116,7 @@ const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social, ...params}) =>
 	return (
 		<div className="ad-sizer portrait">
 			<div className="aspectifier" />
-			<MockFeed advert={advert} showAd={() => setShowAd(true)} socialType={social} muted={!params.unmuteSocial}/>
+			<MockFeed advert={advert} advertiser={advertiser} showAd={() => setShowAd(true)} socialType={social} muted={!params.unmuteSocial}/>
 			<div className={`social-ad fill-abs ${showAd ? 'show' : ''}`}>
 				{ showAd && advert ? <GoodLoopAd {...unitProps} /> : '' }
 			</div>

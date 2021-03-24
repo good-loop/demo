@@ -52,7 +52,7 @@ const socialAppLogos = {
 
 
 /** Currently just Instagram. Mocks up the advert as it would be seen on a social network. */
-const MockFeed = ({advert, showAd, socialType, muted}) => {
+const MockFeed = ({advert, advertiser, showAd, socialType, muted}) => {
 	const [visClass, setVisClass] = useState(''); // 'visible' if the fake feed is on-screen and should start animating
 	const [showVideo, setShowVideo] = useState(true); // We'll hide the video after the user swipes to the Good-Loop ad
 
@@ -123,7 +123,7 @@ const MockFeed = ({advert, showAd, socialType, muted}) => {
 	if (advert && advert.id === DEFAULT_PROD_AD) brandLogo = '/img/default-logo.jpg';
 
 	// TODO Set brand handle?
-	let brandName = advert && advert.name;
+	let brandName = advertiser && advertiser.name;
 	if (brandName) brandName = brandName.toLocaleLowerCase().replaceAll(/\s/g, '');
 
 	// Construct the charity-logo carousel element
@@ -178,7 +178,8 @@ const MockFeed = ({advert, showAd, socialType, muted}) => {
 					</div>
 
 					<div className="overlay-bottom">
-						<img className="bottom-arrow" src="/img/instagram-chevron-circle.svg" />
+						<img className="bottom-arrow first" src="/img/instagram-chevron.svg" />
+						<img className="bottom-arrow second" src="/img/instagram-chevron-circle.svg" />
 						<div className="bottom-cta">Learn More</div>
 						<div className="interface-bits">⋯</div>
 					</div>

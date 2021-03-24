@@ -270,6 +270,16 @@
 		.bottom-arrow {
 			width: 1.5em;
 			height: 1.5em;
+			// Mimic Instagram behaviour: plain arrow fades to inverse in roundel
+			&.first {
+				position: absolute;
+				opacity: 1;
+				animation: 0.4s fadeOut 2s linear forwards;
+			}
+			&.second {
+				opacity: 0;
+				animation: 0.4s fadeOut 2s linear reverse forwards;
+			}
 		}
 		.interface-bits {
 			position: absolute;
@@ -282,6 +292,11 @@
 	.interface-bits {
 		font-size: 120%;
 	}
+}
+
+@keyframes fadeOut {
+	from { opacity: 1; }
+	to { opacity: 0; }
 }
 
 @keyframes progressBar1 {
