@@ -50,9 +50,80 @@ const socialAppLogos = {
 	instagram: '/img/instagram-logo.jpg'
 };
 
+const InstagramStories = ({brandLogo, brandName, charityCarousel, progressClass, videoDuration, mockMedia}) => (
+	<div className="fill-abs fade-in">
+		{mockMedia}
+		<div className="interface fill-abs">
+			<div className="top-gradient" />
+				<div className="progress-bar">
+					<div className={`progress-bar-filled ${progressClass}`} style={`animation-duration: ${videoDuration}s`}/>
+				</div>
+				<div className="brand-id">
+					<img className="brand-logo" src={brandLogo} />
+					<div className="brand-id-text">
+						<div className="brand-name">{brandName}</div>
+						<div className="sponsored-marker">Sponsored</div>
+					</div>
+				</div>
+				<div className="controls dismiss">⨉</div>
+				<div className="swipe-cta">
+					<img className="arrow first" src="/img/instagram-chevron.svg" />
+					<img className="arrow second" src="/img/instagram-chevron-circle.svg" />
+					<div className="text">Learn More</div>
+				</div>
+				<div className="controls options">⋯</div>
+		</div>
+		<div className="video-overlay fill-abs">
+			<div className="wave">
+				<img className="brand-logo" src={brandLogo} />
+				<div className="unlock-text">UNLOCK A FREE<br/>DONATION</div>
+				{charityCarousel}
+			</div>
+			<img className="gl-ident" src="/img/logo-social-ident.svg" />
+		</div>
+	</div>
+);
+
+const InstagramInFeed =  ({brandLogo, brandName, charityCarousel, progressClass, videoDuration, mockMedia}) => (
+	<div className="fill-abs fade-in">
+		<img className="interface-top fill-bar" src="/img/instagram-feed-top.png" />
+		<div className="brand-id fill-bar">
+			<img className="brand-logo" src={brandLogo} />
+			<div className="brand-id-text">
+				<div className="brand-name">{brandName}</div>
+				<div className="sponsored-marker">Sponsored</div>
+			</div>
+			<div className="controls options">⋮</div>
+		</div>
+		<div className="media-box fill-bar">
+			<div className="media-sizer">
+				{mockMedia}
+			</div>
+			<div className="video-overlay fill-abs">
+				<div className="wave">
+					<img className="brand-logo" src={brandLogo} />
+					<div className="unlock-text">UNLOCK A FREE<br/>DONATION</div>
+					{charityCarousel}
+				</div>
+				<img className="gl-ident" src="/img/logo-social-ident.svg" />
+			</div>
+		</div>
+		<div className="swipe-cta">
+			Learn More
+			<img className="chevron" src="/img/chevron-right.svg" />
+		</div>
+		<img className="interface-middle fill-bar" src="/img/instagram-feed-middle.png" />
+		<div className="likes">871 likes</div>
+		<div className="post-text">
+			<span className="brand-name">{brandName}</span> Swipe to find out how we're giving lorem ipsum dolor sit amet, adepiscing consectetur elit,
+		</div>
+		<img className="interface-bottom fill-bar" src="/img/instagram-feed-bottom.png" />
+	</div>
+);
+
 
 /** Currently just Instagram. Mocks up the advert as it would be seen on a social network. */
-const MockFeed = ({advert, advertiser, showAd, socialType, muted}) => {
+const MockFeed = ({advert, advertiser, showAd, socialType, socialContext, muted}) => {
 	const [visClass, setVisClass] = useState(''); // 'visible' if the fake feed is on-screen and should start animating
 	const [showVideo, setShowVideo] = useState(true); // We'll hide the video after the user swipes to the Good-Loop ad
 
@@ -77,8 +148,6 @@ const MockFeed = ({advert, advertiser, showAd, socialType, muted}) => {
 		// Seek event fires on loop - change the "animate" class on the progress bar to reset animation
 		setProgressClass(progressClass === 'animate1' ? 'animate2' : 'animate1');
 	}
-
-
 
 	// When the user swipes to the advert, also set state in this component
 	// to remove the splash video so it doesn't keep playing in the background
@@ -146,45 +215,27 @@ const MockFeed = ({advert, advertiser, showAd, socialType, muted}) => {
 		</div>
 	);
 
+	const mockMedia = showVideo ? <>
+		<MockTag className="mock-ad bg fill-abs" src={mockSrc} loop muted playsInline autoplay={canAutoplay} />
+		<MockTag className="mock-ad fill-abs" src={mockSrc} loop muted={muted} playsInline autoplay={canAutoplay} onPlay={onPlay} onSeeked={onSeeked} ref={videoRef} />
+	</> : null;
+
+	const feedProps = { brandLogo, brandName, charityCarousel, progressClass, videoDuration, mockMedia };
+
+	let feed;
+	if (socialType === 'instagram') {
+		if (socialContext === 'stories') {
+			feed = <InstagramStories {...feedProps} />
+		} else if (socialContext === 'infeed') {
+			feed = <InstagramInFeed {...feedProps} />
+		}
+	}
 
 	return (
-		<div className={`fake-feed fill-abs ${visClass}`}>
+		<div className={`fake-feed fill-abs ${visClass} ${socialType} ${socialContext}`}>
 			<img src={socialAppLogos[socialType]} className="fill-abs social-splash" />
-			<div className="fill-abs fade-in animate-in-sequence">
-				{ showVideo ? <>
-					<MockTag className="fill-abs mock-ad bg" src={mockSrc} loop muted playsInline autoplay={canAutoplay} />
-					<MockTag className="fill-abs mock-ad" src={mockSrc} loop muted={muted} playsInline autoplay={canAutoplay} onPlay={onPlay} onSeeked={onSeeked} ref={videoRef} />
-				</> : null }
-				<div className="fill-abs overlay">
-					<div className="overlay-top-gradient" />
-					<div className="overlay-top">
-						<div className="progress-bar">
-							<div className={`progress-bar-filled ${progressClass}`} style={`animation-duration: ${videoDuration}s`}/>
-						</div>
-						<div className="brand-id">
-							<img className="brand-logo" src={brandLogo} />
-							<div className="brand-id-text">
-								<div className="brand-name">{brandName}</div>
-								<div className="sponsored-marker">Sponsored</div>
-							</div>
-						</div>
-						<div className="interface-bits">⨉</div>
-					</div>
-
-					<div className="overlay-middle">
-						<img className="gl-logo" src="/img/logo-colour-roundel.svg" />
-						<div className="unlock-text">UNLOCK A FREE<br/>DONATION</div>
-						{charityCarousel}
-					</div>
-
-					<div className="overlay-bottom">
-						<img className="bottom-arrow first" src="/img/instagram-chevron.svg" />
-						<img className="bottom-arrow second" src="/img/instagram-chevron-circle.svg" />
-						<div className="bottom-cta">Learn More</div>
-						<div className="interface-bits">⋯</div>
-					</div>
-				</div>
-			</div>
+			{feed}
+			
 			<div className="fill-abs interaction-catcher" {...interactionProps} />
 			{ !canAutoplay && clickToPlay }
 		</div>

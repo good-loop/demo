@@ -52,10 +52,10 @@ const getAdvertFromPortal = ({id, callback, status}) => {
 
 const getVertiserFromPortal = ({id, callback, status}) => {
 	// as above - default ad's advertiser should come from production
-	let url = (id === 'UzzQ3V22') ? (
-		`https://portal.good-loop.com/vert/${id}.json`
+	let url = (id === DEFAULT_PROD_ADVERTISER) ? (
+		`https://portal.good-loop.com/vertiser/${id}.json`
 	) : (
-		`${protocol}//${portalPrefix}portal.good-loop.com/vert/${id}.json`
+		`${protocol}//${portalPrefix}portal.good-loop.com/vertiser/${id}.json`
 	);
 
 	if (status) url += `?status=${status}`
@@ -65,7 +65,7 @@ const getVertiserFromPortal = ({id, callback, status}) => {
 };
 
 
-const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social, ...params}) => {
+const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social, context, ...params}) => {
 	// Adblock active? Show a warning.
 	if (adBlocker) return adBlockerAlert;
 
@@ -73,15 +73,15 @@ const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social, ...params}) =>
 	// So - override the default to use the LBP advert.
 	if (vertId === DEFAULT_TEST_AD) vertId = DEFAULT_PROD_AD;
 
-	// If no social app specified, default to Instagram & set URL to match
-	if (!social) {
+	// If no app or context specified, default to Instagram Stories & set URL to match
+	if (!social || !context) {
 		let {search, hash} = window.location;
 		const params = new URLSearchParams(search);
 		params.set('gl.vert', vertId);
 		search = '?' + params.toString();
 
 		if (hash) hash = '#' + hash;
-		route(`/portrait/social/instagram${search}${hash}`);
+		route(`/portrait/social/instagram/stories${search}${hash}`);
 	};
 
 	// TODO What was the below comment referring to? 
@@ -93,13 +93,12 @@ const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social, ...params}) =>
 
 	// On mounting the SocialDemo element or changing advert ID, fetch the advert from the portal.
 	useEffect(() => {
-		getFromPortal({type: 'vert', id: vertId, callback: setAdvert, status: params['gl.status']});
+		getAdvertFromPortal({id: vertId, callback: setAdvert, status: params['gl.status']});
 	}, [vertId]);
 
 	useEffect(() => {
-		getFromPortal({type: 'vertiser', id: advert.vertiser, callback: setAdvertiser});
+		advert && getVertiserFromPortal({id: advert.vertiser, callback: setAdvertiser});
 	}, [advert])
-
 
 	// We can auto redirect to default advert with the line below, but I think an alert is more useful to users.
 	// if ( advert && ! mockSocialImage && vertId !== DEFAULT_PROD_AD ) route('/portrait/social/' + `?gl.vert=${DEFAULT_PROD_AD}`); // if no teaser image available show default advert instead
@@ -116,7 +115,7 @@ const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social, ...params}) =>
 	return (
 		<div className="ad-sizer portrait">
 			<div className="aspectifier" />
-			<MockFeed advert={advert} advertiser={advertiser} showAd={() => setShowAd(true)} socialType={social} muted={!params.unmuteSocial}/>
+			<MockFeed advert={advert} advertiser={advertiser} showAd={() => setShowAd(true)} socialType={social} socialContext={context} muted={!params.unmuteSocial}/>
 			<div className={`social-ad fill-abs ${showAd ? 'show' : ''}`}>
 				{ showAd && advert ? <GoodLoopAd {...unitProps} /> : '' }
 			</div>
