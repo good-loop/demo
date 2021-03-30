@@ -29,7 +29,7 @@ const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocia
 		<DemoSiteNavBar />
 		<Container>
 			<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
-			<DemoPicker format={format} device={device} noSocial={noSocialMerged} hides={hides} />
+			<DemoPicker format={format} device={device} social={social} noSocial={noSocialMerged} hides={hides} {...props} />
 		</Container>
 		<div className="half-bg">
 			<Container>
@@ -45,7 +45,6 @@ const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocia
 			<HowItWorksSection />
 			<FooterSection />
 		</Container>
-		
 	</>;
 };
 

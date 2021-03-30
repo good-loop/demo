@@ -5,7 +5,7 @@ import { landscapeSvg, desktopSvg, portraitSvg } from './DemoSvg';
 
 
 /** Generates links to change the format (social/video) and simulated device (landscape/portrait phone, desktop) */
-const DemoPicker = ({ format, device, social, noSocial, hides }) => {
+const DemoPicker = ({ format, device, social, context, noSocial, hides }) => {
 
 	const deviceClasses = newDevice => {
 		let classes = `button picker-button ${newDevice}`
@@ -17,6 +17,13 @@ const DemoPicker = ({ format, device, social, noSocial, hides }) => {
 	const formatClasses = newFormat => {
 		let classes = `picker-button ${newFormat}`;
 		if (newFormat === format) classes += ' current';
+		return classes;
+	};
+
+	// Social has subtypes for context - at least on Instagram - addressed as eg /portrait/social/instagram/infeed
+	const socialClasses = newSocial => {
+		let classes = `picker-button ${newSocial}`;
+		if (newSocial === social || newSocial === `${social}/${context}`) classes += ' current';
 		return classes;
 	};
 
@@ -45,8 +52,7 @@ const DemoPicker = ({ format, device, social, noSocial, hides }) => {
 		</Row>
 	);
 
-	return <>
-		{formatPicker}
+	const devicePicker = (format !== 'social') ? (
 		<Row className="device-picker justify-content-center pb-4 flex-row">
 			<Col xs="auto" md="auto" className="text-center flex-row">
 				{hides.includes("mobile-landscape") ? '' :
@@ -63,6 +69,25 @@ const DemoPicker = ({ format, device, social, noSocial, hides }) => {
 					</a>}
 			</Col>
 		</Row>
+	) : null;
+
+	const socialPicker = (format === 'social') ? (
+		<Row className="social-picker justify-content-center pb-4 flex-row">
+			<Col xs="auto" md="auto" className="text-center flex-row">
+					<a href={hrefUrl({newSocial: 'instagram/stories'})} className={socialClasses('instagram/stories')} >
+						Instagram<br/>Stories
+					</a>
+					<a href={hrefUrl({newSocial: 'instagram/infeed'})} className={socialClasses('instagram/infeed')} >
+						Instagram<br/>In-Feed
+					</a>
+			</Col>
+		</Row>
+	) : null
+
+	return <>
+		{formatPicker}
+		{devicePicker}
+		{socialPicker}
 	</>;
 };
 
