@@ -50,6 +50,9 @@ const socialAppLogos = {
 	instagram: '/img/instagram-logo.jpg'
 };
 
+/**
+ * TODO Doc - link to Instagram's specs for this, or an example
+ */
 const InstagramStories = ({brandLogo, brandName, charityCarousel, progressClass, videoDuration, mockMedia}) => (
 	<div className="fill-abs fade-in">
 		{mockMedia}
@@ -84,6 +87,9 @@ const InstagramStories = ({brandLogo, brandName, charityCarousel, progressClass,
 	</div>
 );
 
+/**
+ * TODO Doc - link to Instagram's specs for this, or an example
+ */
 const InstagramInFeed =  ({brandLogo, brandName, charityCarousel, progressClass, videoDuration, mockMedia}) => (
 	<div className="fill-abs fade-in">
 		<img className="interface-top fill-bar" src="/img/instagram-feed-top.png" />
