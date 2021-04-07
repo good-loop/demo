@@ -58,23 +58,25 @@ const InstagramStories = ({brandLogo, brandName, charityCarousel, progressClass,
 		{mockMedia}
 		<div className="interface fill-abs">
 			<div className="top-gradient" />
-				<div className="progress-bar">
-					<div className={`progress-bar-filled ${progressClass}`} style={`animation-duration: ${videoDuration}s`}/>
+			<div className="bottom-gradient" />
+			<div className="progress-bar">
+				<div className={`progress-bar-filled ${progressClass}`} style={`animation-duration: ${videoDuration}s`}/>
+			</div>
+			<div className="brand-id">
+				<img className="brand-logo" src={brandLogo} />
+				<div className="brand-id-text">
+					<div className="brand-name">{brandName}</div>
+					<div className="sponsored-marker">Sponsored</div>
 				</div>
-				<div className="brand-id">
-					<img className="brand-logo" src={brandLogo} />
-					<div className="brand-id-text">
-						<div className="brand-name">{brandName}</div>
-						<div className="sponsored-marker">Sponsored</div>
-					</div>
-				</div>
-				<div className="controls dismiss">⨉</div>
-				<div className="swipe-cta">
-					<img className="arrow first" src="/img/instagram-chevron.svg" />
-					<img className="arrow second" src="/img/instagram-chevron-circle.svg" />
-					<div className="text">Learn More</div>
-				</div>
-				<div className="controls options">⋯</div>
+			</div>
+			<div className="controls dismiss">⨉</div>
+			<div className="swipe-cta">
+				<img className="arrow first" src="/img/instagram-chevron.svg" />
+				<img className="arrow second" src="/img/instagram-chevron-circle.svg" />
+				<div className="text">Learn More</div>
+			</div>
+			<div className="controls options">⋯</div>
+			
 		</div>
 		<div className="video-overlay fill-abs">
 			<div className="wave">
