@@ -23,6 +23,12 @@
 			height: 5em;
 			position: relative; // make carousel position/size reference for charities
 		}
+
+		animation-name: wave-in;
+		animation-duration: 1s;
+		animation-timing-function: ease;
+		animation-iteration-count: 1;
+		animation-fill-mode: both
 	}
 
 	/* Good-Loop overlay: the finger graphic with the Good-Loop ident */
@@ -32,6 +38,12 @@
 		padding: 0.1em 0 0.1em 0.5em;
 		border-radius: 1.5em 0 0 1.5em;
 		height: 2.5em;
+		animation-name: ident-in-out;
+		animation-delay: 1s;
+		animation-duration: 4s;
+		animation-timing-function: ease-in-out;
+		animation-iteration-count: 1;
+		animation-fill-mode: both
 	}
 
 	/* Instagram interface: the "learn more" swipe-up prompt */
@@ -66,7 +78,7 @@
 			background-color: rgba(255, 255, 255, 0.3);
 			width: 97%;
 			margin: 0 1.5%;
-			height: 2px;
+			height: 0.1em;
 			.progress-bar-filled {
 				background-color: white;
 				height: 100%;
@@ -112,7 +124,7 @@
 			.interface {
 				color: white;
 				.progress-bar {
-					top: 10px;
+					top: 0.5em;
 				}
 				.brand-id {
 					position: absolute;
@@ -240,22 +252,34 @@
 	100% { opacity: 0; }
 }
 @keyframes logoFade3a {
-	0% { opacity: 1 }
-	33.3% { opacity: 0}
-	66.6% { opacity: 0}
-	100% { opacity: 1}
+	0% { opacity: 1; }
+	33.3% { opacity: 0; }
+	66.6% { opacity: 0; }
+	100% { opacity: 1; }
 }
 @keyframes logoFade3b {
-	0% { opacity: 0 }
-	33.3% { opacity: 1 }
-	66.6% { opacity: 0 }
-	100% { opacity: 0 }
+	0% { opacity: 0; }
+	33.3% { opacity: 1; }
+	66.6% { opacity: 0; }
+	100% { opacity: 0; }
 }
 @keyframes logoFade3c {
-	0% { opacity: 0 }
-	33.3% { opacity: 0 }
-	66.6% { opacity: 1 }
-	100% { opacity: 0 }
+	0% { opacity: 0; }
+	33.3% { opacity: 0; }
+	66.6% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@keyframes ident-in-out {
+	0% { right: -100%; }
+	20% { right: 0; }
+	80% { right: 0; }
+	100% { right: -100%; }
+}
+
+@keyframes wave-in {
+	0% { bottom: -100%; }
+	100% { } // bottom: whatever's defined for the context (eg stories or in-feed)
 }
 
 // Animate the two- or three-charity carousel fade
