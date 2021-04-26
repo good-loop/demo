@@ -30,6 +30,9 @@ const getPrefixProtocol = (pre) => {
 }
 
 const getUrlGeneric = ({production, file, params}) => {
+	if (params['gl.debug'] !== 'false' && file === 'unit.js') {
+		file = 'unit-debug.js';
+	}
 	const forceServerType = params.forceServerType;
 	const url = new URL(
 		(forceServerType ?

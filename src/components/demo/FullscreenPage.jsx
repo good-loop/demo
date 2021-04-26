@@ -17,19 +17,25 @@ const sizeElements = (event) => {
 
 // Click the charity button, animate the pointer to emphasise interaction, then hide the pointer
 const showClick = (charity) => {
+	window.setTimeout(() => charity.click(), 250);
+	if (!showFakePointer) return;
+	
+	// Fake pointer requested? Hide it again after click.
 	const pointer = document.querySelector('.fake-pointer');
 	pointer.className += ' click';
-	window.setTimeout(() => charity.click(), 250);
-	// 
 	window.setTimeout(() => pointer.style.opacity = '0', 1250);
 };
 
 // Select a charity, move the pointer to its button, hold a moment and then click it
 const clickCharity = () => {
+	window.setTimeout(() => showClick(charity), 2000);
+	if (!showFakePointer) return;
+
+	// Fake pointer requested? Fade it in and move it into position.
 	const frame = document.querySelector('.goodloopframe');
 	const frameBounds = frame.getBoundingClientRect();
 	const charities = frame.contentDocument.querySelectorAll('.charity');
-	if (charities.length < 2) return;
+	if (charities.length < 2) return; // Only one charity? No pick -> no click -> no fake pointer.
 	const charity = charities[charities.length - 1]; // Click middle of 3 charities, or first of 2
 	const bounds = charity.getBoundingClientRect();
 	// click a little towards the bottom-right to keep logo more visible
@@ -40,17 +46,15 @@ const clickCharity = () => {
 	pointer.style.opacity = '1';
 	pointer.style.top = yMiddle + 'px';
 	pointer.style.left = xMiddle + 'px';
-
-	window.setTimeout(() => showClick(charity), 2000);
 }
 
 // Hook for the ad recorder to trigger the fake mouse pointer & charity click
-window.goodloop = window.goodloop || {};
-window.goodloop.clickCharity = clickCharity;
+window.recorderControls = { clickCharity };
 
 const FullscreenPage = ({size = 'landscape', 'gl.vert': vertId = DEFAULT_AD}) => {
 	useEffect(() => {
 		sizeElements(); // set sizing once
+		window.showFakePointer = new URL(window.location).searchParams.get('showPointer') === 'true';
 		window.addEventListener('resize', sizeElements); // and update on resize/rotate
 		return () => window.removeEventListener('resize', sizeElements); // and clean up on unmount
 	}, []);
