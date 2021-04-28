@@ -100,6 +100,11 @@ const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social, context, ...pa
 		advert && getVertiserFromPortal({id: advert.vertiser, callback: setAdvertiser});
 	}, [advert])
 
+	// If the advert ID, social platform, or context to simulate changes, return to the initial simulated feed
+	useEffect(() => {
+		setShowAd(false);
+	}, [social, context, vertId]);
+
 	// We can auto redirect to default advert with the line below, but I think an alert is more useful to users.
 	// if ( advert && ! mockSocialImage && vertId !== DEFAULT_PROD_AD ) route('/portrait/social/' + `?gl.vert=${DEFAULT_PROD_AD}`); // if no teaser image available show default advert instead
 

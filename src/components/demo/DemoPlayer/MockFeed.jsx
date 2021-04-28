@@ -141,6 +141,11 @@ const MockFeed = ({advert, advertiser, showAd, socialType, socialContext, muted}
 		if (!muted) probeAutoplay(setCanAutoplay);
 	}, []);
 
+	// If the advert ID, social platform, or context to simulate changes, return to the initial simulated feed
+	useEffect(() => {
+		setShowVideo(true);
+	}, [socialType, socialContext, advert.id]);
+
 	// Determine how long the progress bar's animation should be
 	const [videoDuration, setVideoDuration] = useState(30);
 	const videoRef = (element) => {
