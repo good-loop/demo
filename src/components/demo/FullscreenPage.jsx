@@ -28,19 +28,21 @@ const showClick = (charity) => {
 
 // Select a charity, move the pointer to its button, hold a moment and then click it
 const clickCharity = () => {
-	window.setTimeout(() => showClick(charity), 2000);
-	if (!showFakePointer) return;
-
-	// Fake pointer requested? Fade it in and move it into position.
+	// Find a charity to click...
 	const frame = document.querySelector('.goodloopframe');
-	const frameBounds = frame.getBoundingClientRect();
 	const charities = frame.contentDocument.querySelectorAll('.charity');
 	if (charities.length < 2) return; // Only one charity? No pick -> no click -> no fake pointer.
 	const charity = charities[charities.length - 1]; // Click middle of 3 charities, or first of 2
-	const bounds = charity.getBoundingClientRect();
+
+	window.setTimeout(() => showClick(charity), 2000);
+
+	// Fake pointer requested? Fade it in and move it into position.
+	if (!showFakePointer) return;
+	const frameBounds = frame.getBoundingClientRect();
+	const cBounds = charity.getBoundingClientRect();
 	// click a little towards the bottom-right to keep logo more visible
-	const xMiddle = bounds.left + (bounds.width * 0.66) + frameBounds.left;
-	const yMiddle = bounds.top + (bounds.height * 0.66) + frameBounds.top;
+	const xMiddle = cBounds.left + (cBounds.width * 0.66) + frameBounds.left;
+	const yMiddle = cBounds.top + (cBounds.height * 0.66) + frameBounds.top;
 	// Fade in and slide into position
 	const pointer = document.querySelector('.fake-pointer');
 	pointer.style.opacity = '1';
@@ -49,6 +51,7 @@ const clickCharity = () => {
 }
 
 // Hook for the ad recorder to trigger the fake mouse pointer & charity click
+// TODO Hook the gl:minview etc events fired by the adunit to do this automatically and minimise how much Selenium has to interact with the page
 window.recorderControls = { clickCharity };
 
 const FullscreenPage = ({size = 'landscape', 'gl.vert': vertId = DEFAULT_AD}) => {
