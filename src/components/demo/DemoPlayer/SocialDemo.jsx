@@ -5,7 +5,7 @@ import { Alert } from 'reactstrap';
 
 import GoodLoopAd from "../../GoodLoopAd";
 import MockFeed from './MockFeed';
-import { DEFAULT_PROD_AD, DEFAULT_PROD_ADVERTISER, DEFAULT_TEST_AD, DEFAULT_TEST_ADVERTISER } from '../constants';
+import { DEFAULT_PROD_SOCIAL_AD, DEFAULT_PROD_SOCIAL_ADVERTISER, DEFAULT_TEST_SOCIAL_AD, DEFAULT_TEST_SOCIAL_ADVERTISER } from '../constants';
 
 
 /**
@@ -18,7 +18,7 @@ if (window.location.hostname.match(/^(test)/)) portalPrefix = 'test';
 if (window.location.hostname.match(/^(local)/)) portalPrefix = 'local';
 let protocol = window.location.protocol;
 
-const prodIds = { vert: DEFAULT_PROD_AD, vertiser: DEFAULT_PROD_ADVERTISER };
+const prodIds = { vert: DEFAULT_PROD_SOCIAL_AD, vertiser: DEFAULT_PROD_SOCIAL_ADVERTISER };
 
 const getFromPortal = ({ type, id, callback, status }) => {
 	// default ad / advertiser should come from production
@@ -37,7 +37,7 @@ const getFromPortal = ({ type, id, callback, status }) => {
 
 const getAdvertFromPortal = ({id, callback, status}) => {
 	// The default social ad should always be fetched from the production server.
-	let adUrl = (id === DEFAULT_PROD_AD) ? (
+	let adUrl = (id === DEFAULT_PROD_SOCIAL_AD) ? (
 		`https://portal.good-loop.com/vert/${id}.json`
 	) : (
 		`${protocol}//${portalPrefix}portal.good-loop.com/vert/${id}.json`
@@ -52,7 +52,7 @@ const getAdvertFromPortal = ({id, callback, status}) => {
 
 const getVertiserFromPortal = ({id, callback, status}) => {
 	// as above - default ad's advertiser should come from production
-	let url = (id === DEFAULT_PROD_ADVERTISER) ? (
+	let url = (id === DEFAULT_PROD_SOCIAL_ADVERTISER) ? (
 		`https://portal.good-loop.com/vertiser/${id}.json`
 	) : (
 		`${protocol}//${portalPrefix}portal.good-loop.com/vertiser/${id}.json`
@@ -65,13 +65,13 @@ const getVertiserFromPortal = ({id, callback, status}) => {
 };
 
 
-const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social, context, ...params}) => {
+const SocialDemo = ({vertId = DEFAULT_PROD_SOCIAL_AD, adBlocker, social, context, ...params}) => {
 	// Adblock active? Show a warning.
 	if (adBlocker) return adBlockerAlert;
 
 	// For local/testdemo.good-loop.com: The default test ad for other contexts is test_wide_multiple but that isn't set up for social.
 	// So - override the default to use the LBP advert.
-	if (vertId === DEFAULT_TEST_AD) vertId = DEFAULT_PROD_AD;
+	if (vertId === DEFAULT_TEST_AD) vertId = DEFAULT_PROD_SOCIAL_AD;
 
 	// If no app or context specified, default to Instagram Stories & set URL to match
 	if (!social || !context) {
@@ -110,7 +110,7 @@ const SocialDemo = ({vertId = DEFAULT_PROD_AD, adBlocker, social, context, ...pa
 
 	const unitProps = {
 		vertId: vertId,
-		production: vertId === DEFAULT_PROD_AD, // Default (production) ad always comes from the prod server
+		production: vertId === DEFAULT_PROD_SOCIAL_AD, // Default (production) ad always comes from the prod server
 		size: 'portrait',
 		delivery: 'app',
 		'gl.after': 'persist',
