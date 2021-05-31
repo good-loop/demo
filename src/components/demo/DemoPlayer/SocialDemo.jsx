@@ -5,7 +5,7 @@ import { Alert } from 'reactstrap';
 
 import GoodLoopAd from "../../GoodLoopAd";
 import MockFeed from './MockFeed';
-import { DEFAULT_PROD_SOCIAL_AD, DEFAULT_PROD_SOCIAL_ADVERTISER, DEFAULT_TEST_SOCIAL_AD, DEFAULT_TEST_SOCIAL_ADVERTISER } from '../constants';
+import { DEFAULT_PROD_SOCIAL_AD, DEFAULT_PROD_SOCIAL_ADVERTISER } from '../constants';
 
 
 /**
@@ -68,10 +68,6 @@ const getVertiserFromPortal = ({id, callback, status}) => {
 const SocialDemo = ({vertId = DEFAULT_PROD_SOCIAL_AD, adBlocker, social, context, ...params}) => {
 	// Adblock active? Show a warning.
 	if (adBlocker) return adBlockerAlert;
-
-	// For local/testdemo.good-loop.com: The default test ad for other contexts is test_wide_multiple but that isn't set up for social.
-	// So - override the default to use the LBP advert.
-	if (vertId === DEFAULT_TEST_AD) vertId = DEFAULT_PROD_SOCIAL_AD;
 
 	// If no app or context specified, default to Instagram Stories & set URL to match
 	if (!social || !context) {
