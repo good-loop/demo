@@ -15,8 +15,8 @@ const sizeElements = (event) => {
 	document.getElementById('fullscreen').style.fontSize = (window.innerHeight / 100) + 'px';
 };
 
-// Click the charity button, animate the pointer to emphasise interaction, then hide the pointer
-const showClick = (charity) => {
+/** Click the charity button, animate the pointer to emphasise interaction, then hide the pointer  */ 
+const clickCharity2_doClick = (charity) => {
 	window.setTimeout(() => charity.click(), 250);
 	if (!showFakePointer) return;
 	
@@ -26,7 +26,7 @@ const showClick = (charity) => {
 	window.setTimeout(() => pointer.style.opacity = '0', 1250);
 };
 
-// Select a charity, move the pointer to its button, hold a moment and then click it
+/** */ Select a charity, move the pointer to its button, hold a moment and then click it */
 const clickCharity = () => {
 	// Find a charity to click...
 	const frame = document.querySelector('.goodloopframe');
@@ -34,7 +34,7 @@ const clickCharity = () => {
 	if (charities.length < 2) return; // Only one charity? No pick -> no click -> no fake pointer.
 	const charity = charities[charities.length - 2]; // Click middle of 3 charities, or first of 2
 
-	window.setTimeout(() => showClick(charity), 2000);
+	window.setTimeout(() => clickCharity2_doClick(charity), 2000);
 
 	// Fake pointer requested? Fade it in and move it into position.
 	if (!showFakePointer) return;
