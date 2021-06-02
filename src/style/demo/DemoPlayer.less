@@ -51,6 +51,8 @@
 	// when the phone frame is 80vh tall - see device-frame.less
 	font-size: 1.75vh;
 
+	text-align: center;
+
 	// Slightly hacky but convenient - apply this class to animate-in elements
 	// and they'll show in the same order they appear in the HTML.
 	.animate-in-sequence {
@@ -103,6 +105,11 @@
 		background-color: transparent;
 		z-index: 2;
 	}
+}
+
+// Full screen social splash needs larger font, since it's 100% viewport height rather than ~58% as on main demo page
+#fullscreen .fake-feed {
+	font-size: 3vh;
 }
 
 .click-to-play {
