@@ -4,6 +4,7 @@ import { Router } from 'preact-router';
 
 import DemoPage from './DemoPage';
 import FullscreenPage from './FullscreenPage';
+import FullscreenSocial from './FullscreenSocial';
 
 const TestMain = () => <>
 	<Router>
@@ -12,6 +13,9 @@ const TestMain = () => <>
 		<DemoPage path="/:device/:format/:social?" />
 		<DemoPage path="/:device/:format?" />
 		<FullscreenPage path="/fullscreen/:size?" />
+		<FullscreenSocial path="/fullscreen/social/:platform/context?" />
+		<FullscreenSocial path="/fullscreen/social/:platform" />
+		<FullscreenSocial path="/fullscreen/social" />
 	</Router>
 </>;
 
