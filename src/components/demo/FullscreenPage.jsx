@@ -26,7 +26,7 @@ const clickCharity2_doClick = (charity) => {
 	window.setTimeout(() => pointer.style.opacity = '0', 1250);
 };
 
-/** */ Select a charity, move the pointer to its button, hold a moment and then click it */
+/** Select a charity, move the pointer to its button, hold a moment and then click it */
 const clickCharity = () => {
 	// Find a charity to click...
 	const frame = document.querySelector('.goodloopframe');
