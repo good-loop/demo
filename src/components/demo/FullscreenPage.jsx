@@ -30,7 +30,7 @@ const clickCharity2_doClick = (charity) => {
 const clickCharity = () => {
 	// Find a charity to click...
 	const frame = document.querySelector('.goodloopframe');
-	const charities = frame.contentDocument.querySelectorAll('.charity');
+	const charities = frame.contentDocument.querySelectorAll('.charity-button');
 	if (charities.length < 2) return; // Only one charity? No pick -> no click -> no fake pointer.
 	const charity = charities[charities.length - 2]; // Click middle of 3 charities, or first of 2
 
