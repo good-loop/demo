@@ -65,18 +65,14 @@ const getVertiserFromPortal = ({id, callback, status}) => {
 };
 
 
-const SocialDemo = ({vertId = DEFAULT_PROD_SOCIAL_AD, adBlocker, social, context, ...params}) => {
+const SocialDemo = ({vertId, adBlocker, social, context, ...params}) => {
 	// Adblock active? Show a warning.
 	if (adBlocker) return adBlockerAlert;
 
 	// If no app or context specified, default to Instagram Stories & set URL to match
 	if (!social || !context) {
 		let {search, hash} = window.location;
-		const params = new URLSearchParams(search);
-		params.set('gl.vert', vertId);
-		search = '?' + params.toString();
-
-		if (hash) hash = '#' + hash;
+		if (hash) hash = '#' + hash; // don't insert # unless there's something to go after it
 		route(`/portrait/social/instagram/stories${search}${hash}`);
 	};
 

@@ -3,6 +3,7 @@ import { h, Fragment } from 'preact';
 import { Row, Col, UncontrolledAlert } from 'reactstrap';
 
 import GoodLoopAd from '../../GoodLoopAd';
+import { DEFAULT_AD, DEFAULT_PROD_SOCIAL_AD } from '../constants';
 
 import SocialDemo from './SocialDemo';
 
@@ -32,10 +33,13 @@ const adBlockDetected = !document.getElementById('aiPai9th');
 
 
 /* We don't do anything with url, matches, path - we just don't want them in ...params */
-const DemoPlayer = ({ format, device, social, vertId, url, matches, path, ...params}) => {
+const DemoPlayer = ({ format, device, social, 'gl.vert': vertId, url, matches, path, ...params}) => {
 	const isSocial = (format === 'social');
 	// Add "autoplay on load" to params
 	params['gl.play'] = 'onload';
+
+	// Fill in default advert ID - different ads for social and video
+	if (!vertId) vertId = isSocial ? DEFAULT_PROD_SOCIAL_AD : DEFAULT_AD;
 
 	const ad = isSocial ? (
 		<SocialDemo vertId={vertId} adBlocker={adBlockDetected} social={social} {...params} />
