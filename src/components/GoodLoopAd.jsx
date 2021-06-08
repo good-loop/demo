@@ -3,6 +3,11 @@ import { h, Fragment, Component } from 'preact';
 import { useState } from 'preact/hooks';
 import { getNonce, getUnitUrl } from '../utils';
 
+/**
+ * ??Relation to VpaidAd.jsx??
+ * ?? Differences from the (React) GoodLoopUnit.jsx??
+ * 
+ */
 class GoodLoopAd extends Component {
 	shouldComponentUpdate(nextProps) {
 		return getNonce(nextProps) !== getNonce(this.props);
