@@ -20,7 +20,7 @@ import { DEFAULT_AD } from "./constants";
  * - mobile-portrait
  * Given as a comma separated string as served by PropControl
  */
-const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocial, hide, 'gl.vert': vertId = DEFAULT_AD, ...props}) => {
+const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocial, hide, ...props}) => {
 	// Allow any noSocial param at all, even an empty one, to work (unless value is "false")
 	const noSocialMerged = (noSocial !== 'false' && noSocial !== undefined) || (nosocial !== 'false' && nosocial !== undefined);
 	const hides = hide ? hide.split(",") : [];
@@ -33,7 +33,7 @@ const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocia
 		</Container>
 		<div className="half-bg">
 			<Container>
-				<DemoPlayer format={format} device={device} social={social} vertId={vertId} noSocial={noSocialMerged} {...props} />
+				<DemoPlayer format={format} device={device} social={social} noSocial={noSocialMerged} {...props} />
 			</Container>
 		</div>
 		<div className="red-bg">
