@@ -1,3 +1,5 @@
+import { getServer } from "../../../src/utils";
+
 // TODO pick a different test ad, and fix wrappers to reflect this
 const DEFAULT_AD = "ojRZHHd48s"; // H&M
 const DEFAULT_TEST_AD = "ojRZHHd48s"; // H&M
@@ -37,8 +39,8 @@ if ((window.location+"").includes("format")) {
 }
 
 
-const isTest = window.location.href.includes('test');
-console.warn("isTest", isTest);
+const isTest = getServer()==='test';
+// console.warn("isTest", isTest);
 //if (isTest) newParams.set("server", "test");
 
 if (!newParams.get("gl.vert")) {

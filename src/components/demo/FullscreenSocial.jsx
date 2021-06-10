@@ -10,19 +10,6 @@ let protocol = window.location.protocol;
 
 const prodIds = { vert: DEFAULT_PROD_SOCIAL_AD, vertiser: DEFAULT_PROD_SOCIAL_ADVERTISER };
 
-const getFromPortal = ({ type, id, callback, status }) => {
-	// default ad / advertiser should come from production
-	const serverBase = (prodIds[type] === id) ? (
-		'https://portal.good-loop.com'
-	) : (
-		`${protocol}//${portalPrefix}portal.good-loop.com`
-	)
-	const url = `${serverBase}/${type}/${id}.json${status ? `?status=${status}` : ''}`;
-
-	fetch(url)
-	.then(res => res.json())
-	.then(({cargo}) => callback && callback(cargo));
-};
 
 /**
  * Set font size on the containing div to 1% window.innerHeight

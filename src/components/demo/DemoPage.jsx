@@ -7,7 +7,6 @@ import { faTwitterSquare, faFacebookSquare, faYoutubeSquare, faInstagram, faLink
 import DemoSiteNavBar from './DemoSiteNavBar';
 import DemoPlayer from './DemoPlayer/DemoPlayer';
 import DemoPicker from './DemoPicker';
-import { DEFAULT_AD } from "./constants";
 
 /**
  * We don't do anything with {matches, path, url} here - we just don't want them in ...props

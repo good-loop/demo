@@ -2,6 +2,7 @@
 <!-- Overflow hidden needed for IE. Looks like MS sets this to scrollbar by default -->
 <html lang="en" style="overflow: hidden;">
 <head>
+	<!-- Doc: When / how is this file used?? -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -21,6 +22,7 @@
         <div class='page'>         
             <div class="goodloopad" />
 			<script>
+				// TODO support legacyUnitBranch for older versions of unit.js
 				// unit.js - but allow dynamic test/production server switch.
 				var isDebug = window.location.search.indexOf("server=test") !== -1;				
 				var istest = isDebug ? 'test' : '';

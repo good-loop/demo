@@ -1,7 +1,7 @@
 /* @jsx h */
 import { h, Fragment, Component } from 'preact';
-import { useState } from 'preact/hooks';
-import { getNonce, getUnitUrl } from '../utils';
+import { useState, useEffect } from 'preact/hooks';
+import { getAdvertFromPortal, getNonce, getUnitUrl } from '../utils';
 
 /**
  * ??Relation to VpaidAd.jsx??
@@ -14,6 +14,16 @@ class GoodLoopAd extends Component {
 	}
 
 	render({size, vertId, production, bare, extraNonce, delivery, refPolicy = 'no-referrer-when-downgrade', ...params}) {
+		// Load the ad
+		const [advert, setAdvert] = useState(null); // Advert object as retrieved from portal	
+		// On mounting element or changing advert ID, fetch the advert from the portal.
+		// This is for legacyUnitBranch
+		useEffect(() => {
+			getAdvertFromPortal({id: vertId, callback: setAdvert, status: params['gl.status']});
+		}, [vertId]);
+		if ( ! advert) {
+			return null; // do we have a spinner we can use??
+		}
 		// Changes if size or ad ID changes - breaks identity on script & container so they get removed on next render
 		const nonce = getNonce(this.props);
 
@@ -24,7 +34,8 @@ class GoodLoopAd extends Component {
 				'gl.vert': vertId,
 				'gl.delivery': delivery,
 				...params,
-			}
+			},
+			legacyUnitBranch: advert.legacyUnitBranch
 		});
 
 		const bareElements = <>
