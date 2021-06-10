@@ -10,10 +10,11 @@ import TestControls from './TestControls';
 
 
 const PlayerPage = ({ vpaid, size, ...params}) => {
-	const adProps = {'gl.status': 'DRAFT', size, ...params};
-	const ad = vpaid ? <VpaidAd {...adProps} /> : <GoodLoopAd {...adProps} />;
-
 	const [restrictWidth, setRestrictWidth] = useState(false);
+	// Add "restrict width of fabric ad" as a gl.param so changing it breaks identity & reloads the ad
+	const adProps = {'gl.status': 'DRAFT', size, 'gl.restrictWidth': restrictWidth, ...params};
+
+	const AdTag = vpaid ? VpaidAd : GoodLoopAd;
 
 	const extraControls = size === 'fabric' ? (
 		<Container>
@@ -34,7 +35,9 @@ const PlayerPage = ({ vpaid, size, ...params}) => {
 		</Container>
 		<Container fluid={size === 'fabric'} style={restrictWidth ? {maxWidth: '300px'} : {}}>
 			<Row>
-				<Col>{ad}</Col>
+				<Col>
+					<AdTag {...adProps} />
+				</Col>
 			</Row>
 		</Container>
 		{extraControls}
