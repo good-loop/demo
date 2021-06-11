@@ -1,11 +1,14 @@
 /* @jsx h */
 import { h, Fragment, Component } from 'preact';
-import { useState } from 'preact/hooks';
-import { getNonce, getUnitUrl } from '../utils';
+import { useState, useEffect } from 'preact/hooks';
+import { getAdvertFromPortal, getNonce, getUnitUrl } from '../utils';
 
 /**
- * ??Relation to VpaidAd.jsx??
- * ?? Differences from the (React) GoodLoopUnit.jsx??
+ * How is this different from the React GoodLoopAd.jsx used in the portal?
+ * This takes advantage of the fact that - unlike in React - Preact allows you to insert a <script>
+ * tag in a component, and it will load and execute just as if you'd placed it in the DOM with e.g.
+ * document.createElement - which allows for much simpler code.
+ * It also doesn't provide for replacing custom CSS without reloading the whole adunit.
  * 
  */
 class GoodLoopAd extends Component {
@@ -14,6 +17,18 @@ class GoodLoopAd extends Component {
 	}
 
 	render({size, vertId, production, bare, extraNonce, delivery, refPolicy = 'no-referrer-when-downgrade', ...params}) {
+		// Load the ad
+		const [advert, setAdvert] = useState(null); // Advert object as retrieved from portal	
+		// On mounting element or changing advert ID, fetch the advert from the portal.
+		// This is for legacyUnitBranch
+		// TODO Rather than portal, get unit.json from the ad server and insert its contents in a div with ID #preloaded-unit-json
+		// in the .goodloopad div - BehaviourLoadUnit will find it and use it, saving the latency of another round-trip.
+		useEffect(() => {
+			getAdvertFromPortal({id: vertId, callback: setAdvert, status: params['gl.status']});
+		}, [vertId]);
+		if (!advert) {
+			return null; // do we have a spinner we can use??
+		}
 		// Changes if size or ad ID changes - breaks identity on script & container so they get removed on next render
 		const nonce = getNonce(this.props);
 
@@ -24,7 +39,8 @@ class GoodLoopAd extends Component {
 				'gl.vert': vertId,
 				'gl.delivery': delivery,
 				...params,
-			}
+			},
+			legacyUnitBranch: advert.legacyUnitBranch
 		});
 
 		const bareElements = <>

@@ -6,63 +6,7 @@ import { Alert } from 'reactstrap';
 import GoodLoopAd from "../../GoodLoopAd";
 import MockFeed from './MockFeed';
 import { DEFAULT_PROD_SOCIAL_AD, DEFAULT_PROD_SOCIAL_ADVERTISER } from '../constants';
-
-
-/**
- * TODO There are a lot of hyper-specific behaviours here and in MockFeed triggered
- * by advert ID being === DEFAULT_PROD_AD... There must be a better way.
- */
-
-let portalPrefix = '';
-if (window.location.hostname.match(/^(test)/)) portalPrefix = 'test';
-if (window.location.hostname.match(/^(local)/)) portalPrefix = 'local';
-let protocol = window.location.protocol;
-
-const prodIds = { vert: DEFAULT_PROD_SOCIAL_AD, vertiser: DEFAULT_PROD_SOCIAL_ADVERTISER };
-
-const getFromPortal = ({ type, id, callback, status }) => {
-	// default ad / advertiser should come from production
-	const serverBase = (prodIds[type] === id) ? (
-		'https://portal.good-loop.com'
-	) : (
-		`${protocol}//${portalPrefix}portal.good-loop.com`
-	)
-	const url = `${serverBase}/${type}/${id}.json${status ? `?status=${status}` : ''}`;
-
-	fetch(url)
-	.then(res => res.json())
-	.then(({cargo}) => callback && callback(cargo));
-};
-
-
-const getAdvertFromPortal = ({id, callback, status}) => {
-	// The default social ad should always be fetched from the production server.
-	let adUrl = (id === DEFAULT_PROD_SOCIAL_AD) ? (
-		`https://portal.good-loop.com/vert/${id}.json`
-	) : (
-		`${protocol}//${portalPrefix}portal.good-loop.com/vert/${id}.json`
-	);
-
-	if (status) adUrl += `?status=${status}`
-	// Fetch the portal data, extract its json (json() returns a Promise) and execute the supplied callback
-	return fetch(adUrl)
-		.then(res => res.json())
-		.then(({cargo}) => callback && callback(cargo));
-};
-
-const getVertiserFromPortal = ({id, callback, status}) => {
-	// as above - default ad's advertiser should come from production
-	let url = (id === DEFAULT_PROD_SOCIAL_ADVERTISER) ? (
-		`https://portal.good-loop.com/vertiser/${id}.json`
-	) : (
-		`${protocol}//${portalPrefix}portal.good-loop.com/vertiser/${id}.json`
-	);
-
-	if (status) url += `?status=${status}`
-		fetch(url)
-		.then(res => res.json())
-		.then(({cargo}) => callback && callback(cargo));
-};
+import { getAdvertFromPortal, getVertiserFromPortal } from '../../../utils';
 
 
 const SocialDemo = ({vertId, adBlocker, social, context, ...params}) => {

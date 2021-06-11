@@ -33,6 +33,9 @@ const getUrlGeneric = ({production, file, params}) => {
 	if (params['gl.debug'] !== 'false' && file === 'unit.js') {
 		file = 'unit-debug.js';
 	}
+	if (params.legacyUnitBranch) {
+		file = 'legacy-units/'+params.legacyUnitBranch+'/'+file;
+	}
 	const forceServerType = params.forceServerType;
 	const url = new URL(
 		(forceServerType ?
@@ -45,7 +48,6 @@ const getUrlGeneric = ({production, file, params}) => {
 			if (name.match(/^gl\./) && value) url.searchParams.append(name, value);
 		});
 	}
-	
 	return url.toString();
 };
 
@@ -86,3 +88,61 @@ export const visibleElement = (element) => {
 
 export const getUnitUrl = ({...props} = {}) => getUrlGeneric({...props, file: 'unit.js'});
 export const getVastUrl = ({...props} = {}) => getUrlGeneric({...props, file: 'vast.xml'});
+
+
+export const getServer = () => {
+	let server = new URLSearchParams(window.location.search).get("server");
+	if (server) {
+		return server;
+	}
+	if (window.location.hostname.match(/^(test)/)) server = 'test';
+	if (window.location.hostname.match(/^(local)/)) server = 'local';
+	if ( ! server) server = "production";
+	return server;
+};
+
+/**
+ * TODO There are a lot of hyper-specific behaviours here and in MockFeed triggered
+ * by advert ID being === DEFAULT_PROD_AD... There must be a better way.
+ */
+
+// for testing, allow server to be set via server=production|test|local
+let server = getServer();
+let portalPrefix = server==="production"? "" : server;
+let protocol = window.location.protocol;
+if (portalPrefix != "local") protocol = "https:";
+
+// const prodIds = { vert: DEFAULT_PROD_SOCIAL_AD, vertiser: DEFAULT_PROD_SOCIAL_ADVERTISER };
+//  const getFromPortal = ({ type, id, callback, status }) => {
+// 	 // default ad / advertiser should come from production
+// 	 const serverBase = (prodIds[type] === id) ? (
+// 		 'https://portal.good-loop.com'
+// 	 ) : (
+// 		 `${protocol}//${portalPrefix}portal.good-loop.com`
+// 	 )
+// 	 const url = `${serverBase}/${type}/${id}.json${status ? `?status=${status}` : ''}`;
+ 
+// 	 fetch(url)
+// 	 .then(res => res.json())
+// 	 .then(({cargo}) => callback && callback(cargo));
+//  };
+ 
+ export const getAdvertFromPortal = ({id, callback, status}) => {
+	 let adUrl = `${protocol}//${portalPrefix}portal.good-loop.com/vert/${id}.json`;
+ 
+	 if (status) adUrl += `?status=${status}`
+	 // Fetch the portal data, extract its json (json() returns a Promise) and execute the supplied callback
+	 return fetch(adUrl)
+		 .then(res => res.json())
+		 .then(({cargo}) => callback && callback(cargo));
+ };
+ 
+ export const getVertiserFromPortal = ({id, callback, status}) => {
+	 let url = `${protocol}//${portalPrefix}portal.good-loop.com/vertiser/${id}.json`;
+ 
+	 if (status) url += `?status=${status}`
+		 fetch(url)
+		 .then(res => res.json())
+		 .then(({cargo}) => callback && callback(cargo));
+ };
+ 
