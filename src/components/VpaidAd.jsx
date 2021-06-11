@@ -5,6 +5,10 @@ import { getNonce, getVastUrl } from '../utils';
 
 let vastplayer;
 
+/**
+ * Inserts a Good-Loop ad in the DOM - but loads it in/via a VPAID container.
+ * Used for testing VPAID-specific aspects of ad behaviour in an environment we control.
+ */
 class VpaidAd extends Component {
 	shouldComponentUpdate(nextProps) {
 		return getNonce(nextProps) !== getNonce(this.props);
@@ -27,20 +31,23 @@ class VpaidAd extends Component {
 		});
 		params['gl.size'] = size;
 
-		// run whenever container changes
+		// Whenever container changes...
 		useEffect(() => {
 			if (container.current) {
+				// New container? Start a new VAST player.
 				vastplayer = new VASTPlayer(container.current);
 				vastplayer.load(getVastUrl({params})).then(function() { vastplayer.startAd(); });
 			} else {
+				// Switching away from old container? Stop the current player, if present.
 				vastplayer && vastplayer.stopAd();
 			}
 			// Stop ad (ie destroy player) on unmount
 			return () => vastplayer && vastplayer.stopAd();
 		}, [container]);
 
-		// Don't put the VPAID ad directly into the sizer! It seems to clone the element and break identity
-		// - so Preact loses control of it, and can't remove it from the DOM when the component unmounts.
+		// Don't put the VPAID ad directly into the sizer! Whene VASTplayer initialises, it clones the element
+		// - so Preact loses control of it, and can't e.g. remove it from the DOM when the component unmounts,
+		// meaning when the advert ID changes, a second orphaned container is left behind.
 		return (
 			<div className={`ad-sizer ${size}`} key={nonce + '-vpaid'}>
 				<div className="vpaid-container" ref={container} />
