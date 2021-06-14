@@ -1,7 +1,7 @@
 /* @jsx h */
 import { h, Fragment, Component } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
-import { getAdvertFromPortal, getNonce, getUnitUrl } from '../utils';
+import { getAdvertFromAS, getNonce, getAdUrl } from '../utils';
 
 /**
  * How is this different from the React GoodLoopAd.jsx used in the portal?
@@ -9,56 +9,48 @@ import { getAdvertFromPortal, getNonce, getUnitUrl } from '../utils';
  * tag in a component, and it will load and execute just as if you'd placed it in the DOM with e.g.
  * document.createElement - which allows for much simpler code.
  * It also doesn't provide for replacing custom CSS without reloading the whole adunit.
- * 
+ * See VpaidAd.jsx for an adunit loader which inserts it using a VAST/VPAID player, instead of directly.
  */
-class GoodLoopAd extends Component {
-	shouldComponentUpdate(nextProps) {
-		return getNonce(nextProps) !== getNonce(this.props);
-	}
 
-	render({size, vertId, production, bare, extraNonce, delivery, refPolicy = 'no-referrer-when-downgrade', ...params}) {
-		// Load the ad
-		const [advert, setAdvert] = useState(null); // Advert object as retrieved from portal	
-		// On mounting element or changing advert ID, fetch the advert from the portal.
-		// This is for legacyUnitBranch
-		// TODO Rather than portal, get unit.json from the ad server and insert its contents in a div with ID #preloaded-unit-json
-		// in the .goodloopad div - BehaviourLoadUnit will find it and use it, saving the latency of another round-trip.
-		useEffect(() => {
-			getAdvertFromPortal({id: vertId, callback: setAdvert, status: params['gl.status']});
-		}, [vertId]);
-		if (!advert) {
-			return null; // do we have a spinner we can use??
-		}
-		// Changes if size or ad ID changes - breaks identity on script & container so they get removed on next render
-		const nonce = getNonce(this.props);
+const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-when-downgrade', ...params}) => {
+	// Load the ad
+	const [unitJson, setUnitJson] = useState(null); // Preloaded unit.json
+	const [unitBranch, setUnitBranch] = useState(false); // vert.legacyUnitBranch from the above
 
-		const unitUrl = getUnitUrl({
-			production,
-			delivery,
-			params: {
-				'gl.vert': vertId,
-				'gl.delivery': delivery,
-				...params,
-			},
-			legacyUnitBranch: advert.legacyUnitBranch
+	// Fetch the advert from *as.good-loop.com so we can check if it has a legacy branch
+	useEffect(() => {
+		getAdvertFromAS({id: vertId, params}).then(unitObj => {
+			setUnitBranch(unitObj.vert.legacyUnitBranch || '');
+			setUnitJson(JSON.stringify(unitObj));
 		});
+	}, [vertId]);
 
-		const bareElements = <>
-			<div className="goodloopad" data-format={size} data-mobile-format={size} key={nonce + '-container'}/>
-			<script src={unitUrl} key={nonce + '-script'} referrerPolicy={refPolicy} />
-		</>;
-
-		// Aspectifier isn't always wanted - eg in fullscreen mode where making the
-		// container 100% width and forcing it to 16:9 aspect will cause overflow
-		if (bare) return bareElements;
-		
-		return (
-			<div className={`ad-sizer ${size}`} key={nonce + '-direct'}>
-				<div className="aspectifier" />
-				{bareElements}
-			</div>
-		);
+	if (!unitJson || unitBranch === false) { // Once extracted from the ad, unitBranch will be undefined, null, or a string - not logical false
+		return 'Loading unit.json...'; // do we have a spinner we can use?
 	}
+
+	// Changes if size or ad ID changes - breaks identity on script & container so they get removed on next render
+	// TODO Used to be this.props so using params means there's stuff missing, fix
+	const nonce = getNonce({vertId, size, ...params});
+
+	const unitUrl = getAdUrl({file: 'unit.js', ...params, unitBranch});
+
+	const bareElements = <>
+		<div className="goodloopad" data-format={size} data-mobile-format={size} key={nonce + '-container'} />
+		<script src={unitUrl} key={nonce + '-script'} referrerPolicy={refPolicy} />
+		<script id="preloaded-unit-json" type="application/json">{unitJson}</script>
+	</>;
+
+	// Aspectifier isn't always wanted - eg in fullscreen mode where making the
+	// container 100% width and forcing it to 16:9 aspect will cause overflow
+	if (bare) return bareElements;
+	
+	return (
+		<div className={`ad-sizer ${size}`} key={nonce + '-direct'}>
+			<div className="aspectifier" />
+			{bareElements}
+		</div>
+	);
 };
 
 export default GoodLoopAd;

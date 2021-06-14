@@ -143,7 +143,7 @@ const SocialPage = ({halfHeight, size, format, wrapper, ...params}) => {
 	const subtype = wrapper ? 'Brand.com wrapper' : 'Engage to donate';
 
 	const adProps = {
-		delivery: 'app',
+		'gl.delivery': 'app',
 		'gl.status': 'DRAFT',
 		'gl.after': 'persist',
 		...params

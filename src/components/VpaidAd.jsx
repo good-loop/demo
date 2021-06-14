@@ -1,7 +1,7 @@
 /* @jsx h */
 import { h, Component } from 'preact';
 import { useRef, useEffect } from 'preact/hooks';
-import { getNonce, getVastUrl } from '../utils';
+import { getNonce, getVastUrl as getAdUrl } from '../utils';
 
 let vastplayer;
 
@@ -36,7 +36,7 @@ class VpaidAd extends Component {
 			if (container.current) {
 				// New container? Start a new VAST player.
 				vastplayer = new VASTPlayer(container.current);
-				vastplayer.load(getVastUrl({params})).then(function() { vastplayer.startAd(); });
+				vastplayer.load(getAdUrl({file: 'vast.xml', params})).then(function() { vastplayer.startAd(); });
 			} else {
 				// Switching away from old container? Stop the current player, if present.
 				vastplayer && vastplayer.stopAd();

@@ -2,7 +2,7 @@
 /**
  * Construct a string from the props given to GoodLoopAd or VpaidAd which only changes when the adunit should be reloaded
  */
-export const getNonce = (props) => {
+export const getNonce = ({size, extraNonce, ...props}) => {
 	// Pretend vertId passed into ad component is gl.vert, to keep nonce stable
 	if (props.vertId && !props['gl.vert']) props['gl.vert'] = props.vertId;
 
@@ -11,45 +11,54 @@ export const getNonce = (props) => {
 		.filter(([k, v]) => k.match(/^gl\./))
 		.sort(([k1, v1], [k2, v2]) => k1 > k2)
 		.reduce((acc, [k, v]) => acc + k + v, '');
-	return props.size + glParamString + props.extraNonce;
+	return size + glParamString + extraNonce;
 };
 
-
-let prefix = ''; // Default to production adserver (ie running on demo or prodtest.good-loop.com)
-if (window.location.hostname.match(/^local/)) { prefix = 'local'; } // Running on localtest or localdemo.good-loop.com --> talk to localas
-else if (window.location.hostname.match(/(^test)/)) { prefix = 'test'; } // Running on test or testdemo.good-loop.com --> talk to testas
-const glBaseUrl = `${window.location.protocol}//${prefix}as.good-loop.com/`
-const glTestUrl = `https://testas.good-loop.com/`
-const glProdBaseUrl = `https://as.good-loop.com/`;
-
-const getPrefixProtocol = (pre) => {
-	if (pre === 'local')
-		return 'http:'
-	else
-		return 'https:'
+/** What server type are we on - prod, test, or local? */
+let serverType = 'prod'; // Default to production adserver (ie running on demo or prodtest.good-loop.com)
+if (window.location.hostname.match(/^local/)) {
+	serverType = 'local'; // Running on localtest or localdemo.good-loop.com --> talk to localas
+} else if (window.location.hostname.match(/(^test)/)) {
+	serverType = 'test'; // Running on test or testdemo.good-loop.com --> talk to testas
 }
 
-const getUrlGeneric = ({production, file, params}) => {
-	if (params['gl.debug'] !== 'false' && file === 'unit.js') {
+/** Returns the appropriate server domain prefix for the given server type */
+const getPrefix = stype => ({prod: '', test: 'test', local: 'local'}[stype]);
+/** Returns the appropriate http(s) protocol for the given server type */
+const getProtocol = (prefix) => (prefix === 'local') ? 'http:' : 'https:';
+
+const glBaseUrl = `${window.location.protocol}//${getPrefix(serverType)}as.good-loop.com/`
+
+
+/** Get the URL for an ad file (eg unit.js, unit.json, vast.xml) with appropriate server type and parameters*/
+export const getAdUrl = ({file = 'unit.js', forceServerType, unitBranch, ...params}) => {
+	const isUnitJs = (file === 'unit.js');
+	// Override to unit(-debug).js if necessary
+	if (params['gl.debug'] !== 'false' && isUnitJs) {
 		file = 'unit-debug.js';
 	}
-	if (params.legacyUnitBranch) {
-		file = 'legacy-units/'+params.legacyUnitBranch+'/'+file;
+	// ...and override to custom/legacy branch if requested
+	if (unitBranch && isUnitJs) {
+		file = `legacy-units/${unitBranch}/${file}`;
 	}
-	const forceServerType = params.forceServerType;
-	const url = new URL(
-		(forceServerType ?
-		getPrefixProtocol(forceServerType) + "//" + (forceServerType === 'prod' ? '' : forceServerType) + "as.good-loop.com/"
-		: (production ? glProdBaseUrl : glBaseUrl))
-	+ file);
-	
+
+	// use different server to "same type as this site" if requested
+	let baseUrl = glBaseUrl;
+	if (forceServerType) {
+		baseUrl = `${getProtocol(forceServerType)}//${getPrefix(forceServerType)}as.good-loop.com/`;
+	}
+
+	const url = new URL(baseUrl + file)
+
+	// append gl.* parameters
 	if (params) {
 		Object.entries(params).forEach(([name, value]) => {
-			if (name.match(/^gl\./) && value) url.searchParams.append(name, value);
+			if (name.match(/^gl\./) && value) url.searchParams.set(name, value);
 		});
 	}
 	return url.toString();
 };
+
 
 /** Copy-paste from adunit... Examines the given element & returns how much of its area is in the viewport (if not behind another element) */
 export const visibleElement = (element) => {
@@ -86,18 +95,15 @@ export const visibleElement = (element) => {
 	}
 }; // ./visibleElement
 
-export const getUnitUrl = ({...props} = {}) => getUrlGeneric({...props, file: 'unit.js'});
-export const getVastUrl = ({...props} = {}) => getUrlGeneric({...props, file: 'vast.xml'});
-
 
 export const getServer = () => {
-	let server = new URLSearchParams(window.location.search).get("server");
+	let server = new URLSearchParams(window.location.search).get('server');
 	if (server) {
 		return server;
 	}
 	if (window.location.hostname.match(/^(test)/)) server = 'test';
 	if (window.location.hostname.match(/^(local)/)) server = 'local';
-	if ( ! server) server = "production";
+	if (!server) server = 'prod';
 	return server;
 };
 
@@ -108,9 +114,9 @@ export const getServer = () => {
 
 // for testing, allow server to be set via server=production|test|local
 let server = getServer();
-let portalPrefix = server==="production"? "" : server;
+let portalPrefix = server === 'prod' ? '' : server;
 let protocol = window.location.protocol;
-if (portalPrefix != "local") protocol = "https:";
+if (portalPrefix != 'local') protocol = 'https:';
 
 // const prodIds = { vert: DEFAULT_PROD_SOCIAL_AD, vertiser: DEFAULT_PROD_SOCIAL_ADVERTISER };
 //  const getFromPortal = ({ type, id, callback, status }) => {
@@ -127,7 +133,7 @@ if (portalPrefix != "local") protocol = "https:";
 // 	 .then(({cargo}) => callback && callback(cargo));
 //  };
  
- export const getAdvertFromPortal = ({id, callback, status}) => {
+export const getAdvertFromPortal = ({id, callback, status}) => {
 	 let adUrl = `${protocol}//${portalPrefix}portal.good-loop.com/vert/${id}.json`;
  
 	 if (status) adUrl += `?status=${status}`
@@ -136,6 +142,13 @@ if (portalPrefix != "local") protocol = "https:";
 		 .then(res => res.json())
 		 .then(({cargo}) => callback && callback(cargo));
  };
+
+ export const getAdvertFromAS = ({id, params = {}}) => {
+	const adUrl = getAdUrl({file: 'unit.json', 'gl.vert': id, ...params});
+
+	// Fetch the portal data, extract its json (json() returns a Promise) and execute the supplied callback
+	return fetch(adUrl).then(res => res.json());
+};
  
  export const getVertiserFromPortal = ({id, callback, status}) => {
 	 let url = `${protocol}//${portalPrefix}portal.good-loop.com/vertiser/${id}.json`;

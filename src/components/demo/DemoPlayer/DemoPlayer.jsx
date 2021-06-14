@@ -3,7 +3,7 @@ import { h, Fragment } from 'preact';
 import { Row, Col, UncontrolledAlert } from 'reactstrap';
 
 import GoodLoopAd from '../../GoodLoopAd';
-import { DEFAULT_AD, DEFAULT_PROD_SOCIAL_AD } from '../constants';
+import { DEFAULT_AD, DEFAULT_PROD_SOCIAL_AD, serverTypeForAd } from '../constants';
 
 import SocialDemo from './SocialDemo';
 
@@ -40,6 +40,9 @@ const DemoPlayer = ({ format, device, social, 'gl.vert': vertId, url, matches, p
 
 	// Fill in default advert ID - different ads for social and video
 	if (!vertId) vertId = isSocial ? DEFAULT_PROD_SOCIAL_AD : DEFAULT_AD;
+
+	// If the ad is one of the default demo ads, tell GoodLoopAd / SocialDemo to fetch it from the appropriate ad server
+	params.forceServerType = serverTypeForAd[vertId];
 
 	const ad = isSocial ? (
 		<SocialDemo vertId={vertId} adBlocker={adBlockDetected} social={social} {...params} />

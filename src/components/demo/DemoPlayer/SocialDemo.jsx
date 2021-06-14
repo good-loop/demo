@@ -5,7 +5,7 @@ import { Alert } from 'reactstrap';
 
 import GoodLoopAd from "../../GoodLoopAd";
 import MockFeed from './MockFeed';
-import { DEFAULT_PROD_SOCIAL_AD, DEFAULT_PROD_SOCIAL_ADVERTISER } from '../constants';
+import { DEFAULT_PROD_SOCIAL_AD, } from '../constants';
 import { getAdvertFromPortal, getVertiserFromPortal } from '../../../utils';
 
 
@@ -32,6 +32,7 @@ const SocialDemo = ({vertId, adBlocker, social, context, ...params}) => {
 		getAdvertFromPortal({id: vertId, callback: setAdvert, status: params['gl.status']});
 	}, [vertId]);
 
+	// When the advert is loaded, get the advertiser as well - their info is needed to construct the fake interface
 	useEffect(() => {
 		advert && getVertiserFromPortal({id: advert.vertiser, callback: setAdvertiser});
 	}, [advert])
@@ -45,10 +46,9 @@ const SocialDemo = ({vertId, adBlocker, social, context, ...params}) => {
 	// if ( advert && ! mockSocialImage && vertId !== DEFAULT_PROD_AD ) route('/portrait/social/' + `?gl.vert=${DEFAULT_PROD_AD}`); // if no teaser image available show default advert instead
 
 	const unitProps = {
-		vertId: vertId,
-		production: vertId === DEFAULT_PROD_SOCIAL_AD, // Default (production) ad always comes from the prod server
+		vertId,
 		size: 'portrait',
-		delivery: 'app',
+		'gl.delivery': 'app',
 		'gl.after': 'persist',
 		...params
 	};
