@@ -30,7 +30,7 @@ const getProtocol = (prefix) => (prefix === 'local') ? 'http:' : 'https:';
 const glBaseUrl = `${window.location.protocol}//${getPrefix(serverType)}as.good-loop.com/`
 
 
-/** Get the URL for an ad file (eg unit.js, unit.json, vast.xml) with appropriate server type and parameters*/
+/** Get the URL for an ad file (eg unit.js, unit.json, vast.xml) with appropriate server type and parameters */
 export const getAdUrl = ({file = 'unit.js', forceServerType, unitBranch, ...params}) => {
 	const isUnitJs = (file === 'unit.js');
 	// Override to unit(-debug).js if necessary
@@ -48,7 +48,7 @@ export const getAdUrl = ({file = 'unit.js', forceServerType, unitBranch, ...para
 		baseUrl = `${getProtocol(forceServerType)}//${getPrefix(forceServerType)}as.good-loop.com/`;
 	}
 
-	const url = new URL(baseUrl + file)
+	const url = new URL(baseUrl + file);
 
 	// append gl.* parameters
 	if (params) {

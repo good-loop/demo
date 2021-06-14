@@ -1,7 +1,16 @@
 /* @jsx h */
-import { h, Fragment, Component } from 'preact';
+import { h, Fragment } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import { getAdvertFromAS, getNonce, getAdUrl } from '../utils';
+
+const loadingStyle = {
+	position: 'absolute',
+	left: 0,
+	top: 0,
+	width: '100%',
+	height: '100%',
+	backgroundColor: 'white'
+};
 
 /**
  * How is this different from the React GoodLoopAd.jsx used in the portal?
@@ -25,30 +34,33 @@ const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-wh
 		});
 	}, [vertId]);
 
-	if (!unitJson || unitBranch === false) { // Once extracted from the ad, unitBranch will be undefined, null, or a string - not logical false
-		return 'Loading unit.json...'; // do we have a spinner we can use?
-	}
-
 	// Changes if size or ad ID changes - breaks identity on script & container so they get removed on next render
 	// TODO Used to be this.props so using params means there's stuff missing, fix
 	const nonce = getNonce({vertId, size, ...params});
 
-	const unitUrl = getAdUrl({file: 'unit.js', ...params, unitBranch});
+	let adElements;
+	if (!unitJson || unitBranch === false) { // Once extracted from the ad, unitBranch will be undefined, null, or a string - not logical false
+		adElements = <div style={loadingStyle} />
+	} else {
+		
 
-	const bareElements = <>
-		<div className="goodloopad" data-format={size} data-mobile-format={size} key={nonce + '-container'} />
-		<script src={unitUrl} key={nonce + '-script'} referrerPolicy={refPolicy} />
-		<script id="preloaded-unit-json" type="application/json">{unitJson}</script>
-	</>;
+		const unitUrl = getAdUrl({file: 'unit.js', ...params, unitBranch});
+
+		adElements = <>
+			<div className="goodloopad" data-format={size} data-mobile-format={size} key={nonce + '-container'} />
+			<script src={unitUrl} key={nonce + '-script'} referrerPolicy={refPolicy} />
+			<script id="preloaded-unit-json" type="application/json">{unitJson}</script>
+		</>;
+	}
 
 	// Aspectifier isn't always wanted - eg in fullscreen mode where making the
 	// container 100% width and forcing it to 16:9 aspect will cause overflow
-	if (bare) return bareElements;
+	if (bare) return adElements;
 	
 	return (
 		<div className={`ad-sizer ${size}`} key={nonce + '-direct'}>
 			<div className="aspectifier" />
-			{bareElements}
+			{adElements}
 		</div>
 	);
 };
