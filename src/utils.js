@@ -107,10 +107,6 @@ export const getServer = () => {
 	return server;
 };
 
-/**
- * TODO There are a lot of hyper-specific behaviours here and in MockFeed triggered
- * by advert ID being === DEFAULT_PROD_AD... There must be a better way.
- */
 
 // for testing, allow server to be set via server=production|test|local
 let server = getServer();
@@ -118,44 +114,38 @@ let portalPrefix = server === 'prod' ? '' : server;
 let protocol = window.location.protocol;
 if (portalPrefix != 'local') protocol = 'https:';
 
-// const prodIds = { vert: DEFAULT_PROD_SOCIAL_AD, vertiser: DEFAULT_PROD_SOCIAL_ADVERTISER };
-//  const getFromPortal = ({ type, id, callback, status }) => {
-// 	 // default ad / advertiser should come from production
-// 	 const serverBase = (prodIds[type] === id) ? (
-// 		 'https://portal.good-loop.com'
-// 	 ) : (
-// 		 `${protocol}//${portalPrefix}portal.good-loop.com`
-// 	 )
-// 	 const url = `${serverBase}/${type}/${id}.json${status ? `?status=${status}` : ''}`;
- 
-// 	 fetch(url)
-// 	 .then(res => res.json())
-// 	 .then(({cargo}) => callback && callback(cargo));
-//  };
- 
-export const getAdvertFromPortal = ({id, callback, status}) => {
-	 let adUrl = `${protocol}//${portalPrefix}portal.good-loop.com/vert/${id}.json`;
- 
-	 if (status) adUrl += `?status=${status}`
-	 // Fetch the portal data, extract its json (json() returns a Promise) and execute the supplied callback
-	 return fetch(adUrl)
-		 .then(res => res.json())
-		 .then(({cargo}) => callback && callback(cargo));
- };
 
- export const getAdvertFromAS = ({id, params = {}}) => {
+export const getAdvertFromAS = ({id, params = {}}) => {
 	const adUrl = getAdUrl({file: 'unit.json', 'gl.vert': id, ...params});
 
 	// Fetch the portal data, extract its json (json() returns a Promise) and execute the supplied callback
 	return fetch(adUrl).then(res => res.json());
 };
- 
- export const getVertiserFromPortal = ({id, callback, status}) => {
-	 let url = `${protocol}//${portalPrefix}portal.good-loop.com/vertiser/${id}.json`;
- 
-	 if (status) url += `?status=${status}`
-		 fetch(url)
-		 .then(res => res.json())
-		 .then(({cargo}) => callback && callback(cargo));
- };
- 
+
+/** Generic fetch-object-from-portal */
+const getFromPortal = ({id, callback, status, forceServerType = serverType, objType}) => {
+	let url = `${getProtocol(forceServerType)}//${getPrefix(forceServerType)}portal.good-loop.com/${objType}/${id}.json`;
+
+	if (status) url += `?status=${status}`
+	// Fetch the portal data, extract its json (json() returns a Promise) and execute the supplied callback
+	return fetch(url)
+		.then(res => res.json())
+		.then(({cargo}) => callback && callback(cargo));
+};
+
+
+/**
+ * Get an advert from the portal & c
+ * @param {String} id The advert ID
+ * @param {Function} callback Called with advert object as argument when fetch completed
+ * TODO Refactor to just return promise
+ */
+export const getAdvertFromPortal = (props) => getFromPortal({objType: 'vert', ...props});
+
+/**
+ * Get an advertiser from the portal
+ * @param {String} id The advertiser ID
+ * @param {Function} callback Called with advertiser object as argument when fetch completed
+ * * TODO Refactor to just return promise
+ */
+export const getVertiserFromPortal = (props) => getFromPortal({objType: 'vertiser', ...props});

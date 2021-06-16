@@ -53,9 +53,8 @@ const socialAppLogos = {
 /**
  * TODO Doc - link to Instagram's specs for this, or an example
  */
-const InstagramStories = ({brandLogo, brandName, charityCarousel, progressClass, videoDuration, mockMedia}) => (
-	<div className="fill-abs fade-in">
-		{mockMedia}
+const InstagramStories = ({brandLogo, brandName, charityCarousel, progressClass, videoDuration, mockMedia, noInterface}) => {
+	const instagramOverlay = noInterface ? '' : (
 		<div className="interface fill-abs">
 			<div className="top-gradient" />
 			<div className="bottom-gradient" />
@@ -76,8 +75,13 @@ const InstagramStories = ({brandLogo, brandName, charityCarousel, progressClass,
 				<div className="text">Learn More</div>
 			</div>
 			<div className="controls options">⋯</div>
-			
 		</div>
+	);
+
+	return (
+		<div className="fill-abs fade-in">
+		{mockMedia}
+		{instagramOverlay}
 		<div className="video-overlay fill-abs">
 			<div className="wave">
 				<img className="brand-logo" src={brandLogo} />
@@ -87,7 +91,8 @@ const InstagramStories = ({brandLogo, brandName, charityCarousel, progressClass,
 			<img className="gl-ident" src="/img/logo-social-ident.svg" />
 		</div>
 	</div>
-);
+	);
+};
 
 /**
  * TODO Doc - link to Instagram's specs for this, or an example
@@ -131,7 +136,7 @@ const InstagramInFeed =  ({brandLogo, brandName, charityCarousel, progressClass,
 
 
 /** Currently just Instagram. Mocks up the advert as it would be seen on a social network. */
-const MockFeed = ({advert, advertiser, showAd, socialType, socialContext, muted}) => {
+const MockFeed = ({advert, advertiser, showAd, socialType, socialContext, muted, noInterface}) => {
 	const [visClass, setVisClass] = useState(''); // 'visible' if the fake feed is on-screen and should start animating
 	const [showVideo, setShowVideo] = useState(true); // We'll hide the video after the user swipes to the Good-Loop ad
 
@@ -234,7 +239,7 @@ const MockFeed = ({advert, advertiser, showAd, socialType, socialContext, muted}
 		<MockTag className="mock-ad fill-abs" src={mockSrc} loop muted={muted} playsInline autoplay={canAutoplay} onPlay={onPlay} onSeeked={onSeeked} ref={videoRef} />
 	</> : null;
 
-	const feedProps = { brandLogo, brandName, charityCarousel, progressClass, videoDuration, mockMedia };
+	const feedProps = { brandLogo, brandName, charityCarousel, progressClass, videoDuration, mockMedia, noInterface };
 
 	let feed;
 	if (socialType === 'instagram') {

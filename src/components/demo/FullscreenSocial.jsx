@@ -1,15 +1,7 @@
 import { h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
-import { DEFAULT_PROD_SOCIAL_AD, DEFAULT_PROD_SOCIAL_ADVERTISER } from './constants';
+import { getAdvertFromPortal, getVertiserFromPortal } from '../../utils';
 import MockFeed from './DemoPlayer/MockFeed';
-
-let portalPrefix = '';
-if (window.location.hostname.match(/^(test)/)) portalPrefix = 'test';
-if (window.location.hostname.match(/^(local)/)) portalPrefix = 'local';
-let protocol = window.location.protocol;
-
-const prodIds = { vert: DEFAULT_PROD_SOCIAL_AD, vertiser: DEFAULT_PROD_SOCIAL_ADVERTISER };
-
 
 /**
  * Set font size on the containing div to 1% window.innerHeight
@@ -22,7 +14,14 @@ const prodIds = { vert: DEFAULT_PROD_SOCIAL_AD, vertiser: DEFAULT_PROD_SOCIAL_AD
 	document.getElementById('fullscreen').style.fontSize = (window.innerHeight / 100) + 'px';
 };
 
-const FullscreenSocial = ({platform = 'instagram', context = 'stories', 'gl.vert': vertId }) => {
+/**
+ * @param {?String} platform: The social network (eg "instagram") to simulate
+ * @param {?String} context: The context in which to show the simulated advert (eg "stories", "infeed")
+ * @param {?Boolean} noInterface Only show the simulated splash video - hide platform-specific stuff like username overlay
+ */
+const FullscreenSocial = ({platform = 'instagram', context = 'stories', 'gl.vert': vertId, noInterface = true, ...params}) => {
+	const { forceServerType } = params;
+
 	useEffect(() => {
 		sizeElements(); // set sizing once
 		window.addEventListener('resize', sizeElements); // and update on resize/rotate
@@ -33,15 +32,15 @@ const FullscreenSocial = ({platform = 'instagram', context = 'stories', 'gl.vert
 	const [advertiser, setAdvertiser] = useState();
 
 	useEffect(() => {
-		getFromPortal({type: 'vert', id: vertId, callback: setAdvert});
+		getAdvertFromPortal({id: vertId, callback: setAdvert, forceServerType});
 	}, [vertId]);
 
 	useEffect(() => {
-		advert && getFromPortal({type: 'vertiser', id: advert.vertiser, callback: setAdvertiser});
+		advert && getVertiserFromPortal({id: advert.vertiser, callback: setAdvertiser, forceServerType});
 	}, [advert])
 
 	const feed = advert && advertiser ? (
-		<MockFeed socialType={platform} socialContext={context} advert={advert} advertiser={advertiser} />
+		<MockFeed socialType={platform} socialContext={context} advert={advert} advertiser={advertiser} noInterface={noInterface} />
 	) : null;
 
 	return (
