@@ -42,9 +42,9 @@ const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-wh
 	if (!unitJson || unitBranch === false) { // Once extracted from the ad, unitBranch will be undefined, null, or a string - not logical false
 		adElements = <div style={loadingStyle} />
 	} else {
-		
-
-		const unitUrl = getAdUrl({file: 'unit.js', ...params, unitBranch});
+		// there's a race condition when using legacy units that means variant.delivery / gl.delivery gets unset
+		// this stops the unit rendering TODO resolve later - but for now shim it by setting an override param
+		const unitUrl = getAdUrl({file: 'unit.js', 'gl.delivery': 'direct', ...params, unitBranch});
 
 		adElements = <>
 			<div className="goodloopad" data-format={size} data-mobile-format={size} key={nonce + '-container'} />
