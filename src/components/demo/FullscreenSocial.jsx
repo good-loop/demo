@@ -17,10 +17,12 @@ import MockFeed from './DemoPlayer/MockFeed';
 /**
  * @param {?String} platform: The social network (eg "instagram") to simulate
  * @param {?String} context: The context in which to show the simulated advert (eg "stories", "infeed")
- * @param {?Boolean} noInterface Only show the simulated splash video - hide platform-specific stuff like username overlay
+ * @param {?String} noInterface Only show the simulated splash video - hide platform-specific stuff like username overlay. Default true
  */
-const FullscreenSocial = ({platform = 'instagram', context = 'stories', 'gl.vert': vertId, noInterface = true, ...params}) => {
+const FullscreenSocial = ({platform = 'instagram', context = 'stories', 'gl.vert': vertId, noInterface, ...params}) => {
 	const { forceServerType } = params;
+	// Coerce noInterface from string to boolean
+	noInterface = (noInterface !== 'false');
 
 	useEffect(() => {
 		sizeElements(); // set sizing once
