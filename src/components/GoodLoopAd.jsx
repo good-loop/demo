@@ -22,6 +22,10 @@ const loadingStyle = {
  */
 
 const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-when-downgrade', ...params}) => {
+	// there's a race condition when using legacy units that means variant.delivery / gl.delivery gets unset
+	// this stops the unit rendering TODO resolve later by merging params.variant on unit.json load - but for now shim it here
+	params['gl.delivery'] = 'direct';
+
 	// Load the ad
 	const [unitJson, setUnitJson] = useState(null); // Preloaded unit.json
 	const [unitBranch, setUnitBranch] = useState(false); // vert.legacyUnitBranch from the above
@@ -42,9 +46,7 @@ const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-wh
 	if (!unitJson || unitBranch === false) { // Once extracted from the ad, unitBranch will be undefined, null, or a string - not logical false
 		adElements = <div style={loadingStyle} />
 	} else {
-		// there's a race condition when using legacy units that means variant.delivery / gl.delivery gets unset
-		// this stops the unit rendering TODO resolve later - but for now shim it by setting an override param
-		const unitUrl = getAdUrl({file: 'unit.js', 'gl.delivery': 'direct', ...params, unitBranch});
+		const unitUrl = getAdUrl({file: 'unit.js', ...params, unitBranch});
 
 		adElements = <>
 			<div className="goodloopad" data-format={size} data-mobile-format={size} key={nonce + '-container'} />
