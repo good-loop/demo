@@ -54,7 +54,7 @@ const clickCharity = () => {
 // TODO Hook the gl:minview etc events fired by the adunit to do this automatically and minimise how much Selenium has to interact with the page
 window.recorderControls = { clickCharity };
 
-const FullscreenPage = ({size = 'landscape', 'gl.vert': vertId = DEFAULT_AD}) => {
+const FullscreenPage = ({size = 'landscape', 'gl.vert': vertId = DEFAULT_AD, ...params}) => {
 	useEffect(() => {
 		sizeElements(); // set sizing once
 		window.showFakePointer = new URL(window.location).searchParams.get('showPointer') === 'true';
@@ -65,7 +65,7 @@ const FullscreenPage = ({size = 'landscape', 'gl.vert': vertId = DEFAULT_AD}) =>
 	return <>
 		<div id="fullscreen" className={size}>
 			<div className="fullscreen-inner">
-				<GoodLoopAd bare size={size} vertId={vertId} nonce={`${size}${vertId}`} />
+				<GoodLoopAd bare size={size} vertId={vertId} {...params} />
 			</div>
 			<div className="fake-pointer" style={{opacity: '0'}}>
 				<div className="click-effect" />
