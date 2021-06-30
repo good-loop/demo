@@ -24,7 +24,7 @@ const loadingStyle = {
 const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-when-downgrade', ...params}) => {
 	// there's a race condition when using legacy units that means variant.delivery / gl.delivery gets unset
 	// this stops the unit rendering TODO resolve later by merging params.variant on unit.json load - but for now shim it here
-	params['gl.delivery'] = 'direct';
+	if (!params['gl.delivery']) params['gl.delivery'] = 'direct'; // don't overwrite delivery=app on social page!
 
 	// Load the ad
 	const [unitJson, setUnitJson] = useState(null); // Preloaded unit.json
