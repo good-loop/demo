@@ -20,7 +20,7 @@ import MockFeed from './DemoPlayer/MockFeed';
  * @param {?String} noInterface Only show the simulated splash video - hide platform-specific stuff like username overlay. Default true
  */
 const FullscreenSocial = ({platform = 'instagram', context = 'stories', 'gl.vert': vertId, noInterface, ...params}) => {
-	const { forceServerType } = params;
+	const { forceServerType, 'gl.status': status } = params;
 	// Coerce noInterface from string to boolean
 	noInterface = (noInterface !== 'false');
 
@@ -34,11 +34,11 @@ const FullscreenSocial = ({platform = 'instagram', context = 'stories', 'gl.vert
 	const [advertiser, setAdvertiser] = useState();
 
 	useEffect(() => {
-		getAdvertFromPortal({id: vertId, callback: setAdvert, forceServerType});
+		getAdvertFromPortal({id: vertId, status, callback: setAdvert, forceServerType});
 	}, [vertId]);
 
 	useEffect(() => {
-		advert && getVertiserFromPortal({id: advert.vertiser, callback: setAdvertiser, forceServerType});
+		advert && getVertiserFromPortal({id: advert.vertiser, status, callback: setAdvertiser, forceServerType});
 	}, [advert])
 
 	const feed = advert && advertiser ? (
