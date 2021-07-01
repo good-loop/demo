@@ -9,6 +9,11 @@ const aboutDropDownItems = [
 	{ text: 'Press & awards', link: 'https://good-loop.com/press-and-awards.html' }
 ]
 
+const newsDropDownItems = [
+	{ text: 'Good News', link: 'https://good-loop.com/good-news/index.html' },
+	{ text: 'Podcast', link: 'https://good-loop.com/podcast/index.html' }
+]
+
 const wwwwDropDownItems = [
 	{ text: 'Brands & Agencies', link: 'https://good-loop.com/brands.html' },
 	{ text: 'The Public', link: 'https://good-loop.com/the-public.html' },
@@ -18,6 +23,10 @@ const wwwwDropDownItems = [
 
 const AboutUsMenu = () => {
 	return aboutDropDownItems.map(item => <DropdownItem href={item.link}>{item.text}</DropdownItem>)
+}
+
+const NewsAndViewsMenu = () => {
+	return newsDropDownItems.map(item => <DropdownItem href={item.link}>{item.text}</DropdownItem>)
 }
 
 const WhoWeWorkWithMenu = () => {
@@ -52,9 +61,10 @@ const DemoPageNavBar = () => {
 						<DropdownToggle nav caret>About</DropdownToggle>
 						<DropdownMenu><AboutUsMenu /></DropdownMenu>
 					</UncontrolledDropdown>
-					<NavItem>
-						<NavLink href="https://www.good-loop.com/good-news/index.html">Good News</NavLink>
-					</NavItem>
+					<UncontrolledDropdown nav inNavbar> 
+						<DropdownToggle nav caret>News and Views</DropdownToggle>
+						<DropdownMenu><NewsAndViewsMenu /></DropdownMenu>
+					</UncontrolledDropdown>
 					<UncontrolledDropdown nav inNavbar> 
 						<DropdownToggle nav caret>Who We Work With</DropdownToggle>
 						<DropdownMenu><WhoWeWorkWithMenu /></DropdownMenu>
