@@ -11,6 +11,7 @@ const aboutDropDownItems = [
 
 const newsDropDownItems = [
 	{ text: 'Good News', link: 'https://good-loop.com/good-news/index.html' },
+	{ text: 'Company News', link: 'https://good-loop.com/company-news/index' },
 	{ text: 'Podcast', link: 'https://good-loop.com/podcast/index.html' }
 ]
 
