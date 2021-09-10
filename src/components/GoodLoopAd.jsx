@@ -28,11 +28,14 @@ const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-wh
 
 	// Load the ad
 	const [unitJson, setUnitJson] = useState(null); // Preloaded unit.json
-	const [unitBranch, setUnitBranch] = useState(false); // vert.legacyUnitBranch from the above
+	const [unitBranch, setUnitBranch] = useState(false); // Extracted from unit.json: vert.legacyUnitBranch
 
 	// Fetch the advert from *as.good-loop.com so we can check if it has a legacy branch
 	useEffect(() => {
-		getAdvertFromAS({id: vertId, params}).then(unitObj => {
+		// respect new dataServer (ie "get unit.json from TEST") param, fall back to old forceServerType param
+		const forceServerType = params.dataServer || params.forceServerType;
+		console.log('forceServerType for unit.json:', forceServerType);
+		getAdvertFromAS({id: vertId, params: {...params, forceServerType} }).then(unitObj => {
 			setUnitBranch(unitObj.vert.legacyUnitBranch || '');
 			setUnitJson(JSON.stringify(unitObj));
 		});
@@ -46,7 +49,10 @@ const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-wh
 	if (!unitJson || unitBranch === false) { // Once extracted from the ad, unitBranch will be undefined, null, or a string - not logical false
 		adElements = <div style={loadingStyle} />
 	} else {
-		const unitUrl = getAdUrl({file: 'unit.js', ...params, unitBranch});
+		// respect new codeServer (ie "get unit.js from TEST") param, fall back to old forceServerType param
+		const forceServerType = params.codeServer || params.forceServerType;
+		console.log('forceServerType for unit.js:', forceServerType);
+		const unitUrl = getAdUrl({file: 'unit.js', ...params, forceServerType, unitBranch});
 
 		adElements = <>
 			<div className="goodloopad" data-format={size} data-mobile-format={size} key={nonce + '-container'} />

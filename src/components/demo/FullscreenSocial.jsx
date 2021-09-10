@@ -20,9 +20,13 @@ import MockFeed from './DemoPlayer/MockFeed';
  * @param {?String} noInterface Only show the simulated splash video - hide platform-specific stuff like username overlay. Default true
  */
 const FullscreenSocial = ({platform = 'instagram', context = 'stories', 'gl.vert': vertId, noInterface, ...params}) => {
-	const { forceServerType, 'gl.status': status } = params;
+	let { dataServer, forceServerType, 'gl.status': status } = params;
 	// Coerce noInterface from string to boolean
 	noInterface = (noInterface !== 'false');
+
+	// forceServerType has been split into codeServer and dataServer to enable e.g. seeing prod ads on latest code
+	// Respect & prioritise the new format but don't break old links
+	if (dataServer) forceServerType = dataServer;
 
 	useEffect(() => {
 		sizeElements(); // set sizing once

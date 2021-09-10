@@ -36,6 +36,10 @@ class VpaidAd extends Component {
 			if (container.current) {
 				// New container? Start a new VAST player.
 				vastplayer = new VASTPlayer(container.current);
+				// Promote new dataServer ("get unit.json from local/test/prod") param to forceServerType
+				// Don't use codeServer param - VAST currently needs same code and data servers
+				// and wrong data-server results in ad not displaying - so dataServer is most important
+				const forceServerType = props.dataServer || props.forceServerType;
 				vastplayer.load(getAdUrl({file: 'vast.xml', ...params})).then(function() { vastplayer.startAd(); });
 			} else {
 				// Switching away from old container? Stop the current player, if present.
