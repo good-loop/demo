@@ -154,7 +154,6 @@ const MockFeed = ({advert, advertiser, showAd, socialType, socialContext, muted,
 	// Determine how long the progress bar's animation should be
 	const [videoDuration, setVideoDuration] = useState(30);
 	const videoRef = (element) => {
-		console.log('ref fired');
 		if (!element || !element.duration || element.duration === videoDuration) return;
 		setVideoDuration(element.duration);
 	}
@@ -227,8 +226,14 @@ const MockFeed = ({advert, advertiser, showAd, socialType, socialContext, muted,
 	// the front one is unblurred and has size:contain so it's fully visible.
 	const MockTag = mockIsVideo ? 'video' : 'img'
 
+	// Chrome doesn't autostart <video> elements which receive the autoplay attribute after creation...
+	const onClickToPlay = () => {
+		setCanAutoplay(true);
+		document.querySelectorAll('video.mock-ad').forEach(el => el.play());
+	};
+
 	const clickToPlay = (
-		<div className="fill-abs click-to-play" onClick={() => setCanAutoplay(true)}>
+		<div className="fill-abs click-to-play" onClick={onClickToPlay}>
 			<h3>Click to start</h3>
 			<div><small>Your browser settings don't allow this demo to play automatically.</small></div>
 		</div>
