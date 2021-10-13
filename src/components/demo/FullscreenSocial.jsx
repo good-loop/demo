@@ -46,7 +46,7 @@ const FullscreenSocial = ({platform = 'instagram', context = 'stories', 'gl.vert
 	}, [advert])
 
 	const feed = advert && advertiser ? (
-		<MockFeed socialType={platform} socialContext={context} advert={advert} advertiser={advertiser} noInterface={noInterface} />
+		<MockFeed socialType={platform} socialContext={context} advert={advert} advertiser={advertiser} noInterface={noInterface} muted={!params.unmuteSocial}/>
 	) : null;
 
 	return (
