@@ -34,7 +34,6 @@ const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-wh
 	useEffect(() => {
 		// respect new dataServer (ie "get unit.json from TEST") param, fall back to old forceServerType param
 		const forceServerType = params.dataServer || params.forceServerType;
-		console.log('forceServerType for unit.json:', forceServerType);
 		getAdvertFromAS({id: vertId, params: {...params, forceServerType} }).then(unitObj => {
 			setUnitBranch(unitObj.vert.legacyUnitBranch || '');
 			setUnitJson(JSON.stringify(unitObj));

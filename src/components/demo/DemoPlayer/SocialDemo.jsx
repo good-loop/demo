@@ -29,11 +29,13 @@ const SocialDemo = ({vertId, adBlocker, social, context, ...params}) => {
 
 	// On mounting the SocialDemo element or changing advert ID, fetch the advert from the portal.
 	useEffect(() => {
-		getAdvertFromPortal({id: vertId, callback: setAdvert, status: params['gl.status']});
+		const forceServerType = params.dataServer || params.forceServerType; // allow independently overriding code and data servers
+		getAdvertFromPortal({id: vertId, callback: setAdvert, status: params['gl.status'], forceServerType});
 	}, [vertId]);
 
 	// When the advert is loaded, get the advertiser as well - their info is needed to construct the fake interface
 	useEffect(() => {
+		const forceServerType = params.dataServer || params.forceServerType; // allow independently overriding code and data servers
 		advert && getVertiserFromPortal({id: advert.vertiser, callback: setAdvertiser});
 	}, [advert])
 
