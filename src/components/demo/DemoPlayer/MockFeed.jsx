@@ -168,7 +168,9 @@ const MockFeed = ({advert, advertiser, showAd, socialType, socialContext, muted,
 
 	// When the user swipes to the advert, also set state in this component
 	// to remove the splash video so it doesn't keep playing in the background
-	const showAd2 = () => {
+	const showAd2 = (e) => {
+		// Ignore mousedown of right-click so we can Inspect Element during debugging
+		if (e && e.type === 'mousedown' && e.button === 2) return;
 		showAd();
 		window.setTimeout(() => setShowVideo(false), 750);
 	};
@@ -244,6 +246,12 @@ const MockFeed = ({advert, advertiser, showAd, socialType, socialContext, muted,
 		<MockTag className="mock-ad fill-abs" src={mockSrc} loop muted={muted} playsInline autoplay={canAutoplay} onPlay={onPlay} onSeeked={onSeeked} ref={videoRef} />
 	</> : null;
 
+	// What kind of video overlay to apply? Wave/no-wave, top/bottom? See MockFeed.less for implementation
+	const overlayType = (advert && advert.advanced.splashOverlayType) || 'wave-bottom';
+
+	// Custom CSS overrides for the splash video?
+	const splashCSS = (advert && advert.advanced.splashCSS) || '';
+
 	const feedProps = { brandLogo, brandName, charityCarousel, progressClass, videoDuration, mockMedia, noInterface };
 
 	let feed;
@@ -256,10 +264,10 @@ const MockFeed = ({advert, advertiser, showAd, socialType, socialContext, muted,
 	}
 
 	return (
-		<div className={`fake-feed fill-abs ${visClass} ${socialType} ${socialContext}`}>
+		<div className={`fake-feed fill-abs ${visClass} ${socialType} ${socialContext} ${overlayType}`}>
+			<style>{splashCSS}</style>
 			<img src={socialAppLogos[socialType]} className="fill-abs social-splash" />
 			{feed}
-			
 			<div className="fill-abs interaction-catcher" {...interactionProps} />
 			{ !canAutoplay && clickToPlay }
 		</div>
