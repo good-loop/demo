@@ -8,7 +8,6 @@
 	/* Good-Loop overlay: the white wave graphic */
 	.wave {
 		width: 100%;
-		background: no-repeat center/contain url("/img/overlay-double-wave.svg");
 		color: black;
 		font-family: 'Montserrat';
 		font-weight: 600;
@@ -160,10 +159,8 @@
 				.wave {
 					position: absolute;
 					height: 25%;
-					bottom: 5%;
 				}
 				.gl-ident {
-					top: 12%;
 					right: 0;
 				}
 			}
@@ -186,19 +183,13 @@
 				overflow: hidden; // Don't let blurred copy of mock media out
 				.media-sizer {
 					position: relative;
-					height: 80%; // Push videos up a little to optimise positioning of wide media above wave graphic
 				}
 			}
 			.wave {
-				background: no-repeat bottom/contain url("/img/overlay-single-wave.svg");
-				bottom: 0em;
 				height: 7em;
-				align-items: flex-end;
-				padding-bottom: 0.5em;
 				text-align: center;
 			}
 			.gl-ident {
-				top: 0.5em;
 				right: 0;
 			}
 			.swipe-cta {
@@ -227,6 +218,90 @@
 				bottom: 0;
 				left: 0;
 			}
+		}
+	}
+}
+
+
+/* Alternate positions for the Good-Loop wave overlay (also versions without wave graphic) */
+.instagram.stories {
+	&.wave-top, &.wave-bottom {
+		.wave {
+			background: no-repeat center/contain url("/img/overlay-double-wave.svg");
+		}
+	}
+	&.wave-top, &.nowave-top {
+		.gl-ident {
+			bottom: 12%;
+		}
+	}
+	&.wave-bottom, &.nowave-bottom {
+		.wave {
+			bottom: 5%;
+		}
+		.gl-ident {
+			top: 12%;
+		}
+	}
+	&.wave-top {
+		.wave {
+			top: 10%;
+		}
+	}
+	&.nowave-top {
+		.wave {
+			top: 2%; // No wave graphic = brand x charity band can be higher without interfering with interface
+		}
+	}
+}
+
+.instagram.infeed {
+	&.wave-top {
+		.wave {
+			background: no-repeat top/contain url("/img/overlay-single-wave-top.svg");
+			align-items: flex-start;
+		}
+		.media-sizer {
+			top: 14%; // Wave covers top, so push video down
+		}
+	}
+	&.wave-bottom {
+		.wave {
+			background: no-repeat bottom/contain url("/img/overlay-single-wave-bottom.svg");
+			align-items: flex-end;
+		}
+		.media-sizer {
+			bottom: 14%; // Wave covers bottom, so push video up
+		}
+	}
+	// Wave variants: video should be reduced-height because wave graphic is hiding the top/bottom
+	&.wave-top, &.wave-bottom {
+		.media-sizer {
+			height: 86%;
+		}
+	}
+	// No-wave variants: video should be full-height because nothing is hiding the top/bottom
+	&.nowave-top, &.nowave-bottom {
+		.media-sizer {
+			height: 100%;
+		}
+	}
+	&.wave-top, &.nowave-top {
+		.wave {
+			top: 0;
+			padding-top: 0.5em;
+		}
+		.gl-ident {
+			bottom: 0.5em;
+		}
+	}
+	&.wave-bottom, &.nowave-bottom {
+		.wave {
+			bottom: 0;
+			padding-bottom: 0.5em;
+		}
+		.gl-ident {
+			top: 0.5em;
 		}
 	}
 }
