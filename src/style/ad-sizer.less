@@ -25,6 +25,27 @@
 		margin-top: 100%
 	}
 
+	// For annoying cases where an ad is locked to a different aspect to the container
+	&.landscape-in-portrait {
+		background-color: black;
+		.goodloopad {
+			position: absolute;
+			width: 100%;
+			height: 31.64%; // more precisely 81/256 or 0.31640625
+			top: 34.18%; // vertically centred
+		}
+	}
+	
+	&.portrait-in-landscape {
+		background-color: black;
+		.goodloopad {
+			position: absolute;
+			width: 31.64%;
+			height: 100%;
+			left: 34.18%;
+		}
+	}
+
 	&.fabric {
 		margin: auto -16px; // undo column padding & extend to screen edges
 		border: 1px solid transparent; // extra -1px margin is to hide this
