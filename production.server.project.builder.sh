@@ -1,5 +1,4 @@
 #!/bin/bash
-ssh winterwell@baker.good-loop.com bash <<EOF 
 /home/winterwell/config/build-scripts/builder.sh \
 BUILD_TYPE="production" \
 PROJECT_NAME="demo" \
@@ -12,4 +11,3 @@ PROJECT_USES_NPM="yes" \
 PROJECT_USES_WEBPACK="yes" \
 PROJECT_USES_JERBIL="no" \
 PROJECT_USES_WWAPPBASE_SYMLINK="yes"
-EOF
