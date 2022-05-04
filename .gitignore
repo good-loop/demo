@@ -1,8 +1,8 @@
-# no generated node stuff
+## no generated node stuff
 **/node_modules
 **/package-lock.json
-**/*.css
-**/*.css.map
+**/main.css
+**/main.css.map
 
 # no compiled output
 **/bundle*.js*
