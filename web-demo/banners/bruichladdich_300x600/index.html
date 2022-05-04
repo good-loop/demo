@@ -95,12 +95,12 @@
 
 
 		//Function to run with any animations starting on load, or bringing in images etc
-		function init(){
+		function init() {
 			bgExit = document.getElementById('background_exit_dc');
 			///Reset image locations and then play animation
 			resetimages();
 			bgExit.addEventListener('click', () => window.open('https://www.bruichladdich.com/bruichladdich-unpeated-whisky-range/?utm_campaign=bruichladdich_easter&utm_medium=display&utm_source=goodloop&utm_content=300_600&utm_term=', '_blank'));
-		}
+		};
 
 		let tl = gsap.timeline({ yoyo:false, repeat: 1, repeatDelay:0 });
 		let tl2 = gsap.timeline();
