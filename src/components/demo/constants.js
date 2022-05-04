@@ -11,6 +11,9 @@ export const DEFAULT_PROD_SOCIAL_ADVERTISER = 'dRH9DGbj';
 
 export const DEFAULT_AD = getServer().match(/^(test|local)/) ? DEFAULT_TEST_AD : DEFAULT_PROD_AD;
 
+export const TADG_DISPLAY_BILLBOARD = '/banners/bruichladdich_970x250/';
+export const TADG_DISPLAY_DOUBLE_MPU = '/banners/bruichladdich_300x600/';
+
 // Server type overrides for the default demo ads
 export const serverTypeForAd = {
 	[DEFAULT_PROD_SOCIAL_AD]: 'prod',

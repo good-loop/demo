@@ -8,10 +8,11 @@ import FullscreenSocial from './FullscreenSocial';
 
 const TestMain = () => <>
 	<Router>
-		<DemoPage path="/" format="video" device="desktop" />
-		<DemoPage path="/:device/:format/:social/:context?" />
-		<DemoPage path="/:device/:format/:social?" />
+		<DemoPage path="/" device="desktop" format="video" />
+		<DemoPage path="/:device/:format/:subformat/:context?" />{/* eg "portrait/social/instagram/stories" */}
+		<DemoPage path="/:device/:format/:subformat?" />
 		<DemoPage path="/:device/:format?" />
+
 		<FullscreenPage path="/fullscreen/:size?" />
 		<FullscreenSocial path="/fullscreen/social/:platform/context?" />
 		<FullscreenSocial path="/fullscreen/social/:platform" />

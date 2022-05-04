@@ -19,7 +19,7 @@ import DemoPicker from './DemoPicker';
  * - mobile-portrait
  * Given as a comma separated string as served by PropControl
  */
-const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocial, hide, ...props}) => {
+const DemoPage = ({matches, path, url, noSocial, nosocial, hide, ...props}) => {
 	// Allow any noSocial param at all, even an empty one, to work (unless value is "false")
 	const noSocialMerged = (noSocial !== 'false' && noSocial !== undefined) || (nosocial !== 'false' && nosocial !== undefined);
 	const hides = hide ? hide.split(",") : [];
@@ -28,11 +28,11 @@ const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocia
 		<DemoSiteNavBar />
 		<Container>
 			<h4 className="playertopheader text-center">Want to see our products in action? Look no further.</h4>
-			<DemoPicker format={format} device={device} social={social} noSocial={noSocialMerged} hides={hides} {...props} />
+			<DemoPicker noSocial={noSocialMerged} hides={hides} {...props} />
 		</Container>
 		<div className="half-bg">
 			<Container>
-				<DemoPlayer format={format} device={device} social={social} noSocial={noSocialMerged} {...props} />
+				<DemoPlayer noSocial={noSocialMerged} {...props} />
 			</Container>
 		</div>
 		<div className="red-bg">
@@ -41,18 +41,12 @@ const DemoPage = ({device, format, social, matches, path, url, noSocial, nosocia
 			</Container>
 		</div>
 		<Container>
-			<HowItWorksSection />
+			<HowItWorksSection format={props.format} />
 			<FooterSection />
 		</Container>
 	</>;
 };
 
-
-const deviceToSize = {
-	landscape: 'landscape',
-	portrait: 'portrait',
-	desktop: 'landscape',
-};
 
 const RedMiddleSection = () => (
 	<Row className="pt-0">
@@ -74,23 +68,41 @@ const RedMiddleSection = () => (
 );
 
 
-const HowItWorksSection = () => <>
-	<h4 className="playerheadingbottom text-center p-5">How It Works</h4>
-	<Row className="how-it-works-row text-center pb-5 justify-content-center">
-		<Col md="3">
-			<img src="/img/icon-heart.png" alt=""/>
-			<p>People can opt in to watch an ad in exchange for a free donation.</p>
-		</Col>
-		<Col md="3">
-			<img src="/img/icon-eye.png" alt=""/>
-			<p>They give the advertiser 100% of their attention for at least 15 seconds.</p>
-		</Col>
-		<Col md="3">
-			<img className="coins-img" src="/img/icon-coins.png" alt=""/>
-			<p>Then they get to donate half of the payment to a charity of their choice.</p>
-		</Col>
-	</Row>
-</>;
+const formatToSteps = {
+	display: [
+		<p>We wrap your standard display adverts in our unique creative skin.</p>,
+		<p>This draws consumer attention and lets them know you're supporting a social cause.</p>,
+		<p>You get higher ad engagement, with significantly higher ad recall - all whilst building brand love.</p>
+	],
+	video: [
+		<p>Consumers are invited to watch your ad in exchange for a free donation to a charity funded by the advertiser.</p>,
+		<p>They give your ad 100% of their attention for at least 15 seconds, unlocking the free donation.</p>,
+		<p>You get higher ad engagement, with significantly higher ad recall - all whilst building brand love.</p>
+	],
+};
+
+
+const HowItWorksSection = ({format}) => {
+	const steps = formatToSteps[format] || formatToSteps.video;
+
+	return <>
+		<h4 className="playerheadingbottom text-center p-5">How It Works</h4>
+		<Row className="how-it-works-row text-center pb-5 justify-content-center">
+			<Col md="3">
+				<img src="/img/icon-heart.png" alt=""/>
+				{steps[0]}
+			</Col>
+			<Col md="3">
+				<img src="/img/icon-eye.png" alt=""/>
+				{steps[1]}
+			</Col>
+			<Col md="3">
+				<img className="coins-img" src="/img/icon-coins.png" alt=""/>
+				{steps[2]}
+			</Col>
+		</Row>
+	</>;
+};
 
 
 const contactIcons = [

@@ -9,12 +9,12 @@ import { DEFAULT_PROD_SOCIAL_AD, } from '../constants';
 import { getAdvertFromPortal, getVertiserFromPortal } from '../../../utils';
 
 
-const SocialDemo = ({vertId, adBlocker, social, context, ...params}) => {
+const SocialDemo = ({vertId, adBlocker, subformat, context, ...params}) => {
 	// Adblock active? Show a warning.
 	if (adBlocker) return adBlockerAlert;
 
 	// If no app or context specified, default to Instagram Stories & set URL to match
-	if (!social || !context) {
+	if (!subformat || !context) {
 		let {search, hash} = window.location;
 		if (hash) hash = '#' + hash; // don't insert # unless there's something to go after it
 		route(`/portrait/social/instagram/stories${search}${hash}`);
@@ -42,7 +42,7 @@ const SocialDemo = ({vertId, adBlocker, social, context, ...params}) => {
 	// If the advert ID, social platform, or context to simulate changes, return to the initial simulated feed
 	useEffect(() => {
 		setShowAd(false);
-	}, [social, context, vertId]);
+	}, [subformat, context, vertId]);
 
 	// We can auto redirect to default advert with the line below, but I think an alert is more useful to users.
 	// if ( advert && ! mockSocialImage && vertId !== DEFAULT_PROD_AD ) route('/portrait/social/' + `?gl.vert=${DEFAULT_PROD_AD}`); // if no teaser image available show default advert instead
@@ -58,7 +58,7 @@ const SocialDemo = ({vertId, adBlocker, social, context, ...params}) => {
 	return (
 		<div className="ad-sizer portrait">
 			<div className="aspectifier" />
-			<MockFeed advert={advert} advertiser={advertiser} showAd={() => setShowAd(true)} socialType={social} socialContext={context} muted={!params.unmuteSocial}/>
+			<MockFeed advert={advert} advertiser={advertiser} showAd={() => setShowAd(true)} socialType={subformat} socialContext={context} muted={!params.unmuteSocial}/>
 			<div className={`social-ad fill-abs ${showAd ? 'show' : ''}`}>
 				{ showAd && advert ? <GoodLoopAd {...unitProps} /> : '' }
 			</div>

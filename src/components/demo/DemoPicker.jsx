@@ -5,7 +5,7 @@ import { landscapeSvg, desktopSvg, portraitSvg } from './DemoSvg';
 
 
 /** Generates links to change the format (social/video) and simulated device (landscape/portrait phone, desktop) */
-const DemoPicker = ({ format, device, social, context, noSocial, hides }) => {
+const DemoPicker = ({ format, device, subformat, context, noSocial, hides }) => {
 
 	const deviceClasses = newDevice => {
 		let classes = `button picker-button ${newDevice}`
@@ -20,28 +20,34 @@ const DemoPicker = ({ format, device, social, context, noSocial, hides }) => {
 		return classes;
 	};
 
-	// Social has subtypes for context - at least on Instagram - addressed as eg /portrait/social/instagram/infeed
-	const socialClasses = newSocial => {
-		let classes = `picker-button ${newSocial}`;
-		if (newSocial === social || newSocial === `${social}/${context}`) classes += ' current';
+	// Social subformats have subtypes for context - addressed as eg /portrait/social/instagram/infeed
+	const subformatClasses = newSubformat => {
+		let classes = `picker-button ${newSubformat}`;
+		if (newSubformat === subformat || newSubformat === `${subformat}/${context}`) classes += ' current';
 		return classes;
 	};
 
-	// Construct a new URL which will demo the chosen format + device + optional social network combo.
-	// Format/device/social values not supplied will be left as current
-	const hrefUrl = ({newFormat = format, newDevice = device, newSocial = (social || 'instagram')}) => {
+
+	// Construct a new URL which will demo the chosen format + device + sub-format (banner type, social network, etc) combo.
+	// Values not supplied will be left as current
+	const hrefUrl = ({newFormat = format, newDevice = device, newSubformat}) => {
 		let {search, hash} = window.location;
 		if (hash) hash = '#' + hash;
-		let social = (newFormat === 'social') ? (newSocial + '/') : '';
-		return `/${newDevice}/${newFormat}/${social}${search}${hash}`;
+		if (!newSubformat) {
+			if (newFormat === format) newSubformat = subformat; // link from e.g. social to social? default to keeping current subformat
+			else newSubformat = {social: 'instagram', display: 'billboard'}[newFormat] || ''; // cross-format link: take default subformat
+		}
+
+		return `/${newDevice}/${newFormat}/${newSubformat}${search}${hash}`;
 	};
 
-	const hideVideo = hides.includes("desktop") && hides.includes("mobile-landscape") && hides.includes("mobile-portrait");
+	const hideSocial = hides.includes('social');
+	const hideVideo = hides.includes('desktop') && hides.includes('mobile-landscape') && hides.includes('mobile-portrait');
 
 	// Don't allow format change if the noSocial URL param is set
 	const formatPicker = noSocial ? '' : (
 		<Row className="format-picker text-center justify-content-center">
-			{hides.includes("social") ? '' : 
+			{hideSocial ? '' :
 				<a href={hrefUrl({newFormat: 'social', newDevice: 'portrait'})} className={formatClasses('social')}>
 					Social
 				</a>}
@@ -49,10 +55,14 @@ const DemoPicker = ({ format, device, social, context, noSocial, hides }) => {
 				<a href={hrefUrl({newFormat: 'video'})} className={formatClasses('video')}>
 					Video
 				</a>}
+			<a href={hrefUrl({newFormat: 'display', newDevice: 'desktop', })} className={formatClasses('display')}>
+				Display
+			</a>
 		</Row>
 	);
 
-	const devicePicker = (format !== 'social') ? (
+	// Pick between device types (desktop, portrait/landscape mobile)
+	const devicePicker = (format === 'video') ? (
 		<Row className="device-picker justify-content-center pb-4 flex-row">
 			<Col xs="auto" md="auto" className="text-center flex-row">
 				{hides.includes("mobile-landscape") ? '' :
@@ -71,23 +81,41 @@ const DemoPicker = ({ format, device, social, context, noSocial, hides }) => {
 		</Row>
 	) : null;
 
-	const socialPicker = (format === 'social') ? (
-		<Row className="social-picker justify-content-center pb-4 flex-row">
-			<Col xs="auto" md="auto" className="text-center flex-row">
-					<a href={hrefUrl({newSocial: 'instagram/stories'})} className={socialClasses('instagram/stories')} >
+	// Pick between social platforms/contexts or between banner sizes
+	let subformatPicker;
+	if (format === 'social') {
+		subformatPicker = (
+			<Row className="subformat-picker justify-content-center pb-4 flex-row">
+				<Col xs="auto" md="auto" className="text-center flex-row">
+					<a href={hrefUrl({newSubformat: 'instagram/stories'})} className={subformatClasses('instagram/stories')} >
 						Instagram<br/>Stories
 					</a>
-					<a href={hrefUrl({newSocial: 'instagram/infeed'})} className={socialClasses('instagram/infeed')} >
+					<a href={hrefUrl({newSubformat: 'instagram/infeed'})} className={subformatClasses('instagram/infeed')} >
 						Instagram<br/>In-Feed
 					</a>
-			</Col>
-		</Row>
-	) : null
+				</Col>
+			</Row>
+		)
+	} else if (format === 'display') {
+		subformatPicker = (
+			<Row className="subformat-picker justify-content-center pb-4 flex-row">
+				<Col xs="auto" className="text-center flex-row">
+					<a href={hrefUrl({newSubformat: 'billboard'})} className={subformatClasses('billboard')} >
+						Billboard
+					</a>
+					<a href={hrefUrl({newSubformat: 'double-mpu'})} className={subformatClasses('double-mpu')} >
+						Double MPU
+					</a>
+				</Col>
+			</Row>
+		)
+	};
+
 
 	return <>
 		{formatPicker}
 		{devicePicker}
-		{socialPicker}
+		{subformatPicker}
 	</>;
 };
 

@@ -58,4 +58,25 @@
 	&.portrait, &.landscape, &.square, &.engage {
 		overflow: hidden;
 	}
+
+	// The banner container inside the "page" graphic
+	iframe.display-embed {
+		border: none;
+		width: 100%;
+		height: 100%;
+	}
+	&.display {
+		position: absolute;
+		width: 100%;
+	}
+	&.banner-billboard {
+		.aspectifier {
+			margin-top: 25.78%; // match ratio to 970:250
+		}
+	}
+	&.banner-double-mpu {
+		.aspectifier {
+			margin-top: 200%; // match ratio to 300:600
+		}
+	}
 }

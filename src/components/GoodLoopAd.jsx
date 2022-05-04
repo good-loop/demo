@@ -51,7 +51,7 @@ const sizeFromUnit = (unitObj) => {
  * See VpaidAd.jsx for an adunit loader which inserts it using a VAST/VPAID player, instead of directly.
  */
 
-const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-when-downgrade', ...params}) => {
+const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-when-downgrade', onUnitJson, ...params}) => {
 	// there's a race condition when using legacy units that means variant.delivery / gl.delivery gets unset
 	// this stops the unit rendering TODO resolve later by merging params.variant on unit.json load - but for now shim it here
 	if (!params['gl.delivery']) params['gl.delivery'] = 'direct'; // don't overwrite delivery=app on social page!
@@ -66,6 +66,7 @@ const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-wh
 		// respect new dataServer (ie "get unit.json from TEST") param, fall back to old forceServerType param
 		const forceServerType = params.dataServer || params.forceServerType;
 		getAdvertFromAS({id: vertId, params: {...params, forceServerType} }).then(unitObj => {
+			if (onUnitJson) onUnitJson(unitObj); // Send back to calling component if a callback was supplied
 			setUnitJson(JSON.stringify(unitObj));
 			setUnitBranch(unitObj.vert.legacyUnitBranch || '');
 			// Do we need to use a weird sizer like landscape-in-portrait?

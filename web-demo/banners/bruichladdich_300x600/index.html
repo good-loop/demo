@@ -1,0 +1,126 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<title>300x600</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta name="ad.size" content="width=300,height=600">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<link type="text/css" rel="stylesheet" href="style.css">
+	<link type="text/css" rel="stylesheet" href="style-good-loop.css">
+
+	<!-- Script for TweenMax/>-->
+	<script src="https://s0.2mdn.net/ads/studio/cached_libs/gsap_3.9.1_min.js"></script>
+	<!-- Xandr HTML5 creative library -->
+	<script type="text/javascript" src="https://acdn.adnxs.com/html5-lib/1.3.0/appnexus-html5-lib.min.js"></script>
+</head>
+
+<!--content-->
+
+<body onload="init()" id="ad">
+	<div class="tapt-behind"></div>
+
+	<button id="background_exit_dc"></button>
+	<div id="container" class="container">
+
+		<div id="bottleDiv" >
+			<img id="bottleInShadow" src="bottleShadowInside.png">
+
+			<div id="label2" class="labelDiv2">
+				<img id="labelText2" src="label2.png">
+			</div>
+
+			<div id="label" class="labelDiv">
+				<img id="labelText" src="label.png">
+			</div>
+
+			<img id="bottle" src="bottle.png">
+			<img id="bottleShadow" src="bottleShadow.png">
+		</div>
+
+
+		<div id="frame2">
+			<img id="cta" src="cta.png">
+			<img id="legal" src="legal.png">
+			<img id="text2" src="text2.png">
+			<img id="bg" src="bg.jpg">
+		</div>
+
+
+		<div id="bgCont" class="bg">
+			<img id="text_1" src="text_1.png">
+			<img id="bg" src="bg.jpg">
+		</div>
+	</div>
+
+	<div class="tapt-front">
+		<div class="tapt-text">
+			<div class="text-1">
+				<div class="line">THIS AD</div>
+				<div class="line">PLANTS TREES</div>
+			</div>
+			<div class="text-2">
+				<div class="line">20,000 TREES</div>
+				<div class="line">PLANTED</div>
+			</div>
+			<!-- div class="tapt-text-small line">FIND OUT HOW HERE 🡆</div -->
+		</div>
+		<a class="good-loop-ident" target="_blank" href="https://my.good-loop.com"><img src="good-loop-ident.svg" /></a>
+	</div>
+
+	<!--scripts-->
+	<script type="text/javascript">
+		// Good-Loop internal logging hooks
+		var lgBaseUrl = 'https://lg.good-loop.com/lg?d=gl&campaign=bruichladdich_tapt_mar2022&vert=bruichladdich_tapt_mar2022_970x250&t='
+		// Impression
+		fetch(lgBaseUrl + 'render', { method: 'POST' });
+
+		let adDiv;
+
+		//let vidHolder = document.getElementById('vidHolder');
+		let container = document.getElementById('container');
+		let text_1 = document.getElementById('text_1');
+		let text_2 = document.getElementById('text_2');
+		let text_3 = document.getElementById('text_3');
+		let text_4 = document.getElementById('text_4');
+		let text_5 = document.getElementById('text_5');
+		let text2 = document.getElementById('text2');
+		let bottle = document.getElementById('bottleDiv');
+		let bottleLabel = document.getElementById('labelText');
+		let bottleLabel2 = document.getElementById('labelText2');
+
+		let cta = document.getElementById('cta');
+		let legal = document.getElementById('legal');
+		let frame_2 = document.getElementById('frame2');
+
+
+		//Function to run with any animations starting on load, or bringing in images etc
+		function init(){
+			bgExit = document.getElementById('background_exit_dc');
+			///Reset image locations and then play animation
+			resetimages();
+			bgExit.addEventListener('click', () => window.open('https://www.bruichladdich.com/bruichladdich-unpeated-whisky-range/?utm_campaign=bruichladdich_easter&utm_medium=display&utm_source=goodloop&utm_content=300_600&utm_term=', '_blank'));
+		}
+
+		let tl = gsap.timeline({ yoyo:false, repeat: 1, repeatDelay:0 });
+		let tl2 = gsap.timeline();
+
+		function allAnimations() {
+			gsap.to(bottle, {duration:3, x:"+=350", ease: "elastic.out(.85, 0.75)", delay:1.7});
+			gsap.to([bottleLabel,bottleLabel2], {duration:3, x:"+=150", ease: "elastic.out(.85, 0.75)", delay:1.7});
+			gsap.to(frame_2, {duration:1, alpha:1, ease: "power1.Out", delay:1.8});
+			gsap.to(text2, {duration:1, alpha:.35, ease: "power1.Out", delay:2.5});
+			gsap.to(cta, {duration:1, alpha:1, ease: "sine.InOut", delay:3.7});
+			gsap.to(legal, {duration:1.3, alpha:1, ease: "sine.inOut", delay:4});
+		}
+
+		function resetimages(){
+			gsap.set(bottle, { scale:1.32, x:"-=105", y:"-=56"});
+			allAnimations();
+		}
+
+		// Scale to fit when displayed in an iframe
+		document.body.style.transformOrigin = 'top left';
+		document.body.style.transform = 'scale(' + (window.innerWidth / 300) + ')';
+	</script>
+</body></html>
