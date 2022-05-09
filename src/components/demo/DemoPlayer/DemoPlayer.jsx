@@ -16,7 +16,7 @@ const descriptions = {
 	display: 'Our ‘This Ad Does Good’ display ads are just like our video format but with a little twist. Rather than asking consumers to watch a brand video, we simply take the brand’s standard display adverts and wrap them in our bespoke creative skin to let consumers know the brand is supporting a social cause.\nWe serve this ad format across premium high-quality video inventory with leading publishers around the world.',
 	video: '',
 	'video-wtd': 'Our core product, the Good-Loop video player is shown in a website article as people scroll through, or appears as a pre-roll before a video begins.',
-	'video-tadg': 'Welcome to our shiny core video offering – This Ad Does Good. The name says it all, to be honest. If consumers watch just half of the brand advert, they’ll unlock a free donation to acharity, funded by the advertiser.\nWe serve this ad format across premium high-quality video inventory with leading publishers around the world.',
+	'video-tadg': 'Welcome to our shiny core video offering – This Ad Does Good. The name says it all, to be honest. If consumers watch just half of the brand advert, they’ll unlock a free donation to a charity, funded by the advertiser.\nWe serve this ad format across premium high-quality video inventory with leading publishers around the world.',
 };
 
 /** Simulated device screen images */
