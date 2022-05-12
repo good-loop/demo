@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<title>Good-Loop | The Home of Ethical Advertising</title>
+		<link rel="icon" href="https://demo.good-loop.com/img/favicon-60x60.png" />
+		<style>
+			#sbs-container {
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+				align-items: center;
+			}
+			#ad-container {
+				position: relative;
+				width: 47.5%;
+			}
+			#ad-container .aspectifier {
+				position: relative;
+				margin-top: 56.25%;
+			}
+			#ad-frame {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+				overflow: hidden;
+				border: 1px solid silver;
+			}
+			#form-container {
+				width: 47.5%;
+			}
+			#css-entry {
+				display: block;
+				width: 100%;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<script src="https://as.good-loop.com/ads.js"></script>
+		<div id="sbs-container">
+			<div id="ad-container">
+				<iframe id="ad-frame" scrolling="no"></iframe>
+				<div class="aspectifier"></div>
+			</div>
+			<div id="form-container">
+				<label for="css-entry">Enter CSS overrides:</label>
+				<textarea id="css-entry" name="css-entry"></textarea>
+				<button id="apply">Apply</button>
+			</div>
+		</div>
+		<script>
+			const applyButton = document.getElementById('apply');
+			const cssEntry = document.getElementById('css-entry');
+			const adFrame = document.getElementById('ad-frame');
+
+			document.getElementById('apply').addEventListener('click', e => {
+				adFrame.contentDocument.getElementById('style-overrides').innerHTML = cssEntry.value;
+			});
+
+			const vertId = new URL(window.location.href).searchParams.get('gl.vert') || 'S6JG9ZQ3'; // default to bastille because why not
+			debugger;
+			adFrame.src = 'adframe.html?gl.vert=' + vertId;
+		</script>
+	</body>
+</html>
