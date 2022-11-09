@@ -54,7 +54,7 @@ const DemoPlayer = ({ format, device, 'gl.vert': vertId, url, matches, path, ...
 			setVideoType('tadg');
 			return;
 		}
-		setVideoType(unitObj.vert.advanced.playerVariant === 'trees' ? 'tadg' : 'wtd');
+		setVideoType(unitObj.vert.advanced?.playerVariant === 'trees' ? 'tadg' : 'wtd');
 	};
 	const descKey = (format === 'video' && videoType) ? `video-${videoType}` : format;
 	const description = descriptions[descKey];
