@@ -1,6 +1,4 @@
-/* @jsx h */
-import { h, Fragment } from 'preact';
-import { useState } from 'preact/hooks';
+import React, { Fragment, useState } from 'react';
 import { route } from 'preact-router';
 import { Row, Col, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 

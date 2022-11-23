@@ -1,5 +1,4 @@
-import { h, Fragment } from 'preact';
-import { useState, useEffect } from 'preact/hooks';
+import React, { Fragment, useState, useEffect } from 'react';
 import { visibleElement } from '../../../utils';
 import { DEFAULT_PROD_AD, DEFAULT_PROD_SOCIAL_AD } from '../constants';
 

@@ -1,4 +1,4 @@
-import { h, Component, Fragment } from 'preact';
+import React, { Component, Fragment } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
 import TestSiteNavBar from './TestSiteNavBar';

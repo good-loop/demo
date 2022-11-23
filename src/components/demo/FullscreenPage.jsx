@@ -1,6 +1,4 @@
-/* @jsx h */
-import { h, Fragment } from 'preact';
-import { useEffect } from 'preact/hooks';
+import React, { Fragment, useEffect} from 'react';
 import GoodLoopAd from "../GoodLoopAd";
 import { DEFAULT_AD } from './constants';
 

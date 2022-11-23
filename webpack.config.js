@@ -29,12 +29,12 @@ const baseConfig = {
 						['@babel/preset-env', { targets: { ie: "11" }, loose: true }]
 					],
 					plugins: [
-						['@babel/plugin-transform-react-jsx', { pragma: 'h', pragmaFrag: 'Fragment' }],
+						'@babel/plugin-transform-react-jsx',
 					]
 				}
 			}, {
 				test: /\.less$/,
-				use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+				use: [MiniCssExtractPlugin.loader, {loader: 'css-loader', options: {url: false}}, 'less-loader'],
 			}
 		]
 	},

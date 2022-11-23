@@ -1,5 +1,4 @@
-/* @jsx h */
-import { h, Fragment } from 'preact';
+import React, { Fragment } from 'react';
 import { Container, Navbar, NavbarToggler, NavbarBrand, Nav, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink } from 'reactstrap';
 
 const players = {

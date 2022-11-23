@@ -1,5 +1,4 @@
-/* @jsx h */
-import { h, Fragment } from 'preact';
+import React, { Fragment } from 'react';
 import { route } from 'preact-router';
 import { Container, Row, Col, ButtonGroup, Button, FormGroup, Label, Input } from 'reactstrap';
 

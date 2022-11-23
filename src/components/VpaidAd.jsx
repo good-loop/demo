@@ -1,6 +1,4 @@
-/* @jsx h */
-import { h, Component } from 'preact';
-import { useRef, useEffect } from 'preact/hooks';
+import React, { Component, useRef, useEffect } from 'react';
 import { getNonce, getAdUrl } from '../utils';
 
 let vastplayer;

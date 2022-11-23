@@ -1,5 +1,4 @@
-/* @jsx h */
-import { h, Fragment } from "preact";
+import React, { Fragment } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitterSquare, faFacebookSquare, faYoutubeSquare, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';

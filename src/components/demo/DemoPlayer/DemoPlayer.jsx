@@ -1,6 +1,4 @@
-/* @jsx h */
-import { h, Fragment } from 'preact';
-import { useState } from 'preact/hooks';
+import React, { Fragment, useState } from 'react';
 import { Row, Col, UncontrolledAlert } from 'reactstrap';
 
 import { DEFAULT_AD, DEFAULT_PROD_SOCIAL_AD, serverTypeForAd } from '../constants';

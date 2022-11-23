@@ -1,5 +1,4 @@
-/** @jsx h */
-import { h, Fragment } from 'preact';
+import React, { Fragment } from 'react';
 import { Router } from 'preact-router';
 
 import PlayerPage from './PlayerPage';

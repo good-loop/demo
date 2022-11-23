@@ -1,4 +1,4 @@
-import { h, Fragment } from 'preact';
+import React, { Fragment } from 'react';
 import { TADG_DISPLAY_BILLBOARD, TADG_DISPLAY_DOUBLE_MPU } from '../constants';
 
 

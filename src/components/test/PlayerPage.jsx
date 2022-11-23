@@ -1,6 +1,4 @@
-/* @jsx h */
-import { h, Fragment } from 'preact';
-import { useState } from 'preact/hooks';
+import React, { Fragment, useState } from 'react';
 import { Container, Row, Col, FormGroup, Label, Input } from 'reactstrap';
 
 import TestSiteNavBar from './TestSiteNavBar';

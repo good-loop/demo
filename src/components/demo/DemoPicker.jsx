@@ -1,5 +1,4 @@
-/* @jsx h */
-import { h, Fragment } from 'preact';
+import React, { Fragment } from 'react';
 import { Row, Col } from 'reactstrap';
 import { landscapeSvg, desktopSvg, portraitSvg } from './DemoSvg';
 

@@ -1,5 +1,5 @@
-/** @jsx h */
-import { render, h } from 'preact';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import DemoMain from './components/demo/DemoMain';
 import commonSetup from './commonSetup';
 
@@ -10,5 +10,5 @@ import './style/demo.less';
 commonSetup();
 
 /* eslint-disable react/jsx-filename-extension */
-render(<DemoMain />, document.body);
+ReactDOM.render(<DemoMain />, document.body);
 /* eslint-enable react/jsx-filename-extension */
