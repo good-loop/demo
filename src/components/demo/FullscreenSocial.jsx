@@ -2,6 +2,7 @@ import { h } from 'preact';
 import { useEffect, useState } from 'preact/hooks';
 import { getAdvertFromPortal, getVertiserFromPortal } from '../../utils';
 import MockFeed from './DemoPlayer/MockFeed';
+import SocialDemo from './DemoPlayer/SocialDemo';
 
 /**
  * Set font size on the containing div to 1% window.innerHeight
@@ -45,9 +46,9 @@ const FullscreenSocial = ({platform = 'instagram', context = 'stories', 'gl.vert
 		advert && getVertiserFromPortal({id: advert.vertiser, status, callback: setAdvertiser, forceServerType});
 	}, [advert])
 
-	const feed = advert && advertiser ? (
-		<MockFeed socialType={platform} socialContext={context} advert={advert} advertiser={advertiser} noInterface={noInterface} muted={!params.unmuteSocial}/>
-	) : null;
+	const feed = advert && advertiser ? [
+		<SocialDemo vertId={vertId} subformat={platform} context={context} noInterface={noInterface} {...params} />
+	 ] : null;
 
 	return (
 		<div id="fullscreen" className="portrait">
@@ -56,6 +57,6 @@ const FullscreenSocial = ({platform = 'instagram', context = 'stories', 'gl.vert
 			</div>
 		</div>
 	);
-}
+};
 
 export default FullscreenSocial;
