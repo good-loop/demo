@@ -13,6 +13,9 @@ const SocialDemo = ({vertId, adBlocker, subformat, context, ...params}) => {
 	// Adblock active? Show a warning.
 	if (adBlocker) return adBlockerAlert;
 
+	// allow independently overriding code and data servers
+	const forceServerType = params.dataServer || params.forceServerType;
+
 	// If no app or context specified, default to Instagram Stories & set URL to match
 	if (!subformat || !context) {
 		let {search, hash} = window.location;
@@ -29,14 +32,12 @@ const SocialDemo = ({vertId, adBlocker, subformat, context, ...params}) => {
 
 	// On mounting the SocialDemo element or changing advert ID, fetch the advert from the portal.
 	useEffect(() => {
-		const forceServerType = params.dataServer || params.forceServerType; // allow independently overriding code and data servers
 		getAdvertFromPortal({id: vertId, callback: setAdvert, status: params['gl.status'], forceServerType});
 	}, [vertId]);
 
 	// When the advert is loaded, get the advertiser as well - their info is needed to construct the fake interface
 	useEffect(() => {
-		const forceServerType = params.dataServer || params.forceServerType; // allow independently overriding code and data servers
-		advert && getVertiserFromPortal({id: advert.vertiser, callback: setAdvertiser});
+		advert && getVertiserFromPortal({id: advert.vertiser, callback: setAdvertiser, forceServerType});
 	}, [advert])
 
 	// If the advert ID, social platform, or context to simulate changes, return to the initial simulated feed
@@ -55,10 +56,20 @@ const SocialDemo = ({vertId, adBlocker, subformat, context, ...params}) => {
 		...params
 	};
 
+	const feedParams = {
+		advert: advert,
+		advertiser: advertiser,
+		showAd: () => setShowAd(true),
+		socialType: subformat,
+		socialContext: context,
+		muted: !params.unmuteSocial,
+		noInterface: params.noInterface
+	};
+
 	return (
 		<div className="ad-sizer portrait">
 			<div className="aspectifier" />
-			<MockFeed advert={advert} advertiser={advertiser} showAd={() => setShowAd(true)} socialType={subformat} socialContext={context} muted={!params.unmuteSocial}/>
+			<MockFeed {...feedParams} />
 			<div className={`social-ad fill-abs ${showAd ? 'show' : ''}`}>
 				{ showAd && advert ? <GoodLoopAd {...unitProps} /> : '' }
 			</div>
