@@ -24,6 +24,7 @@ const frameImages = {
 	landscape: '/img/iphone-mockup-landscape.svg',
 	desktop: '/img/laptop-websiteholder-text.svg',
 	billboard: '/img/laptop-billboard-bg.svg',
+	linkedin: '/img/laptop-linkedin-bg.svg',
 	'double-mpu': '/img/laptop-double-mpu-bg.svg',
 	portrait: '/img/iphone-mockup-portrait.svg'
 };

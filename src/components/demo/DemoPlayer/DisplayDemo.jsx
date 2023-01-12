@@ -4,7 +4,8 @@ import { TADG_DISPLAY_BILLBOARD, TADG_DISPLAY_DOUBLE_MPU } from '../constants';
 
 const iframeUrls = {
 	billboard: TADG_DISPLAY_BILLBOARD,
-	'double-mpu': TADG_DISPLAY_DOUBLE_MPU
+	'double-mpu': TADG_DISPLAY_DOUBLE_MPU,
+	linkedin: TADG_DISPLAY_DOUBLE_MPU
 };
 
 const DisplayDemo = ({subformat: size}) => {
