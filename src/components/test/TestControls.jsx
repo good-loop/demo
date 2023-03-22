@@ -27,7 +27,8 @@ const serverTypes = {
 	auto: '',
 	local: 'local',
 	test: 'test',
-	prod: 'prod'
+	prod: 'prod',
+	stage: 'strage'
 };
 
 
