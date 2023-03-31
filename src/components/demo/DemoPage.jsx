@@ -124,7 +124,7 @@ const FooterSection = () => (
 			</Row>
 			<Row>
 				<Col>
-					&#169; 2016-2021 Good-Loop Ltd.{" "}
+					&#169; 2016-2023 Good-Loop Ltd.{" "}
 					<a href="https://doc.good-loop.com/policy/privacy-policy.html" className="link-7">
 						Privacy policy<br />‍
 					</a>
