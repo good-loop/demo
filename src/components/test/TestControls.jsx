@@ -35,7 +35,6 @@ const serverTypes = {
 const TestControls = (params) => {
 	const vertId = params['gl.vert'];
 	let { dataServer, codeServer, forceServerType } = params;
-	console.log("Lewis: ", params)
 	// Keep old URLs working: old "forceServerType" param presets dataServerType and codeServerType
 	if (forceServerType) {
 		dataServer = forceServerType;
