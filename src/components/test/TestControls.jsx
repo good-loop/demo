@@ -28,14 +28,13 @@ const serverTypes = {
 	local: 'local',
 	test: 'test',
 	prod: 'prod',
-	stage: 'strage'
+	stage: 'stage'
 };
 
 
 const TestControls = (params) => {
 	const vertId = params['gl.vert'];
 	let { dataServer, codeServer, forceServerType } = params;
-
 	// Keep old URLs working: old "forceServerType" param presets dataServerType and codeServerType
 	if (forceServerType) {
 		dataServer = forceServerType;

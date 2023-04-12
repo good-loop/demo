@@ -23,7 +23,7 @@ if (window.location.hostname.match(/^local/)) {
 }
 
 /** Returns the appropriate server domain prefix for the given server type */
-const getPrefix = stype => ({prod: '', test: 'test', local: 'local'}[stype]);
+const getPrefix = stype => ({prod: '', test: 'test', local: 'local', stage:'stage'}[stype]);
 /** Returns the appropriate http(s) protocol for the given server type */
 const getProtocol = (prefix) => (prefix === 'local') ? 'http:' : 'https:';
 
