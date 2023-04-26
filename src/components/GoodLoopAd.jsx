@@ -36,7 +36,7 @@ const sizeFromUnit = (unitObj) => {
 	const unitTypeParam = new URLSearchParams(window.location.search).get('gl.unitType');
 	if (unitTypeParam && unitTypeToSize[unitTypeParam]) return unitTypeToSize[unitTypeParam];
 	// ...and then vert.advanced.playerVariant
-	const playerVariant = unitObj.vert.advanced.playerVariant;
+	const playerVariant = unitObj.vert.advanced?.playerVariant;
 	if (playerVariant && playerVariantToSize[playerVariant]) return playerVariantToSize[playerVariant];
 	// Looks like the unit has no conclusive opinions about the size/shape of container it should be in.
 	return null;
