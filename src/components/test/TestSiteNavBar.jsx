@@ -7,7 +7,7 @@ const players = {
 	'portrait': 'Portrait',
 	// 'square': 'Square'
 	'fabric': 'Fabric (Guardian header)',
-	'engage': 'Engage To Donate',
+	'engage': 'Act To Donate',
 };
 
 const social = {
