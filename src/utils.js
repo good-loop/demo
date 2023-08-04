@@ -20,6 +20,8 @@ if (window.location.hostname.match(/^local/)) {
 	serverType = 'local'; // Running on localtest or localdemo.good-loop.com --> talk to localas
 } else if (window.location.hostname.match(/(^test)/)) {
 	serverType = 'test'; // Running on test or testdemo.good-loop.com --> talk to testas
+} else if (window.location.hostname.match(/(^stage)/)) {
+	serverType = 'stage'; // Running on stage or stagedemo.good-loop.com --> talk to stageas
 }
 
 /** Returns the appropriate server domain prefix for the given server type */
