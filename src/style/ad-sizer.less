@@ -62,21 +62,21 @@
 	// The banner container inside the "page" graphic
 	iframe.display-embed {
 		border: none;
-		width: 100%;
-		height: 100%;
 	}
 	&.display {
 		position: absolute;
 		width: 100%;
 	}
 	&.banner-billboard {
-		.aspectifier {
-			margin-top: 25.78%; // match ratio to 970:250
+		// 455px by 117px
+		iframe.display-embed {
+			transform: scale(46.9072164948%) translate(-56.3%, -61%);
 		}
 	}
 	&.banner-double-mpu {
-		.aspectifier {
-			margin-top: 200%; // match ratio to 300:600
+		// 164px by 329px
+		iframe.display-embed {
+			transform: scale(54.8333333333%) translate(-42%, -42%);
 		}
 	}
 }

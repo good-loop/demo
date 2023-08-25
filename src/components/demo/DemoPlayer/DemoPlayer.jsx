@@ -72,7 +72,7 @@ const DemoPlayer = ({ format, device, 'gl.vert': vertId, url, matches, path, ...
 	const ad = {
 		social: <SocialDemo vertId={vertId} adBlocker={adBlockDetected} {...params} />,
 		video: <GoodLoopAd vertId={vertId} size={sizes[device]} extraNonce={`${format}${device}`} onUnitJson={onUnitJson} {...params} />,
-		display: <DisplayDemo {...params} />
+		display: <DisplayDemo {...params} vertId={vertId} />
 	}[format];
 
 	// TODO we can add an extra block of description here, if needed.

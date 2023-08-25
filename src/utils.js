@@ -25,9 +25,9 @@ if (window.location.hostname.match(/^local/)) {
 }
 
 /** Returns the appropriate server domain prefix for the given server type */
-const getPrefix = stype => ({prod: '', test: 'test', local: 'local', stage:'stage'}[stype]);
+export const getPrefix = stype => stype ? ({prod: '', test: 'test', local: 'local', stage:'stage'}[stype]) : '';
 /** Returns the appropriate http(s) protocol for the given server type */
-const getProtocol = (prefix) => (prefix === 'local') ? 'http:' : 'https:';
+export const getProtocol = (prefix) => (prefix === 'local') ? 'http:' : 'https:';
 
 const glBaseUrl = `${window.location.protocol}//${getPrefix(serverType)}as.good-loop.com/`
 
