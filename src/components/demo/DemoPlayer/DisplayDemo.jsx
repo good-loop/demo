@@ -11,8 +11,7 @@ const STANDARD_SIZES = {
 };
 
 const DisplayDemo = ({subformat: size, vertId, forceServerType}) => {
-	console.log("FORCE SERVER TYPE", forceServerType);
-	let iframeUrl = `${getProtocol(forceServerType)}//local${getPrefix(forceServerType)}as.good-loop.com/display/${vertId}/index.html`;
+	let iframeUrl = `${getProtocol(forceServerType)}//${getPrefix(forceServerType)}as.good-loop.com/display/${vertId}/index.html`;
 	return (
 		<div className={`ad-sizer display banner-${size}`}>
 			<iframe src={iframeUrl} className="display-embed" width={STANDARD_SIZES[size][0]} height={STANDARD_SIZES[size][1]} />
