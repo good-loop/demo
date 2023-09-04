@@ -1,0 +1,47 @@
+# Symlink into nginx sites-available dir, add domain to /etc/hosts, and restart nginx.
+
+map $sent_http_content_type $expires {
+	default                         off;
+	text/html                       epoch;
+	text/css                        epoch;
+	application/javascript          epoch;
+	~image/                         epoch;
+}
+
+server {
+	server_name ~(local|test)?test.good-loop.com;
+	listen   80; ## listen for ipv4; this line is default and implied
+	listen [::]:80;
+	rewrite ^ https://$server_name$request_uri? permanent;
+}
+
+server {
+	server_name ~(local|test)?test.good-loop.com;
+
+	listen 443 ssl http2;
+	listen [::]:443 ssl http2;
+
+	ssl_certificate /home/winterwell/ssl-certs/wildcard.good-loop.com/fullchain1.pem;
+	ssl_certificate_key /home/winterwell/ssl-certs/wildcard.good-loop.com/privkey1.pem;
+	ssl_protocols TLSv1.2 TLSv1.3;
+	ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+	ssl_prefer_server_ciphers off;
+	ssl_dhparam /home/winterwell/config/etc/ssl/dhparams.pem;
+
+	large_client_header_buffers 4 32k;
+
+	add_header X-Frame-Options SAMEORIGIN always;
+
+	root /home/winterwell/demo/web-test;
+	index index.html;
+
+	expires $expires;
+
+	# If there's no static file matching the URI, route it to $index and let preact-router handle it
+	location / {
+		try_files $uri $uri/ /;
+		add_header 'Access-Control-Allow-Origin' "$http_origin";
+		add_header 'Access-Control-Allow-Credentials' 'true';
+		add_header 'Cache-Control' 'no-cache';
+	}
+}
