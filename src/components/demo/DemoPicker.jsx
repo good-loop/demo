@@ -43,6 +43,7 @@ const DemoPicker = ({ format, device, subformat, context, noSocial, hides }) => 
 
 	const hideSocial = hides.includes('social');
 	const hideVideo = hides.includes('desktop') && hides.includes('mobile-landscape') && hides.includes('mobile-portrait');
+	const hideDisplay = hides.includes("display");
 
 	// Don't allow format change if the noSocial URL param is set
 	const formatPicker = noSocial ? '' : (
@@ -55,9 +56,10 @@ const DemoPicker = ({ format, device, subformat, context, noSocial, hides }) => 
 				<a href={hrefUrl({newFormat: 'video'})} className={formatClasses('video')}>
 					Video
 				</a>}
-			<a href={hrefUrl({newFormat: 'display', newDevice: 'desktop', })} className={formatClasses('display')}>
-				Display
-			</a>
+			{hideDisplay ? '' :
+				<a href={hrefUrl({newFormat: 'display', newDevice: 'desktop', })} className={formatClasses('display')}>
+					Display
+				</a>}
 		</Row>
 	);
 
@@ -105,6 +107,12 @@ const DemoPicker = ({ format, device, subformat, context, noSocial, hides }) => 
 					</a>
 					<a href={hrefUrl({newSubformat: 'double-mpu'})} className={subformatClasses('double-mpu')} >
 						Double MPU
+					</a>
+					<a href={hrefUrl({newSubformat: 'leaderboard'})} className={subformatClasses('leaderboard')} >
+						Leaderboard
+					</a>
+					<a href={hrefUrl({newSubformat: 'responsive'})} className={subformatClasses('responsive')} >
+						Responsive
 					</a>
 				</Col>
 			</Row>
