@@ -24,6 +24,8 @@ const frameImages = {
 	landscape: '/img/iphone-mockup-landscape.svg',
 	desktop: '/img/laptop-websiteholder-text.svg',
 	billboard: '/img/laptop-billboard-bg.svg',
+	leaderboard: '/img/leaderboard-laptop.svg',
+	responsive: '/img/responsive-laptop.svg',
 	linkedin: '/img/laptop-linkedin-bg.svg',
 	'double-mpu': '/img/laptop-double-mpu-bg.svg',
 	portrait: '/img/iphone-mockup-portrait.svg'
@@ -72,7 +74,7 @@ const DemoPlayer = ({ format, device, 'gl.vert': vertId, url, matches, path, ...
 	const ad = {
 		social: <SocialDemo vertId={vertId} adBlocker={adBlockDetected} {...params} />,
 		video: <GoodLoopAd vertId={vertId} size={sizes[device]} extraNonce={`${format}${device}`} onUnitJson={onUnitJson} {...params} />,
-		display: <DisplayDemo {...params} vertId={vertId} />
+		display: <DisplayDemo {...params} vertId={vertId} forceServerType={serverTypeForAd[vertId]}/>
 	}[format];
 
 	// TODO we can add an extra block of description here, if needed.
@@ -96,7 +98,7 @@ const DemoPlayer = ({ format, device, 'gl.vert': vertId, url, matches, path, ...
 
 	// We render all the frames at once & don't set display:none on them so there's no flicker while they load when switching
 	const deviceFrames = Object.entries(frameImages).map(([frameName, src]) => (
-		<img className="frame-img" src={src} style={{ height: frameName === currentFrame ? 'inherit' : '0'}} alt={`Framing image for ${frameName}`} />
+		<img className={`frame-img ${frameName}`} src={src} style={{ height: frameName === currentFrame ? 'inherit' : '0'}} alt={`Framing image for ${frameName}`} />
 	));
 
 	let containerClasses = `device-container ${device} ${format}`;

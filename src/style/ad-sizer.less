@@ -62,6 +62,7 @@
 	// The banner container inside the "page" graphic
 	iframe.display-embed {
 		border: none;
+		background-color: lightcoral; // if no ad is selected, at least show what it would roughly look like
 	}
 	&.display {
 		position: absolute;
@@ -77,6 +78,18 @@
 		// 164px by 329px
 		iframe.display-embed {
 			transform: scale(54.8333333333%) translate(-42%, -42%);
+		}
+	}
+	&.banner-leaderboard {
+		// 164px by 329px
+		iframe.display-embed {
+			transform: scale(0.621);
+		}
+	}
+	&.banner-responsive {
+		// 164px by 329px
+		iframe.display-embed {
+			transform: scale(0.621);
 		}
 	}
 }

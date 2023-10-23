@@ -7,7 +7,7 @@ const STANDARD_SIZES = {
 	'double-mpu': [300, 600],
 	billboard : [970, 250],
 	leaderboard : [728, 90],
-	responsive: [500, 500]
+	responsive: [950, 300]
 };
 
 const DisplayDemo = ({subformat: size, vertId, forceServerType}) => {
