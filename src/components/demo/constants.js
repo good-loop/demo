@@ -13,6 +13,8 @@ export const DEFAULT_AD = getServer().match(/^(test|local)/) ? DEFAULT_TEST_AD :
 
 export const TADG_DISPLAY_BILLBOARD = '/banners/bruichladdich_970x250/';
 export const TADG_DISPLAY_DOUBLE_MPU = '/banners/bruichladdich_300x600/';
+export const TADG_DISPLAY_LEADERBOARD = '/banners/bruichladdich_728x90/';
+export const TADG_DISPLAY_RESPONSIVE = '/banners/bruichladdich/';
 
 // Server type overrides for the default demo ads
 export const serverTypeForAd = {

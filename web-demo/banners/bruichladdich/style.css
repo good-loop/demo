@@ -1,0 +1,271 @@
+body{
+	margin:0px;
+	padding:0px;
+	font-family:Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.container{
+	font-size:15px;
+	width:970px;
+	height:250px;
+    position: relative;
+	border: 1px solid #bebebe;
+    overflow: hidden;
+    background-color: black;
+}
+
+
+
+#background_exit_dc {
+	position: absolute;
+	width:970px;
+	height:250px;
+	top: 0px;
+	left: 0px;
+	cursor: pointer;
+	opacity: 0;
+	z-index: 400;
+}
+
+
+#bottleDiv{
+	position:absolute;
+    top: 0px;
+    left: -570px;
+    opacity: 1;
+    width:350px;
+	height:250px;
+    z-index: 44;
+    overflow: hidden;
+    transform-origin: left center;
+}
+
+
+#frame2{
+	position:absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 1;
+    width:0px;
+	height:250px;
+    z-index: 43;
+    overflow: hidden;
+    transform-origin: left center;
+}
+
+
+
+#bg{
+	position:absolute;
+	top: 0px;
+	left: 0px;
+    opacity: 1;
+    width:970px;
+	height:250px;
+    z-index: 0;
+    transform-origin: center;
+}
+
+#text_1 {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+    opacity: 1;
+    width:970px;
+	height:250px;
+    z-index: 1;
+    transform-origin: center;
+}
+
+#text_2 {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+    opacity: 1;
+    width:300px;
+	height:250px;
+    z-index: 1;
+    transform-origin: center;
+}
+
+#text_3 {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+    opacity: 1;
+    width:300px;
+	height:250px;
+    z-index: 1;
+    transform-origin: center;
+}
+
+#text_4 {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+    opacity: 1;
+    width:300px;
+	height:250px;
+    z-index: 1;
+    transform-origin: center;
+}
+
+
+#text_5 {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+    opacity: 1;
+    width:300px;
+	height:250px;
+    z-index: 1;
+    transform-origin: center;
+}
+
+#text2 {
+	position:absolute;
+	top: 0px;
+	left: 0px;
+    opacity: .35;
+    width:970px;
+	height:250px;
+    z-index: 1;
+    transform-origin: center;
+}
+
+
+
+.labelDiv{
+	position:absolute;
+	top: 110px;
+	left: 187px;
+    opacity: 1;
+    width: 90px;
+	height:120px;
+    z-index: 30;
+    overflow: hidden;
+}
+
+#labelText{
+	position:absolute;
+	top: 0px;
+	left: -450px;
+    opacity: 1;
+    width:500px;
+	height:120px;
+    z-index: 0;
+    transform-origin:  center;
+}
+
+
+.labelDiv2{
+	position:absolute;
+	top: 32px;
+	left: 217px;
+    opacity: 1;
+    width: 30px;
+	height:35px;
+    z-index: 30;
+    overflow: hidden;
+}
+
+#labelText2{
+	position:absolute;
+	top: 2px;
+	left: -570px;
+    opacity: 1;
+    width:500px;
+	height:35px;
+    z-index: 0;
+    transform-origin:  center;
+}
+
+
+
+#cta{
+	position:absolute;
+	top: 180px;
+	left: 30px;
+    opacity: 0;
+    width:138px;
+	height:35px;
+    z-index: 6;
+    transform-origin:  center;
+}
+
+#legal{
+	position:absolute;
+	top: 0px;
+	left: 0px;
+    opacity: 0;
+    width:970px;
+	height:250px;
+    z-index: 6;
+    transform-origin:  center;
+}
+
+
+
+
+
+#bottle{
+	position:absolute;
+	top: 0px;
+	left: 0px;
+    opacity: 1;
+    width:300px;
+	height:250px;
+    z-index: 2;
+    transform-origin:  center;
+}
+
+#bottleInShadow{
+	position:absolute;
+	top: 0px;
+	left: 0px;
+    opacity: .75;
+    width:300px;
+	height:250px;
+    z-index: 40;
+    transform-origin:  center;
+}
+
+#bottleShadow{
+	position:absolute;
+	top: 0px;
+	left: 0px;
+    opacity: .75;
+    width:350px;
+	height:250px;
+    z-index: 0;
+    transform-origin:  center;
+}
+
+
+
+#logo{
+	position:absolute;
+	top: 0px;
+	left: 0px;
+    opacity: 1;
+    width:970px;
+	height:250px;
+    z-index: 66;
+}
+
+
+
+
+
+
+.bannerClick {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:300px;
+	height:250px;
+    z-index: 100;
+    cursor: pointer;
+    background: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"); }
+

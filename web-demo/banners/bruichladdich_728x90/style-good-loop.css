@@ -1,0 +1,114 @@
+#background_exit_dc, #container {
+	transform: scale(75%) translateX(462px) translateY(16px);
+}
+
+@font-face {
+	font-family: "Montserrat Extra Bold";
+	src: url('https://as.good-loop.com/fonts/montserrat-extrabold-subset.woff2') format('woff2'),
+		url('https://as.good-loop.com/fonts/montserrat-extrabold-subset.woff') format('woff');
+	font-weight: bolder;
+	font-style: normal;
+}
+
+
+.tapt-behind, .tapt-front {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 728px;
+	height: 90px;
+	font-family: "Montserrat Extra Bold";
+}
+
+.tapt-behind *, .tapt-front * {
+	box-sizing: border-box;
+}
+
+.tapt-text {
+	color: #18362a;
+	position: absolute;
+	top: 10px;
+	left: 170px;
+	width: 230px;
+}
+
+.tapt-text .line {
+	display: inline-block;
+	background-color: white;
+	margin-bottom: 4px;
+	padding: 6px 12px;
+	font-size: larger;
+
+}
+
+.tapt-text div.tapt-text-small {
+	font-size: 11.5px;
+	padding: 3px 12px;
+}
+
+.tapt-fg, .good-loop-ident {
+	position: absolute;
+}
+
+.tapt-behind {
+	background-image: url("trees-bg.jpg");
+	background-size: cover;
+	background-position: bottom;
+}
+
+.tapt-fg {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: right;
+	mask-image: url("trees-mask.png");
+	-webkit-mask-image: url("trees-mask.png");
+	mask-size: cover;
+	-webkit-mask-size: cover;
+	mask-mode: alpha;
+	-webkit-mask-mode: alpha;
+}
+
+.good-loop-ident {
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 40px;
+	height: 38px;
+	padding: 7px 12px;
+
+	background-color: white;
+	border-radius: 0 19px 19px 0;
+}
+
+.good-loop-ident img {
+	width: 100%;
+	height: 24px;
+	object-fit: contain;
+}
+
+.text-1 {
+	opacity: 1;
+}
+
+.text-2 {
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	animation-delay: 5s;
+}
+
+.text-1, .text-2 {
+	animation-name: fade-cycle;
+	animation-duration: 10s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes fade-cycle {
+	0% { opacity: 0; }
+	4% { opacity: 1; }
+	46% { opacity: 1; }
+	50% { opacity: 0; }
+	100% { opacity: 0;}
+}

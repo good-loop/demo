@@ -65,6 +65,9 @@ const DemoPlayer = ({ format, device, 'gl.vert': vertId, url, matches, path, ...
 	// Add "autoplay on load" to params
 	params['gl.play'] = 'onload';
 
+	// If missing vertId, use fallback ads for display format
+	let noVertId = !!vertId;
+
 	// Fill in default advert ID - different ads for social and video
 	if (!vertId) vertId = isSocial ? DEFAULT_PROD_SOCIAL_AD : DEFAULT_AD;
 
@@ -74,7 +77,7 @@ const DemoPlayer = ({ format, device, 'gl.vert': vertId, url, matches, path, ...
 	const ad = {
 		social: <SocialDemo vertId={vertId} adBlocker={adBlockDetected} {...params} />,
 		video: <GoodLoopAd vertId={vertId} size={sizes[device]} extraNonce={`${format}${device}`} onUnitJson={onUnitJson} {...params} />,
-		display: <DisplayDemo {...params} vertId={vertId} forceServerType={serverTypeForAd[vertId]}/>
+		display: <DisplayDemo {...params} vertId={vertId} forceServerType={serverTypeForAd[vertId]} noVertId={noVertId} />
 	}[format];
 
 	// TODO we can add an extra block of description here, if needed.
