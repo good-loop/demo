@@ -17,11 +17,13 @@ const AD_FALLBACK = {
 	responsive : TADG_DISPLAY_RESPONSIVE
 }
 
-const DisplayDemo = ({subformat: size, vertId, forceServerType, noVertId}) => {
+const DisplayDemo = ({subformat: size, vertId, forceServerType, noVertId, useDefault}) => {
 	let iframeUrl = `${getProtocol(forceServerType)}//${getPrefix(forceServerType)}as.good-loop.com/display/${vertId}/index.html`;
-	if(!noVertId) iframeUrl = `${getProtocol(forceServerType)}//${getPrefix(forceServerType)}demo.good-loop.com${AD_FALLBACK[size]}`;
+
+	// if no ad is selected or the ad isn't a display ad, show default
+	// TEMP HACK, just force it to use the old defaults as there's currently no actual existing 
+	if(true || !noVertId || useDefault) iframeUrl = `${getProtocol(forceServerType)}//${getPrefix(forceServerType)}demo.good-loop.com${AD_FALLBACK[size]}`;
 	
-	console.log(vertId, iframeUrl)
 	return (
 		<div className={`ad-sizer display banner-${size}`}>
 			<iframe src={iframeUrl} className="display-embed" width={STANDARD_SIZES[size][0]} height={STANDARD_SIZES[size][1]} />

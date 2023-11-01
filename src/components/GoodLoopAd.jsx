@@ -2,6 +2,7 @@
 import { h, Fragment } from 'preact';
 import { useState, useEffect } from 'preact/hooks';
 import { getAdvertFromAS, getNonce, getAdUrl } from '../utils';
+import {DEFAULT_AD} from './demo/constants';
 
 const loadingStyle = {
 	position: 'absolute',
@@ -51,10 +52,11 @@ const sizeFromUnit = (unitObj) => {
  * See VpaidAd.jsx for an adunit loader which inserts it using a VAST/VPAID player, instead of directly.
  */
 
-const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-when-downgrade', onUnitJson, ...params}) => {
+const GoodLoopAd = ({size, vertId, bare, extraNonce, refPolicy = 'no-referrer-when-downgrade', onUnitJson, useDefault, ...params}) => {
 	// there's a race condition when using legacy units that means variant.delivery / gl.delivery gets unset
 	// this stops the unit rendering TODO resolve later by merging params.variant on unit.json load - but for now shim it here
 	if (!params['gl.delivery']) params['gl.delivery'] = 'direct'; // don't overwrite delivery=app on social page!
+	if(useDefault) vertId = DEFAULT_AD;
 
 	// Load the ad
 	const [unitJson, setUnitJson] = useState(null); // Preloaded unit.json
