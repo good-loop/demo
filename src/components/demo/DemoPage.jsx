@@ -19,9 +19,9 @@ import DemoPicker from './DemoPicker';
  * - mobile-portrait
  * Given as a comma separated string as served by PropControl
  */
-const DemoPage = ({matches, path, url, noSocial, nosocial, hide, ...props}) => {
+const DemoPage = ({matches, path, url, noSocial, hide, ...props}) => {
 	// Allow any noSocial param at all, even an empty one, to work (unless value is "false")
-	const noSocialMerged = (noSocial !== 'false' && noSocial !== undefined) || (nosocial !== 'false' && nosocial !== undefined);
+	const noSocialMerged = (noSocial !== 'false' && noSocial !== undefined) || (noSocial !== 'false' && noSocial !== undefined);
 	const hides = hide ? hide.split(",") : [];
 
 	return <>
