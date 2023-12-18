@@ -70,7 +70,7 @@ const TestSiteNavBar = ({ matches, path, url, ...params }) => (
 	<Navbar sticky="top" color="dark" dark expand>
 		<Container>
 			<Nav navbar>
-				<NavbarBrand><img src="/img/gl-test-pages-logo-light.svg" /></NavbarBrand>
+				<NavbarBrand><img src="/img/gl-logo2/subsites/gl-lockup-testpages.svg" /></NavbarBrand>
 					<LinkBlock {...params} />
 				<NavbarToggler />
 			</Nav>
