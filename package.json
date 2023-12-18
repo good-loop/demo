@@ -18,7 +18,7 @@
     "mini-css-extract-plugin": "^2.7.6",
     "node-fetch": "^2.6.1",
     "puppeteer": "^1.5.0",
-    "reactstrap": "^8.1.1",
+    "reactstrap": "^9.2.1",
     "regenerator-runtime": "^0.13.3",
     "shelljs": "^0.8.3",
     "webpack": "^5.89.0",
@@ -27,10 +27,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.8.3",
-    "@fortawesome/fontawesome-svg-core": "^1.2.25",
-    "@fortawesome/free-brands-svg-icons": "^5.11.2",
-    "@fortawesome/free-solid-svg-icons": "^5.11.2",
-    "@fortawesome/react-fontawesome": "^0.1.7",
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "preact": "^10.19.2",
     "preact-router": "^4.1.2",
     "yargs": "^15.1.0"
