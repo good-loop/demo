@@ -6,15 +6,19 @@
 @import 'demo/DemoPlayer.less';
 @import 'demo/footer.less';
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import '../components/base/style/fonts.less';
 
 // TODO Is this correct? We have a LOT of different reds defined now.
-@gl-red: #830000;
+@gl-red: #ff194e;
+@gl-white: #fafaf5;
+@gl-black: #000;
+
+body {
+	background-color: @gl-white;
+}
 
 h1, h2, h3, h4, h5 {
-	text-transform: uppercase;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'ABC Social', sans-serif;
 }
 
 a, a:hover, a:focus {
@@ -34,7 +38,7 @@ video {
 //// Red BG Section ////
 .red-bg {
 	background-color: @gl-red;
-	color: #fff;
+	color: @gl-white;
 	padding: 2em;
 	@media (max-width: 767px) { // Small chages in layout on smaller screen
 		padding: 2em 0;
@@ -44,30 +48,34 @@ video {
 	}
 }
 
+/* Button styling copy-pasted from new website preview */
+.button {
+	border-color: currentColor;
+	border-radius: .375rem;
+	border-width: 1px;
+	color: currentColor;
+	cursor: pointer;
+	display: inline-block;
+	overflow: hidden;
+	padding: .25rem .75rem;
+	text-align: center;
+	transition-duration: .15s;
+	transition-property: all;
+	transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+	&:hover {
+		border-radius: 0.75rem;
+	}
+}
+
+
 // Half-white, half-red BG behind player
 .half-bg {
-	background-image: linear-gradient(to bottom, white 50%, @gl-red 50%);
+	background-image: linear-gradient(to bottom, @gl-white 50%, @gl-red 50%);
 }
 
 .red-middle-col {
 	max-width: 600px;
 	margin: 0 auto;
-}
-
-.fullscreen-button, .get-in-touch-button {
-	border: 1px solid white;
-	padding: 1em 2em;
-	border-radius: 50px;
-	color: #fff;
-	font-family: 'Montserrat', sans-serif;
-	font-weight: 700;
-	margin: 2em 0;
-	text-transform: uppercase;
-	&:hover {
-		text-decoration: none;
-		color: #fff;
-		background-color: #a30000;
-	}
 }
 
 

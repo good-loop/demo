@@ -60,7 +60,7 @@ const RedMiddleSection = () => (
 			<p>
 				Want to know more?
 				<div className="pt-5 pb-3">
-					<a href="https://www.good-loop.com/contact" className="get-in-touch-button">Get In Touch</a>
+					<a href="https://www.good-loop.com/contact" className="button get-in-touch">Get in touch</a>
 				</div>
 			</p>
 		</Col>
