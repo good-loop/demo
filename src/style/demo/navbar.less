@@ -1,6 +1,5 @@
 @import "../../components/base/style/colours.less";
 @import "./website-colours.less";
-@import "./navbar-fonts.less";
 @import "./buttons.less";
 
 @md-min: ~"(min-width: 768px)";
@@ -9,44 +8,19 @@
 @lg-max: ~"(max-width: 992px)";
 
 .navbar {
-    background: white;
-    color: black;
-	box-shadow: 0 0 4px #000;
+	color: black;
 	padding-top: 0;
 	padding-bottom: 0;
+	font-size: 110%; // Slight bump from base 16px to match website
 
-    // Disable Bootstrap margins
-    .flex-column>* {
-        margin: 0;
-    }
-
-    // Scale font so navbar items never take up more than 1 line
-    // (breakpoints found through trial and error)
-    @media (max-width: 1500px) {
-        font-size: 0.7rem !important;
-    }
-    @media (max-width: 1142px) {
-        font-size: 0.6rem !important;
-    }
-    @media (max-width: 1034px) {
-        font-size: 0.5rem !important;
-    }
-    @media @lg-max {
-        font-size: 1rem !important;
+	// Disable Bootstrap margins
+	.flex-column > * {
+		margin: 0;
 	}
-	// .btn still somehow overrided !important, so making sure it sticks
-	.btn {
-		@media (max-width: 1500px) {
-			font-size: 0.7rem !important;
-		}
-		@media (max-width: 1142px) {
-			font-size: 0.6rem !important;
-		}
-		@media (max-width: 1034px) {
-			font-size: 0.5rem !important;
-		}
-		@media @lg-max {
-			font-size: 1rem !important;
+
+	.container-fluid {
+		> :first-child, > :last-child {
+			width: 10%; // Equalise width of logo and contact button to centre middle nav elements
 		}
 	}
 }
@@ -58,19 +32,16 @@ nav {
 	}
 	a:hover {
 		color: black !important;
-    }
-    text-align: center;
-    @media @lg-max {
-        text-align: left;
-    }
-    .btn {
-        padding: 5px 50px !important;
-    }
-	font-family: 'Montserrat';
-	font-weight: 700;
-	text-transform: uppercase;
-	justify-content: space-between !important;
-	align-items: stretch !important;
+	}
+	text-align: center;
+	@media @lg-max {
+		text-align: left;
+	}
+	.btn {
+		padding: 5px 50px !important;
+	}
+	font-family: 'ABC Social';
+	font-weight: 500;
 }
 
 // PORTED from main-base.less, only need this bit and dont want to import entire main base less
@@ -86,13 +57,13 @@ nav {
 }
 
 .navbar-toggler-icon {
-    background: none !important;
-    content: unset !important;
+	background: none !important;
+	content: unset !important;
 }
 
 // Hamburger/cross icon transition
 .navbar-toggler {
-    border: none !important;
+	border: none !important;
 	#nav-toggle-icon-hamburger {
 		opacity: 0%;
 		transition: 0.3s;
@@ -116,72 +87,46 @@ nav {
 
 // Make sure items take up a suitable portion of the screen on desktop
 #navItemsDiv {
-    flex-basis: 60%;
-    flex-grow: 0.35;
-    @media @lg-max {
-        flex-basis: 100%;
-	}
-	align-items: stretch !important;
+	flex-basis: 100%;
 }
 
 .navbar-nav {
 	width: 100%;
-	justify-content: space-between !important;
+	justify-content: center;
 }
 
 .nav-item {
 	display: flex;
 	align-items: center;
+	&:first-child .nav-link {
+		padding-left: 0;
+	}
+	&:last-child .nav-link {
+		padding-right: 0;
+	}
 }
 
 .logo {
-	width: 10em !important;
-	height: 4rem !important;
+	height: 3rem !important;
 	object-fit: contain;
 }
 
 // Dropdown styling
 .dropdown.show {
-    background: white;
-    a {
-        color: black !important;
-    }
+	background: white;
+	a {
+		color: black !important;
+	}
 }
 
 .dropdown-menu {
-    background: white;
-    margin: 0;
-    border: none;
-    border-radius: 0;
-    padding: 0;
+	background: white;
+	margin: 0;
+	border: none;
+	border-radius: 0;
+	padding: 0;
 }
 
 .dropdown-toggle::after {
-    display: none;
-}
-
-// Make contact button look like normal nav item on collapsable menu
-@media @lg-max {
-    nav {
-        .btn {
-            background: none !important;
-            color: black !important;
-            padding-left: 0.5rem !important;
-            padding-right: 0.5rem !important;
-            margin-top: 1.5rem !important;
-            margin-bottom: 1.5rem !important;
-            text-align: left;
-        }
-        .nav-link.btn:hover, .nav-link.btn:active, .nav-link.btn:focus {
-            background: none !important;
-            color: black !important;
-        }
-        .dropdown-item:active {
-            background-color: @gl-light-blue;
-        }
-        .nav-link {
-            margin-top: 1.5rem !important;
-            padding-left: 0.5rem !important;
-        }
-    }
+	display: none;
 }

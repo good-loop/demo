@@ -50,15 +50,15 @@ const DemoPicker = ({ format, device, subformat, context, noSocial, hides }) => 
 		<Row className="format-picker text-center justify-content-center">
 			{hideSocial ? '' :
 				<a href={hrefUrl({newFormat: 'social', newDevice: 'portrait'})} className={formatClasses('social')}>
-					Social
+					<h3>Social</h3>
 				</a>}
 			{hideVideo ? '' :
 				<a href={hrefUrl({newFormat: 'video'})} className={formatClasses('video')}>
-					Video
+					<h3>Video</h3>
 				</a>}
 			{hideDisplay ? '' :
 				<a href={hrefUrl({newFormat: 'display', newDevice: 'desktop', })} className={formatClasses('display')}>
-					Display
+					<h3>Display</h3>
 				</a>}
 		</Row>
 	);
