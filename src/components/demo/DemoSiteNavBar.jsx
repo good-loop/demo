@@ -9,7 +9,7 @@ const DemoPageNavBar = () => {
 	const toggle = () => setIsOpen(!isOpen);
 	// id="current-nav-link" to show selected nav link
 	return (
-		<Navbar sticky="top" expand="lg" className="p-0" light>
+		<Navbar expand="lg" light>
 			<NavbarBrand href="https://www.good-loop.com/">
 				<img class="logo noaos normal-logo" alt="logo" src="/img/gl-logo2/Good-Loop-logo.svg" width="100%" height="100%" />
 			</NavbarBrand>
@@ -27,14 +27,11 @@ const DemoPageNavBar = () => {
 					<NavItem>
 						<NavLink href="https://www.good-loop.com/resources">Resources</NavLink>
 					</NavItem>
-					<NavItem>
-						<NavLink href="https://www.good-loop.com/company">Company</NavLink>
-					</NavItem>
 				</Nav>
 			</Collapse>
-			<Nav className="pull-right justify-content-end">
+			<Nav className="pull-right text-red justify-content-end">
 				<NavItem>
-					<NavLink href="https://www.good-loop.com/contact">Contact</NavLink>
+					<NavLink className="button" href="https://www.good-loop.com/contact">Get in touch</NavLink>
 				</NavItem>
 			</Nav>
 		</Navbar>

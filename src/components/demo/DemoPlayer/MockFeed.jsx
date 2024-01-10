@@ -50,6 +50,21 @@ const socialAppLogos = {
 	instagram: '/img/instagram-logo.jpg'
 };
 
+
+const VideoOverlay = ({ brandLogo, charityCarousel }) => {
+	return (
+		<div className="video-overlay fill-abs">
+			<div className="wave">
+				<img className="brand-logo" src={brandLogo} />
+				<div className="unlock-text">Unlock a free<br/>donation</div>
+					{charityCarousel}
+			</div>
+			<img className="gl-ident" src="/img/gl-logo2/Good-Loop-logo.svg" />
+		</div>
+	);
+}
+
+
 /**
  * TODO Doc - link to Instagram's specs for this, or an example
  */
@@ -82,14 +97,7 @@ const InstagramStories = ({brandLogo, brandName, charityCarousel, progressClass,
 		<div className="fill-abs fade-in">
 		{mockMedia}
 		{instagramOverlay}
-		<div className="video-overlay fill-abs">
-			<div className="wave">
-				<img className="brand-logo" src={brandLogo} />
-				<div className="unlock-text">UNLOCK A FREE<br/>DONATION</div>
-				{charityCarousel}
-			</div>
-			<img className="gl-ident" src="/img/logo-social-ident.svg" />
-		</div>
+		<VideoOverlay brandLogo={brandLogo} charityCarousel={charityCarousel} />
 	</div>
 	);
 };
@@ -112,14 +120,7 @@ const InstagramInFeed =  ({brandLogo, brandName, charityCarousel, progressClass,
 			<div className="media-sizer">
 				{mockMedia}
 			</div>
-			<div className="video-overlay fill-abs">
-				<div className="wave">
-					<img className="brand-logo" src={brandLogo} />
-					<div className="unlock-text">UNLOCK A FREE<br/>DONATION</div>
-					{charityCarousel}
-				</div>
-				<img className="gl-ident" src="/img/logo-social-ident.svg" />
-			</div>
+			<VideoOverlay brandLogo={brandLogo} charityCarousel={charityCarousel} />
 		</div>
 		<div className="swipe-cta">
 			Learn More

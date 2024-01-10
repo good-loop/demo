@@ -8,7 +8,7 @@ import { landscapeSvg, desktopSvg, portraitSvg } from './DemoSvg';
 const DemoPicker = ({ format, device, subformat, context, noSocial, hides }) => {
 
 	const deviceClasses = newDevice => {
-		let classes = `button picker-button ${newDevice}`
+		let classes = `picker-button ${newDevice}`
 		if (format === 'social' && newDevice !== 'portrait') classes += ' disabled';
 		if (newDevice === device) classes += ' current'
 		return classes;

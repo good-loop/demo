@@ -94,8 +94,10 @@ const DemoPlayer = ({ format, device, 'gl.vert': vertId, url, matches, path, ...
 	fullscreenUrl.pathname = `/fullscreen/${sizes[device]}`;
 
 	const fullscreenButton = isVideo ? (
-		<Row className="red-bg justify-content-center pt-1">
-			<a href={fullscreenUrl.toString()} target="_blank" className="button full-screen-demo">Full screen demo</a>
+		<Row className="red-bg justify-content-center">
+			<h4>
+				<a href={fullscreenUrl.toString()} target="_blank" className="button full-screen-demo">Full screen demo</a>
+			</h4>
 		</Row>
 	) : '';
 
