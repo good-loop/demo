@@ -8,40 +8,28 @@
 @lg-max: ~"(max-width: 992px)";
 
 .navbar {
-	color: black;
-	padding-top: 0;
-	padding-bottom: 0;
-	font-size: 110%; // Slight bump from base 16px to match website
-
-	// Disable Bootstrap margins
-	.flex-column > * {
-		margin: 0;
-	}
+	color: @gl-black;
+	font-weight: 500;
 
 	.container-fluid {
+		padding: 0; // No double padding
 		> :first-child, > :last-child {
 			width: 10%; // Equalise width of logo and contact button to centre middle nav elements
 		}
 	}
 }
 
-// nav link styling
-nav {
-	a {
-		color: black !important;
+// Override Bootstrap grey nav text
+.navbar-light {
+	.navbar-nav {
+		.nav-link {
+			color: @gl-black;
+			transition: color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+			&:hover {
+				color: @gl-red;
+			}
+		}
 	}
-	a:hover {
-		color: black !important;
-	}
-	text-align: center;
-	@media @lg-max {
-		text-align: left;
-	}
-	.btn {
-		padding: 5px 50px !important;
-	}
-	font-family: 'ABC Social';
-	font-weight: 500;
 }
 
 // PORTED from main-base.less, only need this bit and dont want to import entire main base less
@@ -50,7 +38,7 @@ nav {
 	padding: 10px 2px;
 	// We set our own navbar height and it might change...
 	// ...so constrain image height to a safe proportion of that
-	.logo { 
+	.logo {
 		min-height: 50%;
 		max-height: 48px; // don't allow a giant image
 	}
@@ -95,7 +83,7 @@ nav {
 	justify-content: center;
 }
 
-.nav-item {
+#navItemsDiv .nav-item {
 	display: flex;
 	align-items: center;
 	&:first-child .nav-link {
@@ -113,9 +101,9 @@ nav {
 
 // Dropdown styling
 .dropdown.show {
-	background: white;
+	background: @gl-white;
 	a {
-		color: black !important;
+		color: @gl-black !important;
 	}
 }
 

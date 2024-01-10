@@ -83,7 +83,7 @@
 		height: 2px;
 		left: 50%;
 		position: absolute;
-		background: #830000;
+		background: @gl-red;
 		transition: width 0.3s ease 0s, left 0.3s ease 0s;
 		width: 0;
 	}
@@ -92,7 +92,7 @@
 		// Override boostrap bt hover styles
 		background-color: transparent!important;
 		&:not(.current) { // 
-			color: #000!important;
+			color: @gl-black !important;
 		}
 	}
 
@@ -102,7 +102,7 @@
 	}
 
 	&.current {
-		color: #830000;
+		color: @gl-red;
 		font-weight: 800;
 		&:after {
 			width: 100%;

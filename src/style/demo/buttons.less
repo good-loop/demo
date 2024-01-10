@@ -2,21 +2,22 @@
 // Button LESS
 
 .btn {
-	border-radius: 100px;
 	vertical-align: middle;
-	padding: 15px 40px;
-	border: none !important;
+	padding: 0.25em 0.5em;
+	border-radius: 0;
+	border-width: 1px;
+	border-style: solid;
+	border-color: currentColor;
 	box-shadow: none !important;
 	font-weight: bold;
-	// font-family: 'ABC Social';
-	font-size: 0.9rem;
-    p {
-		margin: 0 !important;
+	color: currentColor;
+	&:hover {
+		border-radius: 1rem;
 	}
 }
 
 .btn.disabled {
-    cursor: default;
+	cursor: default;
 }
 
 .btn-primary {

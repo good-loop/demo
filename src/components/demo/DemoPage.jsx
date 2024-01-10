@@ -51,7 +51,10 @@ const DemoPage = ({matches, path, url, noSocial, hide, ...props}) => {
 const RedMiddleSection = () => (
 	<Row className="pt-0">
 		<Col className="justify-content-md-center text-center red-middle-col">
-			<h4 className="playermiddleheader pt-0">if you&#x27;re running an ad online then why not work with us?</h4>
+			<h4 className="playermiddleheader pt-0">
+				If you&#x27;re running an ad online<br/>
+				then why not work with us?
+			</h4>
 			<p>
 				Our ethical ad formats are proven to drive higher engagement and
 				significant brand uplift. So you can connect with your consumer in a
@@ -59,10 +62,10 @@ const RedMiddleSection = () => (
 			</p>
 			<p>
 				Want to know more?
-				<div className="pt-5 pb-3">
-					<a href="https://www.good-loop.com/contact" className="button get-in-touch">Get in touch</a>
-				</div>
 			</p>
+			<h4 className="py-3">
+				<a href="https://www.good-loop.com/contact" className="button get-in-touch">Get in touch</a>
+			</h4>
 		</Col>
 	</Row>
 );
@@ -86,18 +89,18 @@ const HowItWorksSection = ({format}) => {
 	const steps = formatToSteps[format] || formatToSteps.video;
 
 	return <>
-		<h4 className="playerheadingbottom text-center p-5">How It Works</h4>
+		<h3 className="playerheadingbottom text-center p-5">How it works</h3>
 		<Row className="how-it-works-row text-center pb-5 justify-content-center">
 			<Col md="3">
-				<img src="/img/icon-heart.png" alt=""/>
+				<img src="/img/icon-heart.svg" alt=""/>
 				{steps[0]}
 			</Col>
 			<Col md="3">
-				<img src="/img/icon-eye.png" alt=""/>
+				<img src="/img/icon-eye.svg" alt=""/>
 				{steps[1]}
 			</Col>
 			<Col md="3">
-				<img className="coins-img" src="/img/icon-coins.png" alt=""/>
+				<img className="coins-img" src="/img/icon-scale-up.svg" alt=""/>
 				{steps[2]}
 			</Col>
 		</Row>
@@ -112,13 +115,13 @@ const contactIcons = [
 	{ icon: faInstagram, url: 'https://www.instagram.com/goodloophq/' },
 	{ icon: faYoutubeSquare, url: 'https://www.youtube.com/channel/UCRhJgwNS5DsRHHzRWjDgjhA' },
 ].map(({name, url, icon, colour}) => (
-	<a className="fa-svg" href={url} target="_blank"><FontAwesomeIcon icon={icon} style={{color: 'rgba(131, 0, 0, 0.5)'}} /></a>
+	<a className="fa-svg" href={url} target="_blank"><FontAwesomeIcon icon={icon} /></a>
 ));
 
 
 const FooterSection = () => (
 	<div className="footer column text-center pt-5">
-			<h5>Keep In Touch</h5>
+			<h5>Keep in touch</h5>
 			<Row className="keep-in-touch justify-content-center">
 				<Col xs="auto">{ contactIcons }</Col>
 			</Row>
