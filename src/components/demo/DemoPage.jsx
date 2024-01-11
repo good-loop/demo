@@ -127,15 +127,11 @@ const FooterSection = () => (
 			</Row>
 			<Row>
 				<Col>
-					&#169; 2016-2023 Good-Loop Ltd.{" "}
-					<a href="https://doc.good-loop.com/policy/privacy-policy.html" className="link-7">
-						Privacy policy<br />‍
-					</a>
+					&#169; 2016-2023 Good-Loop Ltd.<br />
 					Registered in Scotland, UK (No. SC548356)<br />
-					127 Rose Street South Lane, Edinburgh, EH2 4BB<br />
-					<a href="https://doc.good-loop.com/terms/terms-of-use.html" target="_blank">
-						Terms of Use
-					</a>
+					9 St Colme St, Edinburgh, EH3 6AA<br />
+					<a href="https://good-loop.com/privacy-policy" className="mr-3" target="_blank">Privacy policy</a>
+					<a href="https://good-loop.com/terms-of-use" target="_blank">Terms of Use</a>
 				</Col>
 			</Row>
 	</div>
